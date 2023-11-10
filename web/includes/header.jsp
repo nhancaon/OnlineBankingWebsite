@@ -43,18 +43,18 @@
                 },
             };
         </script>
-        <title>SmartBanking</title>
+        <title>Banking</title>
     </head>
     <body>
 
-        <div id="header" class="shadow-xl shadow-gray-900 bg-[#fff]">
+        <div id="header" class="fixed top-0 w-full shadow-xl z-[1000] bg-[#fff]">
             <div class="grid grid-cols-3 justify-center mx-56 py-4">
                 <div class="w">
                     <form>
                         <div class="relative">
                             <div
                                 class="absolute inset-y-0 left-0 flex items-center  pointer-events-none"
-                            >
+                                >
                                 <img src="./assets/search.svg" class="w-5 h-5" />
                             </div>
                             <input
@@ -68,7 +68,9 @@
                     </form>
                 </div>
                 <div class="flex items-center justify-center">
-                    <img src="./assets/logo.png" class="w-18 h-12" />
+                    <a href="./index.jsp">
+                        <img src="./assets/logo.png" class="w-18 h-12" />
+                    </a>
                 </div>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">

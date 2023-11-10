@@ -2,11 +2,11 @@
 
 <%@ include file="/includes/header.jsp" %>
 
-<div class="bg-[#f0f1f1]">
+<div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-56">
         <div class="flex text-2xl">
             <a href="./index.jsp"><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
-            <div class="py-[0.2rem]">Transfers</div>
+            <div class="py-[0.2rem]">Transfer</div>
         </div>
 
         <nav class="flex pt-3 ml-[2.3rem]" aria-label="Breadcrumb">
@@ -31,16 +31,11 @@
                     </a>
                 </li>
                 <li>
-                    <div class="flex items-center">
+                      <div class="flex items-center">
                         <svg class="w-3 h-3 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                         </svg>
-                        <a href="./transfer.jsp" class="ml-1 text-sm font-medium 
-                           <% if (request.getRequestURI().endsWith("/transfer.jsp")) { %>
-                           text-blue-400
-                           <% }%>
-                           hover:text-blue-600
-                           md:ml-2">Transfers</a>
+                        <a class="ml-1 text-sm font-medium text-blue-600 md:ml-2 cursor-pointer">Transfer</a>
                     </div>
                 </li>
             </ol>
@@ -48,7 +43,7 @@
 
         <div class="grid grid-cols-5 gap-8">
             <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
-                <span class="text-[#2a6ebe]">Internal Transfers</span>
+                <span class="text-[#2a6ebe]">Internal Transfer</span>
                 <form>
                     <div class="relative mt-6">
                         <input
@@ -87,6 +82,19 @@
                             for="amount"
                             class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                             >Amount</label
+                        >
+                    </div>
+                    <div class="relative mt-8">
+                        <input
+                            type="text"
+                            id="transactionRemark"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            />
+                        <label
+                            for="transactionRemark"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >Transaction Remark</label
                         >
                     </div>
                     <div class="flex justify-end items-center mt-10">

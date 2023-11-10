@@ -2,8 +2,11 @@
 
 <%@ include file="/includes/header.jsp" %>
 
-<div class="bg-black h-96"></div>
-<div id="content" class="bg-[#f0f1f1]">
+<div class="relative w-full h-[30rem] mt-[5.2rem]" >
+    <img src="./assets/money.gif" class="w-full h-full" alt="alt"/>
+</div>
+
+<div id="content" class="bg-[#f0f1f1] pb-16">
     <div class="mx-56 px-4 pt-10 pb-16 rounded-md bg-[#fff]">
         <div class="grid grid-cols-2 pt-4 pb-10 justify-between">
             <div class="grid">
@@ -16,9 +19,9 @@
                     <span class="font-bold text-xl">1,100,000 VND</span>
                 </div>
                 <div class="grid justify-end ml-4">
-                    <button class="px-2 py-1 bg-gray-200 rounded-lg">
+                    <a href="./account.jsp" class="px-2 py-1 bg-gray-200 rounded-lg">
                         Account Lists <span class="font-bold">></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

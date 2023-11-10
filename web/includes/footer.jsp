@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<div id="footer" class="bg-gradient-to-r from-[#038883] to-[#0066ad] text-white py-3 mt-16">
+<div id="footer" class="relative bottom-0 bg-gradient-to-r from-[#038883] to-[#0066ad] text-white py-3">
     <div class="flex flex-col flex-1 items-center mh-[40px]">
         <ul class="flex justify-center space-x-4 uppercase text-sm ">
             <li>All Rights Reserved.</li>
@@ -13,5 +13,6 @@
     </div>
 </div>
 
+<script src="./pages/transfer/transfer.js"></script>
 </body>
 </html>
