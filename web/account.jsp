@@ -42,7 +42,10 @@
         </nav>
 
         <div class="my-16 py-8 px-20 rounded-xl bg-white">
-            <span>Current Accounts</span>
+            <div class="flex justify-between items-center">
+                <span>Current Accounts</span>
+                <a href=""><button class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl">Create Account</button></a>
+            </div>
             <div class="grid grid-cols-1 gap-10 my-8">
                 <a class="flex justify-between p-4 rounded-xl bg-gray-300" href="./accountDetail.jsp">
                     <div>
