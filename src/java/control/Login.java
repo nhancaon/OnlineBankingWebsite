@@ -24,11 +24,13 @@ public class Login extends HttpServlet {
 
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-//            Customer customerLogin = CustomerDB.customerLogin(email, password);
-            if (email.equals("abc@gmail.com") && password.equals("1")) {
-                response.sendRedirect("profile.jsp");
-            } else {
+            Customer customerLogin = CustomerDB.customerLogin(email, password);
+            if (customerLogin == null) {
                 response.sendRedirect("login.jsp");
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                response.sendRedirect("profile.jsp");
             }
 
         }
