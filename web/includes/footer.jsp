@@ -13,6 +13,6 @@
     </div>
 </div>
 
-<script src="./pages/transfer/transfer.js"></script>
+<script src="./styles/style.js"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@ public class CustomerDB {
         }
         return (Customer) customer;
     }
-
+    
     public static Customer selectUser(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT u FROM userhaha u "

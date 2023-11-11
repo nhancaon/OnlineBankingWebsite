@@ -72,15 +72,38 @@
                         <img src="./assets/logo.png" class="w-18 h-12" />
                     </a>
                 </div>
+
+                <%
+                    if (session.getAttribute("email") != null) {
+                %>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
                         <div class="font-bold text-lg">Chau Gia Dat</div>
                     </div>
                     <div>
-                        <div class="bg-black rounded-full w-10 h-10"></div>
-                    </div>
+                        <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
+                        <div id="dropdown" class="hidden absolute right-0 mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
+                            <ul>
+                                <li>
+                                    <form action="Logout">
+                                        <input type="hidden" name="action" value="logout">  
+                                        <i class="fa-solid fa-arrow-right-from-bracket mr-3 text-red-800"></i>
+                                        <input type="submit" value="Log out"/>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                 
                 </div>
+                <%
+                    } else {
+                %>
+              
+                    <div></div>
+                <%
+                    }
+                %>
             </div>
 
         </div>
