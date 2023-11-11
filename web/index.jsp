@@ -20,7 +20,7 @@
                 </div>
                 <div class="grid justify-end ml-4">
                     <a href="./account.jsp" class="px-2 py-1 bg-gray-200 rounded-lg">
-                        Account Lists <span class="font-bold">></span>
+                        Account Lists <span class="font-bold"><i class="fa-solid fa-chevron-right py-1"></i></span>
                     </a>
                 </div>
             </div>
