@@ -44,9 +44,9 @@ public class TestServlet extends HttpServlet {
             } else {
                
                 message = "";
-                url = "/profile.jsp";
+                url = "/test2.jsp";
                 System.out.println(emailU);
-        
+                UserhahaDB.insert(user);
 
             }
             request.setAttribute("user", user);

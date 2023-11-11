@@ -68,7 +68,7 @@
                     </form>
                 </div>
                 <div class="flex items-center justify-center">
-                    <a href="./index.jsp">
+                    <a href="./profile.jsp">
                         <img src="./assets/logo.png" class="w-18 h-12" />
                     </a>
                 </div>
