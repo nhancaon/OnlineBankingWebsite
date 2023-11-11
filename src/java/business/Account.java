@@ -1,34 +1,22 @@
 package business;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @MappedSuperclass
 public class Account implements Serializable {
-    private int accountId;
+
     @Column(columnDefinition = "varchar(20)")
     private String accountNumber;
     @Column(columnDefinition = "varchar(20)")
     private String accountType;
-    @Temporal(TemporalType.DATE)
-    private Date dateOpened;
-    @Temporal(TemporalType.DATE)
-    private Date dateClosed;
+    private LocalDate dateOpened;
+    private LocalDate dateClosed;
     @Column(columnDefinition = "varchar(20)")
     private String accountStatus;
     private int pinNumber;
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
 
     public String getAccountNumber() {
         return accountNumber;
@@ -46,19 +34,19 @@ public class Account implements Serializable {
         this.accountType = accountType;
     }
 
-    public Date getDateOpened() {
+    public LocalDate getDateOpened() {
         return dateOpened;
     }
 
-    public void setDateOpened(Date dateOpened) {
+    public void setDateOpened(LocalDate dateOpened) {
         this.dateOpened = dateOpened;
     }
 
-    public Date getDateClosed() {
+    public LocalDate getDateClosed() {
         return dateClosed;
     }
 
-    public void setDateClosed(Date dateClosed) {
+    public void setDateClosed(LocalDate dateClosed) {
         this.dateClosed = dateClosed;
     }
 

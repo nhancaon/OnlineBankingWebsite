@@ -8,6 +8,14 @@
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/Test</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TransferServlet</servlet-name>
+        <servlet-class>control.TransferServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TransferServlet</servlet-name>
+        <url-pattern>/Transfer</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

@@ -17,7 +17,7 @@ public class Reward implements Serializable {
     private List<CurrentAccount> currentAccounts;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rewardId;
     @Column(columnDefinition = "varchar(20)")
     private String rewardName;

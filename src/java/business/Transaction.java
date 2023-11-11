@@ -1,7 +1,7 @@
 package business;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "transaction")
@@ -27,13 +25,16 @@ public class Transaction implements Serializable {
     private CurrentAccount receiver;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
     @Column(columnDefinition = "varchar(20)")
     private String transactionRemake;
     private Double amount;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date transactionDate;
+    private LocalDateTime transactionDate;
+
+    public Transaction() {
+        
+    }
 
     public CurrentAccount getSender() {
         return sender;
@@ -75,11 +76,11 @@ public class Transaction implements Serializable {
         this.amount = amount;
     }
 
-    public Date getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 }
