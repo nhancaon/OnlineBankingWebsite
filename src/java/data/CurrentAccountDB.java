@@ -58,6 +58,24 @@ public class CurrentAccountDB {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 //        return em.find(CurrentAccount.class, acNumber);
 //    }
+     public static CurrentAccount createCurrentAccount(String accountNumber) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT ca FROM CurrentAccount ca WHERE ca.accountNumber = :accountNumber";
+        TypedQuery<CurrentAccount> q = em.createQuery(qString, CurrentAccount.class);
+        q.setParameter("accountNumber", accountNumber);
+        CurrentAccount ca = null;
+        try {
+            ca = q.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            em.close();
+        }
+        return (CurrentAccount) ca;
+    }
+
+     
     public static CurrentAccount findByAccountNumber(String accountNumber) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT ca FROM CurrentAccount ca WHERE ca.accountNumber = :accountNumber";
