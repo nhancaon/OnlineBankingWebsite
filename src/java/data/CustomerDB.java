@@ -8,51 +8,25 @@ import javax.persistence.TypedQuery;
 
 public class CustomerDB {
 
-//    public static void insert(userhaha user) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.persist(user);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
 
-//    public static void update(userhaha user) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.merge(user);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-//
-//    public static void delete(userhaha user) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.remove(em.merge(user));
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-
+    public static Customer customerLogin(String email,String password) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+         String qString = "SELECT email, password FROM Customer c "
+            + "WHERE c.email = :email AND c.password = :password";
+        TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
+        q.setParameter("email", email);
+        q.setParameter("password", password);
+        Customer customer = null;
+        try {
+            customer = q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }   
+        return (Customer) customer;
+    }
+    
     public static Customer selectUser(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT u FROM userhaha u "
@@ -66,7 +40,7 @@ public class CustomerDB {
             return null;
         } finally {
             em.close();
-        }
+        }   
         return (Customer) user;
     }
 }
