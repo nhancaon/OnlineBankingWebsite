@@ -13,7 +13,6 @@ public class TestServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
         String url = "/test1.jsp";
-
         // get current action
         String action = request.getParameter("action");
         if (action == null) {

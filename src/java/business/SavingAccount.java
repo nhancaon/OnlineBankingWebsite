@@ -17,7 +17,7 @@ public class SavingAccount extends Account implements Serializable {
     private Customer customer;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int savingAccountId;
     private int minBalence;
     private int savingAmount;

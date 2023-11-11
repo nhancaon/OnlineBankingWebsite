@@ -1,19 +1,16 @@
 package business;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @MappedSuperclass
 public class User implements Serializable {
 
     @Column(columnDefinition = "varchar(100)")
     private String name;
-    @Temporal(TemporalType.DATE)
-    private Date dateofBirth;
+    private LocalDate dateofBirth;
     @Column(columnDefinition = "varchar(100)")
     private String password;
     @Column(columnDefinition = "varchar(100)")
@@ -32,11 +29,11 @@ public class User implements Serializable {
     }
 
     
-    public Date getDateofBirth() {
+    public LocalDate getLocalDateofBirth() {
         return dateofBirth;
     }
 
-    public void setDateofBirth(Date dateofBirth) {
+    public void setLocalDateofBirth(LocalDate dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
@@ -71,5 +68,4 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }

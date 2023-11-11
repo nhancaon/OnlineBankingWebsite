@@ -26,7 +26,7 @@ public class Customer extends User implements Serializable {
     private List<Loan> loans;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
     @Column(columnDefinition = "varchar(20)")
     private String customerType;

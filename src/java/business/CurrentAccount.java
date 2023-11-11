@@ -35,10 +35,14 @@ public class CurrentAccount extends Account implements Serializable {
     private List<Transaction> receivedTransactions;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int currentAccountId;
     private int currentBalence;
     private int rewardPoint;
+
+    public CurrentAccount() {
+
+    }
 
     public Customer getCustomer() {
         return customer;
