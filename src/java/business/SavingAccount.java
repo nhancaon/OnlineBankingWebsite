@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class SavingAccount implements Serializable {
+public class SavingAccount extends Account implements Serializable {
 
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "cus_id",referencedColumnName = "customerId")

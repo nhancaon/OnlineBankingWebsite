@@ -3,10 +3,11 @@ package business;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+@MappedSuperclass
 public class Account implements Serializable {
     private int accountId;
     @Column(columnDefinition = "varchar(20)")

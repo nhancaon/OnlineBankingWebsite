@@ -30,7 +30,7 @@ public class Transaction implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int transactionId;
     @Column(columnDefinition = "varchar(20)")
-    private String transactionType;
+    private String transactionRemake;
     private Double amount;
     @Temporal(TemporalType.TIMESTAMP)
     private Date transactionDate;
@@ -59,12 +59,12 @@ public class Transaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public String getTransactionType() {
-        return transactionType;
+    public String getTransactionRemake() {
+        return transactionRemake;
     }
 
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
+    public void setTransactionRemake(String transactionRemake) {
+        this.transactionRemake = transactionRemake;
     }
 
     public Double getAmount() {

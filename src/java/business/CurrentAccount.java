@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class CurrentAccount implements Serializable {
+public class CurrentAccount extends Account implements Serializable {
 
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(

@@ -3,9 +3,11 @@ package business;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@MappedSuperclass
 public class User implements Serializable {
 
     @Column(columnDefinition = "varchar(100)")

@@ -12,7 +12,7 @@ public class TestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "/index.html";
+        String url = "/test1.jsp";
 
         // get current action
         String action = request.getParameter("action");
@@ -22,7 +22,7 @@ public class TestServlet extends HttpServlet {
 
         // perform action and set URL to appropriate page
         if (action.equals("join")) {
-            url = "/index.jsp";    // the "join" page
+            url = "/test1.jsp";    // the "join" page
         } else if (action.equals("add")) {
             // get parameters from the request
             String firstName = request.getParameter("firstName");
@@ -40,11 +40,11 @@ public class TestServlet extends HttpServlet {
             if (1==2) {
                 message = "This email address already exists.<br>"
                         + "Please enter another email address.";
-                url = "/index.jsp";
+                url = "/test1.jsp";
             } else {
                
                 message = "";
-                url = "/thanks.jsp";
+                url = "/test2.jsp";
                 System.out.println(emailU);
                 UserhahaDB.insert(user);
 
@@ -55,5 +55,10 @@ public class TestServlet extends HttpServlet {
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 }
