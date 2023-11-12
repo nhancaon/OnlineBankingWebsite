@@ -1,4 +1,4 @@
-package control;
+package control.User;
 
 import java.io.*;
 import javax.servlet.*;
@@ -7,8 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import business.Customer;
 import data.CustomerDB;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Signup")
+public class Signup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -20,22 +20,18 @@ public class Login extends HttpServlet {
             action = "join";  // default action
         }
 
-        if (action.equals("login")) {
-
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            Customer customerLogin = CustomerDB.customerLogin(email, password);
-            if (customerLogin == null) {
-                response.sendRedirect("login.jsp");
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("email", email);
-                response.sendRedirect("profile.jsp");
-            }
-
-        }
-
-
+//        if (action.equals("login")) {
+//            String email = request.getParameter("email");
+//            String password = request.getParameter("password");
+//            Customer customerLogin = CustomerDB.customerLogin(email, password);
+//            if (customerLogin == null) {
+//                response.sendRedirect("login.jsp");
+//            } else {
+//                HttpSession session = request.getSession();
+//                session.setAttribute("email", email);
+//                response.sendRedirect("profile.jsp");
+//            }
+//        } 
     }
 
     @Override
