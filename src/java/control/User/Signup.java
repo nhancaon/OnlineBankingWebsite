@@ -20,18 +20,19 @@ public class Signup extends HttpServlet {
             action = "join";  // default action
         }
 
-//        if (action.equals("login")) {
-//            String email = request.getParameter("email");
-//            String password = request.getParameter("password");
-//            Customer customerLogin = CustomerDB.customerLogin(email, password);
-//            if (customerLogin == null) {
-//                response.sendRedirect("login.jsp");
-//            } else {
-//                HttpSession session = request.getSession();
-//                session.setAttribute("email", email);
-//                response.sendRedirect("profile.jsp");
-//            }
-//        } 
+        if (action.equals("signup")) {
+            String fullName = request.getParameter("fullName");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String citizenIdentity = request.getParameter("citizenIdentity");
+            String dateOfBirth = request.getParameter("dateOfBirth");
+            String address = request.getParameter("address");
+            
+            CustomerDB.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+            
+            response.sendRedirect("login.jsp");
+        }
     }
 
     @Override
