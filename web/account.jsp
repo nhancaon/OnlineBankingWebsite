@@ -44,9 +44,9 @@
 
         <div class="my-16 py-8 px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
-                <span>Current Accounts</span>
+                <span>Payment Accounts</span>
                 <button id="createAccountBtn" class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl outline-none 
-                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Create Account</button>
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
                 <a class="flex justify-between p-4 rounded-xl bg-gray-300 
@@ -79,30 +79,16 @@
 </div>
 
 
-<div id="create-account" class="hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
-        <span class="text-[#2a6ebe]">Internal Transfer</span>
-
-        <form action="Transfer" method="post">
-            <input type="hidden" name="action" value="add">
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="accountNumber"
-                        name="acNumber"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "
-                        />
-                    <label
-                        for="accountNumber"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Number</label
-                    >
-                </div>
-                <div class="flex justify-end items-center mt-10">
-                    <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Continue</button>
-                </div>
-        </form>
+        <div class="text-[#2a6ebe] flex justify-between">Add Payment Account
+            <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeCreateAccount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="content">
+           
+        </div>
     </div>
 </div>
 
