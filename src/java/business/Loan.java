@@ -17,22 +17,26 @@ import javax.persistence.Table;
 public class Loan implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id",referencedColumnName = "customerId")
+    @JoinColumn(name = "cus_id",referencedColumnName = "customerId",nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "loan",cascade = CascadeType.ALL)
     private List<LoanPayment> loanPayments;
 
     @Id
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String loanId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String loanType;
+    @Column(nullable = false)
     private Double loanAmount;
+    @Column(nullable = false)
     private Double interestRate;
+    @Column(nullable = false)
     private LocalDate startDate;
+    @Column(nullable = false)
     private LocalDate endDate;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = true)
     private String loanStatus;
 
     public Customer getCustomer() {
