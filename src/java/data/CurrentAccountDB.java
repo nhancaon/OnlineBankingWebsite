@@ -23,7 +23,7 @@ public class CurrentAccountDB {
             em.close();
         }
     }
-
+    
     public static void update(CurrentAccount transac) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
