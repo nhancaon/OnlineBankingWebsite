@@ -92,7 +92,7 @@
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
-                        <div class="font-bold text-lg">Chau Gia Dat</div>
+                        <div class="font-bold text-lg">${customerName}</div>
                     </div>
                     <div>
                         <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
