@@ -13,6 +13,6 @@
     </div>
 </div>
 
-<script src="./styles/style.js"></script>
+<script src="./styles/script.js"></script>
 </body>
 </html>

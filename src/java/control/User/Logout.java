@@ -1,4 +1,4 @@
-package control;
+package control.User;
 
 import java.io.*;
 import javax.servlet.*;
