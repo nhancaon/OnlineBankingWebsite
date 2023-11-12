@@ -19,6 +19,9 @@ public class User implements Serializable {
     private String phoneNumber;
     @Column(columnDefinition = "varchar(100)")
     private String address;
+    @Column(columnDefinition = "varchar(20)")
+    private String citizenId;
+    
 
     public String getName() {
         return name;
@@ -29,11 +32,11 @@ public class User implements Serializable {
     }
 
     
-    public LocalDate getLocalDateofBirth() {
+    public LocalDate getDateofBirth() {
         return dateofBirth;
     }
 
-    public void setLocalDateofBirth(LocalDate dateofBirth) {
+    public void setDateofBirth(LocalDate dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
@@ -68,4 +71,14 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getCitizenId() {
+        return citizenId;
+    }
+
+    public void setCitizenId(String citizenId) {
+        this.citizenId = citizenId;
+    }
+    
+    
 }

@@ -39,7 +39,7 @@ public class CustomerDB {
         System.out.println(citizenIdentity);
         System.out.println(dateOfBirth);
         System.out.println(address);
-        
+
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
@@ -47,13 +47,13 @@ public class CustomerDB {
             trans.begin();
 
             Customer customerEntity = new Customer();
-//            customerEntity.setCustomerId(1);
+            customerEntity.setCustomerId("123");
             customerEntity.setName(fullName);
             customerEntity.setCustomerType("Regular");
             customerEntity.setEmail(email);
             customerEntity.setPassword(password);
             customerEntity.setPhoneNumber(phoneNumber);
-            customerEntity.setLocalDateofBirth(LocalDate.parse(dateOfBirth));
+            customerEntity.setDateofBirth(LocalDate.parse(dateOfBirth));
 //            customerEntity.setCitizenIdentity(citizenIdentity);
             customerEntity.setAddress(address);
 

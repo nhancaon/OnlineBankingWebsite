@@ -1,11 +1,11 @@
 package control.User;
 
+import business.Customer;
+import data.CustomerDB;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
-import business.Customer;
-import data.CustomerDB;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
