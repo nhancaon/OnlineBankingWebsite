@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,22 +18,22 @@ public class Customer extends User implements Serializable {
     private SavingAccount savingAccount;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    private List<CurrentAccount> currentAccounts;
+    private List<PaymentAccount> paymentAccounts;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Loan> loans;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
+    @Column(columnDefinition = "varchar(20)")
+    private String customerId;
     @Column(columnDefinition = "varchar(20)")
     private String customerType;
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -47,12 +45,12 @@ public class Customer extends User implements Serializable {
         this.customerType = customerType;
     }
 
-    public List<CurrentAccount> getCurrentAccounts() {
-        return currentAccounts;
+    public List<PaymentAccount> getCurrentAccounts() {
+        return paymentAccounts;
     }
 
-    public void setCurrentAccounts(List<CurrentAccount> currentAccounts) {
-        this.currentAccounts = currentAccounts;
+    public void setCurrentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
     }
 
     public SavingAccount getSavingAccount() {

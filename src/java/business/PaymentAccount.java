@@ -3,9 +3,8 @@ package business;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,12 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class CurrentAccount extends Account implements Serializable {
+public class PaymentAccount extends Account implements Serializable {
 
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "reward_of_account",
-            joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "currentAccountId"),
+            joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "paymentAccountId"),
             inverseJoinColumns = @JoinColumn(name = "reward_id", referencedColumnName = "rewardId")
     )
     private List<Reward> rewards;
@@ -35,12 +34,12 @@ public class CurrentAccount extends Account implements Serializable {
     private List<Transaction> receivedTransactions;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int currentAccountId;
+    @Column(columnDefinition = "varchar(20)")
+    private String paymentAccountId;
     private int currentBalence;
     private int rewardPoint;
 
-    public CurrentAccount() {
+    public PaymentAccount() {
 
     }
 
@@ -52,12 +51,12 @@ public class CurrentAccount extends Account implements Serializable {
         this.customer = customer;
     }
 
-    public int getCurrentAccountId() {
-        return currentAccountId;
+    public String getCurrentAccountId() {
+        return paymentAccountId;
     }
 
-    public void setCurrentAccountId(int currentAccountId) {
-        this.currentAccountId = currentAccountId;
+    public void setCurrentAccountId(String paymentAccountId) {
+        this.paymentAccountId = paymentAccountId;
     }
 
     public int getCurrentBalence() {

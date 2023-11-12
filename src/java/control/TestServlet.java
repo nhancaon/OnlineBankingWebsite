@@ -43,6 +43,7 @@ public class TestServlet extends HttpServlet {
             } else {
                
                 message = "";
+                UserhahaDB.selectUser(user.getEmail());
                 url = "/profile.jsp";
                 System.out.println(emailU);
         

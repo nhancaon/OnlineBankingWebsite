@@ -2,9 +2,8 @@ package business;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,8 +16,8 @@ public class SavingAccount extends Account implements Serializable {
     private Customer customer;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int savingAccountId;
+    @Column(columnDefinition = "varchar(20)")
+    private String savingAccountId;
     private int minBalence;
     private int savingAmount;
     private int interestRate;
@@ -31,11 +30,11 @@ public class SavingAccount extends Account implements Serializable {
         this.customer = customer;
     }
 
-    public int getSavingAccountId() {
+    public String getSavingAccountId() {
         return savingAccountId;
     }
 
-    public void setSavingAccountId(int savingAccountId) {
+    public void setSavingAccountId(String savingAccountId) {
         this.savingAccountId = savingAccountId;
     }
 

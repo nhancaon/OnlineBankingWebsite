@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,8 +24,8 @@ public class Loan implements Serializable {
     private List<LoanPayment> loanPayments;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int loanId;
+    @Column(columnDefinition = "varchar(20)")
+    private String loanId;
     @Column(columnDefinition = "varchar(20)")
     private String loanType;
     private Double loanAmount;
@@ -53,11 +51,11 @@ public class Loan implements Serializable {
         this.loanPayments = loanPayments;
     }
 
-    public int getLoanId() {
+    public String getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(int loanId) {
+    public void setLoanId(String loanId) {
         this.loanId = loanId;
     }
 

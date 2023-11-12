@@ -1,17 +1,15 @@
 package data;
 
 import business.PaymentAccount;
-import business.Transaction;
-import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class TransactionDB {
+public class PaymentAccountDB {
 
-//    public static void insert(Transaction transac) {
+//    public static void insert(PaymentAccount transac) {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
@@ -26,7 +24,7 @@ public class TransactionDB {
 //        }
 //    }
 //
-//    public static void update(Transaction transac) {
+//    public static void update(PaymentAccount transac) {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
@@ -41,7 +39,7 @@ public class TransactionDB {
 //        }
 //    }
 //
-//    public static void delete(Transaction transac) {
+//    public static void delete(PaymentAccount transac) {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
@@ -56,17 +54,33 @@ public class TransactionDB {
 //        }
 //    }
 
-    public Transaction getTransactionById(int transactionId) {
+//    public static CurrentAccount getCurrentAccountById(String acNumber) {
+//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        return em.find(CurrentAccount.class, acNumber);
+//    }
+    public static PaymentAccount findByAccountNumber(String accountNumber) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        return em.find(Transaction.class, transactionId);
+        String qString = "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber";
+        TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
+        q.setParameter("accountNumber", accountNumber);
+        PaymentAccount pa = null;
+        try {
+            pa = q.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            em.close();
+        }
+        return (PaymentAccount) pa;
     }
 
     // Additional method for select operation
-//    public List<Transaction> getAllTransactions() {
+//    public List<PaymentAccount> getAllCurrentAccounts() {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-//        String qString = "SELECT t FROM Transaction t";
-//        TypedQuery<Transaction> q = em.createQuery(qString, Transaction.class);
-//        List<Transaction> transactions = null;
+//        String qString = "SELECT t FROM CurrentAccount t";
+//        TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
+//        List<PaymentAccount> transactions = null;
 //        try {
 //            transactions = q.getResultList();
 //        } catch (NoResultException e) {
@@ -76,36 +90,4 @@ public class TransactionDB {
 //        }
 //        return transactions;
 //    }
-
-    public static void createTransaction(String senderNumber, String receiverNumber, String transactionRemark, Double amount) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-
-        try {
-            trans.begin();
-
-            PaymentAccount sender = PaymentAccountDB.findByAccountNumber(senderNumber);
-            PaymentAccount receiver = PaymentAccountDB.findByAccountNumber(receiverNumber);
-
-            Transaction transactionEntity = new Transaction();
-            transactionEntity.setTransactionId("2");
-            transactionEntity.setSender(sender);
-            transactionEntity.setReceiver(receiver);
-            transactionEntity.setTransactionRemake(transactionRemark);
-            transactionEntity.setAmount(amount);
-            transactionEntity.setTransactionDate(LocalDateTime.now());
-
-            sender.setCurrentBalence(sender.getCurrentBalence() - amount.intValue());
-            receiver.setCurrentBalence(receiver.getCurrentBalence() + amount.intValue());
-
-            em.persist(transactionEntity);
-            em.merge(sender);
-            em.merge(receiver);
-
-            trans.commit();
-        } catch (Exception e) {
-            System.out.println(e);
-            trans.rollback();
-        }
-    }
 }
