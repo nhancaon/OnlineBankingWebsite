@@ -1,12 +1,14 @@
-package control;
+package control.User;
 
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
+import business.Customer;
+import data.CustomerDB;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Signup")
+public class Signup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -18,20 +20,19 @@ public class Login extends HttpServlet {
             action = "join";  // default action
         }
 
-        if (action.equals("login")) {
-
+        if (action.equals("signup")) {
+            String fullName = request.getParameter("fullName");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-//            Customer customerLogin = CustomerDB.customerLogin(email, password);
-            if (email.equals("abc@gmail.com") && password.equals("1")) {
-                response.sendRedirect("profile.jsp");
-            } else {
-                response.sendRedirect("login.jsp");
-            }
-
+            String phoneNumber = request.getParameter("phoneNumber");
+            String citizenIdentity = request.getParameter("citizenIdentity");
+            String dateOfBirth = request.getParameter("dateOfBirth");
+            String address = request.getParameter("address");
+            
+            CustomerDB.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+            
+            response.sendRedirect("login.jsp");
         }
-
-
     }
 
     @Override

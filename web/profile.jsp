@@ -2,6 +2,8 @@
 
 <%@ include file="/includes/header.jsp" %>
 
+<%@ include file="/includes/checkLogin.jsp" %>
+
 <div class="relative w-full h-[30rem] mt-[5.2rem]" >
     <img src="./assets/money.gif" class="w-full h-full" alt="alt"/>
 </div>

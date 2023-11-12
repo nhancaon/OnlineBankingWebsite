@@ -3,12 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/University/Web/OnlineBankingWebsite/web/login.jsp</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/CurrentAccount.java</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/web/account.jsp</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/data/TransactionDB.java</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/control/TransferServlet.java</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/control/Login.java</file>
+=======
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/signup.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/login.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/profile.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/control/User/Logout.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/control/User/Login.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/styles/script.js</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/account.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/accountDetail.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/styles/main.css</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/control/User/Signup.java</file>
+>>>>>>> 5ff0eb07918560eac32bec69677c41b8493e772a
         </group>
     </open-files>
 </project-private>

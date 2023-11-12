@@ -26,18 +26,31 @@
                             greenBtn: "#038883",
                             blur: "rgba(0, 0, 0, 0.5)",
                         },
-                        keyframes: {
-                            "bounce-custom": {
-                                "0%, 100%": {
-                                    transform: "translateY(-2%)",
-                                },
-                                "50%": {
-                                    transform: "translateY(0)",
-                                },
-                            },
-                        },
                         animation: {
-                            "bounce-custom": "bounce-custom 3s infinite",
+                            'bounceOne': 'bounceOne 1s',
+                            'appear': 'appear 0.5s ease-in-out',
+                            'appearRight': 'appearRight ease-in-out .3s',
+                            'notification': 'notification ease-in-out .3s, fadeOut 3s .3s ease-in-out forwards',
+                        },
+                        keyframes: {
+                            'bounceOne': {
+                                '0%': {transform: 'translateY(0)'},
+                                '50%': {transform: 'translateY(-20px)'},
+                                '100%': {transform: 'translateY(-20px)'},
+                            },
+                            appear: {
+                                '0%': {opacity: '0', transform: 'translateY(20%)'},
+                                '100%': {opacity: '1', transform: 'translateY(0)'},
+                            },
+                            appearRight: {
+                                '0%': {opacity: '0', transform: 'translateX(20%)'},
+                                '100%': {opacity: '1', transform: 'translateX(0)'},
+                            },
+                            notification: {
+                                '0%': {opacity: '0', transform: 'translateX(20%)'},
+                                '100%': {opacity: '1', transform: 'translateX(0)'},
+                            },
+                            fadeOut: {'0%': {opacity: '1'}, '100%': {opacity: '0'}}
                         },
                     },
                 },
@@ -68,19 +81,44 @@
                     </form>
                 </div>
                 <div class="flex items-center justify-center">
-                    <a href="./index.jsp">
+                    <a href="./profile.jsp">
                         <img src="./assets/logo.png" class="w-18 h-12" />
                     </a>
                 </div>
+
+                <%
+                    if (session.getAttribute("email") != null) {
+                %>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
                         <div class="font-bold text-lg">Chau Gia Dat</div>
                     </div>
                     <div>
-                        <div class="bg-black rounded-full w-10 h-10"></div>
-                    </div>
+                        <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
+                        <div id="dropdown" class="hidden absolute right-0 mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
+                            <ul>
+                                <li>
+                                    <form action="Logout" 
+                                          <div class="focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                                            <input type="hidden" name="action" value="logout">  
+                                            <i class="fa-solid fa-arrow-right-from-bracket mr-3 text-red-800"></i>
+                                            <input type="submit" value="Log out"/>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                 
                 </div>
+                <%
+                } else {
+                %>
+
+                <div></div>
+                <%
+                    }
+                %>
             </div>
 
         </div>
