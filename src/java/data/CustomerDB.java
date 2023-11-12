@@ -32,13 +32,13 @@ public class CustomerDB {
     public static void customerSignup(String fullName, String email, String password, String citizenIdentity,
             String phoneNumber, String dateOfBirth, String address) {
 
-        System.out.println(fullName);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(phoneNumber);
-        System.out.println(citizenIdentity);
-        System.out.println(dateOfBirth);
-        System.out.println(address);
+//        System.out.println(fullName);
+//        System.out.println(email);
+//        System.out.println(password);
+//        System.out.println(phoneNumber);
+//        System.out.println(citizenIdentity);
+//        System.out.println(dateOfBirth);
+//        System.out.println(address);
 
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -47,7 +47,7 @@ public class CustomerDB {
             trans.begin();
 
             Customer customerEntity = new Customer();
-            customerEntity.setCustomerId("123");
+            customerEntity.setCustomerId("555");
             customerEntity.setName(fullName);
             customerEntity.setCustomerType("Regular");
             customerEntity.setEmail(email);
@@ -67,20 +67,4 @@ public class CustomerDB {
         }
     }
 
-    public static Customer selectUser(String email) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String qString = "SELECT u FROM userhaha u "
-                + "WHERE u.email = :email";
-        TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
-        q.setParameter("email", email);
-        Customer user = null;
-        try {
-            user = q.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
-        return (Customer) user;
-    }
 }

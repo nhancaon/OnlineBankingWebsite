@@ -23,15 +23,22 @@ public class Login extends HttpServlet {
         if (action.equals("login")) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            Customer customerLogin = CustomerDB.customerLogin(email, password);
-            if (customerLogin == null) {
+            Customer customer = CustomerDB.customerLogin(email, password);
+            if (customer == null) {
                 response.sendRedirect("login.jsp");
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
+                String customerName = customer.getName();
+                String citizenId = customer.getCitizenId();
+
+                // Store the details in the session
+                session.setAttribute("customerName", customerName);
+                session.setAttribute("citizenId", citizenId);
                 response.sendRedirect("profile.jsp");
+
             }
-        } 
+        }
     }
 
     @Override
