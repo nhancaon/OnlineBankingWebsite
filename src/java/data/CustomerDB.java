@@ -54,7 +54,7 @@ public class CustomerDB {
             customerEntity.setPassword(password);
             customerEntity.setPhoneNumber(phoneNumber);
             customerEntity.setDateofBirth(LocalDate.parse(dateOfBirth));
-//            customerEntity.setCitizenIdentity(citizenIdentity);
+            customerEntity.setCitizenId(citizenIdentity);
             customerEntity.setAddress(address);
 
             em.persist(customerEntity);
