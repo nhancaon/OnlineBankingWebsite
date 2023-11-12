@@ -22,7 +22,7 @@
                                 <input
                                     type="text"
                                     id="fullName"
-                                    name="name"
+                                    name="fullName"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
                                     />
@@ -50,7 +50,7 @@
                                 <input
                                     type="text"
                                     id="phoneNumber"
-                                    name="phonenumber"
+                                    name="phoneNumber"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
                                     />
@@ -64,7 +64,7 @@
                                 <input
                                     type="text"
                                     id="citizenIdentity"
-                                    name="citizenidentity"
+                                    name="citizenIdentity"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
                                     />
@@ -77,15 +77,15 @@
                             <div class="relative mt-6">
                                 <input
                                     type="text"
-                                    id="birthDay"
-                                    name="birthday"
+                                    id="dateOfBirth"
+                                    name="dateOfBirth"
                                     onfocus="(this.type = 'date')"
                                     onblur="(this.type = 'text')"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=""
                                     />
                                 <label
-                                    for="birthDay"
+                                    for="dateOfBirth"
                                     class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                                     >Date Of Birth</label
                                 >
@@ -120,6 +120,20 @@
                                 </svg>
                             </span>
                             <h3 class="font-medium leading-tight">Confirmation</h3>   
+                            <div class="relative mt-6">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" "
+                                    />
+                                <label
+                                    for="password"
+                                    class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                    >Password</label
+                                >
+                            </div>
                             <button type="submit" class="w-full mt-6 text-white bg-gradient-to-r from-[#00bfae] to-[#0066ad] hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-primary-300 
                                     font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm</button>
                         </li>
