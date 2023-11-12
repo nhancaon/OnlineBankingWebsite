@@ -1,5 +1,7 @@
 package control.User;
 
+import business.Customer;
+import data.CustomerDB;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;

@@ -88,7 +88,7 @@ public class TransactionDB {
             PaymentAccount receiver = PaymentAccountDB.findByAccountNumber(receiverNumber);
 
             Transaction transactionEntity = new Transaction();
-            transactionEntity.setTransactionId("2");
+            transactionEntity.setTransactionId("3");
             transactionEntity.setSender(sender);
             transactionEntity.setReceiver(receiver);
             transactionEntity.setTransactionRemake(transactionRemark);

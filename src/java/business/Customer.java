@@ -69,4 +69,5 @@ public class Customer extends User implements Serializable {
         this.loans = loans;
     }
 
+    
 }
