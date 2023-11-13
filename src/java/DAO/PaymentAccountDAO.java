@@ -1,4 +1,4 @@
-package data;
+package DAO;
 
 import business.PaymentAccount;
 import java.util.List;
@@ -7,10 +7,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class PaymentAccountDB {
+public class PaymentAccountDAO {
 
 //    public static void insert(PaymentAccount transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -25,7 +25,7 @@ public class PaymentAccountDB {
 //    }
 //
 //    public static void update(PaymentAccount transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -40,7 +40,7 @@ public class PaymentAccountDB {
 //    }
 //
 //    public static void delete(PaymentAccount transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -55,11 +55,11 @@ public class PaymentAccountDB {
 //    }
 
 //    public static CurrentAccount getCurrentAccountById(String acNumber) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        return em.find(CurrentAccount.class, acNumber);
 //    }
     public static PaymentAccount findByAccountNumber(String accountNumber) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         String qString = "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber";
         TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
         q.setParameter("accountNumber", accountNumber);
@@ -77,7 +77,7 @@ public class PaymentAccountDB {
 
     // Additional method for select operation
 //    public List<PaymentAccount> getAllCurrentAccounts() {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        String qString = "SELECT t FROM CurrentAccount t";
 //        TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
 //        List<PaymentAccount> transactions = null;

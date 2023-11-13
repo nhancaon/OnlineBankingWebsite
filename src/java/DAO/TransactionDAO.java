@@ -1,4 +1,4 @@
-package data;
+package DAO;
 
 import business.PaymentAccount;
 import business.Transaction;
@@ -9,10 +9,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class TransactionDB {
+public class TransactionDAO {
 
 //    public static void insert(Transaction transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -27,7 +27,7 @@ public class TransactionDB {
 //    }
 //
 //    public static void update(Transaction transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -42,7 +42,7 @@ public class TransactionDB {
 //    }
 //
 //    public static void delete(Transaction transac) {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        EntityTransaction trans = em.getTransaction();
 //        trans.begin();
 //        try {
@@ -57,13 +57,13 @@ public class TransactionDB {
 //    }
 
     public Transaction getTransactionById(int transactionId) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         return em.find(Transaction.class, transactionId);
     }
 
     // Additional method for select operation
 //    public List<Transaction> getAllTransactions() {
-//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
 //        String qString = "SELECT t FROM Transaction t";
 //        TypedQuery<Transaction> q = em.createQuery(qString, Transaction.class);
 //        List<Transaction> transactions = null;
@@ -78,14 +78,14 @@ public class TransactionDB {
 //    }
 
     public static void createTransaction(String senderNumber, String receiverNumber, String transactionRemark, Double amount) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
         try {
             trans.begin();
 
-            PaymentAccount sender = PaymentAccountDB.findByAccountNumber(senderNumber);
-            PaymentAccount receiver = PaymentAccountDB.findByAccountNumber(receiverNumber);
+            PaymentAccount sender = PaymentAccountDAO.findByAccountNumber(senderNumber);
+            PaymentAccount receiver = PaymentAccountDAO.findByAccountNumber(receiverNumber);
 
             Transaction transactionEntity = new Transaction();
             transactionEntity.setTransactionId("3");

@@ -1,4 +1,4 @@
-package data;
+package DAO;
 
 import business.Customer;
 import java.time.LocalDate;
@@ -7,11 +7,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class CustomerDB {
+public class CustomerDAO {
 
     public static Customer customerLogin(String email, String password) {
 
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         String qString = "SELECT c FROM Customer c "
                 + "WHERE c.email = :email AND c.password = :password";
         TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
@@ -40,14 +40,14 @@ public class CustomerDB {
 //        System.out.println(dateOfBirth);
 //        System.out.println(address);
 
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
         try {
             trans.begin();
 
             Customer customerEntity = new Customer();
-            customerEntity.setCustomerId("555");
+            customerEntity.setCustomerId("666");
             customerEntity.setName(fullName);
             customerEntity.setCustomerType("Regular");
             customerEntity.setEmail(email);

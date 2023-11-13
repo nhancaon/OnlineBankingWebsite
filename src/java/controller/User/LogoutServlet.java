@@ -1,4 +1,4 @@
-package control.User;
+package controller.User;
 
 import java.io.*;
 import javax.servlet.*;
@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/Logout")
-public class Logout extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,

@@ -1,14 +1,14 @@
-package control.User;
+package controller.User;
 
 import business.Customer;
-import data.CustomerDB;
+import DAO.CustomerDAO;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/Login")
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -23,7 +23,7 @@ public class Login extends HttpServlet {
         if (action.equals("login")) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            Customer customer = CustomerDB.customerLogin(email, password);
+            Customer customer = CustomerDAO.customerLogin(email, password);
             if (customer == null) {
                 response.sendRedirect("login.jsp");
             } else {

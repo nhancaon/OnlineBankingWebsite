@@ -1,9 +1,9 @@
-package data;
+package DAO;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DBUtil {
+public class JpaDAO {
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("testPU");
     
