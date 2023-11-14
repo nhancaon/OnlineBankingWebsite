@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,46 +15,48 @@ import javax.persistence.Table;
 public class Transaction implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "sender_id",referencedColumnName = "currentAccountId")
-    private CurrentAccount sender;
+    @JoinColumn(name = "sender_id", referencedColumnName = "paymentAccountId",nullable = false)
+    private PaymentAccount sender;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "receiver_id",referencedColumnName = "currentAccountId")
-    private CurrentAccount receiver;
+    @JoinColumn(name = "receiver_id", referencedColumnName = "paymentAccountId",nullable = false)
+    private PaymentAccount receiver;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int transactionId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
+    private String transactionId;
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String transactionRemake;
+    @Column(nullable = false)
     private Double amount;
+    @Column(nullable = false)
     private LocalDateTime transactionDate;
 
     public Transaction() {
-        
+
     }
 
-    public CurrentAccount getSender() {
+    public PaymentAccount getSender() {
         return sender;
     }
 
-    public void setSender(CurrentAccount sender) {
+    public void setSender(PaymentAccount sender) {
         this.sender = sender;
     }
 
-    public CurrentAccount getReceiver() {
+    public PaymentAccount getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(CurrentAccount receiver) {
+    public void setReceiver(PaymentAccount receiver) {
         this.receiver = receiver;
     }
 
-    public int getTransactionId() {
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(int transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 

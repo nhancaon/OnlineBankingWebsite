@@ -20,14 +20,13 @@ public class TransferServlet extends HttpServlet {
         if (action == null) {
             action = "return";  // default action
         }
+        if (action.equals("check")) {
+            url = "/profile.jsp";
+        }else
 
         // perform action and set URL to appropriate page
         if (action.equals("return")) {
             url = "/transfer.jsp";
-//        } else if (action.equals("confirm")) {
-//            //TransactionDB.createTransaction(sender.getCurrentAccountId(), receiver.getCurrentAccountId(), transac.getTransactionRemake(), transac.getAmount());
-//            TransactionDB.createTransaction(123, 234, "hehe", 50.0);
-//            url = "/success.jsp";
         } else {
             HttpSession session = request.getSession();
             if (action.equals("add")) {
@@ -54,8 +53,8 @@ public class TransferServlet extends HttpServlet {
                 transac.setTransactionDate(LocalDateTime.now());
                 transac.setTransactionRemake(Remark);
 
-                CurrentAccount sender = CurrentAccountDB.findByAccountNumber("123");
-                CurrentAccount receiver = CurrentAccountDB.findByAccountNumber(Number);
+                PaymentAccount sender = PaymentAccountDB.findByAccountNumber("123");
+                PaymentAccount receiver = PaymentAccountDB.findByAccountNumber(Number);
                 if (receiver == null) {
                     message = "This account isn't exist";
                     url = "/transfer.jsp";
@@ -71,14 +70,13 @@ public class TransferServlet extends HttpServlet {
                 String Number = (String) session.getAttribute("Number");
                 String Amount = (String) session.getAttribute("Amount");
                 String Remark = (String) session.getAttribute("Remark");
-                Double amount=Double.valueOf(Amount);
+                Double amount = Double.valueOf(Amount);
                 System.out.println(Number);
                 System.out.println(amount);
                 System.out.println(Remark);
-                TransactionDB.createTransaction("123", Number,Remark, amount);
+                TransactionDB.createTransaction("123", Number, Remark, amount);
                 url = "/success.jsp";
-            }
-
+            } 
         }
 
         getServletContext()

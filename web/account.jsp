@@ -44,11 +44,13 @@
 
         <div class="my-16 py-8 px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
-                <span>Current Accounts</span>
-                <a href=""><button class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl">Create Account</button></a>
+                <span>Payment Accounts</span>
+                <button id="createAccountBtn" class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl outline-none 
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <a class="flex justify-between p-4 rounded-xl bg-gray-300" href="./accountDetail.jsp">
+                <a class="flex justify-between p-4 rounded-xl bg-gray-300 
+                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
                     <div>
                         <i class="fa-regular fa-copy mr-2"></i>
                         8890743713
@@ -59,7 +61,8 @@
                     </div>
                     <i class="fa-solid fa-chevron-right py-1"></i>
                 </a>
-                <a class="flex justify-between p-4 rounded-xl bg-gray-300" href="./accountDetail.jsp">
+                <a class="flex justify-between p-4 rounded-xl bg-gray-300 
+                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
                     <div>
                         <i class="fa-regular fa-copy mr-2"></i>
                         8890743713
@@ -74,5 +77,20 @@
         </div>
     </div>
 </div>
+
+
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+    <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="text-[#2a6ebe] flex justify-between">Add Payment Account
+            <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeCreateAccount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="content">
+           
+        </div>
+    </div>
+</div>
+
 
 <%@ include file="/includes/footer.jsp" %>

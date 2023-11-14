@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,22 +17,26 @@ import javax.persistence.Table;
 public class Loan implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id",referencedColumnName = "customerId")
+    @JoinColumn(name = "cus_id",referencedColumnName = "customerId",nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "loan",cascade = CascadeType.ALL)
     private List<LoanPayment> loanPayments;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int loanId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
+    private String loanId;
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String loanType;
+    @Column(nullable = false)
     private Double loanAmount;
+    @Column(nullable = false)
     private Double interestRate;
+    @Column(nullable = false)
     private LocalDate startDate;
+    @Column(nullable = false)
     private LocalDate endDate;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = true)
     private String loanStatus;
 
     public Customer getCustomer() {
@@ -53,11 +55,11 @@ public class Loan implements Serializable {
         this.loanPayments = loanPayments;
     }
 
-    public int getLoanId() {
+    public String getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(int loanId) {
+    public void setLoanId(String loanId) {
         this.loanId = loanId;
     }
 

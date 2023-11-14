@@ -1,4 +1,4 @@
-package control;
+package control.User;
 
 import java.io.*;
 import javax.servlet.*;
@@ -22,6 +22,8 @@ public class Logout extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.removeAttribute("email");
+            session.removeAttribute("customerName");
+            session.removeAttribute("citizenId");
             session.invalidate();
             response.sendRedirect("login.jsp");
 

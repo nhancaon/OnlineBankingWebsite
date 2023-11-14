@@ -5,38 +5,40 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "reward")
 public class Reward implements Serializable {
 
     @ManyToMany(mappedBy = "rewards",cascade = CascadeType.DETACH)
-    private List<CurrentAccount> currentAccounts;
+    private List<PaymentAccount> paymentAccounts;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rewardId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
+    private String rewardId;
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String rewardName;
+    @Column(nullable = false)
     private int price;
+      @Column(nullable = false)
     private int costPoint;
 
-    public List<CurrentAccount> getCurrentAccounts() {
-        return currentAccounts;
+    public List<PaymentAccount> getCurrentAccounts() {
+        return paymentAccounts;
     }
 
-    public void setCurrentAccounts(List<CurrentAccount> currentAccounts) {
-        this.currentAccounts = currentAccounts;
+    public void setCurrentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
     }
 
-    public int getRewardId() {
+    public String getRewardId() {
         return rewardId;
     }
 
-    public void setRewardId(int rewardId) {
+    public void setRewardId(String rewardId) {
         this.rewardId = rewardId;
     }
 

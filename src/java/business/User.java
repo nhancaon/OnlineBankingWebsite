@@ -2,23 +2,20 @@ package business;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@EntityListeners(Customer.class)
 public class User implements Serializable {
 
-    @Column(columnDefinition = "varchar(100)")
     private String name;
     private LocalDate dateofBirth;
-    @Column(columnDefinition = "varchar(100)")
     private String password;
-    @Column(columnDefinition = "varchar(100)")
     private String email;
-    @Column(columnDefinition = "varchar(20)")
     private String phoneNumber;
-    @Column(columnDefinition = "varchar(100)")
     private String address;
+    private String citizenId;
 
     public String getName() {
         return name;
@@ -28,12 +25,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    
-    public LocalDate getLocalDateofBirth() {
+    public LocalDate getDateofBirth() {
         return dateofBirth;
     }
 
-    public void setLocalDateofBirth(LocalDate dateofBirth) {
+    public void setDateofBirth(LocalDate dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
@@ -68,4 +64,13 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getCitizenId() {
+        return citizenId;
+    }
+
+    public void setCitizenId(String citizenId) {
+        this.citizenId = citizenId;
+    }
+
 }

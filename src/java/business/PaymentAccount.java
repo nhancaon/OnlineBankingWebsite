@@ -2,30 +2,38 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class CurrentAccount extends Account implements Serializable {
+@Table(name = "paymentAccount")
+@AttributeOverride(name = "accountNumber", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "accountType", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "dateOpened", column = @Column(nullable = false))
+@AttributeOverride(name = "dateClosed", column = @Column(nullable = false))
+@AttributeOverride(name = "accountStatus", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "pinNumber", column = @Column(nullable = false))
+public class PaymentAccount extends Account implements Serializable {
 
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "reward_of_account",
-            joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "currentAccountId"),
+            joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "paymentAccountId"),
             inverseJoinColumns = @JoinColumn(name = "reward_id", referencedColumnName = "rewardId")
     )
     private List<Reward> rewards;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id", referencedColumnName = "customerId")
+    @JoinColumn(name = "cus_id", referencedColumnName = "customerId", nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.DETACH)
@@ -35,12 +43,14 @@ public class CurrentAccount extends Account implements Serializable {
     private List<Transaction> receivedTransactions;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int currentAccountId;
+    @Column(columnDefinition = "varchar(20)", nullable = false)
+    private String paymentAccountId;
+    @Column(nullable = false)
     private int currentBalence;
+    @Column(nullable = false)
     private int rewardPoint;
 
-    public CurrentAccount() {
+    public PaymentAccount() {
 
     }
 
@@ -52,12 +62,12 @@ public class CurrentAccount extends Account implements Serializable {
         this.customer = customer;
     }
 
-    public int getCurrentAccountId() {
-        return currentAccountId;
+    public String getCurrentAccountId() {
+        return paymentAccountId;
     }
 
-    public void setCurrentAccountId(int currentAccountId) {
-        this.currentAccountId = currentAccountId;
+    public void setCurrentAccountId(String paymentAccountId) {
+        this.paymentAccountId = paymentAccountId;
     }
 
     public int getCurrentBalence() {

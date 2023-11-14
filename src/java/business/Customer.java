@@ -2,40 +2,48 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
+@AttributeOverride(name = "name", column = @Column(columnDefinition = "varchar(100)", nullable = false))
+@AttributeOverride(name = "dateofBirth", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "password", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "email", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "phoneNumber", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "address", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "citizenId", column = @Column(columnDefinition = "varchar(20)", nullable = false))
 public class Customer extends User implements Serializable {
 
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private SavingAccount savingAccount;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    private List<CurrentAccount> currentAccounts;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<PaymentAccount> paymentAccounts;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Loan> loans;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)", nullable = false)
+    private String customerId;
+    @Column(columnDefinition = "varchar(20)", nullable = true)
     private String customerType;
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -47,12 +55,12 @@ public class Customer extends User implements Serializable {
         this.customerType = customerType;
     }
 
-    public List<CurrentAccount> getCurrentAccounts() {
-        return currentAccounts;
+    public List<PaymentAccount> getCurrentAccounts() {
+        return paymentAccounts;
     }
 
-    public void setCurrentAccounts(List<CurrentAccount> currentAccounts) {
-        this.currentAccounts = currentAccounts;
+    public void setCurrentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
     }
 
     public SavingAccount getSavingAccount() {
