@@ -10,6 +10,8 @@ import DAO.CustomerDAO;
 @WebServlet("/Signup")
 public class SignupServlet extends HttpServlet {
 
+    CustomerDAO customerDAO = new CustomerDAO();
+
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
@@ -21,6 +23,7 @@ public class SignupServlet extends HttpServlet {
         }
 
         if (action.equals("signup")) {
+
             String fullName = request.getParameter("fullName");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
@@ -28,9 +31,9 @@ public class SignupServlet extends HttpServlet {
             String citizenIdentity = request.getParameter("citizenIdentity");
             String dateOfBirth = request.getParameter("dateOfBirth");
             String address = request.getParameter("address");
-            
-            CustomerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
-            
+
+            customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+
             response.sendRedirect("login.jsp");
         }
     }
