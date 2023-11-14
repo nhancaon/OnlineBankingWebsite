@@ -37,6 +37,16 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return super.countWithNamedQuery("");
     }
 
+    public List<PaymentAccount> findPaymentAccountByCusId(String customerId) {
+
+        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa WHERE pa.customerId = :customerId", "customerId", customerId);
+
+        if (!paymentAccountList.isEmpty()) {
+            return paymentAccountList;
+        }
+        return null;
+    }
+
     public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) {
 
         PaymentAccount paymentAccountEntity = new PaymentAccount();
@@ -47,8 +57,9 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         paymentAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
         paymentAccountEntity.setAccountStatus("Active");
         paymentAccountEntity.setAccountType("Classic");
-        
+
         create(paymentAccountEntity);
+
         return null;
     }
 

@@ -8,8 +8,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/PaymentAccount")
-public class PaymentAccountServlet extends HttpServlet {
+@WebServlet("/CreateAccount")
+public class CreateAccountServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 

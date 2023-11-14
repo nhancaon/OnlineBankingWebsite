@@ -69,7 +69,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
             PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(receiverNumber);
 
             Transaction transactionEntity = new Transaction();
-            transactionEntity.setTransactionId("3");
+            transactionEntity.setTransactionId(generateUniqueId());
             transactionEntity.setSender(sender);
             transactionEntity.setReceiver(receiver);
             transactionEntity.setTransactionRemake(transactionRemark);
