@@ -1,4 +1,4 @@
-package controller;
+package controller.Transfer;
 
 import DAO.PaymentAccountDAO;
 import DAO.TransactionDAO;

@@ -7,57 +7,35 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class PaymentAccountDAO {
+public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements GenericDAO<PaymentAccount> {
 
-//    public static void insert(PaymentAccount transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.persist(transac);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-//
-//    public static void update(PaymentAccount transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.merge(transac);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-//
-//    public static void delete(PaymentAccount transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.remove(em.merge(transac));
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
+    @Override
+    public PaymentAccount create(PaymentAccount t) {
+        return super.create(t);
+    }
 
-//    public static CurrentAccount getCurrentAccountById(String acNumber) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        return em.find(CurrentAccount.class, acNumber);
-//    }
+    @Override
+    public PaymentAccount get(Object id) {
+        return super.find(PaymentAccount.class, id);
+    }
+
+    @Override
+    public void delete(Object id) {
+        super.delete(PaymentAccount.class, id);
+
+    }
+
+    @Override
+    public List<PaymentAccount> listAll() {
+        return super.findWithNamedQuery("");
+    }
+
+    @Override
+    public long count() {
+
+        return super.countWithNamedQuery("");
+    }
+
     public static PaymentAccount findByAccountNumber(String accountNumber) {
         EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         String qString = "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber";
