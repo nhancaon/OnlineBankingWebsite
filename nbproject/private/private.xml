@@ -3,6 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/Web%20Programming/online-banking-website/src/conf/persistence.xml</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/Web%20Programming/online-banking-website/src/java/business/Account.java</file>
+=======
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Customer.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/profile.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
@@ -34,6 +38,7 @@
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/SavingAccount.java</file>
             <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/Account.java</file>
 
+>>>>>>> 3506a7072c3eea38dc45234f1372b0fa36c9ec9c
         </group>
     </open-files>
 </project-private>
