@@ -9,52 +9,34 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-public class TransactionDAO {
+public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Transaction> {
 
-//    public static void insert(Transaction transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.persist(transac);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-//
-//    public static void update(Transaction transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.merge(transac);
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
-//
-//    public static void delete(Transaction transac) {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        EntityTransaction trans = em.getTransaction();
-//        trans.begin();
-//        try {
-//            em.remove(em.merge(transac));
-//            trans.commit();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            trans.rollback();
-//        } finally {
-//            em.close();
-//        }
-//    }
+    @Override
+    public Transaction create(Transaction t) {
+        return super.create(t);
+    }
+
+    @Override
+    public Transaction get(Object id) {
+        return super.find(Transaction.class, id);
+    }
+
+    @Override
+    public void delete(Object id) {
+        super.delete(Transaction.class, id);
+
+    }
+
+    @Override
+    public List<Transaction> listAll() {
+        return super.findWithNamedQuery("");
+    }
+
+    @Override
+    public long count() {
+
+        return super.countWithNamedQuery("");
+    }
 
     public Transaction getTransactionById(int transactionId) {
         EntityManager em = JpaDAO.getEmFactory().createEntityManager();
@@ -76,7 +58,6 @@ public class TransactionDAO {
 //        }
 //        return transactions;
 //    }
-
     public static void createTransaction(String senderNumber, String receiverNumber, String transactionRemark, Double amount) {
         EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();

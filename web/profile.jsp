@@ -14,6 +14,7 @@
             <div class="grid">
                 <span>Tài Khoản Thanh Toán</span>
                 <span class="font-bold text-xl">8890743713</span>
+                <span class="font-bold text-xl"></span>
             </div>
             <div class="flex justify-end items-center">
                 <div class="grid justify-end">
