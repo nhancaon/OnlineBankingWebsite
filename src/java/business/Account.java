@@ -2,19 +2,16 @@ package business;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.Column;
+
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Account implements Serializable {
 
-    @Column(columnDefinition = "varchar(20)")
     private String accountNumber;
-    @Column(columnDefinition = "varchar(20)")
     private String accountType;
     private LocalDate dateOpened;
     private LocalDate dateClosed;
-    @Column(columnDefinition = "varchar(20)")
     private String accountStatus;
     private int pinNumber;
 
