@@ -3,42 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/Web%20Programming/online-banking-website/src/conf/persistence.xml</file>
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/Web%20Programming/online-banking-website/src/java/business/Account.java</file>
-=======
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Customer.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/profile.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/SavingAccount.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/account.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/transfer.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Employee.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/login.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/JpaDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/User.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/GenericDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/TransferServlet.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/TransactionDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/LoginServlet.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/CustomerDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/SignupServlet.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/signup.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/PaymentAccount.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/styles/script.js</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/accountDetail.jsp</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/conf/persistence.xml</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Transaction.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/styles/main.css</file>
-            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/LoanPayment.java</file>
-            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/User.java</file>
-            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/Customer.java</file>
-            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/SavingAccount.java</file>
-            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/Account.java</file>
-
->>>>>>> 3506a7072c3eea38dc45234f1372b0fa36c9ec9c
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/Exception/SignupException.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/signup.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/styles/script.js</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/LoanPayment.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/login.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/JpaDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/profile.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/footer.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/GenericDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/LoginServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/PaymentAccount.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/TransactionDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/header.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/Customer.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/PaymentAccountServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/account.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/checkLogin.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -6,6 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import business.Customer;
 import DAO.CustomerDAO;
+import Exception.SignupException;
 
 @WebServlet("/Signup")
 public class SignupServlet extends HttpServlet {
@@ -31,11 +32,18 @@ public class SignupServlet extends HttpServlet {
             String citizenIdentity = request.getParameter("citizenIdentity");
             String dateOfBirth = request.getParameter("dateOfBirth");
             String address = request.getParameter("address");
-
-            customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
-
-            response.sendRedirect("login.jsp");
+            try {
+                customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+                // Successful signup
+                request.setAttribute("successMessage", "The account has been created successfully.");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
+            } catch (SignupException e) {
+                // Handle the exception
+                request.setAttribute("errorMessage", e.getMessage());
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
+            }
         }
+
     }
 
     @Override

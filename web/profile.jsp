@@ -12,18 +12,18 @@
     <div class="mx-56 px-4 pt-10 pb-16 rounded-md bg-[#fff]">
         <div class="grid grid-cols-2 pt-4 pb-10 justify-between">
             <div class="grid">
-                <span>Tài Khoản Thanh Toán</span>
+                <span>Current Payment Account</span>
                 <span class="font-bold text-xl">8890743713</span>
                 <span class="font-bold text-xl"></span>
             </div>
             <div class="flex justify-end items-center">
                 <div class="grid justify-end">
-                    <span>Số dư khả dụng</span>
+                    <span>Available Balance</span>
                     <span class="font-bold text-xl">1,100,000 VND</span>
                 </div>
                 <div class="grid justify-end ml-4">
                     <a href="./account.jsp" class="px-2 py-1 bg-gray-200 rounded-lg">
-                        Account Lists <span class="font-bold"><i class="fa-solid fa-chevron-right py-1"></i></span>
+                        Accounts List <span class="font-bold"><i class="fa-solid fa-chevron-right py-1"></i></span>
                     </a>
                 </div>
             </div>

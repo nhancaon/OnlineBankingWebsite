@@ -1,6 +1,7 @@
 package DAO;
 
 import business.Customer;
+import Exception.SignupException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -70,22 +71,21 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public String customerSignup(String fullName, String email, String password, String citizenId,
-            String phoneNumber, String dateOfBirth, String address) {
+    public void customerSignup(String fullName, String email, String password, String citizenId,
+            String phoneNumber, String dateOfBirth, String address) throws SignupException {
 
-        String message = "";
+        Customer customerEntity = new Customer();
         Customer existCustomer = findByEmail(email, citizenId);
         if (existCustomer != null) {
             if (existCustomer.getEmail().equals(email)) {
-                message = "Could not create new customer: the email " + email
-                        + " is already registered by another customer.";
+                throw new SignupException("The user with Email " + email
+                        + " is already registered.", 409);
             } else if (existCustomer.getCitizenId().equals(citizenId)) {
-                message = "Could not create new customer: the citizenId " + citizenId
-                        + " is already registered by another customer.";
+                throw new SignupException("The user with Citizen Identity " + citizenId
+                        + " is already registered.", 409);
             }
         } else {
 
-            Customer customerEntity = new Customer();
             customerEntity.setCustomerId(generateUniqueId());
             customerEntity.setName(fullName);
             customerEntity.setCustomerType("Regular");
@@ -95,11 +95,9 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             customerEntity.setDateofBirth(LocalDate.parse(dateOfBirth));
             customerEntity.setCitizenId(citizenId);
             customerEntity.setAddress(address);
-
-            message = "The account has been created successfully.";
             create(customerEntity);
         }
-        return message;
+
     }
 
 }
