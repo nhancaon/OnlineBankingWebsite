@@ -39,8 +39,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
     }
 
     public Transaction getTransactionById(int transactionId) {
-        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-        return em.find(Transaction.class, transactionId);
+        return find(Transaction.class, transactionId);
     }
 
     // Additional method for select operation
@@ -58,15 +57,16 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
 //        }
 //        return transactions;
 //    }
-    public static void createTransaction(String senderNumber, String receiverNumber, String transactionRemark, Double amount) {
+    public void createTransaction(String senderNumber, String receiverNumber, String transactionRemark, Double amount) {
         EntityManager em = JpaDAO.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
 
+        
         try {
             trans.begin();
-
-            PaymentAccount sender = PaymentAccountDAO.findByAccountNumber(senderNumber);
-            PaymentAccount receiver = PaymentAccountDAO.findByAccountNumber(receiverNumber);
+            PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+            PaymentAccount sender = paymentAccountDAO.findByAccountNumber(senderNumber);
+            PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(receiverNumber);
 
             Transaction transactionEntity = new Transaction();
             transactionEntity.setTransactionId("3");

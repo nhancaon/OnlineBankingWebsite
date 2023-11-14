@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebServlet;
 public class LoginServlet extends HttpServlet {
 
     CustomerDAO customerDAO = new CustomerDAO();
-    
+
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
@@ -31,12 +31,8 @@ public class LoginServlet extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
-                String customerName = customer.getName();
-                String citizenId = customer.getCitizenId();
+                session.setAttribute("customer", customer);
 
-                // Store the details in the session
-                session.setAttribute("customerName", customerName);
-                session.setAttribute("citizenId", citizenId);
                 response.sendRedirect("profile.jsp");
 
             }

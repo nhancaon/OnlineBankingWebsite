@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 
 public class TransferServlet extends HttpServlet {
 
+    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    TransactionDAO transactionDAO = new TransactionDAO();
+
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
@@ -23,9 +26,7 @@ public class TransferServlet extends HttpServlet {
         }
         if (action.equals("check")) {
             url = "/profile.jsp";
-        }else
-
-        // perform action and set URL to appropriate page
+        } else // perform action and set URL to appropriate page
         if (action.equals("return")) {
             url = "/transfer.jsp";
         } else {
@@ -54,8 +55,8 @@ public class TransferServlet extends HttpServlet {
                 transac.setTransactionDate(LocalDateTime.now());
                 transac.setTransactionRemake(Remark);
 
-                PaymentAccount sender = PaymentAccountDAO.findByAccountNumber("123");
-                PaymentAccount receiver = PaymentAccountDAO.findByAccountNumber(Number);
+                PaymentAccount sender = paymentAccountDAO.findByAccountNumber("123");
+                PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(Number);
                 if (receiver == null) {
                     message = "This account isn't exist";
                     url = "/transfer.jsp";
@@ -75,9 +76,9 @@ public class TransferServlet extends HttpServlet {
                 System.out.println(Number);
                 System.out.println(amount);
                 System.out.println(Remark);
-                TransactionDAO.createTransaction("123", Number, Remark, amount);
+                transactionDAO.createTransaction("123", Number, Remark, amount);
                 url = "/success.jsp";
-            } 
+            }
         }
 
         getServletContext()

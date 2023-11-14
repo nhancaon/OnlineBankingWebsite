@@ -1,5 +1,6 @@
 package DAO;
 
+import business.Customer;
 import business.PaymentAccount;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -36,21 +37,30 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return super.countWithNamedQuery("");
     }
 
-    public static PaymentAccount findByAccountNumber(String accountNumber) {
-        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-        String qString = "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber";
-        TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
-        q.setParameter("accountNumber", accountNumber);
-        PaymentAccount pa = null;
-        try {
-            pa = q.getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println(e);
-            return null;
-        } finally {
-            em.close();
+    public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) {
+
+        PaymentAccount paymentAccountEntity = new PaymentAccount();
+
+        paymentAccountEntity.setPaymentAccountId(generateUniqueId());
+        paymentAccountEntity.setCustomer(customer);
+        paymentAccountEntity.setAccountNumber(accountNumber);
+        paymentAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
+        paymentAccountEntity.setAccountStatus("Active");
+        paymentAccountEntity.setAccountType("Classic");
+        
+        create(paymentAccountEntity);
+        return null;
+    }
+
+    public PaymentAccount findByAccountNumber(String accountNumber) {
+
+        List<PaymentAccount> result = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber", "accountNumber", accountNumber);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
         }
-        return (PaymentAccount) pa;
+
+        return null;
     }
 
     // Additional method for select operation

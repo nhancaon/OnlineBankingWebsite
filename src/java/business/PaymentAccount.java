@@ -1,6 +1,8 @@
 package business;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
@@ -51,7 +53,10 @@ public class PaymentAccount extends Account implements Serializable {
     private int rewardPoint;
 
     public PaymentAccount() {
+        this.setDateOpened(LocalDate.now());
 
+        // Set dateClosed to 1 year after dateOpened
+        this.setDateClosed(LocalDate.now().plus(1, ChronoUnit.YEARS));
     }
 
     public Customer getCustomer() {
@@ -62,11 +67,11 @@ public class PaymentAccount extends Account implements Serializable {
         this.customer = customer;
     }
 
-    public String getCurrentAccountId() {
+    public String getPaymentAccountId() {
         return paymentAccountId;
     }
 
-    public void setCurrentAccountId(String paymentAccountId) {
+    public void setPaymentAccountId(String paymentAccountId) {
         this.paymentAccountId = paymentAccountId;
     }
 
