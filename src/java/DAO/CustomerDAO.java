@@ -71,7 +71,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public void customerSignup(String fullName, String email, String password, String citizenId,
+    public Customer customerSignup(String fullName, String email, String password, String citizenId,
             String phoneNumber, String dateOfBirth, String address) throws SignupException {
 
         Customer customerEntity = new Customer();
@@ -98,6 +98,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             create(customerEntity);
         }
 
+        return null;
     }
 
 }
