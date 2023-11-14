@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 
+    CustomerDAO customerDAO = new CustomerDAO();
+    
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
@@ -23,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         if (action.equals("login")) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            Customer customer = CustomerDAO.customerLogin(email, password);
+            Customer customer = customerDAO.checkLogin(email, password);
             if (customer == null) {
                 response.sendRedirect("login.jsp");
             } else {
