@@ -1,14 +1,14 @@
-package control.User;
+package controller.User;
 
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import business.Customer;
-import data.CustomerDB;
+import DAO.CustomerDAO;
 
 @WebServlet("/Signup")
-public class Signup extends HttpServlet {
+public class SignupServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -29,7 +29,7 @@ public class Signup extends HttpServlet {
             String dateOfBirth = request.getParameter("dateOfBirth");
             String address = request.getParameter("address");
             
-            CustomerDB.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+            CustomerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
             
             response.sendRedirect("login.jsp");
         }

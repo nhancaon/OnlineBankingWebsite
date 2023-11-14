@@ -1,10 +1,11 @@
-package control;
+package controller;
 
+import DAO.PaymentAccountDAO;
+import DAO.TransactionDAO;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import business.*;
-import data.*;
 import java.time.LocalDateTime;
 
 public class TransferServlet extends HttpServlet {
@@ -53,8 +54,8 @@ public class TransferServlet extends HttpServlet {
                 transac.setTransactionDate(LocalDateTime.now());
                 transac.setTransactionRemake(Remark);
 
-                PaymentAccount sender = PaymentAccountDB.findByAccountNumber("123");
-                PaymentAccount receiver = PaymentAccountDB.findByAccountNumber(Number);
+                PaymentAccount sender = PaymentAccountDAO.findByAccountNumber("123");
+                PaymentAccount receiver = PaymentAccountDAO.findByAccountNumber(Number);
                 if (receiver == null) {
                     message = "This account isn't exist";
                     url = "/transfer.jsp";
@@ -74,7 +75,7 @@ public class TransferServlet extends HttpServlet {
                 System.out.println(Number);
                 System.out.println(amount);
                 System.out.println(Remark);
-                TransactionDB.createTransaction("123", Number, Remark, amount);
+                TransactionDAO.createTransaction("123", Number, Remark, amount);
                 url = "/success.jsp";
             } 
         }
