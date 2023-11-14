@@ -15,19 +15,21 @@ import javax.persistence.Table;
 public class Transaction implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "sender_id", referencedColumnName = "paymentAccountId")
+    @JoinColumn(name = "sender_id", referencedColumnName = "paymentAccountId",nullable = false)
     private PaymentAccount sender;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "receiver_id", referencedColumnName = "paymentAccountId")
+    @JoinColumn(name = "receiver_id", referencedColumnName = "paymentAccountId",nullable = false)
     private PaymentAccount receiver;
 
     @Id
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String transactionId;
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)",nullable = false)
     private String transactionRemake;
+    @Column(nullable = false)
     private Double amount;
+    @Column(nullable = false)
     private LocalDateTime transactionDate;
 
     public Transaction() {

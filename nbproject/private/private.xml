@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Customer.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/profile.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
@@ -28,6 +29,13 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/conf/persistence.xml</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Transaction.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/styles/main.css</file>
+
+            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/LoanPayment.java</file>
+            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/User.java</file>
+            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/Customer.java</file>
+            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/SavingAccount.java</file>
+            <file>file:/D:/University/Web/OnlineBankingWebsite/src/java/business/Account.java</file>
+
         </group>
     </open-files>
 </project-private>

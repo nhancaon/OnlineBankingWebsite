@@ -2,6 +2,7 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +12,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "paymentAccount")
+@AttributeOverride(name = "accountNumber", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "accountType", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "dateOpened", column = @Column(nullable = false))
+@AttributeOverride(name = "dateClosed", column = @Column(nullable = false))
+@AttributeOverride(name = "accountStatus", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "pinNumber", column = @Column(nullable = false))
 public class PaymentAccount extends Account implements Serializable {
 
     @ManyToMany(cascade = CascadeType.DETACH)
@@ -24,7 +33,7 @@ public class PaymentAccount extends Account implements Serializable {
     private List<Reward> rewards;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id", referencedColumnName = "customerId")
+    @JoinColumn(name = "cus_id", referencedColumnName = "customerId", nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.DETACH)
@@ -34,9 +43,11 @@ public class PaymentAccount extends Account implements Serializable {
     private List<Transaction> receivedTransactions;
 
     @Id
-    @Column(columnDefinition = "varchar(20)")
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String paymentAccountId;
+    @Column(nullable = false)
     private int currentBalence;
+    @Column(nullable = false)
     private int rewardPoint;
 
     public PaymentAccount() {
