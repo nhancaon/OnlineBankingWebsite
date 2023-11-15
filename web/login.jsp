@@ -52,7 +52,13 @@
                 <span class="flex items-center mb-6 text-md font-light text-gray-300">
                     Join millions of users worldwide in experiencing the epitome of online banking through NNDBank - the gateway to the most advanced and secure digital financial solutions. Dive into the future of banking convenience and access a spectrum of cutting-edge financial services from top institutions and professionals.    
                 </span>
-
+                
+                <div class="flex -space-x-4 rtl:space-x-reverse">
+                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-5.jpg" alt="">
+                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-2.jpg" alt="">
+                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-3.jpg" alt="">
+                    <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
+                </div>
             </div>
         </div>
     </div>

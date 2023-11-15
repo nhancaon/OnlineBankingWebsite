@@ -51,14 +51,14 @@
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <%                    
-                    List<PaymentAccount> paymentAccounts = (List<PaymentAccount>) request.getAttribute("paymentAccounts");
+                <%                    List<PaymentAccount> paymentAccounts = (List<PaymentAccount>) request.getAttribute("paymentAccounts");
 
                     if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
                         for (PaymentAccount paymentAccount : paymentAccounts) {
                 %>
-                    <a class="flex justify-between p-4 rounded-xl bg-gray-300 
-                       focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
+                <form action="ShowAccountDetail" method="post">
+                    <button type="submit" class="flex justify-between p-4 rounded-xl bg-gray-300 
+                            focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
                         <div>
                             <i class="fa-regular fa-copy mr-2"></i>
                             <%= paymentAccount.getAccountNumber()%>
@@ -68,9 +68,10 @@
                             <%= paymentAccount.getCurrentBalence()%> VND
                         </div>
                         <i class="fa-solid fa-chevron-right py-1"></i>
-                    </a>
+                    </button>
+                </form>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <p class="text-center mt-5">No payment accounts found for the specified customer.</p>
@@ -93,7 +94,7 @@
             </button>
         </div>
         <div class="content">
-            <form action="PaymentAccount" method="post">
+            <form action="CreateAccount" method="post">
                 <input type="hidden" name="action" value="create">
                     <div class="relative mt-6">
                         <input
@@ -104,6 +105,7 @@
                             placeholder=" "
                             pattern="\d{10}"
                             title="Please enter a 10-digit number."
+                            maxlength="10" 
                             required
                             />
                         <label
@@ -121,6 +123,7 @@
                             placeholder=" "
                             pattern="\d{4}"
                             title="Please enter a 4-digit number."
+                            maxlength="4" 
                             required
                             />
                         <label
