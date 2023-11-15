@@ -1,7 +1,19 @@
+<%@page import="DAO.PaymentAccountDAO"%>
+<%@page import="business.PaymentAccount"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
+
+
+
+<%    
+    
+    String accountNumber = request.getParameter("accountNumber");
+    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    PaymentAccount paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
+%>
+
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-56">
@@ -71,33 +83,20 @@
                 <div class='w-full grid grid-cols-1 gap-2'>
                     <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Name</span>
-                        <span class="uppercase">Chau Gia Dat</span>
+                        <span class="uppercase"><%= customer.getName()%></span>
                     </div>
-                     <div class='flex justify-between items-center'>
+                    <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
+                        <span class="uppercase"><%= paymentAccount.getAccountNumber()%></span>
                     </div> 
-                     <div class='flex justify-between items-center'>
-                        <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
+                    <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Account Type</span>
+                        <span class="uppercase"><%= paymentAccount.getAccountType()%></span>
                     </div>
-                     <div class='flex justify-between items-center'>
-                        <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
+                    <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Account Balance</span>
+                        <span class="uppercase"><%= paymentAccount.getCurrentBalence()%></span>
                     </div>                 
-                     <div class='flex justify-between items-center'>
-                        <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
-                    </div>
-                    
-                     <div class='flex justify-between items-center'>
-                        <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
-                    </div>
-                     <div class='flex justify-between items-center'>
-                        <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase">8890743713</span>
-                    </div>
                 </div>
             </div>
         </div>

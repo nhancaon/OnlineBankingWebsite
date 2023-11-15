@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="business.PaymentAccount"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
@@ -49,30 +51,35 @@
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <a class="flex justify-between p-4 rounded-xl bg-gray-300 
-                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
-                    <div>
-                        <i class="fa-regular fa-copy mr-2"></i>
-                        8890743713
-                    </div>
-                    <div>
-                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        1,100,000 VND
-                    </div>
-                    <i class="fa-solid fa-chevron-right py-1"></i>
-                </a>
-                <a class="flex justify-between p-4 rounded-xl bg-gray-300 
-                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
-                    <div>
-                        <i class="fa-regular fa-copy mr-2"></i>
-                        8890743713
-                    </div>
-                    <div>
-                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        1,100,000 VND
-                    </div>
-                    <i class="fa-solid fa-chevron-right py-1"></i>
-                </a>
+                <%                    List<PaymentAccount> paymentAccounts = (List<PaymentAccount>) request.getAttribute("paymentAccounts");
+
+                    if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
+                        for (PaymentAccount paymentAccount : paymentAccounts) {
+                %>
+                <form action="ShowAccountDetail" method="post">
+                    <button type="submit" class="flex justify-between p-4 rounded-xl bg-gray-300 
+                            focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
+                        <div>
+                            <i class="fa-regular fa-copy mr-2"></i>
+                            <%= paymentAccount.getAccountNumber()%>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-600 mr-2">Available Balance</span>
+                            <%= paymentAccount.getCurrentBalence()%> VND
+                        </div>
+                        <i class="fa-solid fa-chevron-right py-1"></i>
+                    </button>
+                </form>
+                <%
+                    }
+                } else {
+                %>
+                <p class="text-center mt-5">No payment accounts found for the specified customer.</p>
+                <%
+                    }
+                %>
+
+
             </div>
         </div>
     </div>
@@ -87,7 +94,48 @@
             </button>
         </div>
         <div class="content">
-           
+            <form action="CreateAccount" method="post">
+                <input type="hidden" name="action" value="create">
+                    <div class="relative mt-6">
+                        <input
+                            type="text"
+                            id="paymentAccountNumber"
+                            name="acNumber"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            pattern="\d{10}"
+                            title="Please enter a 10-digit number."
+                            maxlength="10" 
+                            required
+                            />
+                        <label
+                            for="paymentAccountNumber"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >Payment Account Number (10 digits)</label
+                        >
+                    </div>
+                    <div class="relative mt-6">
+                        <input
+                            type="text"
+                            id="pinNumber"
+                            name="pinNumber"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            pattern="\d{4}"
+                            title="Please enter a 4-digit number."
+                            maxlength="4" 
+                            required
+                            />
+                        <label
+                            for="pinNumber"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >PIN Number (4 digits)</label
+                        >
+                    </div>
+                    <div class="flex justify-end items-center mt-10">
+                        <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Continue</button>
+                    </div>
+            </form>
         </div>
     </div>
 </div>

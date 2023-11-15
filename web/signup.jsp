@@ -10,6 +10,17 @@
                 <h1 class="text-sm font-light leading-tight tracking-tight text-gray-900">
                     Already have an account? <a href="./login.jsp" class="hover:underline text-[#007eca]">Click here</a> to login
                 </h1>
+                <div>
+                    <%-- Display success message if it exists --%>
+                    <c:if message="${not empty requestScope.successMessage}">
+                        <p style="color: green;">${requestScope.successMessage}</p>
+                    </c:if>
+
+                    <%-- Display error message if it exists --%>
+                    <c:if message="${not empty requestScope.errorMessage}">
+                        <p style="color: red;">${requestScope.errorMessage}</p>
+                    </c:if>
+                </div>
                 <form class="col-span-3 space-y-4 md:space-y-6" action="Signup" method="post">
                     <input type="hidden" name="action" value="signup"/> 
                     <ol class="relative text-gray-500 border-s border-gray-200">                  
@@ -25,6 +36,7 @@
                                     name="fullName"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="fullName"
@@ -39,6 +51,7 @@
                                     name="email"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="email"
@@ -53,6 +66,7 @@
                                     name="phoneNumber"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="phoneNumber"
@@ -67,6 +81,7 @@
                                     name="citizenIdentity"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="citizenIdentity"
@@ -94,7 +109,7 @@
                         <li class="mb-10 ms-6">
                             <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white ">
                                 <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                    <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
+                                <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
                                 </svg>
                             </span>
                             <h3 class="font-medium leading-tight">Address</h3>
@@ -105,6 +120,7 @@
                                     name="address"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="address"
@@ -116,7 +132,7 @@
                         <li class="ms-6">
                             <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white ">
                                 <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                    <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z"/>
+                                <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z"/>
                                 </svg>
                             </span>
                             <h3 class="font-medium leading-tight">Confirmation</h3>   
@@ -127,6 +143,7 @@
                                     name="password"
                                     class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" "
+                                    required
                                     />
                                 <label
                                     for="password"
@@ -142,12 +159,12 @@
             </div>
             <div class="bg-gradient-to-r from-[#00bfae] to-[#0066ad] h-full px-10 py-24 rounded-r-lg">
                 <img class="mb-4 w-18 h-12" src="./assets/logo.png" alt="logo">
-                    <span class="flex items-center mb-6 text-2xl font-semibold text-white">
-                        Welcome to NNDBank online banking services.   
-                    </span>
-                    <span class="flex items-center mb-6 text-md font-light text-gray-300">
-                        Join millions of users worldwide in experiencing the epitome of online banking through NNDBank - the gateway to the most advanced and secure digital financial solutions. Dive into the future of banking convenience and access a spectrum of cutting-edge financial services from top institutions and professionals.    
-                    </span>
+                <span class="flex items-center mb-6 text-2xl font-semibold text-white">
+                    Welcome to NNDBank online banking services.   
+                </span>
+                <span class="flex items-center mb-6 text-md font-light text-gray-300">
+                    Join millions of users worldwide in experiencing the epitome of online banking through NNDBank - the gateway to the most advanced and secure digital financial solutions. Dive into the future of banking convenience and access a spectrum of cutting-edge financial services from top institutions and professionals.    
+                </span>
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page import="business.Customer" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -87,12 +87,21 @@
                 </div>
 
                 <%
-                    if (session.getAttribute("email") != null) {
+                    // Retrieve the customer from the session
+                    Customer customer = (Customer) session.getAttribute("customer");
+
+                    // Check if the customer object exists in the session
+                    if (customer != null) {
+                        // Access customer properties
+                        String customerId = customer.getCustomerId();
+                        String fullName = customer.getName();
+                        String email = customer.getEmail();
+                        // ... other properties
                 %>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
-                        <div class="font-bold text-lg">${customerName}</div>
+                        <div class="font-bold text-lg"><%= fullName%></div>
                     </div>
                     <div>
                         <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
