@@ -31,6 +31,10 @@ public class CreateAccountServlet extends HttpServlet {
 
             paymentAccountDAO.CreatePaymentAccount(customer, accountNumber, pinNumber);
         }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
+        dispatcher.forward(request, response);
+        response.sendRedirect("account.jsp");
     }
 
     @Override

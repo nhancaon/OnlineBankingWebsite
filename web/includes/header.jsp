@@ -97,7 +97,7 @@
                         String fullName = customer.getName();
                         String email = customer.getEmail();
                         // ... other properties
-%>
+                %>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>

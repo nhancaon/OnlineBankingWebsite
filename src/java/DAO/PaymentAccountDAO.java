@@ -39,11 +39,15 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
     public List<PaymentAccount> findPaymentAccountByCusId(String customerId) {
 
-        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa WHERE pa.customerId = :customerId", "customerId", customerId);
-
+        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId",
+                "customerId",
+                customerId
+        );
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList;
         }
+
         return null;
     }
 
