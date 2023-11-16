@@ -17,12 +17,14 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        ServletContext servletContext = getServletContext();
+        
         String action = request.getParameter("action");
         if (action == null) {
             action = "join";  // default action
         }
-
+        String url = "/signup.jsp";
         if (action.equals("signup")) {
 
             String fullName = request.getParameter("fullName");
@@ -36,14 +38,15 @@ public class SignupServlet extends HttpServlet {
                 customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
                 // Successful signup
                 request.setAttribute("successMessage", "The account has been created successfully.");
-                request.getRequestDispatcher("signup.jsp").forward(request, response);
+
             } catch (SignupException e) {
                 // Handle the exception
                 request.setAttribute("errorMessage", e.getMessage());
-                request.getRequestDispatcher("signup.jsp").forward(request, response);
+
             }
         }
-
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
     }
 
     @Override

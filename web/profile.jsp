@@ -22,7 +22,7 @@
                     <span class="font-bold text-xl">1,100,000 VND</span>
                 </div>
                 <div class="grid justify-end ml-4">
-                    <form action="ShowAccount" method="get">
+                    <form action="show-account" method="get">
                         <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg">
                             Accounts List <span class="font-bold"><i class="fa-solid fa-chevron-right py-1"></i></span>
                         </button>
