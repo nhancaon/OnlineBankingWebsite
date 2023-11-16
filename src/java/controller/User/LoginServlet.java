@@ -17,26 +17,29 @@ public class LoginServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        ServletContext servletContext = getServletContext();
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "join";  // default action
         }
-
+        String url = "/login.jsp";
         if (action.equals("login")) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             Customer customer = customerDAO.checkLogin(email, password);
             if (customer == null) {
-                response.sendRedirect("login.jsp");
+                url = "/login.jsp";
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("customer", customer);
-
-                response.sendRedirect("profile.jsp");
-
+                url = "/profile.jsp";
             }
         }
+
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
     }
 
     @Override

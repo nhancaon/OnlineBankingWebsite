@@ -75,12 +75,12 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             String phoneNumber, String dateOfBirth, String address) throws SignupException {
 
         Customer customerEntity = new Customer();
-        Customer existCustomer = findByEmail(email, citizenId);
-        if (existCustomer != null) {
-            if (existCustomer.getEmail().equals(email)) {
+        Customer existingCustomer = findByEmail(email, citizenId);
+        if (existingCustomer != null) {
+            if (existingCustomer.getEmail().equals(email)) {
                 throw new SignupException("The user with Email " + email
                         + " is already registered.", 409);
-            } else if (existCustomer.getCitizenId().equals(citizenId)) {
+            } else if (existingCustomer.getCitizenId().equals(citizenId)) {
                 throw new SignupException("The user with Citizen Identity " + citizenId
                         + " is already registered.", 409);
             }
