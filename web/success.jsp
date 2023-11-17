@@ -50,16 +50,17 @@
                 </li>
             </ol>
         </nav>
-
-        <div class="gap-8">
+        
+        <c:forEach var="item" items="${transactionList}">
+            <div class="gap-8">
             <div class=" my-16 py-8 px-20 rounded-xl bg-white">
                 <span class="text-[#2a6ebe]">Transaction Success</span>
                 <form action="Transfer" method="post">
-                   asdasdadds
+                   <i>${item.transactionRemake}</i>
                 </form>
             </div>
-          
         </div>
+        </c:forEach>
     </div>
 </div>
 

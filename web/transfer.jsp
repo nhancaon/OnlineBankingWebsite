@@ -46,7 +46,7 @@
         <div class="grid grid-cols-5 gap-8">
             <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
                 <span class="text-[#2a6ebe]">Internal Transfer</span>
-                <p class="text-[#2a6ebe]"><i>${message}</i></p>
+                <p style="color: green;"><i>${message}</i></p>
                 <form action="Transfer" method="post">
                     <input type="hidden" name="action" value="add">
                     <div class="relative mt-6">

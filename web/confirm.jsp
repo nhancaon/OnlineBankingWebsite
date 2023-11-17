@@ -53,19 +53,19 @@
         <div class="grid grid-cols-5 gap-8">
             <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
                 <span class="text-[#2a6ebe]">Internal Transfer</span>
-                <p class="text-[#2a6ebe]"><i>${message}</i></p><br>
+                <p style="color: green;"><i>${message}</i></p><br>
                 <label>Account sender:</label>
                 <span class="text-[#2a6ebe]">${sender.accountNumber}</span><br>
                 <label>Account receiver:</label>
-                <span class="text-[#2a6ebe]">${receiver.accountNumber}</span>
+                <span class="text-[#2a6ebe]">${Number}</span>
                 <label>Banker Name:</label>
-                <span class="text-[#2a6ebe]">DNN</span><br>
+                <span class="text-[#2a6ebe]">NND Bank</span><br>
                 <label>Amount:</label>
-                <span class="text-[#2a6ebe]">${transac.amount}</span><br>
+                <span class="text-[#2a6ebe]">${Amount}</span><br>
                 <label>Transaction Date:</label>
-                <span class="text-[#2a6ebe]">${transac.transactionDate}</span><br>
+                <span class="text-[#2a6ebe]">${timeStr}</span><br>
                 <label>Content:</label>
-                <span class="text-[#2a6ebe]">${transac.transactionRemake}</span><br>
+                <span class="text-[#2a6ebe]">${Remark}</span><br>
 
                 <form action="Transfer" method="post">
                     <input type="hidden" name="action" value="confirm">

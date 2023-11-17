@@ -6,10 +6,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer> {
 

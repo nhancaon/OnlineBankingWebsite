@@ -21,6 +21,11 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     }
 
     @Override
+    public PaymentAccount update(PaymentAccount t) {
+        return super.update(t);
+    }
+    
+    @Override
     public void delete(Object id) {
         super.delete(PaymentAccount.class, id);
 
@@ -77,20 +82,4 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
         return null;
     }
-
-    // Additional method for select operation
-//    public List<PaymentAccount> getAllCurrentAccounts() {
-//        EntityManager em = JpaDAO.getEmFactory().createEntityManager();
-//        String qString = "SELECT t FROM CurrentAccount t";
-//        TypedQuery<PaymentAccount> q = em.createQuery(qString, PaymentAccount.class);
-//        List<PaymentAccount> transactions = null;
-//        try {
-//            transactions = q.getResultList();
-//        } catch (NoResultException e) {
-//            // Handle appropriately, for example, logging or rethrowing
-//        } finally {
-//            em.close();
-//        }
-//        return transactions;
-//    }
 }
