@@ -56,20 +56,18 @@
                     if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
                         for (PaymentAccount paymentAccount : paymentAccounts) {
                 %>
-                <form action="ShowAccountDetail" method="post">
-                    <button type="submit" class="flex justify-between p-4 rounded-xl bg-gray-300 
-                            focus:ring transform transition hover:scale-105 duration-300 ease-in-out" href="./accountDetail.jsp">
-                        <div>
-                            <i class="fa-regular fa-copy mr-2"></i>
-                            <%= paymentAccount.getAccountNumber()%>
-                        </div>
-                        <div>
-                            <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                            <%= paymentAccount.getCurrentBalence()%> VND
-                        </div>
-                        <i class="fa-solid fa-chevron-right py-1"></i>
-                    </button>
-                </form>
+                <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="flex justify-between p-4 rounded-xl bg-gray-300 
+                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                    <div>
+                        <i class="fa-regular fa-copy mr-2"></i>
+                        <%= paymentAccount.getAccountNumber()%>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
+                        <%= paymentAccount.getCurrentBalence()%> VND
+                    </div>
+                    <i class="fa-solid fa-chevron-right py-1"></i>
+                </a>       
                 <%
                     }
                 } else {
@@ -94,7 +92,7 @@
             </button>
         </div>
         <div class="content">
-            <form action="CreateAccount" method="post">
+            <form action="create-account" method="post">
                 <input type="hidden" name="action" value="create">
                     <div class="relative mt-6">
                         <input

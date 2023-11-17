@@ -2,7 +2,9 @@ package DAO;
 
 import business.Customer;
 import business.PaymentAccount;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
@@ -51,6 +53,25 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         );
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList;
+        }
+
+        return null;
+    }
+
+    public PaymentAccount findExistingPaymentAccount(String customerId, String accountNumber) {
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("customerId", customerId);
+        parameters.put("accountNumber", accountNumber);
+
+        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId",
+                "customerId",
+                customerId
+        );
+
+        if (!paymentAccountList.isEmpty()) {
+            return paymentAccountList.get(0);
         }
 
         return null;

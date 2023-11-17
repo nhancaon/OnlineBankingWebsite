@@ -9,18 +9,16 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/ShowAccountDetail")
+@WebServlet("/account-detail")
 public class ShowAccountDetailServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
     PaymentAccount paymentAccount = new PaymentAccount();
-    
+
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
 
     }
 
@@ -28,5 +26,21 @@ public class ShowAccountDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        ServletContext servletContext = getServletContext();
+
+        String url = "/account.jsp";
+        // Retrieve account number from the request parameters
+        String accountNumber = request.getParameter("accountNumber");
+
+        // Call findByAccountNumber in PaymentAccountDAO
+        paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
+
+        // Set the paymentAccount as an attribute for accountdetail.jsp
+        request.setAttribute("paymentAccount", paymentAccount);
+
+        url = "/accountDetail.jsp";
+        
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
     }
 }

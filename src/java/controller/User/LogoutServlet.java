@@ -13,11 +13,13 @@ public class LogoutServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        ServletContext servletContext = getServletContext();
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "join";  // default action
         }
-
+        String url = "/index.jsp";
         if (action.equals("logout")) {
 
             HttpSession session = request.getSession();
@@ -25,9 +27,12 @@ public class LogoutServlet extends HttpServlet {
             session.removeAttribute("customerName");
             session.removeAttribute("citizenId");
             session.invalidate();
-            response.sendRedirect("login.jsp");
 
+            url = "/login.jsp";
         }
+
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
 
     }
 

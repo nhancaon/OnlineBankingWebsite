@@ -9,7 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/ShowAccount")
+@WebServlet("/show-account")
 public class ShowAccountServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
@@ -24,6 +24,10 @@ public class ShowAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        ServletContext servletContext = getServletContext();
+
+        String url = "/account.jsp";
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
@@ -32,8 +36,7 @@ public class ShowAccountServlet extends HttpServlet {
         System.out.println(paymentAccounts);
         request.setAttribute("paymentAccounts", paymentAccounts);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
-        dispatcher.forward(request, response);
-        response.sendRedirect("account.jsp");
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
     }
 }
