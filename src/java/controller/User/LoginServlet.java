@@ -17,8 +17,7 @@ public class LoginServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        ServletContext servletContext = getServletContext();
-
+ 
         String action = request.getParameter("action");
         if (action == null) {
             action = "join";  // default action
@@ -38,8 +37,8 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
+   
+        response.sendRedirect("profile.jsp");
     }
 
     @Override

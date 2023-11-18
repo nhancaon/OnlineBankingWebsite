@@ -50,6 +50,15 @@
                 <button id="createAccountBtn" class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl outline-none 
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
+            <div>
+                <c:if message="${not empty requestScope.successMessage}">
+                    <p style="color: green;">${requestScope.successMessage}</p>
+                </c:if>
+
+                <c:if message="${not empty requestScope.errorMessage}">
+                    <p style="color: red;">${requestScope.errorMessage}</p>
+                </c:if>
+            </div>
             <div class="grid grid-cols-1 gap-10 my-8">
                 <%                    List<PaymentAccount> paymentAccounts = (List<PaymentAccount>) request.getAttribute("paymentAccounts");
 

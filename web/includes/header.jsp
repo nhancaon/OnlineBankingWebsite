@@ -27,7 +27,7 @@
                             blur: "rgba(0, 0, 0, 0.5)",
                         },
                         animation: {
-                            'bounceOne': 'bounceOne 1s',
+                            'bounceOne': '0.5s ease-in-out',
                             'appear': 'appear 0.5s ease-in-out',
                             'appearRight': 'appearRight ease-in-out .3s',
                             'notification': 'notification ease-in-out .3s, fadeOut 3s .3s ease-in-out forwards',
@@ -35,8 +35,8 @@
                         keyframes: {
                             'bounceOne': {
                                 '0%': {transform: 'translateY(0)'},
-                                '50%': {transform: 'translateY(-20px)'},
                                 '100%': {transform: 'translateY(-20px)'},
+
                             },
                             appear: {
                                 '0%': {opacity: '0', transform: 'translateY(20%)'},
@@ -66,7 +66,7 @@
                     <form>
                         <div class="relative">
                             <div
-                                class="absolute inset-y-0 left-0 flex items-center  pointer-events-none"
+                                class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
                                 >
                                 <img src="./assets/search.svg" class="w-5 h-5" />
                             </div>
@@ -97,7 +97,7 @@
                         String fullName = customer.getName();
                         String email = customer.getEmail();
                         // ... other properties
-                %>
+%>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
@@ -108,8 +108,8 @@
                         <div id="dropdown" class="hidden absolute right-0 mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
                             <ul>
                                 <li>
-                                    <form action="Logout" 
-                                          <div class="focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                                    <form action="Logout"> 
+                                        <div class="focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                             <input type="hidden" name="action" value="logout">  
                                             <i class="fa-solid fa-arrow-right-from-bracket mr-3 text-red-800"></i>
                                             <input type="submit" value="Log out"/>

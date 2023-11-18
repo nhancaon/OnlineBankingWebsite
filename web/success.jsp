@@ -8,7 +8,7 @@
     <div class="py-16 mx-56">
         <div class="flex text-2xl">
             <a href="./index.jsp"><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
-            <div class="py-[0.2rem]">Transfer</div>
+            <div class="py-[0.2rem]">Success</div>
         </div>
 
         <nav class="flex pt-3 ml-[2.3rem]" aria-label="Breadcrumb">
@@ -37,7 +37,7 @@
                         <svg class="w-3 h-3 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                         </svg>
-                        <a class="ml-1 text-sm font-medium text-gray-700 md:ml-2 cursor-pointer" href="./transfer.jsp">Transfer</a>
+                        <a class="ml-1 text-sm font-medium text-gray-700 md:ml-2 cursor-pointer hover:text-blue-600" href="./transfer.jsp">Transfer</a>
                     </div>
                 </li>
                 <li>
@@ -52,11 +52,9 @@
         </nav>
 
         <div class="gap-8">
-            <div class=" my-16 py-8 px-20 rounded-xl bg-white">
-                <span class="text-[#2a6ebe]">Transaction Success</span>
-                <form action="Transfer" method="post">
-                   asdasdadds
-                </form>
+            <div class="grid justify-center my-16 py-8 px-20 rounded-xl bg-white">
+                <span class="text-[#2a6ebe]">Transaction Completed</span>
+                <b class="h-[1px] bg-gray-200 my-4"></b>
             </div>
           
         </div>

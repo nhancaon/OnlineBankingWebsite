@@ -1,5 +1,6 @@
 package DAO;
 
+import Exception.CreateException;
 import business.Customer;
 import business.PaymentAccount;
 import java.util.HashMap;
@@ -60,9 +61,8 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         parameters.put("accountNumber", accountNumber);
 
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
-                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId",
-                "customerId",
-                customerId
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId AND pa.accountNumber = :accountNumber",
+                parameters
         );
 
         if (!paymentAccountList.isEmpty()) {
@@ -72,19 +72,28 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
-    public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) {
+    public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) throws CreateException {
 
         PaymentAccount paymentAccountEntity = new PaymentAccount();
+        PaymentAccount existingPaymentAccount = findExistingPaymentAccount(customer.getCustomerId(), accountNumber);
+        if (existingPaymentAccount != null) {
 
-        paymentAccountEntity.setPaymentAccountId(generateUniqueId());
-        paymentAccountEntity.setCustomer(customer);
-        paymentAccountEntity.setAccountNumber(accountNumber);
-        paymentAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
-        paymentAccountEntity.setAccountStatus("Active");
-        paymentAccountEntity.setAccountType("Classic");
+            System.out.print(existingPaymentAccount.getAccountNumber());
+            if (existingPaymentAccount.getAccountNumber().equals(accountNumber)) {
+                throw new CreateException("The Payment Account " + accountNumber
+                        + " is already existed.", 409);
+            }
+        } else {
+            paymentAccountEntity.setPaymentAccountId(generateUniqueId());
+            paymentAccountEntity.setCustomer(customer);
+            paymentAccountEntity.setAccountNumber(accountNumber);
+            paymentAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
+            paymentAccountEntity.setAccountStatus("Active");
+            paymentAccountEntity.setAccountType("Classic");
 
-        create(paymentAccountEntity);
+            create(paymentAccountEntity);
 
+        }
         return null;
     }
 
