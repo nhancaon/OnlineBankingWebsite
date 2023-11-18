@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
  
         String action = request.getParameter("action");
         if (action == null) {
-            action = "join";  // default action
+            action = "join"; // default action
         }
         String url = "/login.jsp";
         if (action.equals("login")) {

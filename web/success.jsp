@@ -51,13 +51,18 @@
             </ol>
         </nav>
 
-        <div class="gap-8">
-            <div class="grid justify-center my-16 py-8 px-20 rounded-xl bg-white">
-                <span class="text-[#2a6ebe]">Transaction Completed</span>
-                <b class="h-[1px] bg-gray-200 my-4"></b>
+        
+        <c:forEach var="item" items="${transactionList}">
+            <div class="gap-8">
+            <div class=" my-16 py-8 px-20 rounded-xl bg-white">
+                <span class="text-[#2a6ebe]">Transaction Success</span>
+                <form action="Transfer" method="post">
+                   <i>${item.transactionRemake}</i>
+                </form>
+
             </div>
-          
         </div>
+        </c:forEach>
     </div>
 </div>
 
