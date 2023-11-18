@@ -3,6 +3,7 @@ package controller.PaymentAccount;
 import business.PaymentAccount;
 import business.Customer;
 import DAO.PaymentAccountDAO;
+import Exception.CreateException;
 import java.io.*;
 import java.util.List;
 import javax.servlet.*;
@@ -33,9 +34,17 @@ public class CreateAccountServlet extends HttpServlet {
             String accountNumber = request.getParameter("acNumber");
             String pinNumber = request.getParameter("pinNumber");
 
-            paymentAccountDAO.CreatePaymentAccount(customer, accountNumber, pinNumber);
+            try {
+                paymentAccountDAO.CreatePaymentAccount(customer, accountNumber, pinNumber);
+
+                request.setAttribute("successMessage", "Your payment account has been created successfully");
+            } catch (CreateException e) {
+
+                request.setAttribute("errorMessage", e.getMessage());
+            }
             List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customerId);
             request.setAttribute("paymentAccounts", paymentAccounts);
+
         }
 
         servletContext.getRequestDispatcher(url)
