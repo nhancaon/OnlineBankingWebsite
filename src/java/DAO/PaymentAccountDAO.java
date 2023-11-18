@@ -27,7 +27,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     public PaymentAccount update(PaymentAccount t) {
         return super.update(t);
     }
-    
+
     @Override
     public void delete(Object id) {
         super.delete(PaymentAccount.class, id);
@@ -43,6 +43,24 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     public long count() {
 
         return super.countWithNamedQuery("");
+    }
+
+    public PaymentAccount findDefaultPaymentAccount(String customerId) {
+
+        String accountStatus = "Default";
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("customerId", customerId);
+        parameters.put("accountStatus", accountStatus);
+        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId AND pa.accountStatus = :accountStatus",
+                parameters
+        );
+
+        if (!paymentAccountList.isEmpty()) {
+            return paymentAccountList.get(0);
+        }
+
+        return null;
     }
 
     public List<PaymentAccount> findPaymentAccountByCusId(String customerId) {

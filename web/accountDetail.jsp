@@ -7,9 +7,8 @@
 
 
 
-<%  String accountNumber = request.getParameter("accountNumber");
-    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-    PaymentAccount paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
+<%  
+    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("PaymentAccount");
 %>
 
 
@@ -106,6 +105,10 @@
                         <span class="text-gray-500 text-sm">Account Balance</span>
                         <span class="uppercase text-sm"><%= paymentAccount.getCurrentBalence()%> VND</span>
                     </div>   
+                    <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Reward Pointp           </span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getRewardPoint()%> RWP</span>
+                    </div>  
                     <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Registered Branch</span>
                         <span class="uppercase text-sm">NND Banking</span>
