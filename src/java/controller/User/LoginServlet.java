@@ -1,7 +1,9 @@
 package controller.User;
 
 import business.Customer;
+import business.PaymentAccount;
 import DAO.CustomerDAO;
+import DAO.PaymentAccountDAO;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,13 +13,15 @@ import javax.servlet.annotation.WebServlet;
 public class LoginServlet extends HttpServlet {
 
     CustomerDAO customerDAO = new CustomerDAO();
+    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
- 
+        
+        ServletContext servletContext = getServletContext();
+        
         String action = request.getParameter("action");
         if (action == null) {
             action = "join"; // default action
@@ -33,12 +37,17 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("customer", customer);
+
+                PaymentAccount DefaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
+                session.setAttribute("DefaultPaymentAccount", DefaultPaymentAccount);
                 url = "/profile.jsp";
             }
         }
 
-   
-        response.sendRedirect("profile.jsp");
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
+//        response.sendRedirect("profile.jsp");
+
     }
 
     @Override
