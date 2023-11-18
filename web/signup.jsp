@@ -11,12 +11,11 @@
                     Already have an account? <a href="./login.jsp" class="hover:underline text-[#007eca]">Click here</a> to login
                 </h1>
                 <div>
-                    <%-- Display success message if it exists --%>
+
                     <c:if message="${not empty requestScope.successMessage}">
                         <p style="color: green;">${requestScope.successMessage}</p>
                     </c:if>
 
-                    <%-- Display error message if it exists --%>
                     <c:if message="${not empty requestScope.errorMessage}">
                         <p style="color: red;">${requestScope.errorMessage}</p>
                     </c:if>

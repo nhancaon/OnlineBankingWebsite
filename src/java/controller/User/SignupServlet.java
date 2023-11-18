@@ -36,11 +36,10 @@ public class SignupServlet extends HttpServlet {
             String address = request.getParameter("address");
             try {
                 customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
-                // Successful signup
+      
                 request.setAttribute("successMessage", "The account has been created successfully.");
 
             } catch (CreateException e) {
-                // Handle the exception
                 request.setAttribute("errorMessage", e.getMessage());
 
             }
