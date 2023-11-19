@@ -7,11 +7,8 @@
 
 
 
-<%    
-    
-    String accountNumber = request.getParameter("accountNumber");
-    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-    PaymentAccount paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
+<%  
+    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("PaymentAccount");
 %>
 
 
@@ -79,24 +76,43 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-2 my-16 p-8 rounded-xl bg-white">
-                <div class='w-full grid grid-cols-1 gap-2'>
+            <div class="col-span-2 my-16 rounded-xl bg-white">
+                <div class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl">
+                    <div class="flex flex-col justify-center items-center ml-8 text-white">
+                        <span class="uppercase text-sm"><%= customer.getName()%></span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getAccountNumber()%></span>
+                    </div>
+                    <img src="assets/thanh-toan.svg" src="wallet" class="p-4"/>
+                </div>
+                <div class='w-full grid grid-cols-1 gap-2 p-8'>
                     <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Name</span>
-                        <span class="uppercase"><%= customer.getName()%></span>
+                        <span class="uppercase text-sm"><%= customer.getName()%></span>
                     </div>
                     <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Number</span>
-                        <span class="uppercase"><%= paymentAccount.getAccountNumber()%></span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getAccountNumber()%></span>
                     </div> 
                     <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Type</span>
-                        <span class="uppercase"><%= paymentAccount.getAccountType()%></span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getAccountType()%></span>
                     </div>
                     <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Account Opening Date</span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getDateOpened()%></span>
+                    </div>   
+                    <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Balance</span>
-                        <span class="uppercase"><%= paymentAccount.getCurrentBalence()%> VND</span>
-                    </div>                 
+                        <span class="uppercase text-sm"><%= paymentAccount.getCurrentBalence()%> VND</span>
+                    </div>   
+                    <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Reward Pointp           </span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getRewardPoint()%> RWP</span>
+                    </div>  
+                    <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Registered Branch</span>
+                        <span class="uppercase text-sm">NND Banking</span>
+                    </div>  
                 </div>
             </div>
         </div>

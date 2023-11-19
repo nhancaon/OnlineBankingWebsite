@@ -57,7 +57,7 @@
                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/caonhan.jpg" alt="">
                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/dat.jpg" alt="">
                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/hiennhan.jpg" alt="">
-                    <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
+                    <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-[#0066ad] border-2 border-white rounded-full hover:bg-[#00bfae]" href="#">+99</a>
                 </div>
             </div>
         </div>

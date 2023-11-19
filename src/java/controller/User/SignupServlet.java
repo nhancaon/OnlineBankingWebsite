@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import business.Customer;
 import DAO.CustomerDAO;
-import Exception.SignupException;
+import Exception.CreateException;
 
 @WebServlet("/Signup")
 public class SignupServlet extends HttpServlet {
@@ -36,11 +36,10 @@ public class SignupServlet extends HttpServlet {
             String address = request.getParameter("address");
             try {
                 customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
-                // Successful signup
+      
                 request.setAttribute("successMessage", "The account has been created successfully.");
 
-            } catch (SignupException e) {
-                // Handle the exception
+            } catch (CreateException e) {
                 request.setAttribute("errorMessage", e.getMessage());
 
             }
