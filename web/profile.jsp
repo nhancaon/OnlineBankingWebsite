@@ -6,9 +6,8 @@
 <%@ include file="/includes/checkLogin.jsp" %>
 
 
-<%  
-    PaymentAccount defaultPaymentAccount = (PaymentAccount) session.getAttribute("DefaultPaymentAccount");
- 
+<%    PaymentAccount defaultPaymentAccount = (PaymentAccount) session.getAttribute("DefaultPaymentAccount");
+
 %>
 
 
@@ -18,7 +17,9 @@
 
 <div id="content" class="bg-[#f0f1f1] pb-16">
     <div class="mx-56 px-4 pt-10 pb-16 rounded-md bg-[#fff]">
+
         <div class="grid grid-cols-2 pt-4 pb-10 justify-between">
+            <%  if (defaultPaymentAccount != null) {%>
             <div class="grid">
                 <span>Current Payment Account</span>
                 <span class="font-bold text-xl"><%= defaultPaymentAccount.getAccountNumber()%></span>
@@ -37,6 +38,16 @@
                     </form>
                 </div>
             </div>
+            <% } else { %>
+            <div>User has not created a Payment Account yet</div>
+            <div class="grid justify-end ml-4">
+                <form action="show-account" method="get">
+                    <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg">
+                        Create Payment Account <span class="font-bold"><i class="fa-solid fa-chevron-right py-1"></i></span>
+                    </button>
+                </form>
+            </div>
+            <% }%>
         </div>
         <div class="grid grid-cols-4 gap-8">
             <a

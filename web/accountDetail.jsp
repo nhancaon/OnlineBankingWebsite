@@ -8,7 +8,7 @@
 
 
 <%  
-    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("PaymentAccount");
+    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("paymentAccount");
 %>
 
 

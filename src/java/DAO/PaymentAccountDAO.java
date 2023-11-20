@@ -99,6 +99,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
         PaymentAccount paymentAccountEntity = new PaymentAccount();
         PaymentAccount existingPaymentAccount = findExistingPaymentAccount(customer.getCustomerId(), accountNumber);
+        PaymentAccount existingDefaultPaymentAccount = findDefaultPaymentAccount(customer.getCustomerId());
         if (existingPaymentAccount != null) {
 
             System.out.print(existingPaymentAccount.getAccountNumber());
@@ -107,11 +108,16 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
                         + " is already existed.", 409);
             }
         } else {
+            
+             if(existingDefaultPaymentAccount != null) {
+                paymentAccountEntity.setAccountStatus("Active");
+            } else {
+                paymentAccountEntity.setAccountStatus("Default");
+            }
             paymentAccountEntity.setPaymentAccountId(generateUniqueId());
             paymentAccountEntity.setCustomer(customer);
             paymentAccountEntity.setAccountNumber(accountNumber);
             paymentAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
-            paymentAccountEntity.setAccountStatus("Active");
             paymentAccountEntity.setAccountType("Classic");
 
             create(paymentAccountEntity);
