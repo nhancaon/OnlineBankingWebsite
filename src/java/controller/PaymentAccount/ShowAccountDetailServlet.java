@@ -34,7 +34,7 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
         // Call findByAccountNumber in PaymentAccountDAO
         paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
-
+     
         // Set the paymentAccount as an attribute for accountdetail.jsp
         request.setAttribute("paymentAccount", paymentAccount);
 
