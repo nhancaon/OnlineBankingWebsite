@@ -1,9 +1,9 @@
 package Exception;
 
-public class CreateException extends Exception {
+public class HandleException extends Exception {
     private final int statusCode;
 
-    public CreateException(String message, int statusCode) {
+    public HandleException(String message, int statusCode) {
         super(message);
         this.statusCode = statusCode;
     }
