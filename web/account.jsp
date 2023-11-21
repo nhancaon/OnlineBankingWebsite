@@ -38,7 +38,7 @@
                 <c:if message="${not empty requestScope.successMessage}">
                     <p style="color: green;">${requestScope.successMessage}</p>
                 </c:if>
-
+                <c:out>${requestScope.errorMessage}</c:out>
                 <c:if message="${not empty requestScope.errorMessage}">
                     <p style="color: red;">${requestScope.errorMessage}</p>
                 </c:if>

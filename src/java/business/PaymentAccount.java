@@ -18,12 +18,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "paymentAccount")
-@AttributeOverride(name = "accountNumber", column = @Column(columnDefinition = "varchar(20)", nullable = false))
-@AttributeOverride(name = "accountType", column = @Column(columnDefinition = "varchar(20)", nullable = false))
-@AttributeOverride(name = "dateOpened", column = @Column(nullable = false))
-@AttributeOverride(name = "dateClosed", column = @Column(nullable = false))
-@AttributeOverride(name = "accountStatus", column = @Column(columnDefinition = "varchar(20)", nullable = false))
-@AttributeOverride(name = "pinNumber", column = @Column(nullable = false))
 public class PaymentAccount extends Account implements Serializable {
 
     @ManyToMany(cascade = CascadeType.DETACH)

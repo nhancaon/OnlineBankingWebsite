@@ -4,6 +4,7 @@ import business.PaymentAccount;
 import business.Transaction;
 import java.time.LocalDateTime;
 import java.util.List;
+import Exception.HandleException;
 
 public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Transaction> {
 
@@ -38,9 +39,8 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         return find(Transaction.class, transactionId);
     }
 
-    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount, LocalDateTime time) {
+    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount, LocalDateTime time) throws HandleException {
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-
         Transaction transactionEntity = new Transaction();
         transactionEntity.setTransactionId(generateUniqueId());
         transactionEntity.setSender(sender);
@@ -54,7 +54,21 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         paymentAccountDAO.update(sender);
         paymentAccountDAO.update(receiver);
     }
-    
+
+    public void checkTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount, LocalDateTime time) throws HandleException {
+        if (sender == null) {
+            throw new HandleException("Please add your payment account before transfer", 409);
+        } else if (receiver == null) {
+            throw new HandleException("This account isn't exist", 409);
+        } else if (sender.getCurrentBalence() < amount) {
+            throw new HandleException("Your account is not enough", 409);
+        } else if (sender.getAccountNumber().equals(receiver.getAccountNumber())) {
+            throw new HandleException("Can not transfer to yourself", 409);
+        } else if (transactionRemark == null || amount == null || time == null || transactionRemark.isEmpty()) {
+            throw new HandleException("Please fill out all information.", 409);
+        }
+    }
+
     public List<Transaction> findTransactionsByCusId(String paymentAccountId) {
 
         List<Transaction> transactionList = super.findWithNamedQuery(

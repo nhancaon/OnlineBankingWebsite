@@ -46,11 +46,11 @@
                             </div>
                             <div class="flex justify-between">
                                 <label>Account receiver:</label>
-                                <span class="text-[#2a6ebe]">${Number}</span>
+                                <span class="text-[#2a6ebe]">${receiver.accountNumber}</span>
                             </div>
                             <div class="flex justify-between">
                                 <label>Receiver Name:</label>
-                                <span class="text-[#2a6ebe]">${Number}</span>
+                                <span class="text-[#2a6ebe]">${Name}</span>
                             </div>
                             <div class="flex justify-between">
                                 <label>Receiver Bank:</label>
