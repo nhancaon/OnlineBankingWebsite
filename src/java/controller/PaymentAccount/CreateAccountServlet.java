@@ -3,7 +3,7 @@ package controller.PaymentAccount;
 import business.PaymentAccount;
 import business.Customer;
 import DAO.PaymentAccountDAO;
-import Exception.CreateException;
+import Exception.HandleException;
 import java.io.*;
 import java.util.List;
 import javax.servlet.*;
@@ -38,7 +38,7 @@ public class CreateAccountServlet extends HttpServlet {
                 paymentAccountDAO.CreatePaymentAccount(customer, accountNumber, pinNumber);
 
                 request.setAttribute("successMessage", "Your payment account has been created successfully");
-            } catch (CreateException e) {
+            } catch (HandleException e) {
 
                 request.setAttribute("errorMessage", e.getMessage());
             }

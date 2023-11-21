@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import business.Customer;
 import DAO.CustomerDAO;
-import Exception.CreateException;
+import Exception.HandleException;
 
 @WebServlet("/Signup")
 public class SignupServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class SignupServlet extends HttpServlet {
       
                 request.setAttribute("successMessage", "The account has been created successfully.");
 
-            } catch (CreateException e) {
+            } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());
 
             }

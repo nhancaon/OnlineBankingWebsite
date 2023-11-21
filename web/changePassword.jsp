@@ -116,7 +116,7 @@ include file="/includes/header.jsp" %> <%@ include
                         <div class="flex justify-end">
                             <button
                                 id="changePasswordBtn"
-                                class="py-4 px-12 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-xl outline-none focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                                class="text-white py-4 px-12 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-xl outline-none focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                                 >
                                 Change Password
                             </button>

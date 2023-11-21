@@ -40,6 +40,10 @@
                             name="acNumber"
                             class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
+                            pattern="\d{10}"
+                            title="Please enter a 10-digit number."
+                            maxlength="10" 
+                            required
                             />
                         <label
                             for="accountNumber"

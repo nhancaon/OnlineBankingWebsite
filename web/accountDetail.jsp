@@ -78,6 +78,10 @@
                         <span class="uppercase text-sm"><%= paymentAccount.getAccountNumber()%></span>
                     </div> 
                     <div class='flex justify-between items-center'>
+                        <span class="text-gray-500 text-sm">Account Status</span>
+                        <span class="uppercase text-sm"><%= paymentAccount.getAccountStatus()%></span>
+                    </div>
+                    <div class='flex justify-between items-center'>
                         <span class="text-gray-500 text-sm">Account Type</span>
                         <span class="uppercase text-sm"><%= paymentAccount.getAccountType()%></span>
                     </div>
