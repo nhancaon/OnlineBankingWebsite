@@ -68,7 +68,7 @@ public class TransferServlet extends HttpServlet {
                     message="Your account is not enough";
                     url="/transfer.jsp";
                 }
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd / HH:mm:ss");
                 LocalDateTime time =LocalDateTime.now();
                 String timeStr = time.format(formatter);
                 session.setAttribute("timeStr", timeStr);
