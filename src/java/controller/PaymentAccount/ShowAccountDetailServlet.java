@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/account-detail")
-public class ShowSavingDetailServlet extends HttpServlet {
+public class ShowAccountDetailServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
     PaymentAccount paymentAccount = new PaymentAccount();
