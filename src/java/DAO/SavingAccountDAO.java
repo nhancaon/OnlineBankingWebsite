@@ -93,8 +93,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             savingAccountEntity.setAccountType("Year");
             savingAccountEntity.setDateOpened(time);
             savingAccountEntity.setDateClosed(time.plusYears(1));
-            savingAccountEntity.setInterestRate(5);
-            savingAccountEntity.setMinBalence(1000000);
+            savingAccountEntity.setMinBalance(1000000);
             savingAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
             savingAccountEntity.setSavingAmount(amount);
             savingAccountEntity.setCustomer(customer);

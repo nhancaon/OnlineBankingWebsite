@@ -22,8 +22,8 @@ import javax.persistence.Table;
 @AttributeOverride(name = "citizenId", column = @Column(columnDefinition = "varchar(20)", nullable = false))
 public class Customer extends User implements Serializable {
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private SavingAccount savingAccount;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<SavingAccount> savingAccounts;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<PaymentAccount> paymentAccounts;
@@ -61,12 +61,12 @@ public class Customer extends User implements Serializable {
         this.paymentAccounts = paymentAccounts;
     }
 
-    public SavingAccount getSavingAccount() {
-        return savingAccount;
+    public List<SavingAccount> getSavingAccount() {
+        return savingAccounts;
     }
 
-    public void setSavingAccount(SavingAccount savingAccount) {
-        this.savingAccount = savingAccount;
+    public void setSavingAccount(List<SavingAccount> savingAccounts) {
+        this.savingAccounts = savingAccounts;
     }
 
     public List<Loan> getLoans() {

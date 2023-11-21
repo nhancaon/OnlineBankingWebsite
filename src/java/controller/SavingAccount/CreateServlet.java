@@ -45,8 +45,11 @@ public class CreateServlet extends HttpServlet {
                 request.setAttribute("errorMessage", e.getMessage());
             }        
         }
-        if(savingAcc!=null){request.setAttribute("savingAccount", savingAcc);}
-//                System.out.println(savingAcc.getAccountNumber());
+        if(savingAcc!=null){
+            request.setAttribute("savingAccount", savingAcc);
+            
+        }
+        System.out.println(savingAcc);
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);
     }
