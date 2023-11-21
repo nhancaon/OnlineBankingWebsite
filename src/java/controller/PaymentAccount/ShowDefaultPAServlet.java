@@ -9,11 +9,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/account-detail")
-public class ShowAccountDetailServlet extends HttpServlet {
+@WebServlet("/show-defaultPA")
+public class ShowDefaultPAServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-    PaymentAccount paymentAccount = new PaymentAccount();
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -28,18 +27,14 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
         ServletContext servletContext = getServletContext();
 
-        String url = "/account.jsp";
-        // Retrieve account number from the request parameters
-        String accountNumber = request.getParameter("accountNumber");
+        String url = "/profile.jsp";
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        String customerId = customer.getCustomerId();
+        PaymentAccount defaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customerId);
 
-        // Call findByAccountNumber in PaymentAccountDAO
-        paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
-     
-        // Set the paymentAccount as an attribute for accountdetail.jsp
-        request.setAttribute("paymentAccount", paymentAccount);
+        request.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
 
-        url = "/accountDetail.jsp";
-        
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);
     }
