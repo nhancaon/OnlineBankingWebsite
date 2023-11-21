@@ -17,16 +17,16 @@ import javax.persistence.Table;
 public class Loan implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id",referencedColumnName = "customerId",nullable = false)
+    @JoinColumn(name = "cus_id", referencedColumnName = "customerId", nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "loan",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
     private List<LoanPayment> loanPayments;
 
     @Id
-    @Column(columnDefinition = "varchar(20)",nullable = false)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String loanId;
-    @Column(columnDefinition = "varchar(20)",nullable = false)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String loanType;
     @Column(nullable = false)
     private Double loanAmount;
@@ -36,7 +36,7 @@ public class Loan implements Serializable {
     private LocalDate startDate;
     @Column(nullable = false)
     private LocalDate endDate;
-    @Column(columnDefinition = "varchar(20)",nullable = true)
+    @Column(columnDefinition = "varchar(20)", nullable = true)
     private String loanStatus;
 
     public Customer getCustomer() {

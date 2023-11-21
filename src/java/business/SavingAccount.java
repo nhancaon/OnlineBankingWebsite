@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,19 +21,20 @@ import javax.persistence.Table;
 @AttributeOverride(name = "pinNumber", column = @Column(nullable = false))
 public class SavingAccount extends Account implements Serializable {
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id",referencedColumnName = "customerId")
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "cus_id", referencedColumnName = "customerId")
     private Customer customer;
 
+    @OneToOne(mappedBy = "savingAccount", cascade = CascadeType.ALL)
+    private InterestRate interestRate;
+
     @Id
-    @Column(columnDefinition = "varchar(20)",nullable = false)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String savingAccountId;
     @Column(nullable = false)
-    private int minBalence;
+    private int minBalance;
     @Column(nullable = false)
     private int savingAmount;
-    @Column(nullable = false)
-    private int interestRate;
 
     public Customer getCustomer() {
         return customer;
@@ -50,12 +52,12 @@ public class SavingAccount extends Account implements Serializable {
         this.savingAccountId = savingAccountId;
     }
 
-    public int getMinBalence() {
-        return minBalence;
+    public int getMinBalance() {
+        return minBalance;
     }
 
-    public void setMinBalence(int minBalence) {
-        this.minBalence = minBalence;
+    public void setMinBalance(int minBalance) {
+        this.minBalance = minBalance;
     }
 
     public int getSavingAmount() {
@@ -65,13 +67,4 @@ public class SavingAccount extends Account implements Serializable {
     public void setSavingAmount(int savingAmount) {
         this.savingAmount = savingAmount;
     }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
-    }
-
 }

@@ -4,8 +4,6 @@ import business.PaymentAccount;
 import business.Transaction;
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Transaction> {
 

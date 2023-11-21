@@ -48,13 +48,12 @@ public class TransferServlet extends HttpServlet {
                     url = "/confirm.jsp";
                 }
                 Customer customer = (Customer) session.getAttribute("customer");
-                List<PaymentAccount> payments = paymentAccountDAO.findPaymentAccountByCusId(customer.getCustomerId());
                 PaymentAccount sender = null;
-                if (payments.isEmpty()) {
+                sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
+                if (sender == null) {
                     message="Please add your payment account before transfer";
                     url="/transfer.jsp";
                 } else {
-                    sender = payments.get(0);
                     session.setAttribute("sender", sender);
                 }
                 PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(Number);
