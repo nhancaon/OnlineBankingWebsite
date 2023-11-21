@@ -38,8 +38,8 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("customer", customer);
 
-                PaymentAccount DefaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
-                session.setAttribute("DefaultPaymentAccount", DefaultPaymentAccount);
+                PaymentAccount defaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
+                request.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
                 url = "/profile.jsp";
             }
         }

@@ -77,15 +77,11 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
-    public PaymentAccount findExistingPaymentAccount(String customerId, String accountNumber) {
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("customerId", customerId);
-        parameters.put("accountNumber", accountNumber);
+    public PaymentAccount findExistingPaymentAccount(String accountNumber) {
 
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
-                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId AND pa.accountNumber = :accountNumber",
-                parameters
+                "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber",
+                "accountNumber", accountNumber
         );
 
         if (!paymentAccountList.isEmpty()) {
@@ -98,7 +94,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) throws CreateException {
 
         PaymentAccount paymentAccountEntity = new PaymentAccount();
-        PaymentAccount existingPaymentAccount = findExistingPaymentAccount(customer.getCustomerId(), accountNumber);
+        PaymentAccount existingPaymentAccount = findExistingPaymentAccount(accountNumber);
         PaymentAccount existingDefaultPaymentAccount = findDefaultPaymentAccount(customer.getCustomerId());
         if (existingPaymentAccount != null) {
 
