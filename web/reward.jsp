@@ -14,23 +14,7 @@
         <nav class="flex pt-3 ml-[2.3rem]" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a
-                        href="./profile.jsp"
-                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600"
-                        >
-                        <svg
-                            class="w-3 h-3 mr-2.5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000"
-                            viewBox="0 0 20 20"
-                            >
-                            <path
-                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
-                                />
-                        </svg>
-                        Home
-                    </a>
+                    <%@ include file="/includes/homeButton.jsp" %>
                 </li>
                 <li>
                     <div class="flex items-center">
@@ -52,18 +36,30 @@
                 <div class="px-10 py-6">Gift Categories</div>
                 <div class=" p-10 bg-gray-200 grid grid-cols-4 gap-5">
                     <div class="grid justify-center items-center bg-white h-32 rounded-xl">
-                        Shopping
+                        <span class="flex flex-col items-center justify-center">
+                            <img src="assets/shoploy.png" alt="Shopping" class="w-8 h-8">
+                                Shopping
+                        </span>
                     </div>
                     <div class="grid justify-center items-center bg-white h-32 rounded-xl">
-                        Culinary
+                        <span class="flex flex-col items-center justify-center">
+                            <img src="assets/foodloy.png" alt="Culinary" class="w-8 h-8">
+                                Culinary
+                        </span>
+                    </div>
+                    <div class="grid justify-center items-center bg-white h-32 rounded-xl">
+                        <span class="flex flex-col items-center justify-center">
+                            <img src="assets/topuploy.png" alt="Top up" class="w-8 h-8">
+                                Top up
+                        </span>
                     </div>
                 </div>
             </div>
-            
-             <div class="grid mt-16 rounded-xl bg-white">
+
+            <div class="grid mt-16 rounded-xl bg-white">
                 <div class="px-10 py-6">Gift Suggestions</div>
                 <div class=" p-10 bg-gray-200 grid grid-cols-4 gap-5">
-                    
+
                 </div>
             </div>
         </div>
