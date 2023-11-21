@@ -3,7 +3,7 @@ package controller.SavingAccount;
 import business.SavingAccount;
 import business.Customer;
 import DAO.SavingAccountDAO;
-import Exception.CreateException;
+import Exception.HandleException;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -40,7 +40,7 @@ public class CreateServlet extends HttpServlet {
             try {
                 savingAccountDAO.CreateSavingAccount(customer, accountNumber, pinNumber,Integer.parseInt(amount));
                 request.setAttribute("successMessage", "Your saving account has been created successfully");
-            } catch (CreateException e) {
+            } catch (HandleException e) {
 
                 request.setAttribute("errorMessage", e.getMessage());
             }        
