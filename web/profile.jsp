@@ -52,7 +52,7 @@
             <a
                 href="./transfer.jsp"
                 class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
-                transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                 <img src="./assets/transfer.png" class="w-8 mb-2" />
                 Transfer
@@ -60,7 +60,7 @@
             <a
                 href="./transfer.jsp"
                 class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
-                transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                 <img src="./assets/salary.png" class="w-8 mb-2" />
                 Saving Account
@@ -68,7 +68,7 @@
             <a
                 href="./loan.jsp"
                 class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
-                transition ease-in-out delay-150hover:-translate-y-1 hover:scale-110 duration-300"
+                focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                 <img src="./assets/loan.png" class="w-8 mb-2" />
                 Loan
@@ -76,7 +76,7 @@
             <a
                 href="./reward.jsp"
                 class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
-                transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                 <img src="./assets/reward.png" class="w-8 mb-2" />
                 Reward
@@ -87,15 +87,17 @@
     <div class="mx-56 py-16">
         <div>Settings</div>
         <div class="py-10 grid grid-cols-5 gap-5">
-            <a href="./beneficiary.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl">
+            <a href="./beneficiary.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl
+               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                 <span class="flex flex-col items-center justify-center">
-                    <img src="assets/quan-ly-danh-ba.svg" alt="Shopping" class="w-12 h-12 mb-2">
+                    <img src="assets/quan-ly-danh-ba.svg" alt="beneficiary" class="w-12 h-12 mb-2">
                     Beneficiary
                 </span>
             </a>
-            <a href="./changePassword.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl">
+            <a href="./changePassword.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl
+               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                 <span class="flex flex-col items-center justify-center">
-                    <img src="assets/doi-mk.svg" alt="Top up" class="w-12 h-12 mb-2">
+                    <img src="assets/doi-mk.svg" alt="changepassword" class="w-12 h-12 mb-2">
                     Change password
                 </span>
             </a>
