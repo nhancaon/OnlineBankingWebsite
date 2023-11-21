@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/create-saving-account")
-public class CreateServlet extends HttpServlet {
+public class CreateAccountServlet extends HttpServlet {
 
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
 
