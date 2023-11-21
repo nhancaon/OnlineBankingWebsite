@@ -1,6 +1,6 @@
 package DAO;
 
-import Exception.CreateException;
+import Exception.HandleException;
 import business.Customer;
 import business.SavingAccount;
 import java.time.LocalDate;
@@ -74,7 +74,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String pinNumber,int amount) throws CreateException {
+    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String pinNumber,int amount) throws HandleException {
 
         SavingAccount savingAccountEntity = new SavingAccount();
         SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
@@ -82,7 +82,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
 
             System.out.print(existingSavingAccount.getAccountNumber());
             if (existingSavingAccount.getAccountNumber().equals(accountNumber)) {
-                throw new CreateException("The Saving Account " + accountNumber
+                throw new HandleException("The Saving Account " + accountNumber
                         + " is already existed.", 409);
             }
         } else {
