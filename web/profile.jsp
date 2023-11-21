@@ -47,14 +47,15 @@
                 <img src="./assets/transfer.png" class="w-8 mb-2" />
                 Transfer
             </a>
-            <a
-                href="./transfer.jsp"
-                class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
-                transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
-                >
-                <img src="./assets/salary.png" class="w-8 mb-2" />
-                Saving Account
-            </a>
+            <form action="create-saving-account" method="get">
+                <a
+                    class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
+                    transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                    >
+                    <img src="./assets/salary.png" class="w-8 mb-2" />
+                    <button type="submit">Saving Account</button>
+                </a>
+            </form>
             <a
                 href="./loan.jsp"
                 class="flex flex-col items-center justify-center rounded-md h-28 bg-[#038883] text-sm font-bold text-white cursor-pointer
