@@ -1,7 +1,7 @@
 package DAO;
 
 import business.Customer;
-import Exception.CreateException;
+import Exception.HandleException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -68,16 +68,16 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
     }
 
     public Customer customerSignup(String fullName, String email, String password, String citizenId,
-            String phoneNumber, String dateOfBirth, String address) throws CreateException {
+            String phoneNumber, String dateOfBirth, String address) throws HandleException {
 
         Customer customerEntity = new Customer();
         Customer existingCustomer = findByEmail(email, citizenId);
         if (existingCustomer != null) {
             if (existingCustomer.getEmail().equals(email)) {
-                throw new CreateException("The user with Email " + email
+                throw new HandleException("The user with Email " + email
                         + " is already registered.", 409);
             } else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new CreateException("The user with Citizen Identity " + citizenId
+                throw new HandleException("The user with Citizen Identity " + citizenId
                         + " is already registered.", 409);
             }
         } else {

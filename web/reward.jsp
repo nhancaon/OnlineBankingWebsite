@@ -35,19 +35,22 @@
             <div class="grid mt-16 rounded-xl bg-white">
                 <div class="px-10 py-6">Gift Categories</div>
                 <div class=" p-10 bg-gray-200 grid grid-cols-4 gap-5">
-                    <div class="grid justify-center items-center bg-white h-32 rounded-xl">
+                    <div class="grid justify-center items-center bg-white h-32 rounded-xl
+                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                         <span class="flex flex-col items-center justify-center">
                             <img src="assets/shoploy.png" alt="Shopping" class="w-8 h-8">
                                 Shopping
                         </span>
                     </div>
-                    <div class="grid justify-center items-center bg-white h-32 rounded-xl">
+                    <div class="grid justify-center items-center bg-white h-32 rounded-xl
+                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                         <span class="flex flex-col items-center justify-center">
                             <img src="assets/foodloy.png" alt="Culinary" class="w-8 h-8">
                                 Culinary
                         </span>
                     </div>
-                    <div class="grid justify-center items-center bg-white h-32 rounded-xl">
+                    <div class="grid justify-center items-center bg-white h-32 rounded-xl
+                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                         <span class="flex flex-col items-center justify-center">
                             <img src="assets/topuploy.png" alt="Top up" class="w-8 h-8">
                                 Top up

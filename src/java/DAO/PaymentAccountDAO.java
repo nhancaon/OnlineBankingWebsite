@@ -1,6 +1,6 @@
 package DAO;
 
-import Exception.CreateException;
+import Exception.HandleException;
 import business.Customer;
 import business.PaymentAccount;
 import java.util.HashMap;
@@ -91,7 +91,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
-    public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) throws CreateException {
+    public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber, String pinNumber) throws HandleException {
 
         PaymentAccount paymentAccountEntity = new PaymentAccount();
         PaymentAccount existingPaymentAccount = findExistingPaymentAccount(accountNumber);
@@ -100,7 +100,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
             System.out.print(existingPaymentAccount.getAccountNumber());
             if (existingPaymentAccount.getAccountNumber().equals(accountNumber)) {
-                throw new CreateException("The Payment Account " + accountNumber
+                throw new HandleException("The Payment Account " + accountNumber
                         + " is already existed.", 409);
             }
         } else {
