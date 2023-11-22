@@ -19,7 +19,8 @@ public class SavingAccount extends Account implements Serializable {
     @JoinColumn(name = "cus_id", referencedColumnName = "customerId")
     private Customer customer;
 
-    @OneToOne(mappedBy = "savingAccount", cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "interest_rate_id", referencedColumnName = "interestId")
     private InterestRate interestRate;
 
     @Id

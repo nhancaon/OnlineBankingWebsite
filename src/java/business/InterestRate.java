@@ -6,18 +6,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "interestRate")
 public class InterestRate implements Serializable {
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "sa_id", referencedColumnName = "savingAccountId")
-    private SavingAccount savingAccount;
+    @OneToMany(mappedBy = "interestRate", cascade = CascadeType.DETACH)
+    private List<SavingAccount> savingAccounts;
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String interestId;
@@ -27,14 +24,7 @@ public class InterestRate implements Serializable {
     private String savingTitle;
     @Column(columnDefinition = "varchar(20)", nullable = true)
     private String loanTitle;
-
-    public SavingAccount getSavingAccount() {
-        return savingAccount;
-    }
-
-    public void setSavingAccount(SavingAccount savingAccount) {
-        this.savingAccount = savingAccount;
-    }
+    private int term;
 
     public String getInterestId() {
         return interestId;
@@ -67,4 +57,21 @@ public class InterestRate implements Serializable {
     public void setLoanTitle(String loanTitle) {
         this.loanTitle = loanTitle;
     }
+
+    public int getTerm() {
+        return term;
+    }
+
+    public void setTerm(int term) {
+        this.term = term;
+    }
+
+    public List<SavingAccount> getSavingAccounts() {
+        return savingAccounts;
+    }
+
+    public void setSavingAccounts(List<SavingAccount> savingAccounts) {
+        this.savingAccounts = savingAccounts;
+    }
+
 }
