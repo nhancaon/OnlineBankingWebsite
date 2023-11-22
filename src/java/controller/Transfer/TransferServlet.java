@@ -73,7 +73,7 @@ public class TransferServlet extends HttpServlet {
                 LocalDateTime time = (LocalDateTime) session.getAttribute("time");
                 PaymentAccount sender = (PaymentAccount) session.getAttribute("sender");
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
-                Double amount = Double.valueOf(Amount);
+                int amount = Integer.parseInt(Amount);
                 try {
                     transactionDAO.createTransaction(sender, receiver, Remark, amount, time);
                     request.setAttribute("successMessage", "Transfer successfully");

@@ -47,11 +47,11 @@
                                         onclick="showCreateAccount()">Add Saving Account</button>
                                 </div>
                                 <div>
-                                    <c:if message="${not empty requestScope.successMessage}">
+                                    <c:if test="${not empty requestScope.successMessage}">
                                         <p style="color: green;">${requestScope.successMessage}</p>
                                     </c:if>
 
-                                    <c:if message="${not empty requestScope.errorMessage}">
+                                    <c:if test="${not empty requestScope.errorMessage}">
                                         <p style="color: red;">${requestScope.errorMessage}</p>
                                     </c:if>
                                 </div>

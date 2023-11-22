@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= paymentAccount.getCurrentBalence()%> VND
+                        <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
                     </div>
                     <i class="fa-solid fa-chevron-right py-1"></i>
                 </a>       
