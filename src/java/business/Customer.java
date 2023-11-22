@@ -36,8 +36,6 @@ public class Customer extends User implements Serializable {
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String customerId;
-    @Column(columnDefinition = "varchar(20)", nullable = true)
-    private String customerType;
     private int pinNumber;
 
     public String getCustomerId() {
@@ -46,14 +44,6 @@ public class Customer extends User implements Serializable {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
-    }
-
-    public String getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(String customerType) {
-        this.customerType = customerType;
     }
 
     public List<Loan> getLoans() {

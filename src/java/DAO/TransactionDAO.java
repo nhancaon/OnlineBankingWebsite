@@ -49,6 +49,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         transactionEntity.setAmount(amount);
         transactionEntity.setTransactionDate(time);
         sender.setCurrentBalence(sender.getCurrentBalence() - amount.intValue());
+        sender.setRewardPoint((int) (sender.getRewardPoint() + amount/10000));
         receiver.setCurrentBalence(receiver.getCurrentBalence() + amount.intValue());
         create(transactionEntity);
         paymentAccountDAO.update(sender);

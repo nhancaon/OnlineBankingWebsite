@@ -84,7 +84,6 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
             customerEntity.setCustomerId(generateUniqueId());
             customerEntity.setName(fullName);
-            customerEntity.setCustomerType("Regular");
             customerEntity.setEmail(email);
             customerEntity.setPassword(password);
             customerEntity.setPhoneNumber(phoneNumber);

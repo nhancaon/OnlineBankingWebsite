@@ -19,7 +19,7 @@ public class InterestRate implements Serializable {
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String interestId;
     @Column(nullable = false)
-    private float interestRate;
+    private Double interestRate;
     @Column(columnDefinition = "varchar(20)", nullable = true)
     private String savingTitle;
     @Column(columnDefinition = "varchar(20)", nullable = true)
@@ -34,11 +34,11 @@ public class InterestRate implements Serializable {
         this.interestId = interestId;
     }
 
-    public float getInterestRate() {
+    public Double getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(float interestRate) {
+    public void setInterestRate(Double interestRate) {
         this.interestRate = interestRate;
     }
 
