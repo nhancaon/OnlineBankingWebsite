@@ -74,7 +74,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String pinNumber,int amount) throws HandleException {
+    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber,int amount) throws HandleException {
 
         SavingAccount savingAccountEntity = new SavingAccount();
         SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
@@ -94,7 +94,6 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             savingAccountEntity.setDateOpened(time);
             savingAccountEntity.setDateClosed(time.plusYears(1));
             savingAccountEntity.setMinBalance(1000000);
-            savingAccountEntity.setPinNumber(Integer.parseInt(pinNumber));
             savingAccountEntity.setSavingAmount(amount);
             savingAccountEntity.setCustomer(customer);
             create(savingAccountEntity);

@@ -32,10 +32,9 @@ public class CreateAccountServlet extends HttpServlet {
             Customer customer = (Customer) session.getAttribute("customer");
             String customerId = customer.getCustomerId();
             String accountNumber = request.getParameter("acNumber");
-            String pinNumber = request.getParameter("pinNumber");
 
             try {
-                paymentAccountDAO.CreatePaymentAccount(customer, accountNumber, pinNumber);
+                paymentAccountDAO.CreatePaymentAccount(customer, accountNumber);
 
                 request.setAttribute("successMessage", "Your payment account has been created successfully");
             } catch (HandleException e) {
