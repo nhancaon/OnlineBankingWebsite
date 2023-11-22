@@ -9,7 +9,7 @@
             <a href="./index.jsp"
                ><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
                 ></a>
-            <div class="py-[0.2rem]">Account</div>
+            <div class="py-[0.2rem]">Saving Account</div>
         </div>
 
         <nav class="flex pt-3 ml-[2.3rem]" aria-label="Breadcrumb">
@@ -34,14 +34,11 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <form action="show-account" method="get">
-                            <button
-                                type="submit"
-                                class="ml-1 text-sm font-medium hover:text-blue-600 md:ml-2"
-                                >
-                                Account
-                            </button>
-                        </form>
+                        <a
+                                                    href="./savingAccount.jsp"
+							class="ml-1 text-sm font-medium text-gray-600 md:ml-2 cursor-pointer"
+							>Saving Account</a
+						>
                     </div>
                 </li>
                 <li>
