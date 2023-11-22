@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/University/Web/online-banking-website/src/java/controller/User/LoginServlet.java</file>
             <file>file:/D:/University/Web/online-banking-website/src/java/controller/User/SignupServlet.java</file>
+            <file>file:/D:/University/Web/online-banking-website/web/signup.jsp</file>
             <file>file:/D:/University/Web/online-banking-website/src/conf/persistence.xml</file>
             <file>file:/D:/University/Web/online-banking-website/src/java/DAO/CustomerDAO.java</file>
         </group>
