@@ -86,7 +86,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
     public List<Transaction> findTransactionOfPaymentAccountId(String paymentAccountId  ) {
 
         List<Transaction> transactionList = super.findWithNamedQuery(
-                "SELECT tran FROM Transaction tran WHERE tran.sender.paymentAccountId = :paymentAccountId OR tran.receiver.paymentAccountId = :paymentAccountId ORDER BY tran.transactionDate",
+                "SELECT tran FROM Transaction tran WHERE tran.sender.paymentAccountId = :paymentAccountId OR tran.receiver.paymentAccountId = :paymentAccountId ORDER BY tran.transactionDate DESC",
                 "paymentAccountId",
                 paymentAccountId
         );
