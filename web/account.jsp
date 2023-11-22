@@ -35,11 +35,10 @@
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
             </div>
             <div>
-                <c:if message="${not empty requestScope.successMessage}">
+                <c:if test="${not empty requestScope.successMessage}">
                     <p style="color: green;">${requestScope.successMessage}</p>
                 </c:if>
-                <c:out>${requestScope.errorMessage}</c:out>
-                <c:if message="${not empty requestScope.errorMessage}">
+                <c:if test="${not empty requestScope.errorMessage}">
                     <p style="color: red;">${requestScope.errorMessage}</p>
                 </c:if>
             </div>
