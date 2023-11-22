@@ -29,9 +29,12 @@ public class ChangePasswordServlet extends HttpServlet {
         }
         String url = "/changePassword.jsp";
         if (action.equals("changePassword")) {
-            String currentPassword = request.getParameter("currentPassword");
-            String newPassword = request.getParameter("confirmPassword");
-   
+
+            String password = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String confirmPassword = request.getParameter("confirmPassword");
+            
+            
             
         }
 
