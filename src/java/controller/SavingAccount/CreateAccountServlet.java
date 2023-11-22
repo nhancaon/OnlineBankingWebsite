@@ -35,10 +35,9 @@ public class CreateAccountServlet extends HttpServlet {
         if (action.equals("create")) {
             
             String accountNumber = request.getParameter("acNumber");
-            String pinNumber = request.getParameter("pinNumber");
             String amount = request.getParameter("savingAmount");
             try {
-                savingAccountDAO.CreateSavingAccount(customer, accountNumber, pinNumber,Integer.parseInt(amount));
+                savingAccountDAO.CreateSavingAccount(customer, accountNumber,Integer.parseInt(amount));
                 request.setAttribute("successMessage", "Your saving account has been created successfully");
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());
