@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="business.Customer" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -87,17 +88,15 @@
                 </div>
 
                 <%
-                    // Retrieve the customer from the session
                     Customer customer = (Customer) session.getAttribute("customer");
 
-                    // Check if the customer object exists in the session
                     if (customer != null) {
-                        // Access customer properties
+
                         String customerId = customer.getCustomerId();
                         String fullName = customer.getName();
                         String email = customer.getEmail();
-                        // ... other properties
-%>
+
+                %>
                 <div class="flex items-center justify-end">
                     <div class="grid mr-2">
                         <div class="text-sm">Good morning!</div>
