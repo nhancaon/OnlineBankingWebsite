@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @AttributeOverride(name = "name", column = @Column(columnDefinition = "varchar(100)", nullable = false))
 @AttributeOverride(name = "dateofBirth", column = @Column(columnDefinition = "varchar(20)", nullable = false))
 @AttributeOverride(name = "password", column = @Column(columnDefinition = "varchar(20)", nullable = false))
-@AttributeOverride(name = "email", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "email", column = @Column(columnDefinition = "varchar(100)", nullable = false))
 @AttributeOverride(name = "phoneNumber", column = @Column(columnDefinition = "varchar(20)", nullable = false))
-@AttributeOverride(name = "address", column = @Column(columnDefinition = "varchar(20)", nullable = false))
+@AttributeOverride(name = "address", column = @Column(columnDefinition = "varchar(100)", nullable = false))
 @AttributeOverride(name = "citizenId", column = @Column(columnDefinition = "varchar(20)", nullable = false))
 public class Customer extends User implements Serializable {
 

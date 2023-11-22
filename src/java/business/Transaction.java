@@ -25,8 +25,8 @@ public class Transaction implements Serializable {
     @Id
     @Column(columnDefinition = "varchar(20)",nullable = false)
     private String transactionId;
-    @Column(columnDefinition = "varchar(20)",nullable = false)
-    private String transactionRemake;
+    @Column(columnDefinition = "varchar(100)",nullable = false)
+    private String transactionRemark;
     @Column(nullable = false)
     private Double amount;
     @Column(nullable = false)
@@ -60,12 +60,12 @@ public class Transaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public String getTransactionRemake() {
-        return transactionRemake;
+    public String getTransactionRemark() {
+        return transactionRemark;
     }
 
-    public void setTransactionRemake(String transactionRemake) {
-        this.transactionRemake = transactionRemake;
+    public void setTransactionRemark(String transactionRemark) {
+        this.transactionRemark = transactionRemark;
     }
 
     public Double getAmount() {

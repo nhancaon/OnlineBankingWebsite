@@ -45,7 +45,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         transactionEntity.setTransactionId(generateUniqueId());
         transactionEntity.setSender(sender);
         transactionEntity.setReceiver(receiver);
-        transactionEntity.setTransactionRemake(transactionRemark);
+        transactionEntity.setTransactionRemark(transactionRemark);
         transactionEntity.setAmount(amount);
         transactionEntity.setTransactionDate(time);
         sender.setCurrentBalence(sender.getCurrentBalence() - amount.intValue());
