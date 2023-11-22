@@ -13,7 +13,7 @@ public class Account implements Serializable {
     private LocalDate dateOpened;
     private LocalDate dateClosed;
     private String accountStatus;
-    private int pinNumber;
+
 
     public String getAccountNumber() {
         return accountNumber;
@@ -53,13 +53,5 @@ public class Account implements Serializable {
 
     public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus;
-    }
-
-    public int getPinNumber() {
-        return pinNumber;
-    }
-
-    public void setPinNumber(int pinNumber) {
-        this.pinNumber = pinNumber;
     }
 }

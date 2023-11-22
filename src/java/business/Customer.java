@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,6 +38,7 @@ public class Customer extends User implements Serializable {
     private String customerId;
     @Column(columnDefinition = "varchar(20)", nullable = true)
     private String customerType;
+    private int pinNumber;
 
     public String getCustomerId() {
         return customerId;
@@ -86,6 +86,14 @@ public class Customer extends User implements Serializable {
 
     public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
         this.paymentAccounts = paymentAccounts;
+    }
+
+    public int getPinNumber() {
+        return pinNumber;
+    }
+
+    public void setPinNumber(int pinNumber) {
+        this.pinNumber = pinNumber;
     }
 
 }
