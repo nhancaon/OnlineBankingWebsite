@@ -26,6 +26,9 @@ public class Customer extends User implements Serializable {
     private List<SavingAccount> savingAccounts;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Beneficiary> beneficiarys;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<PaymentAccount> paymentAccounts;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
@@ -53,28 +56,36 @@ public class Customer extends User implements Serializable {
         this.customerType = customerType;
     }
 
-    public List<PaymentAccount> getCurrentAccounts() {
-        return paymentAccounts;
-    }
-
-    public void setCurrentAccounts(List<PaymentAccount> paymentAccounts) {
-        this.paymentAccounts = paymentAccounts;
-    }
-
-    public List<SavingAccount> getSavingAccount() {
-        return savingAccounts;
-    }
-
-    public void setSavingAccount(List<SavingAccount> savingAccounts) {
-        this.savingAccounts = savingAccounts;
-    }
-
     public List<Loan> getLoans() {
         return loans;
     }
 
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
+    }
+
+    public List<SavingAccount> getSavingAccounts() {
+        return savingAccounts;
+    }
+
+    public void setSavingAccounts(List<SavingAccount> savingAccounts) {
+        this.savingAccounts = savingAccounts;
+    }
+
+    public List<Beneficiary> getBeneficiarys() {
+        return beneficiarys;
+    }
+
+    public void setBeneficiarys(List<Beneficiary> beneficiarys) {
+        this.beneficiarys = beneficiarys;
+    }
+
+    public List<PaymentAccount> getPaymentAccounts() {
+        return paymentAccounts;
+    }
+
+    public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
+        this.paymentAccounts = paymentAccounts;
     }
 
 }

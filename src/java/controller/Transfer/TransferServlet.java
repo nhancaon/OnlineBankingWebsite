@@ -2,13 +2,13 @@ package controller.Transfer;
 
 import DAO.PaymentAccountDAO;
 import DAO.TransactionDAO;
+import Exception.HandleException;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import business.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class TransferServlet extends HttpServlet {
 
@@ -38,56 +38,48 @@ public class TransferServlet extends HttpServlet {
                 String Name = request.getParameter("acName");
                 String Amount = request.getParameter("acAmount");
                 String Remark = request.getParameter("transRemark");
-                String message;
-                if (Number == null || Amount == null || Remark == null || Name == null || Name.isEmpty()
-                        || Number.isEmpty() || Amount.isEmpty() || Remark.isEmpty()) {
-                    message = "Please fill out all information.";
-                    url = "/transfer.jsp";
-                } else {
-                    message = "Here is the information that you enter:";
-                    url = "/confirm.jsp";
-                }
                 Customer customer = (Customer) session.getAttribute("customer");
                 PaymentAccount sender = null;
                 sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
-                if (sender == null) {
-                    message="Please add your payment account before transfer";
-                    url="/transfer.jsp";
-                } else {
+                if (sender != null) {
                     session.setAttribute("sender", sender);
                 }
                 PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(Number);
-                if (receiver == null) {
-                    message = "This account isn't exist";
-                    url = "/transfer.jsp";
-                }else{
+                if (receiver != null) {
                     session.setAttribute("receiver", receiver);
                 }
-                if(sender.getCurrentBalence() < Double.valueOf(Amount)){
-                    message="Your account is not enough";
-                    url="/transfer.jsp";
-                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd / HH:mm:ss");
-                LocalDateTime time =LocalDateTime.now();
+                LocalDateTime time = LocalDateTime.now();
                 String timeStr = time.format(formatter);
                 session.setAttribute("timeStr", timeStr);
                 session.setAttribute("Amount", Amount);
+                session.setAttribute("Name", Name);
                 session.setAttribute("Remark", Remark);
                 session.setAttribute("receiver", receiver);
                 session.setAttribute("time", time);
-                session.setAttribute("message", message);
+                
+                try {
+                    transactionDAO.checkTransaction(sender, receiver, Remark, Double.valueOf(Amount), time);
+                    request.setAttribute("successMessage", "Transfer successfully");
+                    url="/confirm.jsp";
+                } catch (HandleException e) {
+                    url="/transfer.jsp";
+                    request.setAttribute("errorMessage", e.getMessage());
+                    
+                }
             } else if (action.equals("confirm")) {
                 String Amount = (String) session.getAttribute("Amount");
                 String Remark = (String) session.getAttribute("Remark");
-                LocalDateTime time=(LocalDateTime) session.getAttribute("time");
+                LocalDateTime time = (LocalDateTime) session.getAttribute("time");
                 PaymentAccount sender = (PaymentAccount) session.getAttribute("sender");
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
                 Double amount = Double.valueOf(Amount);
-                System.out.println(amount);
-                System.out.println(Remark);
-                transactionDAO.createTransaction(sender, receiver, Remark, amount,time);
-                List<Transaction> transactionList=transactionDAO.findTransactionsByCusId(sender.getPaymentAccountId());
-                session.setAttribute("transactionList", transactionList);
+                try {
+                    transactionDAO.createTransaction(sender, receiver, Remark, amount, time);
+                    request.setAttribute("successMessage", "Transfer successfully");
+                } catch (HandleException e) {
+                    request.setAttribute("errorMessage", e.getMessage());
+                }
                 url = "/success.jsp";
             }
         }

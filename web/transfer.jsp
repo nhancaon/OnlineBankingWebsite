@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
@@ -26,13 +25,21 @@
                 </li>
             </ol>
         </nav>
-        
         <div class="grid grid-cols-5 gap-8">
             <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
                 <span class="text-[#2a6ebe]">Internal Transfer</span>
-                <p style="color: green;"><i>${message}</i></p>
+                <div>
+                    <c:if message="${not empty requestScope.successMessage}">
+                        <p style="color: green;">${requestScope.successMessage}</p>
+                    </c:if>
+
+                    <c:if message="${not empty requestScope.errorMessage}">
+                        <p style="color: red;">${requestScope.errorMessage}</p>
+                    </c:if>
+                </div>
                 <form action="Transfer" method="post">
                     <input type="hidden" name="action" value="add">
+                    
                     <div class="relative mt-6">
                         <input
                             type="text"

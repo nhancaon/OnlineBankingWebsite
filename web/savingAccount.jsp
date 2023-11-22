@@ -66,10 +66,6 @@
                                         <span class="text-[#2a6ebe]">
                                             <%= sa.getDateOpened() %>
                                         </span><br>
-                                        <label>Interest Rate</label>
-                                        <span class="text-[#2a6ebe]">
-                                            <%= sa.getInterestRate() %>
-                                        </span><br>
                                         <label>Saving Amount</label>
                                         <span class="text-[#2a6ebe]">
                                             <%= sa.getSavingAmount() %> VND

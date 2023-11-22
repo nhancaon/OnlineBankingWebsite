@@ -25,13 +25,13 @@ public class CreateAccountServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
-        SavingAccount savingAcc=null;
+        SavingAccount savingAcc = null;
         savingAcc=savingAccountDAO.findSavingAccountByCusId(customerId);
 
         if (action == null) {
             action = "join";  
         }
-        String url = "/accountSaving.jsp";
+        String url = "/savingAccount.jsp";
         if (action.equals("create")) {
             
             String accountNumber = request.getParameter("acNumber");
@@ -41,7 +41,6 @@ public class CreateAccountServlet extends HttpServlet {
                 savingAccountDAO.CreateSavingAccount(customer, accountNumber, pinNumber,Integer.parseInt(amount));
                 request.setAttribute("successMessage", "Your saving account has been created successfully");
             } catch (HandleException e) {
-
                 request.setAttribute("errorMessage", e.getMessage());
             }        
         }
@@ -49,6 +48,7 @@ public class CreateAccountServlet extends HttpServlet {
             request.setAttribute("savingAccount", savingAcc);
             
         }
+        System.out.println(customer.getCustomerId());
         System.out.println(savingAcc);
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);
