@@ -103,14 +103,14 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount findByAccountNumber(String accountNumber) {
-
-        List<SavingAccount> result = super.findWithNamedQuery("SELECT sa FROM SavingAccount sa WHERE sa.accountNumber = :accountNumber", "accountNumber", accountNumber);
-
-        if (!result.isEmpty()) {
-            return result.get(0);
-        }
-
-        return null;
-    }
+//    public SavingAccount findByAccountNumber(String accountNumber) {
+//
+//        List<SavingAccount> result = super.findWithNamedQuery("SELECT sa FROM SavingAccount sa WHERE sa.accountNumber = :accountNumber", "accountNumber", accountNumber);
+//
+//        if (!result.isEmpty()) {
+//            return result.get(0);
+//        }
+//
+//        return null;
+//    }
 }
