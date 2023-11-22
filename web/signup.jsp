@@ -167,7 +167,7 @@
                 <div class="flex -space-x-4 rtl:space-x-reverse">
                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/caonhan.jpg" alt="">
                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/dat.jpg" alt="">
-                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/docs/images/people/profile-picture-3.jpg" alt="">
+                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="assets/hiennhan.jpg" alt="">
                     <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-[#0066ad] border-2 border-white rounded-full hover:bg-[#00bfae]" href="#">+99</a>
                 </div>
             </div>
