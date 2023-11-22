@@ -64,7 +64,7 @@ include file="/includes/header.jsp" %> <%@ include
                 <div>
                     <form
                         class="col-span-3 space-y-4 md:space-y-6"
-                        action="change-password"
+                        action="ChangePassword"
                         method="post"
                         >
                         <input type="hidden" name="action" value="changePassword" />

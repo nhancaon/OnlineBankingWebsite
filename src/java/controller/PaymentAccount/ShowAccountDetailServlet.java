@@ -2,7 +2,9 @@ package controller.PaymentAccount;
 
 import business.PaymentAccount;
 import business.Customer;
+import business.Transaction;
 import DAO.PaymentAccountDAO;
+import DAO.TransactionDAO;
 import java.io.*;
 import java.util.List;
 import javax.servlet.*;
@@ -14,6 +16,8 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
     PaymentAccount paymentAccount = new PaymentAccount();
+    TransactionDAO transactionDAO = new TransactionDAO();
+    Transaction transaction = new Transaction();
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -34,10 +38,13 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
         // Call findByAccountNumber in PaymentAccountDAO
         paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
-     
+        
+        List<Transaction> transactionList = transactionDAO.findTransactionOfPaymentAccountId(paymentAccount.getPaymentAccountId());
+        
         // Set the paymentAccount as an attribute for accountdetail.jsp
         request.setAttribute("paymentAccount", paymentAccount);
-
+        request.setAttribute("transactionList", transactionList);
+        
         url = "/accountDetail.jsp";
         
         servletContext.getRequestDispatcher(url)
