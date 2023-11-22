@@ -29,7 +29,7 @@
                                         <div class="grid justify-end">
                                             <span>Available Balance</span>
                                             <span class="font-bold text-xl">
-                                                <%= defaultPaymentAccount.getCurrentBalence()%> VND
+                                                <%= formatCurrency(defaultPaymentAccount.getCurrentBalence()) %> VND
                                             </span>
                                         </div>
                                         <div class="grid justify-end ml-4">
