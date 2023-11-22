@@ -1,8 +1,12 @@
+<%@page import="business.Transaction"%>
+<%@page import="java.util.List"%>
 <%@page import="DAO.PaymentAccountDAO"%> 
 <%@page import="business.PaymentAccount"%>
 <%@ include file="/includes/header.jsp"%> 
 <%@ include file="/includes/checkLogin.jsp" %> 
-<%    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("paymentAccount");
+<%    
+    PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("paymentAccount");
+    List<Transaction> transactionList = (List<Transaction>) request.getAttribute("transactionList");
 %>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
@@ -75,31 +79,27 @@
         <div class="grid grid-cols-6 gap-8">
             <div class="col-span-4 my-16 py-8 px-20 rounded-xl bg-white">
                 <div class="w-full grid grid-cols-1">
-                    <c:forEach var="transaction" items="${transactionList}">
-                        <c:choose>
-                            <c:when test="${transaction.sender.getAccountNumber() eq paymentAccount.getAccountNumber()}">
-                            <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
-                                <div class="text-gray-500 text-sm">${transaction.transactionDate}</div>
-                                <div class="col-span-2 text-end text-gray-500 text-sm">
-                                    Trans Id: ${transaction.transactionId}
-                                </div>
-                                <div class="col-span-2">${transaction.receiver.getAccountNumber()} ${transaction.transactionRemark}</div>
-                                <div class="text-end text-xl text-red-400">- ${transaction.amount} VND</div>
-                            </div>
-                            </c:when>
-                            <c:when test="${transaction.sender.getAccountNumber() ne paymentAccount.getAccountNumber()}">
-                            <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
-                                <div class="text-gray-500 text-sm">${transaction.transactionDate}</div>
-                                <div class="col-span-2 text-end text-gray-500 text-sm">
-                                    Trans Id: ${transaction.transactionId}
-                                </div>
-                                <div class="col-span-2">${transaction.receiver.getAccountNumber()} ${transaction.transactionRemark}</div>
-                                <div class="text-end text-xl text-green-400">+ ${transaction.amount} VND</div>
-                            </div>
-                            </c:when>
-                        </c:choose>
-                        
-                    </c:forEach>
+                   <% for (Transaction transaction : transactionList) { %>
+                    <% if (transaction.getSender().getAccountNumber().equals(paymentAccount.getAccountNumber())) {%>
+                    <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
+                        <div class="text-gray-500 text-sm"><%= transaction.getTransactionDate()%></div>
+                        <div class="col-span-2 text-end text-gray-500 text-sm">
+                            Trans Id: <%= transaction.getTransactionId()%>
+                        </div>
+                        <div class="col-span-2"><%= transaction.getReceiver().getAccountNumber()%> <%= transaction.getTransactionRemark()%></div>
+                        <div class="text-end text-xl text-red-400">- <%= formatCurrency(transaction.getAmount())%> VND</div>
+                    </div>
+                    <% } else {%>
+                    <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
+                        <div class="text-gray-500 text-sm"><%= transaction.getTransactionDate()%></div>
+                        <div class="col-span-2 text-end text-gray-500 text-sm">
+                            Trans Id: <%= transaction.getTransactionId()%>
+                        </div>
+                        <div class="col-span-2"><%= transaction.getReceiver().getAccountNumber()%> <%= transaction.getTransactionRemark()%></div>
+                        <div class="text-end text-xl text-green-400">+ <%= formatCurrency(transaction.getAmount())%> VND</div>
+                    </div>
+                    <% } %>
+                    <% }%>
                 </div>
             </div>
             <div class="col-span-2 my-16 rounded-xl bg-white">

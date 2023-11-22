@@ -39,7 +39,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         return find(Transaction.class, transactionId);
     }
 
-    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount, LocalDateTime time) throws HandleException {
+    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount, LocalDateTime time) throws HandleException {
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         Transaction transactionEntity = new Transaction();
         transactionEntity.setTransactionId(generateUniqueId());
@@ -48,8 +48,8 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         transactionEntity.setTransactionRemark(transactionRemark);
         transactionEntity.setAmount(amount);
         transactionEntity.setTransactionDate(time);
-        sender.setCurrentBalence(sender.getCurrentBalence() - amount.intValue());
-        receiver.setCurrentBalence(receiver.getCurrentBalence() + amount.intValue());
+        sender.setCurrentBalence(sender.getCurrentBalence() - amount);
+        receiver.setCurrentBalence(receiver.getCurrentBalence() + amount);
         create(transactionEntity);
         paymentAccountDAO.update(sender);
         paymentAccountDAO.update(receiver);
