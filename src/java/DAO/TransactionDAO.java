@@ -39,7 +39,8 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         return find(Transaction.class, transactionId);
     }
 
-    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount, LocalDateTime time) throws HandleException {
+    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount,
+            LocalDateTime time) throws HandleException {
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         Transaction transactionEntity = new Transaction();
         transactionEntity.setTransactionId(generateUniqueId());
@@ -49,13 +50,15 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         transactionEntity.setAmount(amount);
         transactionEntity.setTransactionDate(time);
         sender.setCurrentBalence(sender.getCurrentBalence() - amount);
+        sender.setRewardPoint((int) (sender.getRewardPoint() + amount / 10000));
         receiver.setCurrentBalence(receiver.getCurrentBalence() + amount);
         create(transactionEntity);
         paymentAccountDAO.update(sender);
         paymentAccountDAO.update(receiver);
     }
 
-    public void checkTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount, LocalDateTime time) throws HandleException {
+    public void checkTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark,
+            Double amount, LocalDateTime time) throws HandleException {
         if (sender == null) {
             throw new HandleException("Please add your payment account before transfer", 409);
         } else if (receiver == null) {
@@ -74,22 +77,20 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         List<Transaction> transactionList = super.findWithNamedQuery(
                 "SELECT tra FROM Transaction tra WHERE tra.sender.paymentAccountId = :paymentAccountId",
                 "paymentAccountId",
-                paymentAccountId
-        );
+                paymentAccountId);
         if (!transactionList.isEmpty()) {
             return transactionList;
         }
 
         return null;
     }
-    
-    public List<Transaction> findTransactionOfPaymentAccountId(String paymentAccountId  ) {
+
+    public List<Transaction> findTransactionOfPaymentAccountId(String paymentAccountId) {
 
         List<Transaction> transactionList = super.findWithNamedQuery(
                 "SELECT tran FROM Transaction tran WHERE tran.sender.paymentAccountId = :paymentAccountId OR tran.receiver.paymentAccountId = :paymentAccountId ORDER BY tran.transactionDate DESC",
                 "paymentAccountId",
-                paymentAccountId
-        );
+                paymentAccountId);
         if (!transactionList.isEmpty()) {
             return transactionList;
         }

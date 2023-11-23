@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -62,4 +61,13 @@ public class SavingAccount extends Account implements Serializable {
     public void setSavingAmount(int savingAmount) {
         this.savingAmount = savingAmount;
     }
+
+    public InterestRate getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(InterestRate interestRate) {
+        this.interestRate = interestRate;
+    }
+
 }

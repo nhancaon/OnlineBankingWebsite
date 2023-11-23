@@ -35,7 +35,6 @@ public class CreateAccountServlet extends HttpServlet {
 
             try {
                 paymentAccountDAO.CreatePaymentAccount(customer, accountNumber);
-
                 request.setAttribute("successMessage", "Your payment account has been created successfully");
             } catch (HandleException e) {
 
