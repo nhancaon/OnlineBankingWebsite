@@ -56,4 +56,8 @@ public class Beneficiary {
         this.accountNumber = accountNumber;
     }
 
+
+    public Beneficiary CreateBeneficiary(String accountNumber, String nickName) {
+        return null;
+    }
 }
