@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet(name = "ChangePasswordServlet", urlPatterns = {"/ChangePassword"})
 public class ChangePasswordServlet extends HttpServlet {
 
-      CustomerDAO customerDAO = new CustomerDAO();
+    CustomerDAO customerDAO = new CustomerDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
     @Override

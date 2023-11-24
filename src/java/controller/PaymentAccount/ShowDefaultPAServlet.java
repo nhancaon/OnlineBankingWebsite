@@ -33,8 +33,10 @@ public class ShowDefaultPAServlet extends HttpServlet {
         String customerId = customer.getCustomerId();
         PaymentAccount defaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customerId);
 
-        System.out.println(defaultPaymentAccount.getCurrentBalence());
-        request.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
+       
+        if(defaultPaymentAccount != null) {
+            request.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
+        }
 
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);

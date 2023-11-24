@@ -2,6 +2,7 @@ package DAO;
 
 import business.Customer;
 import Exception.HandleException;
+import common.HashGenerator;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +52,29 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
+    public Customer ChangePassword(String currentPassword, String newPassword, String confirmPassword) {
+
+        // Map<String, Object> parameters = new HashMap<>();
+        // parameters.put("currentPassword", currentPassword);
+        // parameters.put("newPassword", newPassword);
+        // parameters.put("confirmPassword", confirmPassword);
+
+        // List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.password = :currentPassword", parameters);
+
+        // if (!result.isEmpty()) {
+        //     return result.get(0);
+        // }
+
+         return null;
+        
+    } 
+
     public Customer checkLogin(String email, String password) {
 
         Map<String, Object> parameters = new HashMap<>();
+        String encryptedPassword = HashGenerator.generateMD5(password);
         parameters.put("email", email);
-        parameters.put("password", password);
+        parameters.put("password", encryptedPassword);
 
         List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c "
                 + "WHERE c.email = :email AND c.password = :password", parameters);
@@ -72,6 +91,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
         Customer customerEntity = new Customer();
         Customer existingCustomer = findByEmail(email, citizenId);
+        String encryptedPassword = HashGenerator.generateMD5(password);
         if (existingCustomer != null) {
             if (existingCustomer.getEmail().equals(email)) {
                 throw new HandleException("The user with Email " + email
@@ -85,7 +105,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             customerEntity.setCustomerId(generateUniqueId());
             customerEntity.setName(fullName);
             customerEntity.setEmail(email);
-            customerEntity.setPassword(password);
+            customerEntity.setPassword(encryptedPassword);
             customerEntity.setPhoneNumber(phoneNumber);
             customerEntity.setDateofBirth(LocalDate.parse(dateOfBirth));
             customerEntity.setCitizenId(citizenId);
