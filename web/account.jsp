@@ -31,8 +31,8 @@
         <div class="my-16 py-8 px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Payment Accounts</span>
-                <button id="createAccountBtn" class="p-4 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-2xl outline-none 
-                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out" onclick="showCreateAccount()">Add Payment Account</button>
+                <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
+                focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
             </div>
             <div>
                 <c:if test="${not empty requestScope.successMessage}">
@@ -50,10 +50,21 @@
                 %>
                 <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="flex justify-between p-4 rounded-xl bg-gray-300 
                    focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                    <div>
-                        <i class="fa-regular fa-copy mr-2"></i>
-                        <%= paymentAccount.getAccountNumber()%>
+                    <div class="flex flex-row">
+                       <div>
+                            <i class="fa-regular fa-copy mr-2"></i>
+                            <%= paymentAccount.getAccountNumber()%>
+                       </div>
+                        <%
+                            if (paymentAccount.getAccountStatus().equals("Default")) {
+                        %>
+                        <div class="flex justify-center items-center rounded-xl ml-4 px-2 bg-[#0066AD] text-white">
+                            <span class="text-xs">Default account</span>
+                        </div>
+                        <%  }
+                        %>
                     </div>
+
                     <div>
                         <span class="text-sm text-gray-600 mr-2">Available Balance</span>
                         <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
