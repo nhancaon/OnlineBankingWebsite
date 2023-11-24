@@ -1,18 +1,20 @@
-package controller.PaymentAccount;
+
+package controller.Beneficiary;
 
 import business.PaymentAccount;
 import business.Customer;
-import DAO.PaymentAccountDAO;
+import DAO.BeneficiaryDAO;
+import Exception.HandleException;
 import java.io.*;
 import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/show-account")
-public class ShowAccountServlet extends HttpServlet {
 
-    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+@WebServlet(name = "CreateBeneficiaryServlet", urlPatterns = {"/CreateBeneficiary"})
+public class CreateBeneficiaryServlet extends HttpServlet {
+
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -27,14 +29,8 @@ public class ShowAccountServlet extends HttpServlet {
 
         ServletContext servletContext = getServletContext();
 
-        String url = "/account.jsp";
-        HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
-        String customerId = customer.getCustomerId();
-        List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customerId);
-
-       
-        request.setAttribute("paymentAccounts", paymentAccounts);
+        String url = "/beneficiary.jsp";
+        
 
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);
