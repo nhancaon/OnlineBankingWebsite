@@ -33,10 +33,14 @@ include file="/includes/header.jsp" %> <%@ include
                                     d="m1 9 4-4-4-4"
                                     />
                             </svg>
-                            <a
-                                class="ml-1 text-sm font-medium text-blue-600 md:ml-2 cursor-pointer"
-                                >Change Password</a
-                            >
+                            <form class="cursor-pointer">
+                                <button
+                                    type="text"
+                                    class="ml-1 text-sm font-medium text-blue-600 md:ml-2 mb-1 pointer-events-none"
+                                    >
+                                    Change Password
+                                </button>
+                            </form>
                         </div>
                     </li>
                 </ol>
