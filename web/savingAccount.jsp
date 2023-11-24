@@ -72,7 +72,6 @@
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
                 <%                    List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
-
                     if (savingAccounts != null && !savingAccounts.isEmpty()) {
                         for (SavingAccount savingAccount : savingAccounts) {
                 %>
@@ -143,7 +142,7 @@
                         name="savingAmount"
                         class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
-                        pattern="\d{7}"
+                        pattern="\d{7,10}"
                         title="Amount must be higher than 1000000."
                         maxlength="10"
                         required
@@ -155,9 +154,9 @@
                     >
                 </div>
                 <div class="relative mt-6" >
-					<select id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+					<select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
 						<c:forEach var="rate" items="${interestRates}">
-                            <option name="typeOfSaving" value="${rate.savingTitle}">
+                            <option  value="${rate.savingTitle}">
                                 ${rate.savingTitle}
                             </option>
                         </c:forEach>
