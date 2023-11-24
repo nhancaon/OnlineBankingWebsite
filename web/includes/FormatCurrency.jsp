@@ -16,6 +16,8 @@
         String formattedAmount = currencyFormatter.format(amount);
         // Remove the '.00' at the end
         formattedAmount = formattedAmount.replaceAll("\\.00$", "");
+        formattedAmount = formattedAmount.replace("$", "");
+        
         return formattedAmount;
     }
 %>

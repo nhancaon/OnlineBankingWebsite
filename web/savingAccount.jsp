@@ -44,11 +44,14 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <a
-                            href="./savingAccount.jsp"
-                            class="ml-1 text-sm font-medium text-blue-600 md:ml-2 cursor-pointer"
-                            >Saving Account</a
-                        >
+                        <form class="cursor-pointer">
+                            <button
+                                type="text"
+                                class="ml-1 text-sm font-medium text-blue-600 md:ml-2 mb-1 pointer-events-none"
+                                >
+                                Saving Account
+                            </button>
+                        </form>
                     </div>
                 </li>
             </ol>
@@ -154,14 +157,14 @@
                     >
                 </div>
                 <div class="relative mt-6" >
-					<select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-						<c:forEach var="rate" items="${interestRates}">
+                    <select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <c:forEach var="rate" items="${interestRates}">
                             <option  value="${rate.savingTitle}">
                                 ${rate.savingTitle}
                             </option>
                         </c:forEach>
-					</select>
-					<label
+                    </select>
+                    <label
                         for="typeOfSaving"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
                         >Choose Type of Saving</label
