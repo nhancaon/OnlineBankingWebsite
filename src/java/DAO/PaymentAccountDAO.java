@@ -93,8 +93,6 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         PaymentAccount existingPaymentAccount = findExistingPaymentAccount(accountNumber);
         PaymentAccount existingDefaultPaymentAccount = findDefaultPaymentAccount(customer.getCustomerId());
         if (existingPaymentAccount != null) {
-
-            System.out.print(existingPaymentAccount.getAccountNumber());
             if (existingPaymentAccount.getAccountNumber().equals(accountNumber)) {
                 throw new HandleException("The Payment Account " + accountNumber
                         + " is already existed.", 409);
@@ -117,14 +115,5 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
-    public PaymentAccount findByAccountNumber(String accountNumber) {
-
-        List<PaymentAccount> result = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber", "accountNumber", accountNumber);
-
-        if (!result.isEmpty()) {
-            return result.get(0);
-        }
-
-        return null;
-    }
+ 
 }

@@ -34,8 +34,9 @@ public class SignupServlet extends HttpServlet {
             String citizenIdentity = request.getParameter("citizenIdentity");
             String dateOfBirth = request.getParameter("dateOfBirth");
             String address = request.getParameter("address");
+            int pinNumber = Integer.parseInt(request.getParameter("pinNumber"));
             try {
-                customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address);
+                customerDAO.customerSignup(fullName, email, password, citizenIdentity, phoneNumber, dateOfBirth, address, pinNumber);
       
                 request.setAttribute("successMessage", "The account has been created successfully.");
 

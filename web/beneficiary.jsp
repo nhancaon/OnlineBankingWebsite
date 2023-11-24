@@ -1,4 +1,6 @@
 
+<%@page import="business.Beneficiary"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
@@ -33,6 +35,15 @@
                 <button id="createBeneficiary" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
             </div>
+            <div>
+                <c:if test="${not empty requestScope.successMessage}">
+                    <p style="color: green">${requestScope.successMessage}</p>
+                </c:if>
+
+                <c:if test="${not empty requestScope.errorMessage}">
+                    <p style="color: red">${requestScope.errorMessage}</p>
+                </c:if>
+            </div>
             <div class="relative overflow-x-auto my-16">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -55,23 +66,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%                            List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
+
+                            if (beneficiaries != null && !beneficiaries.isEmpty()) {
+                                for (Beneficiary beneficiary : beneficiaries) {
+                        %>
                         <tr class="bg-white border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                1
+                                <%= beneficiary.getBeneficiaryId()%>
                             </th>
                             <td class="px-6 py-4">
-                                NGUYEN CAO NHAN
+                                <%= beneficiary.getName()%>
                             </td>
                             <td class="px-6 py-4">
                                 NND BANKING
                             </td>
                             <td class="px-6 py-4">
-                                0327853764
+                                <%= beneficiary.getAccountNumber()%>
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer"/>
                             </td>
-                        </tr>             
+                        </tr>
+                        <%
+                                }
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
@@ -94,13 +114,13 @@
             </button>
         </div>
         <div class="content">
-            <form action="CreateBeneficiary" method="post">
+            <form action="create-beneficiary" method="post">
                 <input type="hidden" name="action" value="create" />
                 <div class="relative mt-6" >
-					<div id="transferType" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-						NND Banking Internal Transfer
-					</div>
-					<label
+                    <div id="transferType" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        NND Banking Internal Transfer
+                    </div>
+                    <label
                         for="transferType"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
                         >Money transfer type</label
@@ -131,9 +151,6 @@
                         name="nickName"
                         class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
-                        pattern="\d{7}"
-                        title="Amount must be higher than 1000000."
-                        maxlength="10"
                         required
                         />
                     <label
@@ -156,4 +173,4 @@
 </div>
 
 
-    <%@ include file="/includes/footer.jsp" %>
+<%@ include file="/includes/footer.jsp" %>

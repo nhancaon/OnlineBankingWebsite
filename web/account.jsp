@@ -32,7 +32,7 @@
             <div class="flex justify-between items-center">
                 <span>Payment Accounts</span>
                 <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-                focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
             </div>
             <div>
                 <c:if test="${not empty requestScope.successMessage}">
@@ -51,10 +51,10 @@
                 <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="flex justify-between p-4 rounded-xl bg-gray-300 
                    focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                     <div class="flex flex-row">
-                       <div>
+                        <div>
                             <i class="fa-regular fa-copy mr-2"></i>
                             <%= paymentAccount.getAccountNumber()%>
-                       </div>
+                        </div>
                         <%
                             if (paymentAccount.getAccountStatus().equals("Default")) {
                         %>
@@ -65,10 +65,21 @@
                         %>
                     </div>
 
-                    <div>
-                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
-                    </div>
+                    <%
+                        if (paymentAccount.getAccountStatus().equals("Default")) {
+                    %>
+                        <div class="ml-[-40px]">
+                            <span class="text-sm text-gray-600 mr-2">Available Balance</span>
+                            <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
+                        </div>
+                    <%  } else {
+                    %>
+                        <div>
+                            <span class="text-sm text-gray-600 mr-2">Available Balance</span>
+                            <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
+                        </div>
+                    <%  }
+                    %>
                     <i class="fa-solid fa-chevron-right py-1"></i>
                 </a>       
                 <%

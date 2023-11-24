@@ -57,7 +57,5 @@ public class Beneficiary {
     }
 
 
-    public Beneficiary CreateBeneficiary(String accountNumber, String nickName) {
-        return null;
-    }
+
 }
