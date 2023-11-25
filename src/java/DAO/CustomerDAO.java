@@ -52,20 +52,16 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public Customer ChangePassword(String currentPassword, String newPassword, String confirmPassword) {
+    public Customer ChangePassword(String customerId, String currentPassword, String newPassword, String confirmPassword) {
 
         // Map<String, Object> parameters = new HashMap<>();
         // parameters.put("currentPassword", currentPassword);
         // parameters.put("newPassword", newPassword);
         // parameters.put("confirmPassword", confirmPassword);
 
-        // List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.password = :currentPassword", parameters);
+    
 
-        // if (!result.isEmpty()) {
-        //     return result.get(0);
-        // }
-
-         return null;
+        return null;
         
     } 
 
