@@ -20,6 +20,7 @@ public class TransferServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
         String url = "/transfer.jsp";
+        request.setCharacterEncoding("UTF-8");
 
         // get current action
         String action = request.getParameter("action");

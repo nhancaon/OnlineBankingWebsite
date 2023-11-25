@@ -93,8 +93,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
                 throw new HandleException("The user with Email " + email
                         + " is already registered.", 409);
             } else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new HandleException("The user with Citizen Identity " + citizenId
-                        + " is already registered.", 409);
+                throw new HandleException("The user with Citizen Identity " + citizenId  + " is already registered.", 409);
             }
         } else {
 

@@ -15,15 +15,19 @@ public class InterestRate implements Serializable {
 
     @OneToMany(mappedBy = "interestRate", cascade = CascadeType.DETACH)
     private List<SavingAccount> savingAccounts;
+
+    @OneToMany(mappedBy = "interestRate", cascade = CascadeType.DETACH)
+    private List<LoanLending> loanLendings;
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String interestId;
     @Column(nullable = false)
     private Double interestRate;
-    @Column(columnDefinition = "varchar(20)", nullable = true)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String savingTitle;
-    @Column(columnDefinition = "varchar(20)", nullable = true)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String loanTitle;
+    @Column(columnDefinition = "int", nullable = false)
     private int term;
 
     public String getInterestId() {
@@ -72,6 +76,14 @@ public class InterestRate implements Serializable {
 
     public void setSavingAccounts(List<SavingAccount> savingAccounts) {
         this.savingAccounts = savingAccounts;
+    }
+
+    public List<LoanLending> getLoanLendings() {
+        return loanLendings;
+    }
+
+    public void setLoanLendings(List<LoanLending> loanLendings) {
+        this.loanLendings = loanLendings;
     }
 
 }

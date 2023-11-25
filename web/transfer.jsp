@@ -100,7 +100,7 @@
                                 id="transactionRemark"
                                 name="transRemark"
                                 class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                value="<%= customer.getName()%> Chuyen tien"
+                                value="<%= customer.getName()%> Chuyển tiền"
                                 />
                             <label
                                 for="transactionRemark"

@@ -31,7 +31,7 @@ public class Customer extends User implements Serializable {
     private List<PaymentAccount> paymentAccounts;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Loan> loans;
+    private List<LoanLending> loanLendings;
 
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
@@ -46,12 +46,12 @@ public class Customer extends User implements Serializable {
         this.customerId = customerId;
     }
 
-    public List<Loan> getLoans() {
-        return loans;
+    public List<LoanLending> getLoans() {
+        return loanLendings;
     }
 
-    public void setLoans(List<Loan> loans) {
-        this.loans = loans;
+    public void setLoans(List<LoanLending> loans) {
+        this.loanLendings = loans;
     }
 
     public List<SavingAccount> getSavingAccounts() {
