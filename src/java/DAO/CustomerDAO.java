@@ -3,6 +3,7 @@ package DAO;
 import business.Customer;
 import Exception.HandleException;
 import common.HashGenerator;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -63,33 +64,6 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public Customer ChangePassword(String customerId, String currentPassword,
-            String newPassword, String confirmPassword) throws HandleException {
-
-        Customer existingCustomer = findByCustomerId(customerId);
-
-        if (existingCustomer == null) {
-            throw new HandleException("Cannot find user with ID " + customerId, 409);
-        }
-
-        String encryptedPassword = HashGenerator.generateMD5(currentPassword);
-
-        if (encryptedPassword.equals(existingCustomer.getPassword())) {
-            if (newPassword.equals(confirmPassword)) {
-                String encryptedNewPassword = HashGenerator.generateMD5(newPassword);
-                existingCustomer.setPassword(encryptedNewPassword);
-                update(existingCustomer);
-            } else {
-                throw new HandleException("The confirm password is incorrect. Please try again", 409);
-            }
-        } else {
-            throw new HandleException("The current password is incorrect. Please check again", 409);
-        }
-
-        return null;
-
-    }
-
     public Customer checkLogin(String email, String password) {
 
         Map<String, Object> parameters = new HashMap<>();
@@ -135,6 +109,33 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         }
 
         return null;
+    }
+
+    public Customer ChangePassword(String customerId, String currentPassword,
+            String newPassword, String confirmPassword) throws HandleException {
+
+        Customer existingCustomer = findByCustomerId(customerId);
+
+        if (existingCustomer == null) {
+            throw new HandleException("Cannot find user with ID " + customerId, 409);
+        }
+
+        String encryptedPassword = HashGenerator.generateMD5(currentPassword);
+
+        if (encryptedPassword.equals(existingCustomer.getPassword())) {
+            if (newPassword.equals(confirmPassword)) {
+                String encryptedNewPassword = HashGenerator.generateMD5(newPassword);
+                existingCustomer.setPassword(encryptedNewPassword);
+                update(existingCustomer);
+            } else {
+                throw new HandleException("The confirm password is incorrect. Please try again", 409);
+            }
+        } else {
+            throw new HandleException("The current password is incorrect. Please check again", 409);
+        }
+
+        return null;
+
     }
 
 }
