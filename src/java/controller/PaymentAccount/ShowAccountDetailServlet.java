@@ -37,7 +37,7 @@ public class ShowAccountDetailServlet extends HttpServlet {
         String accountNumber = request.getParameter("accountNumber");
 
         // Call findByAccountNumber in PaymentAccountDAO
-        paymentAccount = paymentAccountDAO.findByAccountNumber(accountNumber);
+        paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
         
         List<Transaction> transactionList = transactionDAO.findTransactionOfPaymentAccountId(paymentAccount.getPaymentAccountId());
         

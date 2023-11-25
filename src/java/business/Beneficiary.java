@@ -56,4 +56,6 @@ public class Beneficiary {
         this.accountNumber = accountNumber;
     }
 
+
+
 }

@@ -45,7 +45,7 @@ public class TransferServlet extends HttpServlet {
                 if (sender != null) {
                     session.setAttribute("sender", sender);
                 }
-                PaymentAccount receiver = paymentAccountDAO.findByAccountNumber(Number);
+                PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
                 if (receiver != null) {
                     session.setAttribute("receiver", receiver);
                 }

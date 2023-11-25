@@ -2,14 +2,8 @@ package DAO;
 
 import business.Beneficiary;
 import Exception.HandleException;
-import java.time.LocalDate;
-import java.util.HashMap;
+import business.Customer;
 import java.util.List;
-import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 
 public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Beneficiary> {
 
@@ -38,6 +32,62 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
     public long count() {
 
         return super.countWithNamedQuery("");
+    }
+
+    public Beneficiary findExistingBeneficiary(String accountNumber) {
+
+        List<Beneficiary> beneficiaryList = super.findWithNamedQuery(
+                "SELECT b FROM Beneficiary b WHERE b.accountNumber = :accountNumber",
+                "accountNumber", accountNumber
+        );
+
+        if (!beneficiaryList.isEmpty()) {
+            return beneficiaryList.get(0);
+        }
+
+        return null;
+    }
+
+    public List<Beneficiary> findAllBeneficiary(String customerId) {
+
+        List<Beneficiary> beneficiaryList = super.findWithNamedQuery(
+                "SELECT b FROM Beneficiary b WHERE b.customer.customerId = :customerId",
+                "customerId", customerId
+        );
+
+        if (!beneficiaryList.isEmpty()) {
+            return beneficiaryList;
+        }
+
+        return null;
+    }
+
+    public Beneficiary CreateBeneficiary(String accountNumber, String nickName, Customer customer) throws HandleException {
+
+        Beneficiary beneficiaryEntity = new Beneficiary();
+        Beneficiary existingBeneficiary = findExistingBeneficiary(accountNumber);
+        PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+        if (paymentAccountDAO.findExistingPaymentAccount(accountNumber) == null) {
+            throw new HandleException("The account with number " + accountNumber
+                    + " is not existed.", 409);
+        } else {
+            
+            if (existingBeneficiary != null) {
+                if (existingBeneficiary.getAccountNumber().equals(accountNumber)) {
+                    throw new HandleException("The Beneficiary with number " + accountNumber
+                            + " is already existed.", 409);
+                }
+            } else {
+
+                beneficiaryEntity.setName(nickName);
+                beneficiaryEntity.setAccountNumber(accountNumber);
+                beneficiaryEntity.setCustomer(customer);
+                create(beneficiaryEntity);
+
+            }
+        }
+
+        return null;
     }
 
 }

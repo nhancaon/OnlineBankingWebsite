@@ -87,7 +87,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
     }
 
     public Customer customerSignup(String fullName, String email, String password, String citizenId,
-            String phoneNumber, String dateOfBirth, String address) throws HandleException {
+            String phoneNumber, String dateOfBirth, String address, int pinNumber) throws HandleException {
 
         Customer customerEntity = new Customer();
         Customer existingCustomer = findByEmail(email, citizenId);
@@ -110,6 +110,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             customerEntity.setDateofBirth(LocalDate.parse(dateOfBirth));
             customerEntity.setCitizenId(citizenId);
             customerEntity.setAddress(address);
+            customerEntity.setPinNumber(pinNumber);
             create(customerEntity);
         }
 

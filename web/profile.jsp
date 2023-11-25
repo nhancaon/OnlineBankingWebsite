@@ -1,18 +1,18 @@
 <%@page import="business.PaymentAccount" %>
-    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-        <%@ include file="/includes/header.jsp" %>
+<%@ include file="/includes/header.jsp" %>
 
-            <%@ include file="/includes/checkLogin.jsp" %>
-
-
-                <% PaymentAccount defaultPaymentAccount=(PaymentAccount) request.getAttribute("defaultPaymentAccount");
-                    %>
+<%@ include file="/includes/checkLogin.jsp" %>
 
 
-                    <div class="relative w-full h-[30rem] mt-[5.2rem]">
-                        <img src="./assets/money.gif" class="w-full h-full" alt="alt" />
-                    </div>
+<% PaymentAccount defaultPaymentAccount = (PaymentAccount) request.getAttribute("defaultPaymentAccount");
+%>
+
+
+<div class="relative w-full h-[30rem] mt-[5.2rem]">
+    <img src="./assets/money.gif" class="w-full h-full" alt="alt" />
+</div>
 
                     <div id="content" class="bg-[#f0f1f1] py-16">
                         <div class="mx-56 px-8 pt-10 pb-16 rounded-md bg-[#fff]">
@@ -66,7 +66,7 @@
                                         Saving Accounts
                                     </button>
                                 </form>
-                                <a href="./loanLending.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
+                                <a href="./loan.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
                 focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                     <img src="./assets/loan.png" class="w-8 mb-2" />
                                     Loan
@@ -79,26 +79,28 @@
                             </div>
                         </div>
 
-                        <div class="mx-56 py-16">
-                            <div>Settings</div>
-                            <div class="py-10 grid grid-cols-5 gap-5">
-                                <a href="./beneficiary.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl
+    <div class="mx-56 py-16">
+        <div>Settings</div>
+        <div class="py-10 grid grid-cols-5 gap-5">
+            <form action="show-beneficiary" method="GET">
+                <button type="submit" class="w-full grid justify-center items-center bg-white h-40 rounded-xl
+                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                    <span class="flex flex-col items-center justify-center">
+                        <img src="assets/quan-ly-danh-ba.svg" alt="beneficiary" class="w-12 h-12 mb-2">
+                        Beneficiary
+                    </span>
+                </button>
+            </form>
+            <a href="./changePassword.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl
                focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                                    <span class="flex flex-col items-center justify-center">
-                                        <img src="assets/quan-ly-danh-ba.svg" alt="beneficiary" class="w-12 h-12 mb-2">
-                                        Beneficiary
-                                    </span>
-                                </a>
-                                <a href="./changePassword.jsp" class="grid justify-center items-center bg-white h-40 rounded-xl
-               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                                    <span class="flex flex-col items-center justify-center">
-                                        <img src="assets/doi-mk.svg" alt="changepassword" class="w-12 h-12 mb-2">
-                                        Change password
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <span class="flex flex-col items-center justify-center">
+                    <img src="assets/doi-mk.svg" alt="changepassword" class="w-12 h-12 mb-2">
+                    Change password
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
 
 
-                    <%@ include file="/includes/footer.jsp" %>
+<%@ include file="/includes/footer.jsp" %>

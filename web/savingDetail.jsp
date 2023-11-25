@@ -18,7 +18,7 @@
                     <%@ include file="/includes/homeButton.jsp" %>
                 </li>
                 <li>
-                    <div class="flex items-center">
+                    <div class="h-full flex items-center">
                         <svg
                             class="w-3 h-3 mx-1"
                             aria-hidden="true"
@@ -34,8 +34,9 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <a  href="./savingAccount.jsp"
-						    class="ml-1 text-sm font-medium text-gray-600 md:ml-2 cursor-pointer"
+                        <a
+                                                    href="./savingAccount.jsp"
+							class="ml-1 text-sm font-medium text-gray-600 md:ml-2 cursor-pointer"
 							>Saving Account</a
 						>
                     </div>
@@ -57,10 +58,14 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <a
-                            class="ml-1 text-sm font-medium text-blue-600 md:ml-2 cursor-pointer"
-                            >Saving Account Detail</a
-                        >
+                        <form class="cursor-pointer">
+                            <button
+                                type="text"
+                                class="ml-1 text-sm font-medium text-blue-600 md:ml-2 mb-1 pointer-events-none"
+                                >
+                                Saving Account Detail
+                            </button>
+                        </form>
                     </div>
                 </li>
             </ol>
@@ -69,14 +74,14 @@
         <div class="grid grid-cols-6 gap-8">
             <div class="col-span-4 my-16 py-8 px-20 rounded-xl bg-white">
                 <div>
-				<c:if test="${not empty requestScope.successMessage}">
-					<p style="color: green">${requestScope.successMessage}</p>
-				</c:if>
+                    <c:if test="${not empty requestScope.successMessage}">
+                        <p style="color: green">${requestScope.successMessage}</p>
+                    </c:if>
 
 				<c:if test="${not empty requestScope.errorMessage}">
 					<p style="color: red">${requestScope.errorMessage}</p>
 				</c:if>
-			    </div>
+			</div>
                 <div class="w-full grid grid-cols-1">
                     <c:if test="${ savingAccount.accountStatus == 'Active' }">
                         <form action="with-draw" method="post">
@@ -93,13 +98,15 @@
                                 <div class="text-end text-xl text-green-400">${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}VND</div>
                             </div>
                             
-                            <input type="hidden" name="action" value="withdraw">
-                            <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
-                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}">
-                            <div class="flex justify-end items-center mt-10">
-                                <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
-                            </div>
-                        </form>            
+                                <input type="hidden" name="action" value="withdraw">
+                                <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
+                                <input type="hidden" name="expectedAmount" value="${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}">
+                                    <div class="flex justify-end items-center mt-10">
+                                        <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
+                                    </div>
+                            </form>
+                    
+                            
                     </c:if>
                     <c:if test="${ savingAccount.accountStatus != 'Active' }">
                         <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
@@ -158,4 +165,4 @@
     </div>
 </div>
 
-<%@ include file="/includes/footer.jsp" %>
+                                    <%@ include file="/includes/footer.jsp" %>
