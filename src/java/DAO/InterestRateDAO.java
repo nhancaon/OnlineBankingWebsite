@@ -36,7 +36,6 @@ public class InterestRateDAO extends JpaDAO<InterestRate> implements GenericDAO<
 
     @Override
     public long count() {
-
         return super.countWithNamedQuery("");
     }
 
@@ -55,8 +54,18 @@ public class InterestRateDAO extends JpaDAO<InterestRate> implements GenericDAO<
 
     public InterestRate findBySavingTitle(String savingTitle) {
 
-        List<InterestRate> result = super.findWithNamedQuery("SELECT i FROM InterestRate i WHERE i.savingTitle = :savingTitle", "savingTitle",
-                savingTitle);
+        List<InterestRate> result = super.findWithNamedQuery("SELECT i FROM InterestRate i WHERE i.savingTitle = :savingTitle", "savingTitle", savingTitle);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public InterestRate findByLoanTitle(String loanTitle) {
+
+        List<InterestRate> result = super.findWithNamedQuery("SELECT i FROM InterestRate i WHERE i.loanTitle = :loanTitle", "loanTitle",loanTitle);
 
         if (!result.isEmpty()) {
             return result.get(0);
