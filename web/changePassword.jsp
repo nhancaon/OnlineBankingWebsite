@@ -46,7 +46,15 @@ include file="/includes/header.jsp" %> <%@ include
                 </ol>
             </nav>
 
-            <div class="my-16 py-16 px-8 rounded-xl bg-white">
+            <div class="my-16 pb-16 pt-12 px-8 rounded-xl bg-white">
+                <div>
+                    <c:if test="${not empty requestScope.successMessage}">
+                        <p style="color: green;">${requestScope.successMessage}</p>
+                    </c:if>
+                    <c:if test="${not empty requestScope.errorMessage}">
+                        <p style="color: red;">${requestScope.errorMessage}</p>
+                    </c:if>
+                </div>
                 <div class="grid text-xs gap-2">
                     <span class="text-gray-500"
                           >Password must satisfy the following conditions:</span
