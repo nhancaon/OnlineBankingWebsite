@@ -34,9 +34,8 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <a
-                                                    href="./savingAccount.jsp"
-							class="ml-1 text-sm font-medium text-gray-600 md:ml-2 cursor-pointer"
+                        <a  href="./savingAccount.jsp"
+						    class="ml-1 text-sm font-medium text-gray-600 md:ml-2 cursor-pointer"
 							>Saving Account</a
 						>
                     </div>
@@ -77,7 +76,7 @@
 				<c:if test="${not empty requestScope.errorMessage}">
 					<p style="color: red">${requestScope.errorMessage}</p>
 				</c:if>
-			</div>
+			    </div>
                 <div class="w-full grid grid-cols-1">
                     <c:if test="${ savingAccount.accountStatus == 'Active' }">
                         <form action="with-draw" method="post">
@@ -94,15 +93,13 @@
                                 <div class="text-end text-xl text-green-400">${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}VND</div>
                             </div>
                             
-                                <input type="hidden" name="action" value="withdraw">
-                                <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
-                                <input type="hidden" name="expectedAmount" value="${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}">
-                                    <div class="flex justify-end items-center mt-10">
-                                        <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
-                                    </div>
-                            </form>
-                    
-                            
+                            <input type="hidden" name="action" value="withdraw">
+                            <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
+                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}">
+                            <div class="flex justify-end items-center mt-10">
+                                <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
+                            </div>
+                        </form>            
                     </c:if>
                     <c:if test="${ savingAccount.accountStatus != 'Active' }">
                         <div class="grid grid-cols-3 border-b-2 py-2 mb-3">

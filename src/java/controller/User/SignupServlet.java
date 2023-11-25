@@ -19,6 +19,7 @@ public class SignupServlet extends HttpServlet {
             throws ServletException, IOException {
         
         ServletContext servletContext = getServletContext();
+        request.setCharacterEncoding("UTF-8");
         
         String action = request.getParameter("action");
         if (action == null) {
