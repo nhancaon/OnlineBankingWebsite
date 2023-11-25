@@ -49,7 +49,7 @@ public class TransferServlet extends HttpServlet {
                 if (receiver != null) {
                     session.setAttribute("receiver", receiver);
                 }
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd / HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
                 LocalDateTime time = LocalDateTime.now();
                 String timeStr = time.format(formatter);
                 session.setAttribute("timeStr", timeStr);

@@ -1,7 +1,6 @@
 package controller.PaymentAccount;
 
 import business.PaymentAccount;
-import business.Customer;
 import business.Transaction;
 import DAO.PaymentAccountDAO;
 import DAO.TransactionDAO;
@@ -38,6 +37,7 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
         // Call findByAccountNumber in PaymentAccountDAO
         paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
+        
         
         List<Transaction> transactionList = transactionDAO.findTransactionOfPaymentAccountId(paymentAccount.getPaymentAccountId());
         
