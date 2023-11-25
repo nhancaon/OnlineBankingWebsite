@@ -37,7 +37,18 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return super.countWithNamedQuery("");
     }
 
-    public Customer findByEmail(String email, String citizenId) {
+    public Customer findByCustomerId(String customerId) {
+
+        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.customerId = :customerId", "customerId", customerId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Customer findByEmailOrCitizenId(String email, String citizenId) {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("email", email);
@@ -52,18 +63,32 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public Customer ChangePassword(String customerId, String currentPassword, String newPassword, String confirmPassword) {
+    public Customer ChangePassword(String customerId, String currentPassword,
+            String newPassword, String confirmPassword) throws HandleException {
 
-        // Map<String, Object> parameters = new HashMap<>();
-        // parameters.put("currentPassword", currentPassword);
-        // parameters.put("newPassword", newPassword);
-        // parameters.put("confirmPassword", confirmPassword);
+        Customer existingCustomer = findByCustomerId(customerId);
 
-    
+        if (existingCustomer == null) {
+            throw new HandleException("Cannot find user with ID " + customerId, 409);
+        }
+
+        String encryptedPassword = HashGenerator.generateMD5(currentPassword);
+
+        if (encryptedPassword.equals(existingCustomer.getPassword())) {
+            if (newPassword.equals(confirmPassword)) {
+                String encryptedNewPassword = HashGenerator.generateMD5(newPassword);
+                existingCustomer.setPassword(encryptedNewPassword);
+                update(existingCustomer);
+            } else {
+                throw new HandleException("The confirm password is incorrect. Please try again", 409);
+            }
+        } else {
+            throw new HandleException("The current password is incorrect. Please check again", 409);
+        }
 
         return null;
-        
-    } 
+
+    }
 
     public Customer checkLogin(String email, String password) {
 
@@ -86,14 +111,14 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             String phoneNumber, String dateOfBirth, String address, int pinNumber) throws HandleException {
 
         Customer customerEntity = new Customer();
-        Customer existingCustomer = findByEmail(email, citizenId);
+        Customer existingCustomer = findByEmailOrCitizenId(email, citizenId);
         String encryptedPassword = HashGenerator.generateMD5(password);
         if (existingCustomer != null) {
             if (existingCustomer.getEmail().equals(email)) {
                 throw new HandleException("The user with Email " + email
                         + " is already registered.", 409);
             } else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new HandleException("The user with Citizen Identity " + citizenId  + " is already registered.", 409);
+                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.", 409);
             }
         } else {
 
