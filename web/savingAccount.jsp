@@ -1,12 +1,12 @@
-<%@page import="DAO.SavingAccountDAO"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.List" %>
-<%@page import="business.InterestRate"%>
-<%@page import="business.SavingAccount"%>
-<%@page import="DAO.InterestRateDAO"%> 
+<%@ page import="DAO.SavingAccountDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.List" %>
+<%@ page import="business.InterestRate"%>
+<%@ page import="business.SavingAccount"%>
+<%@ page import="DAO.InterestRateDAO"%> 
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
-<%    InterestRateDAO interestRateDAO = new InterestRateDAO();
+<%  InterestRateDAO interestRateDAO = new InterestRateDAO();
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     List<InterestRate> interestRates = interestRateDAO.listAll();
     request.setAttribute("interestRates", interestRates);
@@ -74,8 +74,7 @@
                 </c:if>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <%                    List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
-
+                <% List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
                     if (savingAccounts != null && !savingAccounts.isEmpty()) {
                         for (SavingAccount savingAccount : savingAccounts) {
                 %>
@@ -158,9 +157,9 @@
                     >
                 </div>
                 <div class="relative mt-6" >
-					<select id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+					<select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
 						<c:forEach var="rate" items="${interestRates}">
-                            <option name="typeOfSaving" value="${rate.savingTitle}">
+                            <option value="${rate.savingTitle}">
                                 ${rate.savingTitle}
                             </option>
                         </c:forEach>

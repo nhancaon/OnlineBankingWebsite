@@ -66,7 +66,7 @@
                                         Saving Accounts
                                     </button>
                                 </form>
-                                <a href="./loan.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
+                                <a href="./loanLending.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
                 focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                     <img src="./assets/loan.png" class="w-8 mb-2" />
                                     Loan

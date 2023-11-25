@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ page
-    contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@ include
-        file="/includes/header.jsp" %> <%@ include file="/includes/checkLogin.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ include file="/includes/header.jsp" %> 
+<%@ include file="/includes/checkLogin.jsp" %>
 
         <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
             <div class="py-16 mx-56">
@@ -114,5 +115,4 @@
                 </div>
             </div>
         </div>
-
-        <%@ include file="/includes/footer.jsp" %>
+<%@ include file="/includes/footer.jsp" %>

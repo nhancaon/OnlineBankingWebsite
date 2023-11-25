@@ -1,5 +1,7 @@
 package DAO;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -110,7 +112,11 @@ public class LoanLendingDAO extends JpaDAO<LoanLending> implements GenericDAO<Lo
             loanLendingEntity.setTotalLoanAmount(totalPay);
 
             // Monthly pay
-            loanLendingEntity.setMonthlyPay(totalPay / (term*1.0));
+                // Using DecimalFormat
+            DecimalFormat df = new DecimalFormat("#.##");
+            String formattedNumber = df.format(totalPay / (term*1.0));
+            Double roundedNumber = Double.parseDouble(formattedNumber);
+            loanLendingEntity.setMonthlyPay(roundedNumber);
 
             loanLendingEntity.setCustomer(customer);
             loanLendingEntity.setInterestRate(interestRate);

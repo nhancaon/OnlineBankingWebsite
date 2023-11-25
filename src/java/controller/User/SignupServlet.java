@@ -46,8 +46,7 @@ public class SignupServlet extends HttpServlet {
 
             }
         }
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
