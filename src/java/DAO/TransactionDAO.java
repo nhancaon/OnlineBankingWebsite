@@ -40,21 +40,26 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
     }
 
     public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount,
-            LocalDateTime time) throws HandleException {
-        PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-        Transaction transactionEntity = new Transaction();
-        transactionEntity.setTransactionId(generateUniqueId());
-        transactionEntity.setSender(sender);
-        transactionEntity.setReceiver(receiver);
-        transactionEntity.setTransactionRemark(transactionRemark);
-        transactionEntity.setAmount(amount);
-        transactionEntity.setTransactionDate(time);
-        sender.setCurrentBalence(sender.getCurrentBalence() - amount);
-        sender.setRewardPoint((int) (sender.getRewardPoint() + amount / 10000));
-        receiver.setCurrentBalence(receiver.getCurrentBalence() + amount);
-        create(transactionEntity);
-        paymentAccountDAO.update(sender);
-        paymentAccountDAO.update(receiver);
+            LocalDateTime time, String OTP, String enteredOTP) throws HandleException {
+        if (!OTP.equals(enteredOTP)) {
+            throw new HandleException("Invalid OTP", 409);
+        }else{
+            PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+            Transaction transactionEntity = new Transaction();
+            transactionEntity.setTransactionId(generateUniqueId());
+            transactionEntity.setSender(sender);
+            transactionEntity.setReceiver(receiver);
+            transactionEntity.setTransactionRemark(transactionRemark);
+            transactionEntity.setAmount(amount);
+            transactionEntity.setTransactionDate(time);
+            sender.setCurrentBalence(sender.getCurrentBalence() - amount);
+            sender.setRewardPoint((int) (sender.getRewardPoint() + amount / 10000));
+            receiver.setCurrentBalence(receiver.getCurrentBalence() + amount);
+            create(transactionEntity);
+            paymentAccountDAO.update(sender);
+            paymentAccountDAO.update(receiver);  
+        }
+       
     }
 
     public void checkTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark,
