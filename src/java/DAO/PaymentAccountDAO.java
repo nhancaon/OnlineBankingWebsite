@@ -41,6 +41,19 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return super.countWithNamedQuery("");
     }
 
+    public PaymentAccount setDefaultPaymentAccount(String customerId, String accountNumber) {
+
+        PaymentAccount previousDefaultPaymentAccount = findDefaultPaymentAccount(customerId);
+        previousDefaultPaymentAccount.setAccountStatus("Active");
+        update(previousDefaultPaymentAccount);
+        
+        PaymentAccount currentPaymentAccount = findExistingPaymentAccount(accountNumber);
+        currentPaymentAccount.setAccountStatus("Default");
+        update(currentPaymentAccount);
+        
+        return null;
+    }
+
     public PaymentAccount findDefaultPaymentAccount(String customerId) {
 
         String accountStatus = "Default";
@@ -62,7 +75,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     public List<PaymentAccount> findPaymentAccountByCusId(String customerId) {
 
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
-                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId",
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId ORDER BY pa.accountStatus DESC",
                 "customerId",
                 customerId
         );
@@ -98,8 +111,8 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
                         + " is already existed.", 409);
             }
         } else {
-            
-             if(existingDefaultPaymentAccount != null) {
+
+            if (existingDefaultPaymentAccount != null) {
                 paymentAccountEntity.setAccountStatus("Active");
             } else {
                 paymentAccountEntity.setAccountStatus("Default");
@@ -115,5 +128,4 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
- 
 }
