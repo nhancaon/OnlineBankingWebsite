@@ -13,17 +13,19 @@ import javax.persistence.Table;
 @Table(name = "reward")
 public class Reward implements Serializable {
 
-    @ManyToMany(mappedBy = "rewards",cascade = CascadeType.DETACH)
+    @ManyToMany(mappedBy = "rewards", cascade = CascadeType.DETACH)
     private List<PaymentAccount> paymentAccounts;
 
     @Id
-    @Column(columnDefinition = "varchar(20)",nullable = false)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String rewardId;
-    @Column(columnDefinition = "varchar(20)",nullable = false)
+    @Column(columnDefinition = "varchar(20)", nullable = false)
     private String rewardName;
+    @Column(columnDefinition = "varchar(20)", nullable = false)
+    private String rewardType;
     @Column(nullable = false)
     private int price;
-      @Column(nullable = false)
+    @Column(nullable = false)
     private int costPoint;
 
     public List<PaymentAccount> getCurrentAccounts() {
@@ -48,6 +50,14 @@ public class Reward implements Serializable {
 
     public void setRewardName(String rewardName) {
         this.rewardName = rewardName;
+    }
+
+    public String getRewardType() {
+        return rewardType;
+    }
+
+    public void getRewardType(String rewardType) {
+        this.rewardType = rewardType;
     }
 
     public int getPrice() {
