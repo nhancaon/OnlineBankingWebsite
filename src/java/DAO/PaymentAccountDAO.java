@@ -41,6 +41,17 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return super.countWithNamedQuery("");
     }
 
+    public List<PaymentAccount> findAllPaymentAccount() {
+
+        List<PaymentAccount> result = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
+    }
+
     public PaymentAccount findDefaultPaymentAccount(String customerId) {
 
         String accountStatus = "Default";

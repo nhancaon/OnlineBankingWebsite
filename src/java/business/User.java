@@ -1,9 +1,11 @@
 package business;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+
 
 @MappedSuperclass
 @EntityListeners(Customer.class)
