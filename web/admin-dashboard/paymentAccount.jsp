@@ -1,4 +1,4 @@
-<%@ include file="sidebar.jsp"%> 
+<%@ include file="index.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

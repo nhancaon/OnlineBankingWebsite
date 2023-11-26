@@ -2,7 +2,6 @@ package controller.Beneficiary;
 
 import business.Customer;
 import DAO.BeneficiaryDAO;
-import Exception.HandleException;
 import business.Beneficiary;
 import java.io.*;
 import java.util.List;
