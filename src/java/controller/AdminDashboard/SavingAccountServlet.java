@@ -1,6 +1,6 @@
 package controller.AdminDashboard;
-import business.Customer;
-import DAO.CustomerDAO;
+import business.SavingAccount;
+import DAO.SavingAccountDAO;
 
 import java.io.*;
 import java.util.List;
@@ -8,10 +8,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/customer")
-public class CustomerServlet extends HttpServlet {
+@WebServlet("/admin-dashboard/savingAccount")
+public class SavingAccountServlet extends HttpServlet {
 
-    CustomerDAO customerDAO = new CustomerDAO();
+    SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,19 +30,19 @@ public class CustomerServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-customer" -> this.showCustomer(request, response);
+            case "show-savingAccount" -> this.showSavingAccount(request, response);
             default -> {}
         }
-        url = "/admin-dashboard/customer.jsp";
+        url = "/admin-dashboard/savingAccount.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showCustomer(HttpServletRequest request, HttpServletResponse response)
+    protected void showSavingAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Customer> customers = customerDAO.findAllCustomer();
-        
-        request.setAttribute("customers", customers);
-        
+
+        List<SavingAccount> savingAccounts = savingAccountDAO.findAllSavingAccount();
+
+        request.setAttribute("savingAccounts", savingAccounts);
     }
 
 }

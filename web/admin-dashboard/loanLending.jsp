@@ -9,11 +9,13 @@
                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                 >
                 <tr>
-                    <th scope="col" class="px-6 py-3">Payment Account Id</th>
+                    <th scope="col" class="px-6 py-3">Loan Id</th>
                     <th scope="col" class="px-6 py-3">Account Number</th>
+                    <th scope="col" class="px-6 py-3">Account Status</th>
                     <th scope="col" class="px-6 py-3">Account Type</th>
-                    <th scope="col" class="px-6 py-3">Current Balance</th>
-                    <th scope="col" class="px-6 py-3">Reward Point</th>
+                    <th scope="col" class="px-6 py-3">Loan Amount</th>
+                    <th scope="col" class="px-6 py-3">Total Loan Amount</th>
+                    <th scope="col" class="px-6 py-3">Monthly Pay</th>
                     <th scope="col" class="px-6 py-3">Date Opened</th>
                     <th scope="col" class="px-6 py-3">Date Closed</th>
                     <th scope="col" class="px-6 py-3">
@@ -22,21 +24,24 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="paymentAccount" items="${paymentAccounts}">
+                <c:forEach var="loanLending" items="${loanLendings}">
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                         >
-                        <th scope="row"
+                        <th
+                            scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                             >
-                            ${paymentAccount.getPaymentAccountId()}
+                            ${loanLending.getLoanLendingId()}
                         </th>
-                        <td class="px-6 py-4">${paymentAccount.getAccountNumber()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getAccountType()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getCurrentBalence()} VND</td>
-                        <td class="px-6 py-4">${paymentAccount.getRewardPoint()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getDateOpened()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getDateClosed()}</td>
+                        <td class="px-6 py-4">${loanLending.getAccountNumber()}</td>
+                        <td class="px-6 py-4">${loanLending.getAccountStatus()}</td>
+                        <td class="px-6 py-4">${loanLending.getAccountType()}</td>
+                        <td class="px-6 py-4">${loanLending.getLoanAmount()} VND</td>
+                        <td class="px-6 py-4">${loanLending.getTotalLoanAmount()} VND</td>
+                        <td class="px-6 py-4">${loanLending.getMonthlyPay()} VND</td>
+                        <td class="px-6 py-4">${loanLending.getDateOpened()}</td>
+                        <td class="px-6 py-4">${loanLending.getDateClosed()}</td>
                         <td class="px-6 py-4 text-right">
                             <a
                                 href="#"

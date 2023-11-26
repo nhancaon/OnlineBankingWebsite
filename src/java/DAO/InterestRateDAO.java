@@ -2,6 +2,8 @@ package DAO;
 
 import Exception.HandleException;
 import business.InterestRate;
+import business.LoanLending;
+
 import java.util.List;
 
 public class InterestRateDAO extends JpaDAO<InterestRate> implements GenericDAO<InterestRate> {
@@ -37,6 +39,17 @@ public class InterestRateDAO extends JpaDAO<InterestRate> implements GenericDAO<
     @Override
     public long count() {
         return super.countWithNamedQuery("");
+    }
+
+    public List<InterestRate> findAllInterestRate() {
+
+        List<InterestRate> result = super.findWithNamedQuery("SELECT i FROM InterestRate i");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
     }
 
     public InterestRate findInterestRateByCusId(String customerId) {
