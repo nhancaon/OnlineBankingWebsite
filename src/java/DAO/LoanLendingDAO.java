@@ -47,6 +47,17 @@ public class LoanLendingDAO extends JpaDAO<LoanLending> implements GenericDAO<Lo
         return super.countWithNamedQuery("");
     }
 
+    public List<LoanLending> findAllLoanLending() {
+
+        List<LoanLending> result = super.findWithNamedQuery("SELECT ll FROM LoanLending ll");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
+    }
+
     public List<LoanLending> findLoanLendingByCusId(String customerId) {
         List<LoanLending> loanLendingList = super.findWithNamedQuery(
                 "SELECT ll FROM LoanLending ll WHERE ll.customer.customerId = :customerId",

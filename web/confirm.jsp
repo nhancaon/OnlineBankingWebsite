@@ -5,7 +5,7 @@ file="/includes/header.jsp" %>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
 	<div class="py-16 mx-56">
 		<div class="flex text-2xl">
-			<a href="./index.jsp"
+			<a href=""
 				><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
 			></a>
 			<div class="py-[0.2rem]">Transfer</div>
