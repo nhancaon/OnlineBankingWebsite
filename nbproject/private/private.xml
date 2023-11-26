@@ -5,46 +5,51 @@
         <group>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/changePassword.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/ShowAccountServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/loanDetail.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/reward.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/Account.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/SavingAccountDAO.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/LoanDAO.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/header.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/success.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/build.xml</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/ChangePasswordServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/styles/tailwindcss.js</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/admin-dashboard/sidebar.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/signup.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/shopping.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/JpaDAO.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/ShowAccountDetailServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/CreateAccountServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/SavingAccount.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/common/MailSender.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/Exception/HandleException.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/GenericDAO.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/accountDetail.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/homeButton.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/conf/persistence.xml</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/RewardDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/Beneficiary/CreateBeneficiaryServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/includes/FormatCurrency.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/WEB-INF/web.xml</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/styles/script.js</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/login.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/beneficiary.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/culinary.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/Exception/HashGeneratorException.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/common/HashGenerator.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/Transaction.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/Beneficiary.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/admin-dashboard/customer.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/transfer.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/Employee.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/savingDetail.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/profile.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/savingAccount.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/LoginServlet.java</file>
-            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/loan.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/TransactionDAO.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/PaymentAccount.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/User/SignupServlet.java</file>
@@ -52,6 +57,7 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/business/InterestRate.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/confirm.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/ShowDefaultPAServlet.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/account.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/CustomerDAO.java</file>
         </group>
