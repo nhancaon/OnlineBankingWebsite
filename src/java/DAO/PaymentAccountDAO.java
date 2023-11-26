@@ -41,6 +41,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return super.countWithNamedQuery("");
     }
 
+
     public List<PaymentAccount> findAllPaymentAccount() {
 
         List<PaymentAccount> result = super.findWithNamedQuery("SELECT pa FROM PaymentAccount pa");
@@ -48,6 +49,18 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         if (!result.isEmpty()) {
             return result;
         }
+
+
+    public PaymentAccount setDefaultPaymentAccount(String customerId, String accountNumber) {
+
+        PaymentAccount previousDefaultPaymentAccount = findDefaultPaymentAccount(customerId);
+        previousDefaultPaymentAccount.setAccountStatus("Active");
+        update(previousDefaultPaymentAccount);
+        
+        PaymentAccount currentPaymentAccount = findExistingPaymentAccount(accountNumber);
+        currentPaymentAccount.setAccountStatus("Default");
+        update(currentPaymentAccount);
+        
 
         return null;
     }
@@ -73,7 +86,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
     public List<PaymentAccount> findPaymentAccountByCusId(String customerId) {
 
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
-                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId",
+                "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId ORDER BY pa.accountStatus DESC",
                 "customerId",
                 customerId
         );
@@ -109,8 +122,8 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
                         + " is already existed.", 409);
             }
         } else {
-            
-             if(existingDefaultPaymentAccount != null) {
+
+            if (existingDefaultPaymentAccount != null) {
                 paymentAccountEntity.setAccountStatus("Active");
             } else {
                 paymentAccountEntity.setAccountStatus("Default");
@@ -126,5 +139,4 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         return null;
     }
 
- 
 }

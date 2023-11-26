@@ -5,18 +5,15 @@
 <%@page import="business.PaymentAccount"%> 
 <%@ include file="/includes/header.jsp"%> 
 <%@ include file="/includes/checkLogin.jsp" %> 
-<% 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+<%    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
     PaymentAccount paymentAccount = (PaymentAccount) request.getAttribute("paymentAccount");
-    List<Transaction> transactionList = (List<Transaction>) request.getAttribute("transactionList"); 
+    List<Transaction> transactionList = (List<Transaction>) request.getAttribute("transactionList");
 %>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-56">
         <div class="flex text-2xl">
-            <a href="./index.jsp"
-               ><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
-                ></a>
+            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Account</div>
         </div>
 
@@ -119,11 +116,11 @@
                         </div>
                     </div>
                     <% }
-                      }
-                  }%>
+                            }
+                        }%>
                 </div>
             </div>
-            <div class="col-span-2 my-16 rounded-xl bg-white max-h-[400px]">
+            <div class="col-span-2 my-16 rounded-xl bg-white max-h-[450px]">
                 <div
                     class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl"
                     >
@@ -182,6 +179,20 @@
                         <span class="text-gray-500 text-sm">Registered Branch</span>
                         <span class="uppercase text-sm">NND Banking</span>
                     </div>
+                    <% if( !paymentAccount.getAccountStatus().equals("Default")) { %>
+                    <div class="flex justify-end items-center">
+                        <form action="account-detail" method="post">
+                            <input type="hidden" name="accountNumb" value="<%= paymentAccount.getAccountNumber() %>" />
+                            <div class="flex justify-center items-center">
+                                <button
+                                    class="p-4 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"
+                                    >
+                                    Set as Default Account
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <% } %>
                 </div>
             </div>
         </div>
