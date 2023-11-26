@@ -40,4 +40,9 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
+    public Reward getAllReward() {
+        
+        
+        return null;
+    }
 }
