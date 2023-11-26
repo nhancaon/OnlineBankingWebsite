@@ -6,7 +6,7 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-56">
         <div class="flex text-2xl">
-            <a href="./index.jsp"><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Transfer</div>
         </div>
 
@@ -33,7 +33,7 @@
             </ol>
         </nav>
         <div class="grid grid-cols-5 gap-8">
-            <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+            <div class="relative col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
                 <span class="text-[#2a6ebe]">Internal Transfer</span>
                 <div>
                     <c:if test="${not empty requestScope.successMessage}">
@@ -46,7 +46,6 @@
                 </div>
                 <form action="Transfer" method="post">
                     <input type="hidden" name="action" value="add">
-
                         <div class="relative mt-6">
                             <input
                                 type="text"
@@ -113,7 +112,16 @@
                             <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Continue</button>
                         </div>
                 </form>
-
+                <form action="" method="post" class="absolute top-44 right-24 z-[1000]">
+                    <div>
+                        <button
+                            type="text"
+                            class="ml-1 text-sm font-medium text-blue-600 md:ml-2 mb-1"
+                            >
+                            Check
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="col-span-2 my-16 p-8 rounded-xl bg-white">
                 <div class="w-full text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
