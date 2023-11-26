@@ -80,7 +80,7 @@ public class JpaDAO<E> {
     public List<E> findWithNamedQuery(String queryName) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createNamedQuery(queryName);
+        Query query = entityManager.createQuery(queryName);
         List<E> result = query.getResultList();
 
         entityManager.close();
