@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import java.security.SecureRandom;
+import java.util.Random;
 
 public class JpaDAO<E> {
 
@@ -174,13 +175,25 @@ public class JpaDAO<E> {
 
         StringBuilder stringBuilder = new StringBuilder(ID_LENGTH);
 
-        for (int i = 0;
-                i < ID_LENGTH;
-                i++) {
+        for (int i = 0; i < ID_LENGTH; i++) {
             int randomIndex = secureRandom.nextInt(CHARACTERS.length());
             stringBuilder.append(CHARACTERS.charAt(randomIndex));
         }
 
+        return stringBuilder.toString();
+    }
+
+    public static String generateUniqueOTP() {
+        String CHARACTERS = "0123456789";
+        int ID_LENGTH = 6;
+        SecureRandom secureRandom = new SecureRandom();
+
+        StringBuilder stringBuilder = new StringBuilder(ID_LENGTH);
+
+        for (int i = 0; i < ID_LENGTH; i++) {
+            int randomIndex = secureRandom.nextInt(CHARACTERS.length());
+            stringBuilder.append(CHARACTERS.charAt(randomIndex));
+        }
         return stringBuilder.toString();
     }
 

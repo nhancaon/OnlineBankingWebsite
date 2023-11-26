@@ -1,5 +1,6 @@
 package controller.Transfer;
 
+import DAO.JpaDAO;
 import DAO.PaymentAccountDAO;
 import DAO.TransactionDAO;
 import Exception.HandleException;
@@ -7,8 +8,13 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import business.*;
+import common.MailSender;
+import controller.User.SignupServlet;
+import jakarta.mail.MessagingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TransferServlet extends HttpServlet {
 
@@ -25,12 +31,33 @@ public class TransferServlet extends HttpServlet {
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
-            action = "return";  // default action
+            action = "return";
         }
         if (action.equals("check")) {
             url = "/profile.jsp";
-        } else // perform action and set URL to appropriate page
-        if (action.equals("return")) {
+        } else if (action.equals("sendMail")) {
+            HttpSession session = request.getSession();
+            Customer customer = (Customer) session.getAttribute("customer");
+            String OTP = "";
+            OTP = JpaDAO.generateUniqueOTP();
+            System.out.println(OTP);
+            String email = customer.getEmail();
+            String to = email;
+            String subject = "Your OTP";
+            String body = "Dear " + customer.getName() + ",\n\n"
+                    + "Your OTP is " + OTP + "\n\n"
+                    + "We have sent a 6-digit OTP to your email. Please check and enter the OTP for verification.\n\n"
+                    + "Note: The OTP is only valid for 2 minutes.\n\n"
+                    + "Sincerely,\n\n" + "NND Banking";
+            session.setAttribute("OTP", OTP);
+            request.setAttribute("show", "not");
+            url = "/confirm.jsp";
+            try {
+                MailSender.sendMail(to, subject, body);
+            } catch (MessagingException ex) {
+                Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equals("return")) {
             url = "/transfer.jsp";
         } else {
             HttpSession session = request.getSession();
@@ -58,15 +85,15 @@ public class TransferServlet extends HttpServlet {
                 session.setAttribute("Remark", Remark);
                 session.setAttribute("receiver", receiver);
                 session.setAttribute("time", time);
-                
+
                 try {
                     transactionDAO.checkTransaction(sender, receiver, Remark, Double.valueOf(Amount), time);
                     request.setAttribute("successMessage", "Transfer successfully");
-                    url="/confirm.jsp";
+                    url = "/confirm.jsp";
                 } catch (HandleException e) {
-                    url="/transfer.jsp";
+                    url = "/transfer.jsp";
                     request.setAttribute("errorMessage", e.getMessage());
-                    
+
                 }
             } else if (action.equals("confirm")) {
                 String Amount = (String) session.getAttribute("Amount");
@@ -74,14 +101,18 @@ public class TransferServlet extends HttpServlet {
                 LocalDateTime time = (LocalDateTime) session.getAttribute("time");
                 PaymentAccount sender = (PaymentAccount) session.getAttribute("sender");
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
+                String OTP = (String) session.getAttribute("OTP");
+                String enteredOTP = request.getParameter("enteredOTP");
                 int amount = Integer.parseInt(Amount);
                 try {
-                    transactionDAO.createTransaction(sender, receiver, Remark, amount, time);
-                    request.setAttribute("successMessage", "Transfer successfully");
+                    transactionDAO.createTransaction(sender, receiver, Remark, amount, time, OTP, enteredOTP);
+                    url = "/success.jsp";
                 } catch (HandleException e) {
                     request.setAttribute("errorMessage", e.getMessage());
+                    request.setAttribute("show", "not");
+                    url = "/confirm.jsp";
                 }
-                url = "/success.jsp";
+                
             }
         }
 

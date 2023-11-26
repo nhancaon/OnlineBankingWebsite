@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const createAccountDiv = document.getElementById("create-account");
+    const PINDiv = document.getElementById("close-pin");
 
     function handleKeyDown(event) {
         // Check if the pressed key is 'Esc' (key code 27)
         if (event.keyCode === 27) {
-            // Hide the create-account div
             createAccountDiv.classList.add("hidden");
         }
     }
@@ -33,11 +33,9 @@ const showCreateAccount = () => {
     const createAccountDiv = document.getElementById("create-account");
 
     createAccountDiv.classList.remove("hidden");
-
-
 };
 
 const closeCreateAccount = () => {
     const createAccountDiv = document.getElementById("create-account");
     createAccountDiv.classList.add('hidden');
-}
+};
