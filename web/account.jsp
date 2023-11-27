@@ -112,7 +112,7 @@
         </div>
         <div class="content">
             <form action="create-account" method="post">
-                <input type="hidden" name="action" value="create">
+                <input type="hidden" name="action" value="create"/>
                     <div class="relative mt-6">
                         <input
                             type="text"
