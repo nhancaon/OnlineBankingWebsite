@@ -71,11 +71,15 @@
                 <img src="./assets/loan.png" class="w-8 mb-2" />
                 Loan
             </a>
-            <a href="./reward.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
-               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                <img src="./assets/reward.png" class="w-8 mb-2" />
-                Reward
-            </a>
+            <form action="show-rewards" method="get" class="w-full">
+                <input type="hidden" name="action" value="allRewards">
+                <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                    <img src="./assets/reward.png" class="w-8 mb-2" />
+                    Reward
+                </button>
+            </form>
+
         </div>
     </div>
 
