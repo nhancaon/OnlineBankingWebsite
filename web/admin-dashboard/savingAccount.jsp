@@ -49,6 +49,121 @@
                 </c:forEach>
             </tbody>
         </table>
+        <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
+        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
+        onclick="showCreateAccount()">
+        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Saving Account</button>
+    </div>
+</div>
+
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+    <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="text-[#2a6ebe] flex justify-between">Add Saving Account
+            <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
+            onclick="closeCreateAccount()">
+            <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 gap-2 mb-10">           
+            <form action="savingAccount" method="post" class="mt-6">
+                <input type="hidden" name="action" value="add-savingAccount"/>
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        name="accountNumber"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="accountNumber"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Number</label
+                    >
+                </div> 
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="accountStatus"
+                        name="accountStatus"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="accountStatus"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Status</label
+                    >
+                </div> 
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="accountType"
+                        name="accountType"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="accountType"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Type</label
+                    >
+                </div> 
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="savingAmount"
+                        name="savingAmount"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="savingAmount"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Saving Amount</label
+                    >
+                </div> 
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="dateOpened"
+                        name="dateOpened"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="dateOpened"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Date Opened</label
+                    >
+                </div> 
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="dateClosed"
+                        name="dateClosed"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                        />
+                    <label
+                        for="dateClosed"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Date Closed</label
+                    >
+                </div> 
+                <div class="flex justify-end items-center">
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                    onclick="showCreateCustomAccount()">Add Saving Account</button>
+                </div> 
+            </form> 
+        </div>
     </div>
 </div>
 
