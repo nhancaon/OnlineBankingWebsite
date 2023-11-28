@@ -3,11 +3,16 @@ package DAO;
 import business.Customer;
 import Exception.HandleException;
 import common.HashGenerator;
+import common.MailSender;
+import controller.User.SignupServlet;
+import jakarta.mail.MessagingException;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer> {
 
@@ -51,7 +56,20 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
     public Customer findByCustomerId(String customerId) {
 
-        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.customerId = :customerId", "customerId", customerId);
+        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.customerId = :customerId",
+                "customerId", customerId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Customer findByEmail(String email) {
+
+        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.email = :email",
+                "email", email);
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -66,7 +84,8 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         parameters.put("email", email);
         parameters.put("citizenId", citizenId);
 
-        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.email = :email OR c.citizenId = :citizenId", parameters);
+        List<Customer> result = super.findWithNamedQuery(
+                "SELECT c FROM Customer c WHERE c.email = :email OR c.citizenId = :citizenId", parameters);
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -103,7 +122,8 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
                 throw new HandleException("The user with Email " + email
                         + " is already registered.", 409);
             } else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.", 409);
+                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.",
+                        409);
             }
         } else {
 
@@ -116,6 +136,19 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
             customerEntity.setCitizenId(citizenId);
             customerEntity.setAddress(address);
             customerEntity.setPinNumber(pinNumber);
+
+            String to = email;
+            String subject = "Welcome to NND Banking";
+            String body = "Dear " + fullName + ",\n\n"
+                    + "Thank you for creating an account with us. Your account is ready for use. "
+                    + "You can now start use our services at NND Banking.\n\n"
+                    + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
+                    + "Sincerely,\n\n" + "NND Banking";
+            try {
+                MailSender.sendMail(to, subject, body);
+            } catch (MessagingException ex) {
+                Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             create(customerEntity);
         }
 
@@ -148,5 +181,35 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
 
     }
+
+    public Customer RecoverPassword(String email) throws HandleException {
+
+        Customer existingCustomer = findByEmail(email);
+
+        if (existingCustomer == null) {
+            throw new HandleException("Cannot find user with email " + email, 409);
+        } else {
+
+            String recoveredPassword = generateUniqueId();
+            String encryptedNewPassword = HashGenerator.generateMD5(recoveredPassword);
+            existingCustomer.setPassword(encryptedNewPassword);
+            update(existingCustomer);
+            String to = email;
+            String subject = "Welcome to NND Banking";
+            String body = "Thank you for using our services. Here is your recover password " + recoveredPassword
+                    + "\nYou can use that password to access to our services at NND Banking.\n\n"
+                    + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
+                    + "Sincerely,\n\n" + "NND Banking";
+            try {
+                MailSender.sendMail(to, subject, body);
+            } catch (MessagingException ex) {
+                Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        return null;
+    }
+    
 
 }

@@ -1,5 +1,6 @@
 package DAO;
 
+import business.InterestRate;
 import business.PaymentAccount;
 import business.Transaction;
 import java.time.LocalDateTime;
@@ -37,6 +38,17 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
 
     public Transaction getTransactionById(int transactionId) {
         return find(Transaction.class, transactionId);
+    }
+
+    public List<Transaction> findAllTransaction() {
+
+        List<Transaction> result = super.findWithNamedQuery("SELECT i FROM Transaction i");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
     }
 
     public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount,
