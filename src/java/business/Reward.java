@@ -56,7 +56,7 @@ public class Reward implements Serializable {
         return rewardType;
     }
 
-    public void getRewardType(String rewardType) {
+    public void setRewardType(String rewardType) {
         this.rewardType = rewardType;
     }
 

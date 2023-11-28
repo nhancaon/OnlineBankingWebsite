@@ -1,5 +1,6 @@
 package DAO;
 
+import business.InterestRate;
 import business.Reward;
 import java.util.List;
 
@@ -30,6 +31,18 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
     public long count() {
 
         return super.countWithNamedQuery("");
+    }
+
+    public Reward addReward(String rewardName, int price, int costPoint, String type){
+
+        Reward rewardEntity = new Reward();
+        rewardEntity.setRewardId(generateUniqueId());
+        rewardEntity.setRewardName(rewardName);
+        rewardEntity.setCostPoint(costPoint);
+        rewardEntity.setPrice(price);   
+        rewardEntity.setRewardType(type);
+        create(rewardEntity);
+        return null;
     }
 
     public List<Reward> getAllRewards() {

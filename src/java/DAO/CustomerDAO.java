@@ -38,6 +38,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return super.countWithNamedQuery("");
     }
 
+
     public List<Customer> findAllCustomer() {
 
         List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c");
@@ -51,7 +52,8 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
     public Customer findByCustomerId(String customerId) {
 
-        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.customerId = :customerId", "customerId", customerId);
+        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.customerId = :customerId",
+                "customerId", customerId);
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -66,7 +68,8 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         parameters.put("email", email);
         parameters.put("citizenId", citizenId);
 
-        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.email = :email OR c.citizenId = :citizenId", parameters);
+        List<Customer> result = super.findWithNamedQuery(
+                "SELECT c FROM Customer c WHERE c.email = :email OR c.citizenId = :citizenId", parameters);
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -103,7 +106,8 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
                 throw new HandleException("The user with Email " + email
                         + " is already registered.", 409);
             } else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.", 409);
+                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.",
+                        409);
             }
         } else {
 

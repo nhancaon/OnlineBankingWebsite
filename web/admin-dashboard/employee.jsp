@@ -9,34 +9,35 @@
                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                 >
                 <tr>
-                    <th scope="col" class="px-6 py-3">Payment Account Id</th>
-                    <th scope="col" class="px-6 py-3">Account Number</th>
-                    <th scope="col" class="px-6 py-3">Account Type</th>
-                    <th scope="col" class="px-6 py-3">Current Balance</th>
-                    <th scope="col" class="px-6 py-3">Reward Point</th>
-                    <th scope="col" class="px-6 py-3">Date Opened</th>
-                    <th scope="col" class="px-6 py-3">Date Closed</th>
+                    <th scope="col" class="px-6 py-3">Employee Id</th>
+                    <th scope="col" class="px-6 py-3">Email</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Citizen Id</th>
+                    <th scope="col" class="px-6 py-3">Phone Number</th>
+                    <th scope="col" class="px-6 py-3">Date Of Birth</th>
+                    <th scope="col" class="px-6 py-3">Pin Number</th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="paymentAccount" items="${paymentAccounts}">
+                <c:forEach var="customer" items="${customers}">
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                         >
-                        <th scope="row"
+                        <th
+                            scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                             >
-                            ${paymentAccount.getPaymentAccountId()}
+                            ${customer.getCustomerId()}
                         </th>
-                        <td class="px-6 py-4">${paymentAccount.getAccountNumber()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getAccountType()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getCurrentBalence()} VND</td>
-                        <td class="px-6 py-4">${paymentAccount.getRewardPoint()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getDateOpened()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getDateClosed()}</td>
+                        <td class="px-6 py-4">${customer.getEmail()}</td>
+                        <td class="px-6 py-4">${customer.getName()}</td>
+                        <td class="px-6 py-4">${customer.getCitizenId()}</td>
+                        <td class="px-6 py-4">${customer.getPhoneNumber()}</td>
+                        <td class="px-6 py-4">${customer.getDateofBirth()}</td>
+                        <td class="px-6 py-4">${customer.getPinNumber()}</td>
                         <td class="px-6 py-4 text-right">
                             <a
                                 href="#"
@@ -51,120 +52,123 @@
         <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
         focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
         onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
+        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Customer</button>
     </div>
 </div>
 
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
-        <div class="text-[#2a6ebe] flex justify-between">Add Payment Account
+        <div class="text-[#2a6ebe] flex justify-between">Add Customer
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
             onclick="closeCreateAccount()">
             <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
+
         <div class="grid grid-cols-1 gap-2 mb-10">           
-            <form action="paymentAccount" method="post" class="mt-6">
-                <input type="hidden" name="action" value="add-paymentAccount"/>
+            <form action="customer" method="post" class="mt-6">
+                <input type="hidden" name="action" value="add-customer"/>
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="accountNumber"
-                        name="accountNumber"
+                        id="email"
+                        name="email"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="accountNumber"
+                        for="email"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Number</label
+                        >Email</label
                     >
                 </div> 
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="accountType"
-                        name="accountType"
+                        id="name"
+                        name="name"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="accountType"
+                        for="name"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Type</label
+                        >Name</label
                     >
                 </div> 
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="currentBalance"
-                        name="currentBalance"
+                        id="citizenid"
+                        name="citizenid"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="currentBalance"
+                        for="citizenid"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Current Balance</label
+                        >Citizen ID</label
                     >
                 </div> 
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="rewardPoint"
-                        name="rewardPoint"
+                        id="phoneNumber"
+                        name="phoneNumber"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="rewardPoint"
+                        for="phoneNumber"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Reward Point</label
+                        >Phone Number</label
                     >
                 </div> 
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="dateOpened"
-                        name="dateOpened"
+                        id="dateofbirth"
+                        name="dateofbirth"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="dateOpened"
+                        for="dateofbirth"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Opened</label
+                        >Date of Birth</label
                     >
                 </div> 
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="dateClosed"
-                        name="dateClosed"
+                        id="pinnumber"
+                        name="pinnumber"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
                     <label
-                        for="dateClosed"
+                        for="pinnumber"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Closed</label
+                        >PIN Number</label
                     >
                 </div> 
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                    onclick="showCreateCustomAccount()">Add Payment Account</button>
+                    onclick="showCreateCustomAccount()">Add Employee</button>
                 </div> 
-            </form> 
+            </form>
+    
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
