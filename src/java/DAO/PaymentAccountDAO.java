@@ -50,6 +50,8 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
             return result;
         }
 
+        return null;
+    }
 
     public PaymentAccount setDefaultPaymentAccount(String customerId, String accountNumber) {
 
