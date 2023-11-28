@@ -164,8 +164,7 @@
                     >
                 </div> 
                 <div class="flex justify-end items-center">
-                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                    onclick="showCreateCustomAccount()">Create Custom Account</button>
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Custom Account</button>
                 </div> 
             </form>
     

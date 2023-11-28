@@ -3,14 +3,20 @@
 <%@ page import="java.util.List" %>
 <%@ page import="business.InterestRate"%>
 <%@ page import="business.SavingAccount"%>
-<%@ page import="DAO.InterestRateDAO"%> 
+<%@ page import="DAO.InterestRateDAO"%>
+<%@ page import="DAO.PaymentAccountDAO"%> 
+<%@ page import="business.PaymentAccount"%> 
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
 <%  InterestRateDAO interestRateDAO = new InterestRateDAO();
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
+    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    
     List<InterestRate> interestRates = interestRateDAO.listAll();
     request.setAttribute("interestRates", interestRates);
     String customerId = customer.getCustomerId();
+    List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customerId);
+    request.setAttribute("paymentAccounts", paymentAccounts);
 %>                   
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
@@ -66,24 +72,24 @@
                 <c:if test="${not empty requestScope.successMessage}">
                     <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
                         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                         </svg>
                         <span class="sr-only">Info</span>
                         <div>
-                          <span class="font-medium">${requestScope.successMessage}</span>
+                            <span class="font-medium">${requestScope.successMessage}</span>
                         </div>
-                      </div>
+                    </div>
                 </c:if>
 
                 <c:if test="${not empty requestScope.errorMessage}">
                     <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
-                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                    </svg>
-                    <span class="sr-only">Info</span>
-                    <div>
-                        <span class="font-medium">${requestScope.errorMessage}</span>
-                    </div>
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                            <span class="font-medium">${requestScope.errorMessage}</span>
+                        </div>
                     </div>
                 </c:if>
             </div>
@@ -134,22 +140,18 @@
         <div class="content">
             <form action="create-saving-account" method="post">
                 <input type="hidden" name="action" value="create" />
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="savingAccountNumber"
-                        name="acNumber"
-                        class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "
-                        pattern="\d{9}"
-                        title="Please enter a 9-digit number."
-                        maxlength="9"
-                        required
-                        />
+                <div class="relative mt-6" >
+                    <select name="acNumber" id="savingAccountNumber" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <c:forEach var="paymentAccount" items="${paymentAccounts}">
+                            <option value="${paymentAccount.getAccountNumber()}">
+                                ${paymentAccount.getAccountNumber()}
+                            </option>
+                        </c:forEach>
+                    </select>
                     <label
                         for="savingAccountNumber"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
-                        >Saving Account Number (9 digits)</label
+                        >Saving Account Number</label
                     >
                 </div>
                 <div class="relative mt-6">
@@ -171,10 +173,10 @@
                     >
                 </div>
                 <div class="relative mt-6" >
-					<select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-						<c:forEach var="rate" items="${interestRates}">
+                    <select name="typeOfSaving" id="typeOfSaving" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <c:forEach var="rate" items="${interestRates}">
                             <option value="${rate.savingTitle}">
-                                ${rate.savingTitle}
+                                ${rate.savingTitle} | ${rate.interestRate}% Interest
                             </option>
                         </c:forEach>
                     </select>

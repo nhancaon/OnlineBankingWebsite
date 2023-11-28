@@ -35,10 +35,10 @@ const showCreateAccount = () => {
     createAccountDiv.classList.remove("hidden");
 };
 
-const showCreateCustomAccount = () => {
-    const createCustomAccountDiv = document.getElementById("create-custom-account");
+const showRecoveryPassowrd = () => {
+    const forgotPasswordDiv = document.getElementById("forgot-password");
 
-    createCustomAccountDiv.classList.remove("hidden");
+    forgotPasswordDiv.classList.remove("hidden");
 };
 
 const closeCreateAccount = () => {

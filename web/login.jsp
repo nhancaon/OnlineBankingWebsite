@@ -70,11 +70,6 @@ include file="/includes/header.jsp" %>
                 <label for="remember" class="text-gray-500">Remember me</label>
               </div>
             </div>
-            <a
-              href="#"
-              class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >Forgot password?</a
-            >
           </div>
           <button
             type="submit"
@@ -91,6 +86,10 @@ include file="/includes/header.jsp" %>
             >
           </p>
         </form>
+        <button
+        onclick="showCreateAccount()"
+        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+        >Forgot password?</button>
       </div>
       <div
         class="bg-gradient-to-r from-[#00bfae] to-[#0066ad] h-full px-10 py-24 rounded-r-lg"
@@ -131,6 +130,48 @@ include file="/includes/header.jsp" %>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+  <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+      <div class="text-[#2a6ebe] flex justify-between">Recover Password
+          <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeCreateAccount()">
+              <i class="fa-solid fa-xmark"></i>
+          </button>
+      </div>
+      <div class="grid grid-cols-1 gap-2 my-10">
+         
+          
+          <form action="recover-password" method="post" class="">
+              <div class="grid text-xs gap-2">
+                  <span class="text-gray-500">Please input your Email to recover Password</span>
+              </div>
+              <div class="relative mt-6">
+                  <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                      />
+                  <label
+                      for="email"
+                      class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                      >Email</label
+                  >
+              </div> 
+              <div class="flex justify-end items-center">
+                  <button class="mt-8 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                 ">Send</button>
+              </div> 
+          </form>
+  
+      </div>
+  
+        
+  
   </div>
 </div>
 

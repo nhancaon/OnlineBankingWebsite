@@ -93,48 +93,47 @@ public class LoanLendingDAO extends JpaDAO<LoanLending> implements GenericDAO<Lo
 
         LoanLending loanLendingEntity = new LoanLending();
         LoanLending existingLoanLending = findExistingLoanLending(customer.getCustomerId(), accountNumber);
+        PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+        PaymentAccount loanNumber = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
         if (existingLoanLending != null) {
             if (existingLoanLending.getAccountNumber().equals(accountNumber)) {
-                throw new HandleException("The Loan Lending Account " + accountNumber + " is already existed.", 409);
-            } else if (amount < 1000000) {
-                throw new HandleException("The Loan Lending need to be more than 1000000 VND", 409);
-            } else if (accountNumber == null || accountNumber.isEmpty() || accountType == null || accountType.isEmpty()) {
-                throw new HandleException("Please fill in the form", 409);
-            } else if (interestRate == null) {
-                throw new HandleException("Something went wrong", 409);
+                throw new HandleException("Plese kindly arrange for the immediate repayment of " + accountNumber + " loan amount.", 409);
             }
         } else {
-            PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-            PaymentAccount defaultAc = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
-            LocalDate time = LocalDate.now();
 
-            loanLendingEntity.setLoanLendingId(generateUniqueId());
-            loanLendingEntity.setAccountNumber(accountNumber);
-            loanLendingEntity.setAccountStatus("In progress");
-            loanLendingEntity.setAccountType(accountType);
-            loanLendingEntity.setDateOpened(time);
-            loanLendingEntity.setDateClosed(time.plusMonths(term));            
-            loanLendingEntity.setLoanAmount(amount);
+            if (amount > loanNumber.getCurrentBalence() * 30 / 100) {
+                throw new HandleException("The Loan Lending amount must be equal to or less than 30% of your current balance", 409);
+            } else {
+                LocalDate time = LocalDate.now();
 
-            //Total loan must pay
-            Double monthYear = (term * 1.0 / 12.0);
-            Double interest = monthYear * (interestRate.getInterestRate() / 100.0);
-            Double totalPay = amount * 1.0 + amount * interest * monthYear;
-            loanLendingEntity.setTotalLoanAmount(totalPay);
+                loanLendingEntity.setLoanLendingId(generateUniqueId());
+                loanLendingEntity.setAccountNumber(accountNumber);
+                loanLendingEntity.setAccountStatus("In progress");
+                loanLendingEntity.setAccountType(accountType);
+                loanLendingEntity.setDateOpened(time);
+                loanLendingEntity.setDateClosed(time.plusMonths(term));
+                loanLendingEntity.setLoanAmount(amount);
 
-            // Monthly pay
+                //Total loan must pay
+                Double monthYear = (term * 1.0 / 12.0);
+                Double interest = monthYear * (interestRate.getInterestRate() / 100.0);
+                Double totalPay = amount * 1.0 + amount * interest * monthYear;
+                loanLendingEntity.setTotalLoanAmount(totalPay);
+
+                // Monthly pay
                 // Using DecimalFormat
-            DecimalFormat df = new DecimalFormat("#.##");
-            String formattedNumber = df.format(totalPay / (term*1.0));
-            Double roundedNumber = Double.parseDouble(formattedNumber);
-            loanLendingEntity.setMonthlyPay(roundedNumber);
+                DecimalFormat df = new DecimalFormat("#.##");
+                String formattedNumber = df.format(totalPay / (term * 1.0));
+                Double roundedNumber = Double.parseDouble(formattedNumber);
+                loanLendingEntity.setMonthlyPay(roundedNumber);
 
-            loanLendingEntity.setCustomer(customer);
-            loanLendingEntity.setInterestRate(interestRate);
+                loanLendingEntity.setCustomer(customer);
+                loanLendingEntity.setInterestRate(interestRate);
 
-            defaultAc.setCurrentBalence(defaultAc.getCurrentBalence() + amount);
-            paymentAccountDAO.update(defaultAc);
-            create(loanLendingEntity);
+                loanNumber.setCurrentBalence(loanNumber.getCurrentBalence() + amount);
+                paymentAccountDAO.update(loanNumber);
+                create(loanLendingEntity);
+            }
         }
         return null;
     }
