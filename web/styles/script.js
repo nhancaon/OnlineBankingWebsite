@@ -35,6 +35,12 @@ const showCreateAccount = () => {
     createAccountDiv.classList.remove("hidden");
 };
 
+const showRecoveryPassowrd = () => {
+    const forgotPasswordDiv = document.getElementById("forgot-password");
+
+    forgotPasswordDiv.classList.remove("hidden");
+};
+
 const closeCreateAccount = () => {
     const createAccountDiv = document.getElementById("create-account");
     createAccountDiv.classList.add('hidden');

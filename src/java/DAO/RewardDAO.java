@@ -1,15 +1,7 @@
 package DAO;
 
 import business.Reward;
-import Exception.HandleException;
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 
 public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
 
@@ -40,9 +32,32 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
-    public Reward getAllReward() {
-        
+    public List<Reward> getAllRewards() {
+
+        List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
+
+    }
+
+    public List<Reward> getRewardsByType(String rewardType) {
+
+        List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r WHERE r.rewardType = :rewardType", "rewardType", rewardType);
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
+    }
+    
+    public Reward redeemReward() {
         
         return null;
     }
+
 }
