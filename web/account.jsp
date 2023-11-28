@@ -41,12 +41,29 @@
                 <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
             </div>
-            <div>
+            <div class="my-2 w-1/2">
                 <c:if test="${not empty requestScope.successMessage}">
-                    <p style="color: green;">${requestScope.successMessage}</p>
+                    <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                          <span class="font-medium">${requestScope.successMessage}</span>
+                        </div>
+                      </div>
                 </c:if>
+
                 <c:if test="${not empty requestScope.errorMessage}">
-                    <p style="color: red;">${requestScope.errorMessage}</p>
+                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        <span class="font-medium">${requestScope.errorMessage}</span>
+                    </div>
+                    </div>
                 </c:if>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
@@ -110,32 +127,52 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="content">
+        <div class="grid grid-cols-1 gap-2 my-10">
+           
             <form action="create-account" method="post">
-                <input type="hidden" name="action" value="create">
-                    <div class="relative mt-6">
-                        <input
-                            type="text"
-                            id="paymentAccountNumber"
-                            name="acNumber"
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" "
-                            pattern="\d{10}"
-                            title="Please enter a 10-digit number."
-                            maxlength="10" 
-                            required
-                            />
-                        <label
-                            for="paymentAccountNumber"
-                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                            >Payment Account Number (10 digits)</label
-                        >
-                    </div>
-                    <div class="flex justify-end items-center mt-10">
-                        <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Continue</button>
-                    </div>
+                <div class="grid text-xs gap-2">
+                    <span class="text-gray-500">You can create a random account</span>
+                </div>
+                <input type="hidden" name="action" value="createRandom"/>
+                <div class="flex items-center">
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Random Account</button>
+                </div>
             </form>
+            
+            <form action="create-account" method="post" class="mt-6">
+                <div class="grid text-xs gap-2">
+                    <span class="text-gray-500">Or you can customize your account number</span>
+                </div>
+                <input type="hidden" name="action" value="createCustom"/>
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="paymentAccountNumber"
+                        name="acNumber"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                        value="89"
+                        pattern="\d{10}"
+                        title="Please enter a 10-digit number."
+                        maxlength="10" 
+                        required
+                        />
+                    <label
+                        for="paymentAccountNumber"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Custom Account Number (10 digits)</label
+                    >
+                </div> 
+                <div class="flex justify-end items-center">
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                    onclick="showCreateCustomAccount()">Create Custom Account</button>
+                </div> 
+            </form>
+    
         </div>
+    
+          
+    
     </div>
 </div>
 
