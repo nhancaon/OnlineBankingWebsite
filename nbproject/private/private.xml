@@ -3,10 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/University/Web/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
-            <file>file:/D:/University/Web/online-banking-website/web/confirm.jsp</file>
-=======
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/changePassword.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/controller/PaymentAccount/ShowAccountServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/loanDetail.jsp</file>
@@ -72,7 +68,6 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/web/account.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/FinalProject/online-banking-website/src/java/DAO/CustomerDAO.java</file>
->>>>>>> ae7b454e21979e00fee8f7fc1de1af7b2b0a377d
         </group>
     </open-files>
 </project-private>

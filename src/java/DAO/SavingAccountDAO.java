@@ -56,12 +56,12 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public List<SavingAccount> findSavingAccountByCusId(String customerId) {
+    public List<SavingAccount> findSavingAccountByPayId(String paymentAccountId) {
 
         List<SavingAccount> savingAccountList = super.findWithNamedQuery(
-                "SELECT sa FROM SavingAccount sa WHERE sa.customer.customerId = :customerId",
-                "customerId",
-                customerId
+                "SELECT sa FROM SavingAccount sa WHERE sa.paymentAccount.paymentAccountId = :paymentAccountId",
+                "paymentAccountId",
+                paymentAccountId
         );
         if (!savingAccountList.isEmpty()) {
             return savingAccountList;
@@ -70,14 +70,13 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount findExistingSavingAccount(String customerId, String accountNumber) {
+    public SavingAccount findExistingSavingAccount(String accountNumber) {
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("customerId", customerId);
         parameters.put("accountNumber", accountNumber);
 
         List<SavingAccount> savingAccountList = super.findWithNamedQuery(
-                "SELECT sa FROM SavingAccount sa WHERE sa.customer.customerId = :customerId AND sa.accountNumber = :accountNumber",
+                "SELECT sa FROM SavingAccount sa WHERE sa.paymentAccount.paymentAccountId = :accountNumber",
                 parameters
         );
 
@@ -92,14 +91,14 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
 
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         SavingAccount savingAccountEntity = new SavingAccount();
-        SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
-        PaymentAccount savingAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
-        if (existingSavingAccount != null) {
-            if (existingSavingAccount.getAccountNumber().equals(accountNumber)) {
-                throw new HandleException("The Saving Account " + accountNumber
-                        + " is already existed.", 409);
-            }
-        } else {
+//        SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
+        PaymentAccount paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
+//        if (existingSavingAccount != null) {
+//            if (existingSavingAccount.getAccountNumber().equals(accountNumber)) {
+//                throw new HandleException("The Saving Account " + accountNumber
+//                        + " is already existed.", 409);
+//            }
+//        } else {
 
             if (amount < 1000000) {
                 throw new HandleException("The Saving Amount need to be more than 1000000 VND", 409);
@@ -107,7 +106,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
                 throw new HandleException("Please fill in the form", 409);
             } else if (interestRate == null) {
                 throw new HandleException("Something went wrong", 409);
-            } else if (amount > savingAccount.getCurrentBalence()) {
+            } else if (amount > paymentAccount.getCurrentBalence()) {
                 throw new HandleException("The Saving Amount must be equal to or larger than your Current Balance", 409);
             } else {
                 LocalDate time = LocalDate.now();
@@ -119,13 +118,13 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
                 savingAccountEntity.setDateClosed(time.plusMonths(term));
                 savingAccountEntity.setMinBalance(1000000);
                 savingAccountEntity.setSavingAmount(amount);
-                savingAccountEntity.setCustomer(customer);
+                savingAccountEntity.setPaymentAccount(paymentAccount);
                 savingAccountEntity.setInterestRate(interestRate);
-                savingAccount.setCurrentBalence(savingAccount.getCurrentBalence() - amount);
-                paymentAccountDAO.update(savingAccount);
+                paymentAccount.setCurrentBalence(paymentAccount.getCurrentBalence() - amount);
+                paymentAccountDAO.update(paymentAccount);
                 create(savingAccountEntity);
             }
-        }
+//        }
         return null;
     }
 
@@ -145,15 +144,15 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         SavingAccount savingAccountEntity = savingAccount;
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
-        PaymentAccount defaultAc = paymentAccountDAO.findDefaultPaymentAccount(savingAccount.getCustomer().getCustomerId());
+        PaymentAccount paymentAc = savingAccountEntity.getPaymentAccount();
         if (savingAccount.getDateClosed().compareTo(LocalDate.now()) > 0) {
             throw new HandleException("You have not yet reached the withdrawal date.", 409);
-        } else if (defaultAc == null) {
+        } else if (paymentAc == null) {
             throw new HandleException("Please add your default payment account.", 409);
         } else {
             savingAccountEntity.setAccountStatus("Inactive");
-            defaultAc.setCurrentBalence(defaultAc.getCurrentBalence() + expectedAmount);
-            paymentAccountDAO.update(defaultAc);
+            paymentAc.setCurrentBalence(paymentAc.getCurrentBalence() + expectedAmount);
+            paymentAccountDAO.update(paymentAc);
             savingAccountDAO.update(savingAccountEntity);
         }
     }

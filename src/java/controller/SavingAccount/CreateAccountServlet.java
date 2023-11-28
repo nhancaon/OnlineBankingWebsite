@@ -1,6 +1,7 @@
 package controller.SavingAccount;
 
 import DAO.InterestRateDAO;
+import DAO.PaymentAccountDAO;
 import business.SavingAccount;
 import business.Customer;
 import business.InterestRate;
@@ -43,7 +44,8 @@ public class CreateAccountServlet extends HttpServlet {
             try {
                 savingAccountDAO.CreateSavingAccount(customer, accountNumber, interestRate.getSavingTitle(), interestRate.getTerm(), Integer.parseInt(amount), interestRate);
                 request.setAttribute("successMessage", "Your saving account has been created successfully");
-                List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
+                PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+                List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(paymentAccountDAO.findDefaultPaymentAccount(customerId).getPaymentAccountId());
                 request.setAttribute("savingAccounts", savingAccounts);
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());

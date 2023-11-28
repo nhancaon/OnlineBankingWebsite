@@ -129,7 +129,7 @@
                                             <div
                                                 class="flex flex-col justify-center items-center ml-8 text-white"
                                                 >
-                                                <span class="uppercase text-sm">${savingAccount.customer.name}</span>
+                                                <span class="uppercase text-sm">${savingAccount.paymentAccount.customer.name}</span>
                                                 <span class="uppercase text-sm"
                                                       >${savingAccount.accountNumber}</span
                                                 >

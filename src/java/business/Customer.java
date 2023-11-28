@@ -22,9 +22,6 @@ import javax.persistence.Table;
 public class Customer extends User implements Serializable {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<SavingAccount> savingAccounts;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Beneficiary> beneficiarys;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
@@ -54,14 +51,6 @@ public class Customer extends User implements Serializable {
         this.loanLendings = loans;
     }
 
-    public List<SavingAccount> getSavingAccounts() {
-        return savingAccounts;
-    }
-
-    public void setSavingAccounts(List<SavingAccount> savingAccounts) {
-        this.savingAccounts = savingAccounts;
-    }
-
     public List<Beneficiary> getBeneficiarys() {
         return beneficiarys;
     }
@@ -85,5 +74,4 @@ public class Customer extends User implements Serializable {
     public void setPinNumber(int pinNumber) {
         this.pinNumber = pinNumber;
     }
-
 }
