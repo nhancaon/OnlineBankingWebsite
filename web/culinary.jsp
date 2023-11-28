@@ -1,7 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ page
-contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@ include
-file="/includes/header.jsp" %> <%@ include file="/includes/checkLogin.jsp" %>
-
+<%@page import="business.PaymentAccount"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ include file="/includes/header.jsp"%> 
+<%@ include file="/includes/checkLogin.jsp" %> 
+<% PaymentAccount
+defaultPaymentAccount = (PaymentAccount)
+session.getAttribute("defaultPaymentAccount"); %>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
   <div class="py-16 mx-56">
     <div class="flex text-2xl">
@@ -74,12 +78,12 @@ file="/includes/header.jsp" %> <%@ include file="/includes/checkLogin.jsp" %>
     </nav>
 
     <div class="">
-            <div class="grid my-16 py-8 px-20 rounded-xl bg-white">
+      <div class="grid my-16 py-8 px-20 rounded-xl bg-white">
         <div
           class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-xl"
         >
           <div
-            class="flex flex-col justify-center items-center ml-8 text-white"
+            class="flex flex-col justify-center items-center space-y-2 ml-8 text-white"
           >
             <span class="uppercase text-sm"><%= customer.getName()%></span>
             <span class="uppercase text-sm"
@@ -87,8 +91,13 @@ file="/includes/header.jsp" %> <%@ include file="/includes/checkLogin.jsp" %>
             >
           </div>
           <div
-            class="flex flex-col justify-center items-center ml-8 text-white"
+            class="flex flex-col justify-center items-center space-y-2 ml-8 text-white"
           >
+            <span class="uppercase text-sm"
+              >Available Balance: <%=
+              formatCurrency(defaultPaymentAccount.getCurrentBalence())%>
+              VND</span
+            >
             <span class="uppercase text-sm"
               >Reward Point: ${defaultPaymentAccount.getRewardPoint()} RWP</span
             >
@@ -135,7 +144,9 @@ file="/includes/header.jsp" %> <%@ include file="/includes/checkLogin.jsp" %>
                     >
                   </div>
                 </div>
-                <form class="flex items-end justify-end">
+                <form action="redeem" method="post" class="flex items-end justify-end">
+                  <input type="hidden" name="rewardId" value="${culinaryReward.getRewardId()}" />     
+                  <input type="hidden" name="currentPage" value="culinary" />
                   <button
                     class="px-4 py-2 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"
                   >

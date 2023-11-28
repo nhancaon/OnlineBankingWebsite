@@ -35,6 +35,12 @@ const showCreateAccount = () => {
     createAccountDiv.classList.remove("hidden");
 };
 
+const showCreateCustomAccount = () => {
+    const createCustomAccountDiv = document.getElementById("create-custom-account");
+
+    createCustomAccountDiv.classList.remove("hidden");
+};
+
 const closeCreateAccount = () => {
     const createAccountDiv = document.getElementById("create-account");
     createAccountDiv.classList.add('hidden');

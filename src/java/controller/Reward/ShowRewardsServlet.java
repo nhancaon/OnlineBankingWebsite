@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.Reward;
 
 import java.io.IOException;
@@ -15,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "ShowRewardsServlet", urlPatterns = {"/show-rewards"})
+@WebServlet("/show-rewards")
 public class ShowRewardsServlet extends HttpServlet {
 
     RewardDAO rewardDAO = new RewardDAO();
@@ -40,7 +36,7 @@ public class ShowRewardsServlet extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
         PaymentAccount defaultPaymentAccount = paymentAccountDAO.findDefaultPaymentAccount(customerId);
-        request.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
+        session.setAttribute("defaultPaymentAccount", defaultPaymentAccount);
 
         String url = "/";
         switch (action) {
@@ -66,25 +62,28 @@ public class ShowRewardsServlet extends HttpServlet {
     protected void showAllRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+         HttpSession session = request.getSession();
         List<Reward> allRewards = rewardDAO.getAllRewards();
-        request.setAttribute("allRewards", allRewards);
+        session.setAttribute("allRewards", allRewards);
 
     }
 
     protected void showShoppingRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+         HttpSession session = request.getSession();
         String rewardType = "Shopping";
         List<Reward> shoppingRewards = rewardDAO.getRewardsByType(rewardType);
-        request.setAttribute("shoppingRewards", shoppingRewards);
+        session.setAttribute("shoppingRewards", shoppingRewards);
     }
 
     protected void showCulinaryRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+         HttpSession session = request.getSession();
         String rewardType = "Culinary";
         List<Reward> culinaryRewards = rewardDAO.getRewardsByType(rewardType);
-        request.setAttribute("culinaryRewards", culinaryRewards);
+        session.setAttribute("culinaryRewards", culinaryRewards);
     }
 
 }

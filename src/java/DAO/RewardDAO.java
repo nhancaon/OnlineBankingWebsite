@@ -54,5 +54,10 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
 
         return null;
     }
+    
+    public Reward redeemReward() {
+        
+        return null;
+    }
 
 }

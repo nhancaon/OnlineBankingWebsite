@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
             Customer customer = customerDAO.checkLogin(email, password);
             if (customer == null) {
                 url = "/login.jsp";
+                request.setAttribute("errorMessage", "Your email or password is incorrect.");
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
