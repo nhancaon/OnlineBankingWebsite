@@ -110,32 +110,52 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="content">
+        <div class="grid grid-cols-1 gap-2 my-10">
+           
             <form action="create-account" method="post">
-                <input type="hidden" name="action" value="create"/>
-                    <div class="relative mt-6">
-                        <input
-                            type="text"
-                            id="paymentAccountNumber"
-                            name="acNumber"
-                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" "
-                            pattern="\d{10}"
-                            title="Please enter a 10-digit number."
-                            maxlength="10" 
-                            required
-                            />
-                        <label
-                            for="paymentAccountNumber"
-                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                            >Payment Account Number (10 digits)</label
-                        >
-                    </div>
-                    <div class="flex justify-end items-center mt-10">
-                        <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Continue</button>
-                    </div>
+                <div class="grid text-xs gap-2">
+                    <span class="text-gray-500">You can create a random account</span>
+                </div>
+                <input type="hidden" name="action" value="createRandom"/>
+                <div class="flex items-center">
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Random Account</button>
+                </div>
             </form>
+            
+            <form action="create-account" method="post" class="mt-6">
+                <div class="grid text-xs gap-2">
+                    <span class="text-gray-500">Or you can customize your account number</span>
+                </div>
+                <input type="hidden" name="action" value="createCustom"/>
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="paymentAccountNumber"
+                        name="acNumber"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                        value="89"
+                        pattern="\d{10}"
+                        title="Please enter a 10-digit number."
+                        maxlength="10" 
+                        required
+                        />
+                    <label
+                        for="paymentAccountNumber"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Custom Account Number (10 digits)</label
+                    >
+                </div> 
+                <div class="flex justify-end items-center">
+                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                    onclick="showCreateCustomAccount()">Create Custom Account</button>
+                </div> 
+            </form>
+    
         </div>
+    
+          
+    
     </div>
 </div>
 
