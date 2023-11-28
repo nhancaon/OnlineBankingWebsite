@@ -120,8 +120,10 @@ session.getAttribute("defaultPaymentAccount"); %>
               </div>
               <div class="grid grid-cols-3 p-4 rounded-md shadow-md">
                 <div class="col-span-2">
-                  <span class="text-lg font-extrabold"
-                    >${reward.getRewardName()}</span
+                  <div class="grid grid-cols-1 text-2xl font-extrabold">
+                      <span>${reward.getRewardName()}</span>
+                      <span class="text-sm font-light">Price: ${reward.price} VND</span>
+                  </div
                   >
                   <div class="flex flex-row mt-3">
                     <div class="flex -space-x-2 rtl:space-x-reverse">
