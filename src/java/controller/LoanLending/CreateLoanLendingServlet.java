@@ -39,7 +39,7 @@ public class CreateLoanLendingServlet extends HttpServlet {
             String loanTitle = request.getParameter("typeOfLoan");
             InterestRate interestRate = interestRateDAO.findByLoanTitle(loanTitle);
 
-            System.out.println("The value of amount is: " + amount);
+            
 
             try {
                 loanLendingDAO.CreateLoanLending(customer, accountNumber, interestRate.getLoanTitle(), interestRate.getTerm(), Integer.parseInt(amount), interestRate);
