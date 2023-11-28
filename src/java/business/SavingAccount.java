@@ -1,7 +1,6 @@
 package business;
 
 import java.io.Serializable;
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,8 @@ import javax.persistence.Table;
 public class SavingAccount extends Account implements Serializable {
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "cus_id", referencedColumnName = "customerId")
-    private Customer customer;
+    @JoinColumn(name = "payAc_id", referencedColumnName = "paymentAccountId")
+    private PaymentAccount paymentAccount;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "interest_rate_id", referencedColumnName = "interestId")
@@ -29,14 +28,6 @@ public class SavingAccount extends Account implements Serializable {
     private int minBalance;
     @Column(nullable = false)
     private int savingAmount;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public String getSavingAccountId() {
         return savingAccountId;
@@ -70,4 +61,11 @@ public class SavingAccount extends Account implements Serializable {
         this.interestRate = interestRate;
     }
 
+    public PaymentAccount getPaymentAccount() {
+        return paymentAccount;
+    }
+
+    public void setPaymentAccount(PaymentAccount paymentAccount) {
+        this.paymentAccount = paymentAccount;
+    }
 }

@@ -3,6 +3,7 @@ package DAO;
 import Exception.HandleException;
 import business.Customer;
 import business.PaymentAccount;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,8 +74,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         parameters.put("accountStatus", accountStatus);
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
                 "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId AND pa.accountStatus = :accountStatus",
-                parameters
-        );
+                parameters);
 
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList.get(0);
@@ -88,8 +88,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
                 "SELECT pa FROM PaymentAccount pa WHERE pa.customer.customerId = :customerId ORDER BY pa.accountStatus DESC",
                 "customerId",
-                customerId
-        );
+                customerId);
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList;
         }
@@ -101,8 +100,7 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
         List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
                 "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber",
-                "accountNumber", accountNumber
-        );
+                "accountNumber", accountNumber);
 
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList.get(0);
@@ -110,7 +108,6 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
         return null;
     }
-
 
     public PaymentAccount CreatePaymentAccount(Customer customer, String accountNumber) throws HandleException {
 

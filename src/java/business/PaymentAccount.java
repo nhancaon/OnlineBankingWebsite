@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +36,9 @@ public class PaymentAccount extends Account implements Serializable {
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.DETACH)
     private List<Transaction> receivedTransactions;
+
+    @OneToMany(mappedBy = "paymentAccount", cascade = CascadeType.ALL)
+    private List<SavingAccount> savingAccounts;
 
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
@@ -107,6 +109,14 @@ public class PaymentAccount extends Account implements Serializable {
 
     public void setReceivedTransactions(List<Transaction> receivedTransactions) {
         this.receivedTransactions = receivedTransactions;
+    }
+
+    public List<SavingAccount> getSavingAccounts() {
+        return savingAccounts;
+    }
+
+    public void setSavingAccounts(List<SavingAccount> savingAccounts) {
+        this.savingAccounts = savingAccounts;
     }
 
 }
