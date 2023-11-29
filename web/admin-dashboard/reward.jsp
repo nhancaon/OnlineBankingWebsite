@@ -47,11 +47,13 @@
         </table>
    
     </div>
-    <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-    focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
-    onclick="showCreateAccount()">
-    <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Reward</button>
 </div>
+    <div class="flex justify-end my-10 mx-3">
+        <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
+        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
+        onclick="showCreateAccount()">
+        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Reward</button>
+    </div>
 
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
