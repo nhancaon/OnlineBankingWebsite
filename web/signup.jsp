@@ -3,9 +3,9 @@
 <%@ include file="/includes/header.jsp" %>
 
 
-<div class="bg-[#f0f1f1] grid items-center py-20 mt-20 px-56">
+<div class="bg-[#f0f1f1] grid items-center py-20 mt-20 md:px-56">
     <div>
-        <div class="grid grid-cols-2 w-full bg-white rounded-lg shadow md:mt-0">
+        <div class="flex flex-col-reverse md:grid grid-cols-2 md:w-full bg-white md:rounded-lg shadow md:mt-0">
             <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-sm font-light leading-tight tracking-tight text-gray-900">
                     Already have an account? <a href="./login.jsp" class="hover:underline text-[#007eca]">Click here</a> to login
@@ -190,7 +190,7 @@
                     </ol>
                 </form>
             </div>
-            <div class="bg-gradient-to-r from-[#00bfae] to-[#0066ad] h-full px-10 py-24 rounded-r-lg">
+            <div class="bg-gradient-to-r from-[#00bfae] to-[#0066ad] h-full md:px-10 px-2 py-24 md:rounded-r-lg">
                 <img class="mb-4 w-18 h-12" src="./assets/logo.png" alt="logo">
                 <span class="flex items-center mb-6 text-2xl font-semibold text-white">
                     Welcome to NNDBank online banking services.   

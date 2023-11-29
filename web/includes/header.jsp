@@ -93,13 +93,13 @@
                     <% if (customer != null) { %>
                     <form action="show-defaultPA" method="GET">
                         <button>
-                            <img src="./assets/logo.png" class="w-18 h-12" />
+                            <img src="./assets/banklogo.png" class="w-40 h-12" />
                         </button>
                     </form>
 
                     <%  } else { %>
                     <a href="./profile.jsp">
-                        <img src="./assets/logo.png" class="w-18 h-12" />
+                        <img src="./assets/banklogo.png" class="w-40 h-12" />
                     </a>
 
                     <% }%>
