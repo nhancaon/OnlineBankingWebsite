@@ -28,7 +28,7 @@ public class SavingAccount extends Account implements Serializable {
     @Column(nullable = false)
     private int minBalance;
     @Column(nullable = false)
-    private int savingAmount;
+    private Double savingAmount;
 
     public Customer getCustomer() {
         return customer;
@@ -54,11 +54,11 @@ public class SavingAccount extends Account implements Serializable {
         this.minBalance = minBalance;
     }
 
-    public int getSavingAmount() {
+    public Double getSavingAmount() {
         return savingAmount;
     }
 
-    public void setSavingAmount(int savingAmount) {
+    public void setSavingAmount(Double savingAmount) {
         this.savingAmount = savingAmount;
     }
 

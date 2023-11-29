@@ -41,7 +41,7 @@ public class CreateAccountServlet extends HttpServlet {
             InterestRate interestRate = interestRateDAO.findBySavingTitle(savingTitle);
 
             try {
-                savingAccountDAO.CreateSavingAccount(customer, accountNumber, interestRate.getSavingTitle(), interestRate.getTerm(), Integer.parseInt(amount), interestRate);
+                savingAccountDAO.CreateSavingAccount(customer, accountNumber, interestRate.getSavingTitle(), interestRate.getTerm(), Double.parseDouble(amount), interestRate, interestRate.getConsecutive());
                 request.setAttribute("successMessage", "Your saving account has been created successfully");
                 List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
                 request.setAttribute("savingAccounts", savingAccounts);

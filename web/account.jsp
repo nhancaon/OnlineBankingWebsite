@@ -94,13 +94,13 @@
                     %>
                     <div class="ml-[-40px]">
                         <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
+                        <%= paymentAccount.getCurrentBalence()%> VND
                     </div>
                     <%  } else {
                     %>
                     <div>
                         <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= formatCurrency(paymentAccount.getCurrentBalence())%> VND
+                        <%= paymentAccount.getCurrentBalence()%> VND
                     </div>
                     <%  }
                     %>

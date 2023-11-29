@@ -42,7 +42,7 @@ public class PaymentAccount extends Account implements Serializable {
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String paymentAccountId;
     @Column(nullable = false)
-    private int currentBalence;
+    private Double currentBalence;
     @Column(nullable = false)
     private int rewardPoint;
 
@@ -69,11 +69,11 @@ public class PaymentAccount extends Account implements Serializable {
         this.paymentAccountId = paymentAccountId;
     }
 
-    public int getCurrentBalence() {
+    public Double getCurrentBalence() {
         return currentBalence;
     }
 
-    public void setCurrentBalence(int currentBalence) {
+    public void setCurrentBalence(Double currentBalence) {
         this.currentBalence = currentBalence;
     }
 
