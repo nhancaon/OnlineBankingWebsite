@@ -10,29 +10,29 @@
 %>
 
 
-<div class="relative w-full h-[30rem] mt-[5.2rem]">
+<div class="relative w-full md:h-[30rem] mt-[5.2rem]">
     <img src="./assets/money.gif" class="w-full h-full" alt="alt" />
 </div>
 
 <div id="content" class="bg-[#f0f1f1] py-16">
-    <div class="mx-56 px-8 pt-10 pb-16 rounded-md bg-[#fff]">
-        <div class="grid grid-cols-2 pt-4 pb-10 justify-between">
+    <div class=md:mx-56 px-8 pt-10 pb-16 rounded-md bg-[#fff]">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:pt-4 pb-10 justify-between px-2 sm:px-0">
             <% if (defaultPaymentAccount != null) {%>
-            <div class="grid">
+            <div class="grid items-center justify-center text-center sm:items-start sm:justify-start sm:text-left ">
                 <span>Current Payment Account</span>
                 <span class="font-bold text-xl">
                     <%= defaultPaymentAccount.getAccountNumber()%>
                 </span>
                 <span class="font-bold text-xl"></span>
             </div>
-            <div class="flex justify-end items-center">
+            <div class="flex sm:justify-end items-center mt-3 sm:mt-0">
                 <div class="grid justify-end">
                     <span>Available Balance</span>
                     <span class="font-bold text-xl">
                         <%= formatCurrency(defaultPaymentAccount.getCurrentBalence())%> VND
                     </span>
                 </div>
-                <div class="grid justify-end ml-4">
+                <div class="grid justify-end ml-16 sm:ml-4">
                     <form action="show-account" method="get">
                         <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg">
                             Accounts List <span class="font-bold"><i
@@ -53,7 +53,7 @@
             </div>
             <% }%>
         </div>
-        <div class="grid grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 px-2 md:px-0">
             <a href="./transfer.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
                focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                 <img src="./assets/transfer.png" class="w-8 mb-2" />
@@ -83,9 +83,9 @@
         </div>
     </div>
 
-    <div class="mx-56 py-16">
+    <div class="md:mx-56 mx-2 py-16">
         <div>Settings</div>
-        <div class="py-10 grid grid-cols-5 gap-5">
+        <div class="py-10 grid grid-cols-2 md:grid-cols-5 gap-5">
             <form action="show-beneficiary" method="GET">
                 <button type="submit" class="w-full grid justify-center items-center bg-white h-40 rounded-xl
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">

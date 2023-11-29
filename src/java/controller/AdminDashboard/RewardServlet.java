@@ -28,7 +28,10 @@ public class RewardServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "add-reward" -> this.addReward(request, response);
+            case "add-reward" -> {
+                this.addReward(request, response);
+                this.showReward(request, response);
+            }
             default -> {
             }
         }

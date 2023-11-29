@@ -6,7 +6,7 @@
 <%@ include file="/includes/checkLogin.jsp" %>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-    <div class="py-16 mx-56">
+    <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
             <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Account</div>
@@ -35,13 +35,13 @@
             </ol>
         </nav>
 
-        <div class="my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Payment Accounts</span>
                 <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Account</button>
             </div>
-            <div class="my-2 w-1/2">
+            <div class="my-2 md:w-1/2">
                 <c:if test="${not empty requestScope.successMessage}">
                     <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
                         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -72,9 +72,9 @@
                     if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
                         for (PaymentAccount paymentAccount : paymentAccounts) {
                 %>
-                <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="flex justify-between p-4 rounded-xl bg-gray-300 
+                <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="grid grid-cols-2 md:flex md:justify-between p-4 rounded-xl bg-gray-300 
                    focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                    <div class="flex flex-row">
+                    <div class="grid grid-cols-1 md:flex flex-row">
                         <div>
                             <i class="fa-regular fa-copy mr-2"></i>
                             <%= paymentAccount.getAccountNumber()%>
@@ -82,7 +82,7 @@
                         <%
                             if (paymentAccount.getAccountStatus().equals("Default")) {
                         %>
-                        <div class="flex justify-center items-center rounded-xl ml-4 px-2 bg-[#0066AD] text-white">
+                        <div class="flex justify-center items-center rounded-xl sm:ml-4 sm:px-2 bg-[#0066AD] text-white">
                             <span class="text-xs">Default account</span>
                         </div>
                         <%  }
@@ -92,19 +92,19 @@
                     <%
                         if (paymentAccount.getAccountStatus().equals("Default")) {
                     %>
-                    <div class="ml-[-40px]">
-                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= paymentAccount.getCurrentBalence()%> VND
+                     <div class="flex flex-col md:flex-row text-end md:text-left md:ml-[-40px]">
+                        <span class="text-gray-600 md:mr-2">Available Balance</span>
+                        <span><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span>
                     </div>
                     <%  } else {
                     %>
-                    <div>
-                        <span class="text-sm text-gray-600 mr-2">Available Balance</span>
-                        <%= paymentAccount.getCurrentBalence()%> VND
+                    <div class="flex flex-col md:flex-row text-end md:text-left">
+                        <span class="text-gray-600 md:mr-2">Available Balance</span>
+                        <span><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span>
                     </div>
                     <%  }
                     %>
-                    <i class="fa-solid fa-chevron-right py-1"></i>
+                    <i class="fa-solid fa-chevron-right py-1 hidden sm:block"></i>
                 </a>       
                 <%
                     }
@@ -120,8 +120,8 @@
 </div>
 
 
-<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
-    <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-2 md:px-96 md:py-28">
+    <div class="col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Payment Account
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeCreateAccount()">
                 <i class="fa-solid fa-xmark"></i>
@@ -135,7 +135,7 @@
                 </div>
                 <input type="hidden" name="action" value="createRandom"/>
                 <div class="flex items-center">
-                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Random Account</button>
+                    <button class="mt-4 px-2 md:px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Random Account</button>
                 </div>
             </form>
             
@@ -164,7 +164,7 @@
                     >
                 </div> 
                 <div class="flex justify-end items-center">
-                    <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Custom Account</button>
+                    <button class="mt-4 px-2 md:px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Custom Account</button>
                 </div> 
             </form>
     
