@@ -5,7 +5,7 @@
 
 <%!
     // Function to format currency
-    public String formatCurrency(int amount) {
+    public String formatCurrency(Double amount) {
         Locale locale = new Locale("en", "US");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
         // Change the decimal separator from '.' to ','

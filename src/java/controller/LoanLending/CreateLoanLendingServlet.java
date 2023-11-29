@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import DAO.InterestRateDAO;
 import DAO.LoanLendingDAO;
 import business.LoanLending;
+import business.PaymentAccount;
 import business.Customer;
 import business.InterestRate;
 import Exception.HandleException;
@@ -38,9 +39,6 @@ public class CreateLoanLendingServlet extends HttpServlet {
             String amount = request.getParameter("loanLending");
             String loanTitle = request.getParameter("typeOfLoan");
             InterestRate interestRate = interestRateDAO.findByLoanTitle(loanTitle);
-
-            
-
             try {
                 loanLendingDAO.CreateLoanLending(customer, accountNumber, interestRate.getLoanTitle(), interestRate.getTerm(), Integer.parseInt(amount), interestRate);
                 request.setAttribute("successMessage", "Your loan account has been created successfully");

@@ -28,7 +28,10 @@ public class CustomerServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "add-customer" -> this.addCustomer(request, response);
+            case "add-customer" -> {
+                this.addCustomer(request, response);
+                this.showCustomer(request, response);
+            }
             default -> {
             }
         }

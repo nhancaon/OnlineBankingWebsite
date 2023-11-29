@@ -4,7 +4,7 @@
 <%@ include file="/includes/checkLogin.jsp" %> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-    <div class="py-16 mx-56">
+    <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
             <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Saving Account</div>
@@ -69,8 +69,8 @@
             </ol>
         </nav>
 
-        <div class="grid grid-cols-6 gap-8">
-            <div class="col-span-4 my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="flex flex-col-reverse md:grid grid-cols-6 gap-8">
+            <div class="col-span-4 md:my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
                 <div>
                     <c:if test="${not empty requestScope.successMessage}">
                         <p style="color: green">${requestScope.successMessage}</p>
@@ -83,16 +83,16 @@
                 <div class="w-full grid grid-cols-1">
                     <c:if test="${ savingAccount.accountStatus == 'Active' }">
                         <form action="with-draw" method="post">
-                            <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
+                            <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
                                 <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
-                                <div class="col-span-2 text-end text-gray-500 text-sm">
+                                <div class="md:col-span-2 text-end text-gray-500 text-sm">
                                     Saving Id: ${savingAccount.savingAccountId}
                                 </div>
-                                <div class="col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
+                                <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
                                 <div class="text-end text-xl text-green-400"> ${savingAccount.interestRate.interestRate} %</div>
-                                <div class="col-span-2">Savings Deposit : </div>
+                                <div class="md:col-span-2">Savings Deposit : </div>
                                 <div class="text-end text-xl text-green-400">${savingAccount.savingAmount}VND</div>
-                                <div class="col-span-2">Expected Amount Received : </div>
+                                <div class="md:col-span-2">Expected Amount Received : </div>
                                 <div class="text-end text-xl text-green-400">${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}VND</div>
                             </div>
 
@@ -107,22 +107,22 @@
 
                                     </c:if>
                                     <c:if test="${ savingAccount.accountStatus != 'Active' }">
-                                        <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
+                                        <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
                                             <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
-                                            <div class="col-span-2 text-end text-gray-500 text-sm">
+                                            <div class="md:col-span-2 text-end text-gray-500 text-sm">
                                                 Saving Id: ${savingAccount.savingAccountId}
                                             </div>
-                                            <div class="col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
+                                            <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
                                             <div class="text-end text-xl text-red-400"> ${savingAccount.interestRate.interestRate} %</div>
-                                            <div class="col-span-2">Savings Deposit : </div>
+                                            <div class="md:col-span-2">Savings Deposit : </div>
                                             <div class="text-end text-xl text-red-400">${savingAccount.savingAmount}VND</div>
-                                            <div class="col-span-2">Expected Amount Received : </div>
+                                            <div class="md:col-span-2">Expected Amount Received : </div>
                                             <div class="text-end text-xl text-red-400">${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}VND</div>
                                         </div>
                                     </c:if>
                                     </div>
                                     </div>
-                                    <div class="col-span-2 my-16 rounded-xl bg-white">
+                                    <div class="col-span-2 mt-16 md:my-16 rounded-xl bg-white">
                                         <div
                                             class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl"
                                             >

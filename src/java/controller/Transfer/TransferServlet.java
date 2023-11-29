@@ -11,6 +11,7 @@ import business.*;
 import common.MailSender;
 import controller.User.SignupServlet;
 import jakarta.mail.MessagingException;
+import static java.lang.Double.parseDouble;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -111,7 +112,7 @@ public class TransferServlet extends HttpServlet {
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
                 String OTP = (String) session.getAttribute("OTP");
                 String enteredOTP = request.getParameter("enteredOTP");
-                int amount = Integer.parseInt(Amount);
+                Double amount = parseDouble(Amount);
                 try {
                     transactionDAO.createTransaction(sender, receiver, Remark, amount, time, OTP, enteredOTP);
                     url = "/success.jsp";

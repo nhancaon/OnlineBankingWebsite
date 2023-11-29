@@ -128,6 +128,8 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
             }
             paymentAccountEntity.setPaymentAccountId(generateUniqueId());
             paymentAccountEntity.setCustomer(customer);
+            paymentAccountEntity.setCurrentBalence(0.0);
+            paymentAccountEntity.setRewardPoint(0);
             paymentAccountEntity.setAccountNumber(accountNumber);
             paymentAccountEntity.setAccountType("Classic");
 

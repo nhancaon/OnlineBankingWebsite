@@ -1,7 +1,9 @@
 package DAO;
 
-import business.InterestRate;
+import business.PaymentAccount;
 import business.Reward;
+import DAO.PaymentAccountDAO;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
@@ -33,13 +35,13 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
-    public Reward addReward(String rewardName, int price, int costPoint, String type){
+    public Reward addReward(String rewardName, int price, int costPoint, String type) {
 
         Reward rewardEntity = new Reward();
         rewardEntity.setRewardId(generateUniqueId());
         rewardEntity.setRewardName(rewardName);
         rewardEntity.setCostPoint(costPoint);
-        rewardEntity.setPrice(price);   
+        rewardEntity.setPrice(price);
         rewardEntity.setRewardType(type);
         create(rewardEntity);
         return null;
@@ -67,9 +69,49 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
 
         return null;
     }
-    
-    public Reward redeemReward() {
-        
+
+    public Reward getRewardsById(String rewardId) {
+
+        List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r WHERE r.rewardId = :rewardId", "rewardId", rewardId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Reward redeemReward(String rewardId, String defaultAccountNumber) {
+
+        PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+
+        PaymentAccount currentAccount = paymentAccountDAO.findExistingPaymentAccount(defaultAccountNumber);
+
+        Reward reward = getRewardsById(rewardId);
+        System.out.println(reward);
+        System.out.println(currentAccount);
+        if (currentAccount != null && reward != null) {
+            if (currentAccount.getRewardPoint() >= reward.getCostPoint()) {
+                currentAccount.setRewardPoint(currentAccount.getRewardPoint() - reward.getCostPoint());
+
+                List<Reward> rewards = currentAccount.getRewards();
+                if (rewards == null) {
+                    rewards = new ArrayList<>();
+                }
+                rewards.add(reward);
+                currentAccount.setRewards(rewards);
+
+                paymentAccountDAO.update(currentAccount);
+
+                return reward;
+            } else {
+                System.out.println("Insufficient reward points to redeem the reward.");
+            }
+        } else {
+
+            System.out.println("Payment account or reward not found.");
+        }
+
         return null;
     }
 

@@ -11,7 +11,7 @@
 %>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-    <div class="py-16 mx-56">
+    <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
             <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Account</div>
@@ -79,24 +79,24 @@
             </ol>
         </nav>
 
-        <div class="grid grid-cols-6 gap-8">
-            <div class="col-span-4 my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="flex flex-col-reverse md:grid grid-cols-6 gap-8">
+            <div class="col-span-4 md:my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
                 <div class="w-full grid grid-cols-1">
                     <% if (transactionList != null) {
                             for (Transaction transaction
                                     : transactionList) {
                                 if (transaction.getSender().getAccountNumber().equals(paymentAccount.getAccountNumber())) {%>
-                    <div class="grid grid-cols-3 border-b-2 py-2 mb-3">
+                    <div class="grid grid-col-2 sm:grid-cols-3 border-b-2 py-2 mb-3">
                         <div class="text-gray-500 text-sm">
                             <%= transaction.getTransactionDate().format(formatter)%>
                         </div>
-                        <div class="col-span-2 text-end text-gray-500 text-sm">
+                        <div class="sm:col-span-2 sm:text-end text-gray-500 text-sm">
                             Trans Id: <%= transaction.getTransactionId()%>
                         </div>
-                        <div class="col-span-2">
+                        <div class="sm:col-span-2">
                             <%= transaction.getReceiver().getAccountNumber()%> <%=transaction.getTransactionRemark()%>
                         </div>
-                        <div class="text-end text-xl text-red-400">
+                        <div class="sm:text-end text-xl text-red-400">
                             - <%= formatCurrency(transaction.getAmount())%> VND
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                         }%>
                 </div>
             </div>
-            <div class="col-span-2 my-16 rounded-xl bg-white max-h-[450px]">
+            <div class="col-span-2 mt-16 md:my-16 rounded-xl bg-white max-h-[450px]">
                 <div
                     class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl"
                     >
@@ -166,11 +166,11 @@
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 text-sm">Account Balance</span>
                         <span class="uppercase text-sm"
-                              ><%= paymentAccount.getCurrentBalence()%> VND</span
+                              ><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span
                         >
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Reward Pointp </span>
+                        <span class="text-gray-500 text-sm">Reward Point </span>
                         <span class="uppercase text-sm"
                               ><%= paymentAccount.getRewardPoint()%> RWP</span
                         >
@@ -200,5 +200,4 @@
 </div>
 
 <%@ include file="/includes/footer.jsp" %>
-</Transaction></Transaction
->
+
