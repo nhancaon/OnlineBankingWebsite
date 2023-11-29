@@ -170,7 +170,7 @@
                         >
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Reward Pointp </span>
+                        <span class="text-gray-500 text-sm">Reward Point </span>
                         <span class="uppercase text-sm"
                               ><%= paymentAccount.getRewardPoint()%> RWP</span
                         >
