@@ -87,8 +87,8 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String accountType, int term, int amount, InterestRate interestRate) throws HandleException {
-
+    public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String accountType, int term, Double amount, InterestRate interestRate, Boolean cons) throws HandleException {
+        
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         SavingAccount savingAccountEntity = new SavingAccount();
 //        SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
@@ -126,6 +126,23 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             }
 //        }
         return null;
+    }
+
+    public void calculateInterest(Double amount, boolean cons, LocalDate dateOpen,InterestRate rate, Double totalAmount){
+        Double interest = (rate.getInterestRate() * 1.0)/100;
+        int term = rate.getTerm();
+        int consTime = LocalDate.now().getMonthValue() - dateOpen.getMonthValue();
+        if(cons){
+            if(dateOpen.getDayOfMonth() > 20){           
+                totalAmount = (amount / interest)*(Math.pow((1.0+interest),consTime)-1.0);
+            }
+            else{
+                totalAmount = (amount / interest)*(Math.pow((1.0+interest),consTime)-1.0)*(1.0+interest);
+            }
+        }
+        else{
+            totalAmount = amount*(Math.pow((1+interest), term*1.0));
+        }
     }
 
     public SavingAccount findByAccountNumber(String accountNumber) {
