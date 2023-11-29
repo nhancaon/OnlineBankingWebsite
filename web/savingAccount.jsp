@@ -17,6 +17,7 @@
     String customerId = customer.getCustomerId();
     List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customerId);
     request.setAttribute("paymentAccounts", paymentAccounts);
+    PaymentAccount DefaultAc = paymentAccountDAO.findDefaultPaymentAccount(customerId);
 %>                   
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
@@ -94,7 +95,7 @@
                 </c:if>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <% List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByCusId(customerId);
+                <% List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(DefaultAc.getPaymentAccountId());
                     if (savingAccounts != null && !savingAccounts.isEmpty()) {
                         for (SavingAccount savingAccount : savingAccounts) {
                 %>

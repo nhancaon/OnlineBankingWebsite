@@ -32,8 +32,16 @@ public class TransferServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
+        }else if(action.equals("show-name")){
+            String Number = request.getParameter("getNumber");
+            String Amount = request.getParameter("getAmount");
+            PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
+            request.setAttribute("receiver",receiver);
+            request.setAttribute("Amount",Amount);
+            request.setAttribute("Number",Number);
+            url = "/transfer.jsp";
         }
-        if (action.equals("check")) {
+        else if (action.equals("check")) {
             url = "/profile.jsp";
         } else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
