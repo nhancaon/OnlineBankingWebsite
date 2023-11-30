@@ -28,7 +28,7 @@ public class Transaction implements Serializable {
     @Column(columnDefinition = "varchar(100)",nullable = false)
     private String transactionRemark;
     @Column(nullable = false)
-    private int amount;
+    private Double amount;
     @Column(nullable = false)
     private LocalDateTime transactionDate;
 
@@ -68,11 +68,11 @@ public class Transaction implements Serializable {
         this.transactionRemark = transactionRemark;
     }
 
-    public int getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

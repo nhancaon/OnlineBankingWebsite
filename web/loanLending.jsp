@@ -22,7 +22,7 @@
 %>                   
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-    <div class="py-16 mx-56">
+    <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
             <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
             <div class="py-[0.2rem]">Loan Lending</div>
@@ -59,7 +59,7 @@
                 </li>
             </ol>
         </nav>
-        <div class="my-16 py-8 px-20 rounded-xl bg-white">
+        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Loan Lending</span>
                 <button
@@ -124,9 +124,9 @@
 
 <div
     id="create-account"
-    class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28"
+    class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-2 py-8 md:px-96 md:py-28"
     >
-    <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
+    <div class="col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Add Loan
             <button
@@ -142,7 +142,7 @@
                 <div class="relative mt-6" >
                     <select name="acNumber" id="loanLendingNumber" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                         <c:forEach var="paymentAccount" items="${paymentAccounts}">
-                            <option value="${paymentAccount.getAccountNumber()}">
+                            <option class="" value="${paymentAccount.getAccountNumber()}">
                                 ${paymentAccount.getAccountNumber()} | Balance: ${paymentAccount.getCurrentBalence()}
                             </option>
                         </c:forEach>

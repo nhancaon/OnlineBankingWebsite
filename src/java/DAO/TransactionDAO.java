@@ -51,7 +51,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         return null;
     }
 
-    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, int amount,
+    public void createTransaction(PaymentAccount sender, PaymentAccount receiver, String transactionRemark, Double amount,
             LocalDateTime time, String OTP, String enteredOTP) throws HandleException {
         if (!OTP.equals(enteredOTP)) {
             throw new HandleException("Invalid OTP", 409);

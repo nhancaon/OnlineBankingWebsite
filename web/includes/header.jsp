@@ -2,6 +2,13 @@
 <%@ page import="business.Customer" %>
 <%@ include file="FormatCurrency.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+
+<%
+    Customer customer = (Customer) session.getAttribute("customer");
+
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,8 +70,8 @@
     <body>
 
         <div id="header" class="fixed top-0 w-full shadow-xl z-[1000] bg-[#fff]">
-            <div class="grid grid-cols-3 justify-center mx-56 py-4">
-                <div class="w">
+            <div class="grid grid-cols-2 md:grid-cols-3 justify-center md:mx-56 py-4">
+                <div class="hidden sm:block">
                     <form>
                         <div class="relative">
                             <div
@@ -76,36 +83,43 @@
                                 type="search"
                                 id="default-search"
                                 class="block w-full p-4 pl-8 text-sm text-gray-90 outline-none border-gray-200"
-                                placeholder="Find in SmartBanking"
+                                placeholder="Find in NND Banking"
                                 required
                                 />
                         </div>
                     </form>
                 </div>
                 <div class="flex items-center justify-center">
+                    <% if (customer != null) { %>
+                    <form action="show-defaultPA" method="GET">
+                        <button>
+                            <img src="./assets/banklogo.png" class="w-40 h-12" />
+                        </button>
+                    </form>
+
+                    <%  } else { %>
                     <a href="./profile.jsp">
-                        <img src="./assets/logo.png" class="w-18 h-12" />
+                        <img src="./assets/banklogo.png" class="w-40 h-12" />
                     </a>
+
+                    <% }%>
                 </div>
 
-                <%
-                    Customer customer = (Customer) session.getAttribute("customer");
-
-                    if (customer != null) {
+                <%     if (customer != null) {
 
                         String customerId = customer.getCustomerId();
                         String fullName = customer.getName();
                         String email = customer.getEmail();
 
                 %>
-                <div class="flex items-center justify-end">
-                    <div class="grid mr-2">
+                <div class="flex items-center justify-end mr-4 sm:mr-0">
+                    <div class="hidden sm:block grid mr-2">
                         <div class="text-sm">Good morning!</div>
                         <div class="font-bold text-lg"><%= fullName%></div>
                     </div>
                     <div>
                         <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
-                        <div id="dropdown" class="hidden absolute right-0 mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
+                        <div id="dropdown" class="hidden absolute right-0 mx-2 md:mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
                             <ul>
                                 <li>
                                     <form action="Logout"> 

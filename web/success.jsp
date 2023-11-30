@@ -4,7 +4,7 @@
 <%@ include file="/includes/checkLogin.jsp" %>
 
         <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-            <div class="py-16 mx-56">
+            <div class="py-16 mx-2 md:mx-56">
                 <div class="flex text-2xl">
                     <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
                     <div class="py-[0.2rem]">Success</div>
@@ -94,10 +94,10 @@
                 </nav>
 
                 <div
-                    class="grid text-center my-16 py-16 px-20 rounded-xl bg-white"
+                    class="grid text-center my-16 py-16 px-8 md:px-20 rounded-xl bg-white"
                     >
                     <span class="text-[#2a6ebe] text-2xl mb-6">Transaction Success</span>
-                    <div class="px-24">
+                    <div class="md:px-24">
                         You have successfully transfered <span class="text-[#2a6ebe]">${Amount} VND</span> to account
                         <span class="text-[#2a6ebe]"> ${receiver.getAccountNumber()}/${Name}</span> at <br/> ${time}. Remark: ${Remark}
                     </div>
@@ -105,7 +105,7 @@
                     <div class="flex justify-center items-center mt-14">
                         <a
                             href="./transfer.jsp"
-                            class="px-28 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white"
+                            class="md:px-28 px-8 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white"
                             >
                             Initiate new transaction
                         </a>

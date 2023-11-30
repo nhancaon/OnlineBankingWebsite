@@ -5,7 +5,7 @@
 <%@ include file="/includes/checkLogin.jsp" %> 
 <% PaymentAccount defaultPaymentAccount = (PaymentAccount) session.getAttribute("defaultPaymentAccount");%>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
-    <div class="py-16 mx-56">
+    <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
             <a href=""
                ><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
@@ -76,9 +76,9 @@
         </nav>
 
         <div class="">
-            <div class="grid my-16 py-8 px-20 rounded-xl bg-white">
+            <div class="grid my-16 py-8 md:px-20 rounded-xl bg-white">
                 <div
-                    class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-xl"
+                    class="py-3 sm:py-0 flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-xl"
                     >
                     <div
                         class="flex flex-col justify-center items-center space-y-2 ml-8 text-white"
@@ -104,8 +104,8 @@
             </div>
 
             <div class="grid mt-16 rounded-xl bg-white">
-                <div class="px-10 py-6">Culinary</div>
-                <div class="p-10 bg-gray-200 grid grid-cols-3 gap-8">
+                <div class="md:px-10 px-6 py-6">Culinary</div>
+                <div class="md:p-10 p-6 bg-gray-200 grid md:grid-cols-3 gap-8">
                     <c:forEach var="culinaryReward" items="${culinaryRewards}">
                         <div
                             class="rounded-md bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
