@@ -8,6 +8,7 @@ import business.InterestRate;
 import DAO.SavingAccountDAO;
 import Exception.HandleException;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -38,6 +39,7 @@ public class CreateAccountServlet extends HttpServlet {
             String customerId = customer.getCustomerId();
             String accountNumber = request.getParameter("acNumber");
             String amount = request.getParameter("savingAmount");
+            String iniAmount = request.getParameter("savingAmount");
             String savingTitle = request.getParameter("typeOfSaving");
             InterestRate interestRate = interestRateDAO.findBySavingTitle(savingTitle);
 
@@ -47,6 +49,7 @@ public class CreateAccountServlet extends HttpServlet {
                 PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
                 List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(paymentAccountDAO.findDefaultPaymentAccount(customerId).getPaymentAccountId());
                 request.setAttribute("savingAccounts", savingAccounts);
+                session.setAttribute("iniAmount", iniAmount);
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());
             }

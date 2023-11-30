@@ -5,7 +5,13 @@
         <group>
             <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/account.jsp</file>
             <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/DAO/SavingAccountDAO.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/beneficiary.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/savingAccount.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
             <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/admin-dashboard/customer.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/SavingAccount/ShowAccountDetailServlet.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/savingDetail.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/loanLending.jsp</file>
         </group>
     </open-files>
 </project-private>
