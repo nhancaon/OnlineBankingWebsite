@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
                 url = "/profile.jsp";
             }
         }
+        
 
         servletContext.getRequestDispatcher(url)
                 .forward(request, response);

@@ -75,6 +75,7 @@
             </ol>
         </nav>
 
+        <%@ include file="/includes/exception.jsp" %>
         <div class="">
             <div class="grid my-16 py-8 md:px-20 rounded-xl bg-white">
                 <div

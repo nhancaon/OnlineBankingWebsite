@@ -3,6 +3,7 @@ package DAO;
 import business.PaymentAccount;
 import business.Reward;
 import DAO.PaymentAccountDAO;
+import Exception.HandleException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,15 +82,14 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return null;
     }
 
-    public Reward redeemReward(String rewardId, String defaultAccountNumber) {
+    public Reward redeemReward(String rewardId, String defaultAccountNumber) throws HandleException {
 
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
         PaymentAccount currentAccount = paymentAccountDAO.findExistingPaymentAccount(defaultAccountNumber);
 
         Reward reward = getRewardsById(rewardId);
-        System.out.println(reward);
-        System.out.println(currentAccount);
+
         if (currentAccount != null && reward != null) {
             if (currentAccount.getRewardPoint() >= reward.getCostPoint()) {
                 currentAccount.setRewardPoint(currentAccount.getRewardPoint() - reward.getCostPoint());
@@ -105,14 +105,12 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
 
                 return reward;
             } else {
-                System.out.println("Insufficient reward points to redeem the reward.");
+                throw new HandleException("Insufficient reward points to redeem the reward", 409);
             }
         } else {
-
-            System.out.println("Payment account or reward not found.");
+            throw new HandleException("Payment account or reward not found", 409);
         }
-
-        return null;
+        
     }
 
 }
