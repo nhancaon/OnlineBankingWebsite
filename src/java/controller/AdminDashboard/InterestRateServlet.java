@@ -1,4 +1,5 @@
 package controller.AdminDashboard;
+
 import business.InterestRate;
 import DAO.InterestRateDAO;
 
@@ -30,8 +31,10 @@ public class InterestRateServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-interestRate" -> this.showInterestRate(request, response);
-            default -> {}
+            case "show-interestRate" ->
+                this.showInterestRate(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/interestRate.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
@@ -43,6 +46,21 @@ public class InterestRateServlet extends HttpServlet {
         List<InterestRate> interestRates = interestRateDAO.findAllInterestRate();
 
         request.setAttribute("interestRates", interestRates);
+    }
+
+    protected void addInterestRate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String interestRate = request.getParameter("interestRate");
+        String loanTitle = request.getParameter("loanTitle");
+        String savingTitle = request.getParameter("savingTitle");
+        String term = request.getParameter("term");
+
+    }
+
+    protected void updateInterestRate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
     }
 
 }

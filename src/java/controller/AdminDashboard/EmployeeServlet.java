@@ -1,6 +1,9 @@
 package controller.AdminDashboard;
+
 import business.Employee;
 import DAO.EmployeeDAO;
+import Exception.HandleException;
+import business.Customer;
 
 import java.io.*;
 import java.util.List;
@@ -30,19 +33,36 @@ public class EmployeeServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-employee" -> this.showInterestRate(request, response);
-            default -> {}
+            case "show-employee" ->
+                this.showEmployee(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/employee.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showInterestRate(HttpServletRequest request, HttpServletResponse response)
+    protected void showEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // List<Employee> employees = EmployeeDAO.findAllInterestRate();
-
-        // request.setAttribute("employees", employees);
     }
 
+    protected void addEmployee(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String email = request.getParameter("email");
+        String fullName = request.getParameter("name");
+        String citizenId = request.getParameter("citizenId");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String address = request.getParameter("address");
+        String dateOfBirth = request.getParameter("dateOfBirth");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+
+    }
+
+      protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
 }

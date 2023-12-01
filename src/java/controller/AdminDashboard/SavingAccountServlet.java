@@ -1,4 +1,5 @@
 package controller.AdminDashboard;
+
 import business.SavingAccount;
 import DAO.SavingAccountDAO;
 
@@ -30,14 +31,36 @@ public class SavingAccountServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-savingAccount" -> this.showSavingAccount(request, response);
-            default -> {}
+            case "show-savingAccount" ->
+                this.showSavingAccount(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/savingAccount.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     protected void showSavingAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        List<SavingAccount> savingAccounts = savingAccountDAO.findAllSavingAccount();
+
+        request.setAttribute("savingAccounts", savingAccounts);
+    }
+
+    protected void addSavingAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String accountNumber = request.getParameter("accountNumber");
+        String accountStatus = request.getParameter("accountStatus");
+        String accountType = request.getParameter("accountType");
+        String savingAmount = request.getParameter("savingAmount");
+        String dateOpened = request.getParameter("dateOpened");
+        String dateClosed = request.getParameter("dateClosed");
+        
+    }
+    
+       protected void updateSavingAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         List<SavingAccount> savingAccounts = savingAccountDAO.findAllSavingAccount();

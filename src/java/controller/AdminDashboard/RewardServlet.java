@@ -79,4 +79,12 @@ public class RewardServlet extends HttpServlet {
             request.setAttribute("successMessage", "The reward has been added successfully.");
     }
 
+    
+      protected void updateReward(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Reward> rewards = rewardDAO.getAllRewards();
+
+        request.setAttribute("rewards", rewards);
+
+    }
 }

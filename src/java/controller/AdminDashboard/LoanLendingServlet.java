@@ -1,4 +1,5 @@
 package controller.AdminDashboard;
+
 import business.LoanLending;
 import DAO.LoanLendingDAO;
 
@@ -30,8 +31,10 @@ public class LoanLendingServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-loan" -> this.showLoan(request, response);
-            default -> {}
+            case "show-loan" ->
+                this.showLoan(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/loanLending.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
@@ -45,4 +48,25 @@ public class LoanLendingServlet extends HttpServlet {
         request.setAttribute("loanLendings", loanLendings);
     }
 
+    protected void addLoan(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String accountNumber = request.getParameter("accountNumber");
+        String accountStatus = request.getParameter("accountStatus");
+        String accountType = request.getParameter("accountType");
+        String loanAmount = request.getParameter("loanAmount");
+        String totalLoanAmount = request.getParameter("totalLoanAmount");
+        String monthlyPay = request.getParameter("monthlyPay");
+        String dateOpened = request.getParameter("dateOpened");
+        String dateClosed = request.getParameter("dateClosed");
+
+    }
+    
+     protected void updateLoan(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        List<LoanLending> loanLendings = loanLendingDAO.findAllLoanLending();
+
+        request.setAttribute("loanLendings", loanLendings);
+    }
 }

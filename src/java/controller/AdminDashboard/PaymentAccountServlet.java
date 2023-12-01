@@ -1,4 +1,5 @@
 package controller.AdminDashboard;
+
 import business.PaymentAccount;
 import DAO.PaymentAccountDAO;
 
@@ -30,14 +31,37 @@ public class PaymentAccountServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-paymentAccount" -> this.showPaymentAccount(request, response);
-            default -> {}
+            case "show-paymentAccount" ->
+                this.showPaymentAccount(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/paymentAccount.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     protected void showPaymentAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        List<PaymentAccount> paymentAccounts = paymentAccountDAO.findAllPaymentAccount();
+
+        request.setAttribute("paymentAccounts", paymentAccounts);
+    }
+
+    protected void addPaymentAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String accountNumber = request.getParameter("accountNumber");
+        String accountStatus = request.getParameter("accountStatus");
+        String accountType = request.getParameter("accountType");
+        String currentBalance = request.getParameter("currentBalance");
+        String rewardPoint = request.getParameter("rewardPoint");
+        String dateOpened = request.getParameter("dateOpened");
+        String dateClosed = request.getParameter("dateClosed");
+
+    }
+
+    protected void updatePaymentAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         List<PaymentAccount> paymentAccounts = paymentAccountDAO.findAllPaymentAccount();
