@@ -1,4 +1,5 @@
 package controller.AdminDashboard;
+
 import business.Transaction;
 import DAO.TransactionDAO;
 
@@ -30,8 +31,10 @@ public class TransactionServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-transaction" -> this.showTransaction(request, response);
-            default -> {}
+            case "show-transaction" ->
+                this.showTransaction(request, response);
+            default -> {
+            }
         }
         url = "/admin-dashboard/transaction.jsp";
         servletContext.getRequestDispatcher(url).forward(request, response);
@@ -43,6 +46,16 @@ public class TransactionServlet extends HttpServlet {
         List<Transaction> transactions = transactionDAO.findAllTransaction();
         System.out.println(transactions);
         request.setAttribute("transactions", transactions);
+    }
+
+    protected void addTransaction(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+    
+      protected void updateTransaction(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
     }
 
 }

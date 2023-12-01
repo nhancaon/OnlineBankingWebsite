@@ -52,7 +52,8 @@ public class CustomerServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-customer" -> this.showCustomer(request, response);
+            case "show-customer" ->
+                this.showCustomer(request, response);
             default -> {
             }
         }
@@ -87,6 +88,11 @@ public class CustomerServlet extends HttpServlet {
         } catch (HandleException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }
+    }
+
+    protected void updateCustomer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
     }
 
 }

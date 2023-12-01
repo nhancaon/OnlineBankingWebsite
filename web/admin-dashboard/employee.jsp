@@ -15,7 +15,7 @@
                     <th scope="col" class="px-6 py-3">Citizen Id</th>
                     <th scope="col" class="px-6 py-3">Phone Number</th>
                     <th scope="col" class="px-6 py-3">Date Of Birth</th>
-                    <th scope="col" class="px-6 py-3">Pin Number</th>
+                    <th scope="col" class="px-6 py-3">Role</th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
