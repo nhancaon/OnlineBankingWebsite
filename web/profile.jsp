@@ -54,11 +54,13 @@
             <% }%>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 px-2 md:px-0">
-            <a href="./transfer.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
-               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                <img src="./assets/transfer.png" class="w-8 mb-2" />
-                Transfer
-            </a>
+            <form action="Transfer" method="get" class="w-full">
+                <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                    <img src="./assets/transfer.png" class="w-8 mb-2" />
+                    Transfer
+                </button>
+            </form>
             <form action="create-saving-account" method="post" class="w-full">
                 <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
