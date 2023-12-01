@@ -95,7 +95,7 @@
                 </table>
             </div>
         </div>
-    </div>s
+    </div>
 </div>
 
 <div
@@ -170,7 +170,7 @@
         </div>
     </div>
 </div>
-<form id="moveToTransfer" action="Transfer" method="post" class="absolute top-44 right-14 md:right-24 z-[1000]">
+<form id="moveToTransfer" action="Transfer" method="get" class="absolute top-44 right-14 md:right-24 z-[1000]">
     <input type="hidden" name="action" value="show-name" />
     <input type="hidden" name="getNumber" id="getNumber" />
 </form>                        

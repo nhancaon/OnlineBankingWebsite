@@ -1,3 +1,5 @@
+<%@page import="business.Beneficiary"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/includes/header.jsp" %> <%@ include
     file="/includes/checkLogin.jsp" %>
@@ -46,9 +48,9 @@
             </nav>
             <div class="flex flex-col md:grid grid-cols-5 md:gap-8">
                 <div class="relative col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
-                    <span class="text-[#2a6ebe]">Internal Transfer</span>
+                    <span class="text-[#2a6ebe] text-2xl">Internal Transfer</span>
                     <%@ include file="/includes/exception.jsp" %>
-                    <form action="Transfer" method="post">
+                    <form action="Transfer" method="post" class="mt-8">
                         <input type="hidden" name="action" value="add" />
                         <div class="relative mt-6">
                             <input
@@ -124,7 +126,7 @@
                             </button>
                         </div>
                     </form>
-                    <form id="showName" action="Transfer" method="post" class="absolute top-44 right-14 md:right-24 z-[1000]">
+                    <form id="showName" action="Transfer" method="get" class="absolute top-48 right-14 md:right-24 z-[1000]">
                         <input type="hidden" name="action" value="show-name" />
                         <input type="hidden" name="getNumber" id="getNumber" />
                         <input type="hidden" name="getAmount" id="getAmount" />
@@ -140,39 +142,44 @@
                     </form>
                 </div>
                 <div class="col-span-2 md:my-16 p-8 rounded-xl bg-white">
-                    <div
-                        class="w-full text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
-                        >
-                        <ul class="grid grid-cols-3">
-                            <li class="">
-                                <a
-                                    href="#"
-                                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
-                                    >Contacts</a
-                                >
-                            </li>
-                            <li class="">
-                                <a
-                                    href="#"
-                                    class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active"
-                                    aria-current="page"
-                                    >Recent</a
-                                >
-                            </li>
-                            <li class="">
-                                <a
-                                    href="#"
-                                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                    >Saved</a
-                                >
-                            </li>
-                        </ul>
+                    <div class="text-2xl text-[#2a6ebe]">Contacts</div>
+                    <div class="grid grid-cols-1 relative my-4">
+                        <% List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
+
+                            if (beneficiaries != null && !beneficiaries.isEmpty()) {
+                                for (Beneficiary beneficiary : beneficiaries) {
+                        %>
+                        <form action="Transfer" method="get">
+                            <input type="hidden" name="action" value="show-name" />
+                            <input type="hidden" name="getNumber" value="<%= beneficiary.getAccountNumber()%>" />
+                            <button class="w-full px-8 bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out  cursor-pointer">                      
+                                <div class="flex justify-between items-center py-4 border-black text-sm  border-y">
+                                    <span class="text-xl"><%= beneficiary.getName()%></span>
+                                    <span>
+                                        NND BANKING
+                                    </span>
+                                    <span>
+                                        <%= beneficiary.getAccountNumber()%>
+                                    </span>        
+                                </div>
+                            </button>
+                        </form>    
+
+                        <%
+                                }
+                            }
+                        %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
     <script>
+   
         function setAcNumber() {
             const numberValue = document.getElementById('accountNumber').value;
             const amountValue = document.getElementById('amount').value;
