@@ -5,7 +5,9 @@ import business.Reward;
 import DAO.PaymentAccountDAO;
 import Exception.HandleException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
 
@@ -82,35 +84,53 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return null;
     }
 
+    public Reward findExistingReward(String accountNumber, String rewardId) {
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("accountNumber", accountNumber);
+        parameters.put("rewardId", rewardId);
+
+        List<Reward> rewards = super.findWithNamedQuery(
+                "SELECT r FROM PaymentAccount pa JOIN pa.rewards r WHERE pa.accountNumber = :accountNumber AND r.rewardId = :rewardId",
+                parameters);
+
+        return rewards != null ? rewards.get(0) : null;
+    }
+
     public Reward redeemReward(String rewardId, String defaultAccountNumber) throws HandleException {
 
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
         PaymentAccount currentAccount = paymentAccountDAO.findExistingPaymentAccount(defaultAccountNumber);
+        Reward existingReward = findExistingReward(defaultAccountNumber, rewardId);
 
         Reward reward = getRewardsById(rewardId);
 
         if (currentAccount != null && reward != null) {
-            if (currentAccount.getRewardPoint() >= reward.getCostPoint()) {
-                currentAccount.setRewardPoint(currentAccount.getRewardPoint() - reward.getCostPoint());
+            if (existingReward == null) {
+                if (currentAccount.getRewardPoint() >= reward.getCostPoint()) {
+                    currentAccount.setRewardPoint(currentAccount.getRewardPoint() - reward.getCostPoint());
 
-                List<Reward> rewards = currentAccount.getRewards();
-                if (rewards == null) {
-                    rewards = new ArrayList<>();
+                    List<Reward> rewards = currentAccount.getRewards();
+                    if (rewards == null) {
+                        rewards = new ArrayList<>();
+                    }
+                    rewards.add(reward);
+                    currentAccount.setRewards(rewards);
+
+                    paymentAccountDAO.update(currentAccount);
+
+                    return reward;
+                } else {
+                    throw new HandleException("Insufficient reward points to redeem the reward", 409);
                 }
-                rewards.add(reward);
-                currentAccount.setRewards(rewards);
-
-                paymentAccountDAO.update(currentAccount);
-
-                return reward;
             } else {
-                throw new HandleException("Insufficient reward points to redeem the reward", 409);
+                throw new HandleException("You have already reedeem this reward", 409);
             }
         } else {
             throw new HandleException("Payment account or reward not found", 409);
         }
-        
+
     }
 
 }

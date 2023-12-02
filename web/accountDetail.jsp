@@ -39,7 +39,7 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <form action="show-account" method="get">
+                        <form action="Account" method="get">
                             <button
                                 type="submit"
                                 class="ml-1 text-sm font-medium hover:text-blue-600 md:ml-2 mb-1"

@@ -48,7 +48,7 @@
                     if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
                         for (PaymentAccount paymentAccount : paymentAccounts) {
                 %>
-                <a href="account-detail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="grid grid-cols-2 md:flex md:justify-between p-4 rounded-xl bg-gray-300 
+                <a href="AccountDetail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="grid grid-cols-2 md:flex md:justify-between p-4 rounded-xl bg-gray-300 
                    focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                     <div class="grid grid-cols-1 md:flex flex-row">
                         <div>
@@ -105,7 +105,7 @@
         </div>
         <div class="grid grid-cols-1 gap-2 my-10">
            
-            <form action="create-account" method="post">
+            <form action="CreateAccount" method="post">
                 <div class="grid text-xs gap-2">
                     <span class="text-gray-500">You can create a random account</span>
                 </div>
@@ -115,7 +115,7 @@
                 </div>
             </form>
             
-            <form action="create-account" method="post" class="mt-6">
+            <form action="CreateAccount" method="post" class="mt-6">
                 <div class="grid text-xs gap-2">
                     <span class="text-gray-500">Or you can customize your account number</span>
                 </div>

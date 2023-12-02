@@ -2,6 +2,8 @@
 <%@ page import="business.Customer" %>
 <%@ include file="FormatCurrency.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 
 
@@ -91,7 +93,7 @@
                 </div>
                 <div class="flex items-center justify-center">
                     <% if (customer != null) { %>
-                    <form action="show-defaultPA" method="GET">
+                    <form action="Profile" method="GET">
                         <button>
                             <img src="./assets/banklogo.png" class="w-40 h-12" />
                         </button>

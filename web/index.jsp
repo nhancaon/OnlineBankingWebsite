@@ -12,6 +12,6 @@
         <title>Banking</title>
     </head>
     <body>
-        <jsp:forward page="login.jsp"></jsp:forward>
+        <jsp:forward page="/Profile"></jsp:forward>
     </body>
 </html>

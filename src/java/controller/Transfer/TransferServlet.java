@@ -32,6 +32,7 @@ public class TransferServlet extends HttpServlet {
         String url = "/transfer.jsp";
         request.setCharacterEncoding("UTF-8");
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
@@ -77,7 +78,7 @@ public class TransferServlet extends HttpServlet {
                 if (receiver != null) {
                     session.setAttribute("receiver", receiver);
                 }
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+
                 LocalDateTime time = LocalDateTime.now();
                 String timeStr = time.format(formatter);
                 session.setAttribute("timeStr", timeStr);
@@ -100,6 +101,7 @@ public class TransferServlet extends HttpServlet {
                 String Amount = (String) session.getAttribute("Amount");
                 String Remark = (String) session.getAttribute("Remark");
                 LocalDateTime time = (LocalDateTime) session.getAttribute("time");
+                String timeStr = time.format(formatter);
                 PaymentAccount sender = (PaymentAccount) session.getAttribute("sender");
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
                 String OTP = (String) session.getAttribute("OTP");
