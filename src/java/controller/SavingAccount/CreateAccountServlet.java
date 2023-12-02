@@ -8,6 +8,7 @@ import business.InterestRate;
 import DAO.SavingAccountDAO;
 import Exception.HandleException;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,10 +21,7 @@ public class CreateAccountServlet extends HttpServlet {
     InterestRateDAO interestRateDAO = new InterestRateDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -51,14 +49,11 @@ public class CreateAccountServlet extends HttpServlet {
                 request.setAttribute("errorMessage", e.getMessage());
             }
         }
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 }

@@ -16,10 +16,7 @@ import javax.servlet.annotation.WebServlet;
 public class WithdrawServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
         SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
         SavingAccount savingAccount = null;
@@ -28,7 +25,9 @@ public class WithdrawServlet extends HttpServlet {
         if (action == null) {
             action = "join";
         }
+
         String url = "/savingDetail.jsp";
+
         if (action.equals("withdraw")) {
             String savingAccountId = request.getParameter("accountSavingId");
             savingAccount = savingAccountDAO.find(SavingAccount.class, savingAccountId);
@@ -41,14 +40,12 @@ public class WithdrawServlet extends HttpServlet {
                 request.setAttribute("errorMessage", e.getMessage());
             }
         }
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
+        
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 }

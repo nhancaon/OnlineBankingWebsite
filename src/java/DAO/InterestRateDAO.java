@@ -52,12 +52,12 @@ public class InterestRateDAO extends JpaDAO<InterestRate> implements GenericDAO<
         return null;
     }
 
-    public InterestRate findInterestRateByCusId(String customerId) {
+    public InterestRate findInterestRateByInterestId(String interestId) {
 
         List<InterestRate> savingAccountList = super.findWithNamedQuery(
-                "SELECT sa FROM InterestRate sa WHERE sa.customer.customerId = :customerId",
-                "customerId",
-                customerId);
+                "SELECT sa FROM InterestRate sa WHERE sa.interestId = :interestId",
+                "interestId",
+                interestId);
         if (!savingAccountList.isEmpty()) {
             return savingAccountList.get(0);
         }

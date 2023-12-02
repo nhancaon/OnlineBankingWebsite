@@ -69,7 +69,6 @@
                     class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
                     focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Saving Account</button>
             </div>
-            <%@ include file="/includes/exception.jsp" %>
             <div class="grid grid-cols-1 gap-10 my-8">
                 <% List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(DefaultAc.getPaymentAccountId());
                     if (savingAccounts != null && !savingAccounts.isEmpty()) {
@@ -81,6 +80,7 @@
                         <i class="fa-regular fa-copy mr-2"></i>
                         <%= savingAccount.getAccountNumber()%>
                     </div>
+                    
                     <div>
                         <span class="text-sm text-gray-600 mr-2">Interest Rate</span>
                         <%= savingAccount.getInterestRate().getInterestRate()%> %
