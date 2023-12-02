@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/account-detail")
+@WebServlet("/AccountDetail")
 public class ShowAccountDetailServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();

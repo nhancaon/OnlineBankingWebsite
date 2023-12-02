@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/show-rewards")
+@WebServlet("/rewards")
 public class ShowRewardsServlet extends HttpServlet {
 
     RewardDAO rewardDAO = new RewardDAO();
@@ -52,6 +52,10 @@ public class ShowRewardsServlet extends HttpServlet {
                 this.showCulinaryRewards(request, response);
                 url = "/culinary.jsp";
             }
+            case "my-rewards" -> {
+                this.showCulinaryRewards(request, response);
+                url = "/rewardDetail.jsp";
+            }
             default -> {
             }
         }
@@ -59,10 +63,19 @@ public class ShowRewardsServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
+    protected void showUserRewards(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        List<Reward> allRewards = rewardDAO.getAllRewards();
+        session.setAttribute("allRewards", allRewards);
+
+    }
+
     protected void showAllRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         List<Reward> allRewards = rewardDAO.getAllRewards();
         session.setAttribute("allRewards", allRewards);
 
@@ -71,7 +84,7 @@ public class ShowRewardsServlet extends HttpServlet {
     protected void showShoppingRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         String rewardType = "Shopping";
         List<Reward> shoppingRewards = rewardDAO.getRewardsByType(rewardType);
         session.setAttribute("shoppingRewards", shoppingRewards);
@@ -80,7 +93,7 @@ public class ShowRewardsServlet extends HttpServlet {
     protected void showCulinaryRewards(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         String rewardType = "Culinary";
         List<Reward> culinaryRewards = rewardDAO.getRewardsByType(rewardType);
         session.setAttribute("culinaryRewards", culinaryRewards);

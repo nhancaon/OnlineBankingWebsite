@@ -1,4 +1,4 @@
-<form action="show-defaultPA" method="GET">
+<form action="Profile" method="GET">
     <button
         type="submit"
         class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600"

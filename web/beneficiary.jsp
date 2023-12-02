@@ -113,7 +113,7 @@
             </button>
         </div>
         <div class="content">
-            <form action="create-beneficiary" method="post">
+            <form action="CreateBeneficiary" method="post">
                 <input type="hidden" name="action" value="create" />
                 <div class="relative mt-6" >
                     <div id="transferType" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">

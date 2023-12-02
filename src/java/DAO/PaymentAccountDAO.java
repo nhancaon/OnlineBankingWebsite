@@ -3,6 +3,7 @@ package DAO;
 import Exception.HandleException;
 import business.Customer;
 import business.PaymentAccount;
+import business.Reward;
 
 import java.util.HashMap;
 import java.util.List;
@@ -104,6 +105,19 @@ public class PaymentAccountDAO extends JpaDAO<PaymentAccount> implements Generic
 
         if (!paymentAccountList.isEmpty()) {
             return paymentAccountList.get(0);
+        }
+
+        return null;
+    }
+
+    public List<Reward> findRewardOfAccount(String accountNumber) {
+
+        List<PaymentAccount> paymentAccountList = super.findWithNamedQuery(
+                "SELECT pa FROM PaymentAccount pa WHERE pa.accountNumber = :accountNumber",
+                "accountNumber", accountNumber);
+
+        if (!paymentAccountList.isEmpty()) {
+            return paymentAccountList.get(0).getRewards();
         }
 
         return null;

@@ -152,8 +152,8 @@
                         <form action="Transfer" method="get">
                             <input type="hidden" name="action" value="show-name" />
                             <input type="hidden" name="getNumber" value="<%= beneficiary.getAccountNumber()%>" />
-                            <button class="w-full px-8 bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out  cursor-pointer">                      
-                                <div class="flex justify-between items-center py-4 border-black text-sm  border-y">
+                            <button class="w-full mt-2 px-8 bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out  cursor-pointer">                      
+                                <div class="grid grid-cols-3 items-center py-4 border-black text-sm  border-b">
                                     <span class="text-xl"><%= beneficiary.getName()%></span>
                                     <span>
                                         NND BANKING
@@ -177,9 +177,8 @@
 
 
 
-
     <script>
-   
+
         function setAcNumber() {
             const numberValue = document.getElementById('accountNumber').value;
             const amountValue = document.getElementById('amount').value;
@@ -188,4 +187,7 @@
             document.getElementById('showName').submit();
         }
     </script>
+
+
     <%@ include file="/includes/footer.jsp" %>
+

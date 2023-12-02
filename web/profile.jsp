@@ -33,8 +33,8 @@
                     </span>
                 </div>
                 <div class="grid justify-end ml-16 sm:ml-4">
-                    <form action="show-account" method="get">
-                        <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg">
+                    <form action="Account" method="get">
+                        <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                             Accounts List <span class="font-bold"><i
                                     class="fa-solid fa-chevron-right py-1"></i></span>
                         </button>
@@ -73,7 +73,7 @@
                 <img src="./assets/loan.png" class="w-8 mb-2" />
                 Loan
             </a>
-            <form action="show-rewards" method="get" class="w-full">
+            <form action="rewards" method="get" class="w-full">
                 <input type="hidden" name="action" value="allRewards">
                 <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
@@ -88,7 +88,7 @@
     <div class="md:mx-56 mx-2 py-16">
         <div>Settings</div>
         <div class="py-10 grid grid-cols-2 md:grid-cols-5 gap-5">
-            <form action="show-beneficiary" method="GET">
+            <form action="Beneficiary" method="GET">
                 <button type="submit" class="w-full grid justify-center items-center bg-white h-40 rounded-xl
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                     <span class="flex flex-col items-center justify-center">
