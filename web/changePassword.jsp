@@ -44,114 +44,89 @@ include file="/includes/header.jsp" %> <%@ include
                 </ol>
             </nav>
 
-            <div class="my-16 pb-16 pt-12 px-8 rounded-xl bg-white">
-                <div class="my-2 w-1/2">
-                    <c:if test="${not empty requestScope.successMessage}">
-                        <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
-                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                            </svg>
-                            <span class="sr-only">Info</span>
-                            <div>
-                                <span class="font-medium">${requestScope.successMessage}</span>
-                            </div>
-                        </div>
-                    </c:if>
-
-                    <c:if test="${not empty requestScope.errorMessage}">
-                        <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
-                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                            </svg>
-                            <span class="sr-only">Info</span>
-                            <div>
-                                <span class="font-medium">${requestScope.errorMessage}</span>
-                            </div>
-                        </div>
-                    </c:if>
-                </div>
-                <div class="grid text-xs gap-2">
-                    <span class="text-gray-500"
-                          >Password must satisfy the following conditions:</span
-                    >
-                    <ul class="grid gap-2 list-disc px-4">
-                        <li>
-                            <span>The length must be from 8 to 20 characters</span>
-                        </li>
-                        <li>
-                            <span
-                                >Contains at least 01 digit, 01 letter and 01 special
-                                character</span
-                            >
-                        </li>
-                    </ul>
-                    <span>For example: b&123456; B&123456; &B123456</span>
-                </div>
-
-                <div>
-                    <form
-                        class="col-span-3 space-y-4 md:space-y-6"
-                        action="ChangePassword"
-                        method="post"
+            <%@ include file="/includes/exception.jsp" %>
+            <div class="grid text-xs gap-2">
+                <span class="text-gray-500"
+                      >Password must satisfy the following conditions:</span
+                >
+                <ul class="grid gap-2 list-disc px-4">
+                    <li>
+                        <span>The length must be from 8 to 20 characters</span>
+                    </li>
+                    <li>
+                        <span
+                            >Contains at least 01 digit, 01 letter and 01 special
+                            character</span
                         >
-                        <input type="hidden" name="action" value="changePassword" />
-                        <div class="relative mt-6">
-                            <input
-                                type="password"
-                                id="currentPassword"
-                                name="currentPassword"
-                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" "
-                                required
-                                />
-                            <label
-                                for="currentPassword"
-                                class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                >Current Password</label
+                    </li>
+                </ul>
+                <span>For example: b&123456; B&123456; &B123456</span>
+            </div>
+
+            <div>
+                <form
+                    class="col-span-3 space-y-4 md:space-y-6"
+                    action="ChangePassword"
+                    method="post"
+                    >
+                    <input type="hidden" name="action" value="changePassword" />
+                    <div class="relative mt-6">
+                        <input
+                            type="password"
+                            id="currentPassword"
+                            name="currentPassword"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            />
+                        <label
+                            for="currentPassword"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >Current Password</label
+                        >
+                    </div>
+                    <div class="relative mt-6">
+                        <input
+                            type="password"
+                            id="newPassword"
+                            name="newPassword"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            />
+                        <label
+                            for="newPassword"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >New Password</label
+                        >
+                    </div>
+                    <div class="relative mt-6">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            />
+                        <label
+                            for="confirmPassword"
+                            class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >Confirm New Password</label
+                        >
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            id="changePasswordBtn"
+                            class="text-white py-4 px-8 md:px-12 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-xl outline-none focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                             >
-                        </div>
-                        <div class="relative mt-6">
-                            <input
-                                type="password"
-                                id="newPassword"
-                                name="newPassword"
-                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" "
-                                required
-                                />
-                            <label
-                                for="newPassword"
-                                class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                >New Password</label
-                            >
-                        </div>
-                        <div class="relative mt-6">
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" "
-                                required
-                                />
-                            <label
-                                for="confirmPassword"
-                                class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                >Confirm New Password</label
-                            >
-                        </div>
-                        <div class="flex justify-end">
-                            <button
-                                id="changePasswordBtn"
-                                class="text-white py-4 px-8 md:px-12 bg-gradient-to-r from-[#00bfae] to-[#0066ad] rounded-xl outline-none focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                                >
-                                Change Password
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                            Change Password
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <%@ include file="/includes/footer.jsp" %>
+<%@ include file="/includes/footer.jsp" %>

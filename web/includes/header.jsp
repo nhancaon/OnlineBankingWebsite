@@ -69,7 +69,7 @@
     </head>
     <body>
 
-        <div id="header" class="fixed top-0 w-full shadow-xl z-[1000] bg-[#fff]">
+        <div id="header" class="fixed top-0 w-full shadow-xl z-[100000] bg-[#fff]">
             <div class="grid grid-cols-2 md:grid-cols-3 justify-center md:mx-56 py-4">
                 <div class="hidden sm:block">
                     <form>

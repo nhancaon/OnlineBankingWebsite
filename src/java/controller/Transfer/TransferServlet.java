@@ -37,6 +37,7 @@ public class TransferServlet extends HttpServlet {
             String Number = request.getParameter("getNumber");
             String Amount = request.getParameter("getAmount");
             PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
+            if(receiver == null) request.setAttribute("errorMessage", "The account number is not existed");
             request.setAttribute("receiver",receiver);
             request.setAttribute("Amount",Amount);
             request.setAttribute("Number",Number);

@@ -40,17 +40,9 @@
             <div class="flex justify-between items-center">
                 <span>Beneficiary</span>
                 <button id="createBeneficiary" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
+                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2">Add Beneficiary</button>
             </div>
-            <div>
-                <c:if test="${not empty requestScope.successMessage}">
-                    <p style="color: green">${requestScope.successMessage}</p>
-                </c:if>
-
-                <c:if test="${not empty requestScope.errorMessage}">
-                    <p style="color: red">${requestScope.errorMessage}</p>
-                </c:if>
-            </div>
+            <%@ include file="/includes/exception.jsp" %>
             <div class="relative overflow-x-auto my-16">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -73,37 +65,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%                            List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
+                        <% List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
 
                             if (beneficiaries != null && !beneficiaries.isEmpty()) {
                                 for (Beneficiary beneficiary : beneficiaries) {
                         %>
-                        <tr class="bg-white border-b">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <%= beneficiary.getBeneficiaryId()%>
-                            </th>
-                            <td class="px-6 py-4">
-                                <%= beneficiary.getName()%>
-                            </td>
-                            <td class="px-6 py-4">
-                                NND BANKING
-                            </td>
-                            <td class="px-6 py-4">
-                                <%= beneficiary.getAccountNumber()%>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer"/>
-                            </td>
-                        </tr>
+                            <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        <%= beneficiary.getBeneficiaryId()%>
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        <%= beneficiary.getName()%>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        NND BANKING
+                                    </td>
+                                    <td class="AccNumber" class="px-6 py-4">
+                                        <%= beneficiary.getAccountNumber()%>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer focus:ring transform transition hover:scale-105 duration-300 ease-in-out" />
+                                    </td>        
+                            </tr>
                         <%
-                                }
                             }
+                        }
                         %>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+    </div>s
 </div>
 
 <div
@@ -178,6 +170,15 @@
         </div>
     </div>
 </div>
-
-
+<form id="moveToTransfer" action="Transfer" method="post" class="absolute top-44 right-14 md:right-24 z-[1000]">
+    <input type="hidden" name="action" value="show-name" />
+    <input type="hidden" name="getNumber" id="getNumber" />
+</form>                        
+<script>
+        function MoveToTransfer(row) {
+            const numberValue = document.getElementsByClassName('AccNumber')[Array.from(row.parentNode.children).indexOf(row)].innerText;
+            document.getElementById("getNumber").value = numberValue;
+            document.getElementById('moveToTransfer').submit();
+        }
+    </script>
 <%@ include file="/includes/footer.jsp" %>
