@@ -27,7 +27,10 @@ public class SavingAccount extends Account implements Serializable {
     @Column(nullable = false)
     private int minBalance;
     @Column(nullable = false)
-    private Double savingAmount;
+    private Double savingCurrentAmount;
+    @Column(nullable = false)
+    private Double savingInitialAmount;
+    
 
     public String getSavingAccountId() {
         return savingAccountId;
@@ -45,12 +48,20 @@ public class SavingAccount extends Account implements Serializable {
         this.minBalance = minBalance;
     }
 
-    public Double getSavingAmount() {
-        return savingAmount;
+    public Double getSavingCurrentAmount() {
+        return savingCurrentAmount;
     }
 
-    public void setSavingAmount(Double savingAmount) {
-        this.savingAmount = savingAmount;
+    public void setSavingCurrentAmount(Double savingCurrentAmount) {
+        this.savingCurrentAmount = savingCurrentAmount;
+    }
+
+    public Double getSavingInitialAmount() {
+        return savingInitialAmount;
+    }
+
+    public void setSavingInitialAmount(Double savingInitialAmount) {
+        this.savingInitialAmount = savingInitialAmount;
     }
 
     public InterestRate getInterestRate() {
