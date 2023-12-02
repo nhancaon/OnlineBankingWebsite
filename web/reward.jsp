@@ -75,6 +75,7 @@
                     <div class="grid justify-end px-4 py-8 ml-16 sm:ml-4">
                         <form action="rewards" method="get">
                             <input type="hidden" name="action" value="my-rewards" />
+                            <input type="hidden" name="accountNumber" value="${defaultPaymentAccount.getAccountNumber()}" />
                             <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                 My reward<span class="font-bold ml-2"><i
                                         class="fa-solid fa-chevron-right py-1"></i></span>
@@ -155,7 +156,7 @@
                                     </div>
                                 </div>
                                 <form action="redeem" method="post" class="flex items-end justify-end">
-                                    <input type="hidden" name="rewardId" value="${reward.getRewardId()}" />     
+                                    <input type="hidden" name="rewardId" value="${reward.getRewardId()}" />                                  
                                     <input type="hidden" name="currentPage" value="reward" />
                                     <button
                                         class="px-4 py-2 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"

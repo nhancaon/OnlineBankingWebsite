@@ -94,7 +94,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
                 "SELECT r FROM PaymentAccount pa JOIN pa.rewards r WHERE pa.accountNumber = :accountNumber AND r.rewardId = :rewardId",
                 parameters);
 
-        return rewards != null ? rewards.get(0) : null;
+        return !rewards.isEmpty() ? rewards.get(0) : null;
     }
 
     public Reward redeemReward(String rewardId, String defaultAccountNumber) throws HandleException {
@@ -123,7 +123,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
                     return reward;
                 } else {
                     throw new HandleException("Insufficient reward points to redeem the reward", 409);
-                }
+                }             
             } else {
                 throw new HandleException("You have already reedeem this reward", 409);
             }

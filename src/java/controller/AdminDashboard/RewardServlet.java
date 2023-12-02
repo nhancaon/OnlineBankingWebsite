@@ -77,7 +77,7 @@ public class RewardServlet extends HttpServlet {
         int costPoint = Integer.parseInt(request.getParameter("costPoint"));
             rewardDAO.addReward(name, price, costPoint, type);
             request.setAttribute("successMessage", "The reward has been added successfully.");
-    }
+    } 
 
     
       protected void updateReward(HttpServletRequest request, HttpServletResponse response)
