@@ -3,6 +3,7 @@ package controller.Transfer;
 import DAO.JpaDAO;
 import DAO.PaymentAccountDAO;
 import DAO.TransactionDAO;
+import DAO.BeneficiaryDAO;
 import Exception.HandleException;
 import java.io.*;
 import javax.servlet.*;
@@ -14,6 +15,7 @@ import jakarta.mail.MessagingException;
 import static java.lang.Double.parseDouble;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +23,7 @@ public class TransferServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
     TransactionDAO transactionDAO = new TransactionDAO();
+    BeneficiaryDAO beneficiaryDAO = new BeneficiaryDAO();
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -29,22 +32,11 @@ public class TransferServlet extends HttpServlet {
         String url = "/transfer.jsp";
         request.setCharacterEncoding("UTF-8");
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
-        }else if(action.equals("show-name")){
-            String Number = request.getParameter("getNumber");
-            String Amount = request.getParameter("getAmount");
-            PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
-            if(receiver == null) request.setAttribute("errorMessage", "The account number is not existed");
-            request.setAttribute("receiver",receiver);
-            request.setAttribute("Amount",Amount);
-            request.setAttribute("Number",Number);
-            url = "/transfer.jsp";
-        }
-        else if (action.equals("check")) {
-            url = "/profile.jsp";
         } else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
@@ -86,7 +78,7 @@ public class TransferServlet extends HttpServlet {
                 if (receiver != null) {
                     session.setAttribute("receiver", receiver);
                 }
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+
                 LocalDateTime time = LocalDateTime.now();
                 String timeStr = time.format(formatter);
                 session.setAttribute("timeStr", timeStr);
@@ -109,6 +101,7 @@ public class TransferServlet extends HttpServlet {
                 String Amount = (String) session.getAttribute("Amount");
                 String Remark = (String) session.getAttribute("Remark");
                 LocalDateTime time = (LocalDateTime) session.getAttribute("time");
+                String timeStr = time.format(formatter);
                 PaymentAccount sender = (PaymentAccount) session.getAttribute("sender");
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
                 String OTP = (String) session.getAttribute("OTP");
@@ -122,7 +115,7 @@ public class TransferServlet extends HttpServlet {
                     request.setAttribute("show", "not");
                     url = "/confirm.jsp";
                 }
-                
+
             }
         }
 
@@ -130,4 +123,41 @@ public class TransferServlet extends HttpServlet {
                 .getRequestDispatcher(url)
                 .forward(request, response);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        ServletContext servletContext = getServletContext();
+
+        String action = request.getParameter("action");
+
+        if (action == null) {
+            action = "return";
+        }
+
+        String url = "/transfer.jsp";
+
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        String customerId = customer.getCustomerId();
+        List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiary(customerId);
+
+        if (action.equals("show-name")) {
+            String Number = request.getParameter("getNumber");
+            String Amount = request.getParameter("getAmount");
+            PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
+            if (receiver == null) {
+                request.setAttribute("errorMessage", "The account number is not existed");
+            }
+            request.setAttribute("receiver", receiver);
+            request.setAttribute("Amount", Amount);
+            request.setAttribute("Number", Number);
+        }
+
+        request.setAttribute("Beneficiaries", beneficiaries);
+        servletContext.getRequestDispatcher(url)
+                .forward(request, response);
+
+    }
+
 }

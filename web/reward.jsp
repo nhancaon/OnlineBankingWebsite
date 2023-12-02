@@ -65,22 +65,29 @@
                         class="flex flex-col justify-center items-center space-y-2 ml-8 text-white"
                         >
                         <span class="uppercase text-sm"
-                              >Available Balance: <%=
-              formatCurrency(defaultPaymentAccount.getCurrentBalence())%>
+                              >Available Balance: <%=formatCurrency(defaultPaymentAccount.getCurrentBalence())%>
                             VND</span
                         >
                         <span class="uppercase text-sm"
                               >Reward Point: ${defaultPaymentAccount.getRewardPoint()} RWP</span
                         >
                     </div>
-                    <img src="assets/thanh-toan.svg" src="wallet" class="p-4" />
+                    <div class="grid justify-end px-4 py-8 ml-16 sm:ml-4">
+                        <form action="rewards" method="get">
+                            <input type="hidden" name="action" value="my-rewards" />
+                            <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                                My reward<span class="font-bold ml-2"><i
+                                        class="fa-solid fa-chevron-right py-1"></i></span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
             <div class="grid mt-16 rounded-xl bg-white">
                 <div class="md:px-10 px-6 py-6">Gift Categories</div>
                 <div class="md:p-10 p-6 bg-gray-200 grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <form action="show-rewards" method="get">
+                    <form action="rewards" method="get">
                         <input type="hidden" name="action" value="shopping" />
                         <button
                             type="submit"
@@ -92,7 +99,7 @@
                             </span>
                         </button>
                     </form>
-                    <form action="show-rewards" method="get">
+                    <form action="rewards" method="get">
                         <input type="hidden" name="action" value="culinary" />
                         <button
                             type="submit"

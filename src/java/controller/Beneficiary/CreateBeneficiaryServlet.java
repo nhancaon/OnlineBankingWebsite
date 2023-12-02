@@ -10,7 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/create-beneficiary")
+@WebServlet("/CreateBeneficiary")
 public class CreateBeneficiaryServlet extends HttpServlet {
 
     BeneficiaryDAO beneficiaryDAO = new BeneficiaryDAO();

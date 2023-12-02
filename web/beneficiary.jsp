@@ -95,7 +95,7 @@
                 </table>
             </div>
         </div>
-    </div>s
+    </div>
 </div>
 
 <div
@@ -113,7 +113,7 @@
             </button>
         </div>
         <div class="content">
-            <form action="create-beneficiary" method="post">
+            <form action="CreateBeneficiary" method="post">
                 <input type="hidden" name="action" value="create" />
                 <div class="relative mt-6" >
                     <div id="transferType" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
@@ -170,7 +170,7 @@
         </div>
     </div>
 </div>
-<form id="moveToTransfer" action="Transfer" method="post" class="absolute top-44 right-14 md:right-24 z-[1000]">
+<form id="moveToTransfer" action="Transfer" method="get" class="absolute top-44 right-14 md:right-24 z-[1000]">
     <input type="hidden" name="action" value="show-name" />
     <input type="hidden" name="getNumber" id="getNumber" />
 </form>                        
