@@ -5,9 +5,6 @@
 <%@ include file="/includes/checkLogin.jsp"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-    String initialAmount = (String) session.getAttribute("initialAmount");
-%>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
@@ -60,6 +57,7 @@
                                 stroke-width="2"
                                 d="m1 9 4-4-4-4"/>
                         </svg>
+
                         <form class="cursor-pointer">
                             <button
                                 type="text"
@@ -95,16 +93,16 @@
                                 <div class="md:col-span-2">Initial Saving Amount : </div>
                                 <div class="text-end text-xl text-green-400">${initialString} VND</div>
                                 <div class="md:col-span-2">Current Saving Amount : </div>
-                                <div class="text-end text-xl text-green-400">${savingAccount.savingAmount} VND</div>
+                                <div class="text-end text-xl text-green-400">${savingAccount.savingCurrentAmount} VND</div>
                                 <div class="md:col-span-2">Expected Total Received : </div>
                                 <div class="text-end text-xl text-green-400">${expectedAmount} VND</div>
-                                <div class="md:col-span-2">Monthly Basis Amount : </div>
+                                <div class="md:col-span-2">Expected Monthly Amount : </div>
                                 <div class="text-end text-xl text-green-400">${monthlyAmount} VND</div>
                             </div>
 
                             <input type="hidden" name="action" value="withdraw">
                             <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
-                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingAmount*(100+savingAccount.interestRate.interestRate)/100}">
+                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingCurrentAmount}">
                             <div class="flex justify-end items-center mt-10">
                                 <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
                             </div>
@@ -170,10 +168,10 @@
                             <div class="md:col-span-2">Initial Saving Amount : </div>
                             <div class="text-end text-xl text-green-400">${initialString} VND</div>
                             <div class="md:col-span-2">Current Saving Amount : </div>
-                            <div class="text-end text-xl text-green-400">${savingAccount.savingAmount} VND</div>
+                            <div class="text-end text-xl text-green-400">${savingAccount.savingCurrentAmount} VND</div>
                             <div class="md:col-span-2">Expected Total Received : </div>
                             <div class="text-end text-xl text-green-400">${expectedAmount} VND</div>
-                            <div class="md:col-span-2">Monthly Basis Amount : </div>
+                            <div class="md:col-span-2">Expected Monthly Amount : </div>
                             <div class="text-end text-xl text-green-400">${monthlyAmount} VND</div>
                         </div>
                     </c:if>

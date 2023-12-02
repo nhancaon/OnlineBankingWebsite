@@ -142,37 +142,28 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         InterestRateDAO interestRateDAO = new InterestRateDAO();
         InterestRate interestRate = new InterestRate();
 
-        Double amount = savingAccount.getSavingCurrentAmount();
-        System.out.println("amount DAO"+ amount);
+        Double amount = savingAccount.getSavingInitialAmount();
         LocalDate checkDate = LocalDate.parse(strDate);
 
         // For calculating interest
         int numberOfDay = (checkDate.getMonthValue() - savingAccount.getDateOpened().getMonthValue());
         interestRate = interestRateDAO.findInterestRateByInterestId(savingAccount.getInterestRate().getInterestId());
         Map<String, Double> map = new HashMap<String, Double>();
-
-
-        if (savingAccount.getDateOpened().getYear() < checkDate.getYear()){
+        
+        if (savingAccount.getDateOpened().isBefore(checkDate)){
             map = calculateInterest(amount, interestRate.getConsecutive(), interestRate, savingAccount, checkDate);
             return map;
         }
-        else if (savingAccount.getDateOpened().getYear() == checkDate.getYear()) {
-            if (savingAccount.getDateOpened().getMonthValue() < checkDate.getMonthValue()){
-                map = calculateInterest(amount, interestRate.getConsecutive(), interestRate, savingAccount, checkDate);
-                return map;
-            }
-            else if (savingAccount.getDateOpened().getMonthValue() == checkDate.getMonthValue()){
-                map.put("expectedTotal", amount);
-                map.put("monthlyTotal", 0.0);
-                return map;
-            }
-            else{
-                map.put("expectedTotal", 0.0);
-                map.put("monthlyTotal", 0.0);
-                return map;
-            }
+        else if (savingAccount.getDateOpened().getMonthValue() == checkDate.getMonthValue()){
+            map.put("expectedTotal", amount);
+            map.put("monthlyTotal", 0.0);
+            return map;
         }
-        return null;
+        else{
+            map.put("expectedTotal", 0.0);
+            map.put("monthlyTotal", 0.0);
+            return map;
+        }
     }
 
     public Map<String, Double> calculateInterest(Double amount, boolean cons, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
@@ -206,7 +197,19 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return result;
     }
 
-    public SavingAccount updateCurrentSavingAccount(String accountNumber, SavingAccount savingAccount, Double currentAmount){
+    public SavingAccount updateCurrentSavingAccount(String accountNumber, SavingAccount savingAccount, InterestRate rate){
+        Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;
+
+        // Calculate the number of months (considering partial months)
+        YearMonth startYearMonth = YearMonth.from(savingAccount.getDateOpened());
+        YearMonth endYearMonth = YearMonth.from(LocalDate.now());
+        long monthsDifference = ChronoUnit.MONTHS.between(startYearMonth, endYearMonth);
+
+        // Round up to the nearest whole month
+        int consTime = (int) Math.ceil(monthsDifference);
+
+        Double currentAmount = savingAccount.getSavingInitialAmount() * (Math.pow((1 + interest), consTime * 1.0));
+        
         savingAccount.setSavingCurrentAmount(currentAmount);
         update(savingAccount);
         return savingAccount;

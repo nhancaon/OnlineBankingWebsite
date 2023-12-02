@@ -22,12 +22,11 @@ public class ShowAccountDetailServlet extends HttpServlet {
 
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     SavingAccount savingAccount = new SavingAccount();
+    InterestRateDAO interestRateDAO = new InterestRateDAO();
+    InterestRate interestRate = new InterestRate();
   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //    ServletContext servletContext = getServletContext();
-    //    String url = "/savingDetail.jsp";       
-    //    servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
@@ -36,20 +35,20 @@ public class ShowAccountDetailServlet extends HttpServlet {
         String url = "/savingDetail.jsp";
         String accountNumber = request.getParameter("accountNumber");     
         savingAccount = savingAccountDAO.findByAccountNumber(accountNumber);
+        interestRate = interestRateDAO.findInterestRateByInterestId(savingAccount.getInterestRate().getInterestId());
 
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         String checkDate = request.getParameter("checkDate");
         String current = request.getParameter("checkDate");
-        System.out.println("1111111111111");
 
         Map<String, Double> map = new HashMap<String, Double>();
 
         Double expectedTotal = 0.0;
         Double monthlyTotal = 0.0;
         Double initialAmount =  savingAccount.getSavingInitialAmount();
-        System.out.println("initialAmount "+ initialAmount);
+
 
         if (checkDate == null){
             checkDate = currentDate.format(formatter);
@@ -64,20 +63,8 @@ public class ShowAccountDetailServlet extends HttpServlet {
             monthlyTotal = map.get("monthlyTotal");
         }
 
-        LocalDate dateCheckInitial = LocalDate.parse(current, formatter);
-        System.out.println("dateCheckInitial: " + dateCheckInitial);
-
-        // if(dateCheckInitial.getYear() > savingAccount.getDateOpened().getYear()){
-        //     initialAmount = savingAccount.getSavingAmount();
-        // }
-        // else if (dateCheckInitial.getYear() == savingAccount.getDateOpened().getYear()){
-        //     if (dateCheckInitial.getMonthValue() >= savingAccount.getDateOpened().getMonthValue()){
-        //         initialAmount = savingAccount.getSavingAmount();
-        //     }
-        // }
-
         if(savingAccount.getDateOpened().isBefore(LocalDate.now())){
-            savingAccount = savingAccountDAO.updateCurrentSavingAccount(accountNumber, savingAccount, monthlyTotal);
+            savingAccount = savingAccountDAO.updateCurrentSavingAccount(accountNumber, savingAccount, interestRate);
         }
 
         // Render to jsp
