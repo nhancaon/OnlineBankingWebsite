@@ -6,9 +6,15 @@ import business.InterestRate;
 import business.SavingAccount;
 import business.PaymentAccount;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.YearMonth;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.ejb.Local;
+
 import java.text.DecimalFormat;
 import DAO.PaymentAccountDAO;
 
@@ -93,8 +99,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
 
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         SavingAccount savingAccountEntity = new SavingAccount();
-        // SavingAccount existingSavingAccount =
-        // findExistingSavingAccount(customer.getCustomerId(), accountNumber);
+        // SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
         PaymentAccount paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
         // if (existingSavingAccount != null) {
         // if (existingSavingAccount.getAccountNumber().equals(accountNumber)) {
@@ -120,7 +125,8 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             savingAccountEntity.setDateOpened(time);
             savingAccountEntity.setDateClosed(time.plusMonths(term));
             savingAccountEntity.setMinBalance(1000000);
-            savingAccountEntity.setSavingAmount(amount);
+            savingAccountEntity.setSavingCurrentAmount(amount);
+            savingAccountEntity.setSavingInitialAmount(amount);
             savingAccountEntity.setPaymentAccount(paymentAccount);
             savingAccountEntity.setInterestRate(interestRate);
             paymentAccount.setCurrentBalence(paymentAccount.getCurrentBalence() - amount);
@@ -131,51 +137,79 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public SavingAccount updateSavingAccount(String accountNumber, String strDate) {
-
+    public Map<String, Double> displayExpectedSaving(String accountNumber, String strDate) {
         SavingAccount savingAccount = findByAccountNumber(accountNumber);
         InterestRateDAO interestRateDAO = new InterestRateDAO();
         InterestRate interestRate = new InterestRate();
-        
-        PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-        PaymentAccount paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
 
-        Double amount = savingAccount.getSavingAmount();
+        Double amount = savingAccount.getSavingCurrentAmount();
+        System.out.println("amount DAO"+ amount);
         LocalDate checkDate = LocalDate.parse(strDate);
 
+        // For calculating interest
         int numberOfDay = (checkDate.getMonthValue() - savingAccount.getDateOpened().getMonthValue());
-
         interestRate = interestRateDAO.findInterestRateByInterestId(savingAccount.getInterestRate().getInterestId());
-        Double totalAmount = calculateInterest(amount, interestRate.getConsecutive(), interestRate);
+        Map<String, Double> map = new HashMap<String, Double>();
 
-        if (interestRate.getConsecutive()) {
-            paymentAccount.setCurrentBalence(paymentAccount.getCurrentBalence() - amount * numberOfDay);
-            paymentAccountDAO.update(paymentAccount);
+
+        if (savingAccount.getDateOpened().getYear() < checkDate.getYear()){
+            map = calculateInterest(amount, interestRate.getConsecutive(), interestRate, savingAccount, checkDate);
+            return map;
         }
-        savingAccount.setSavingAmount(totalAmount);
-        savingAccount.setDateClosed(checkDate);
-        savingAccount.setDateOpened(LocalDate.now());
-        update(savingAccount);
-        return savingAccount;
+        else if (savingAccount.getDateOpened().getYear() == checkDate.getYear()) {
+            if (savingAccount.getDateOpened().getMonthValue() < checkDate.getMonthValue()){
+                map = calculateInterest(amount, interestRate.getConsecutive(), interestRate, savingAccount, checkDate);
+                return map;
+            }
+            else if (savingAccount.getDateOpened().getMonthValue() == checkDate.getMonthValue()){
+                map.put("expectedTotal", amount);
+                map.put("monthlyTotal", 0.0);
+                return map;
+            }
+            else{
+                map.put("expectedTotal", 0.0);
+                map.put("monthlyTotal", 0.0);
+                return map;
+            }
+        }
+        return null;
     }
 
-    public Double calculateInterest(Double amount, boolean cons, InterestRate rate) {
-        Double totalAmount = 0.0;
+    public Map<String, Double> calculateInterest(Double amount, boolean cons, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
+        Map<String, Double> result = new HashMap<>();
+        Double expectedTotal = 0.0;
         Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;
         int term = rate.getTerm();
-        int consTime = (LocalDate.now().getMonthValue() - 4);
 
-        if (cons) {
-            totalAmount = (amount / interest) * (Math.pow((1.0 + interest), consTime) - 1.0);
-        } else {
-            totalAmount = amount * (Math.pow((1 + interest), term * 1.0));
-        }
+        expectedTotal = amount * (Math.pow((1 + interest), term * 1.0));
+
+        // Calculate the number of months (considering partial months)
+        YearMonth startYearMonth = YearMonth.from(savingAccount.getDateOpened());
+        YearMonth endYearMonth = YearMonth.from(checkDate);
+        long monthsDifference = ChronoUnit.MONTHS.between(startYearMonth, endYearMonth);
+
+        // Round up to the nearest whole month
+        int consTime = (int) Math.ceil(monthsDifference);
+        System.out.println("consTime " + consTime);
+        Double monthlyTotal = 0.0;
+        
+        monthlyTotal = amount * (Math.pow((1 + interest), consTime * 1.0));
 
         // Format totalAmount to 2 decimal places
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        totalAmount = Double.parseDouble(decimalFormat.format(totalAmount));
+        expectedTotal = Double.parseDouble(decimalFormat.format(expectedTotal));
+        monthlyTotal = Double.parseDouble(decimalFormat.format(monthlyTotal));
 
-        return totalAmount;
+        result.put("expectedTotal", expectedTotal);
+        result.put("monthlyTotal", monthlyTotal);
+
+        return result;
+    }
+
+    public SavingAccount updateCurrentSavingAccount(String accountNumber, SavingAccount savingAccount, Double currentAmount){
+        savingAccount.setSavingCurrentAmount(currentAmount);
+        update(savingAccount);
+        return savingAccount;
     }
 
     public SavingAccount findByAccountNumber(String accountNumber) {

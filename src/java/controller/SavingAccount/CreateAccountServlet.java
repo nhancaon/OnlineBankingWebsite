@@ -21,10 +21,7 @@ public class CreateAccountServlet extends HttpServlet {
     InterestRateDAO interestRateDAO = new InterestRateDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -39,7 +36,6 @@ public class CreateAccountServlet extends HttpServlet {
             String customerId = customer.getCustomerId();
             String accountNumber = request.getParameter("acNumber");
             String amount = request.getParameter("savingAmount");
-            String iniAmount = request.getParameter("savingAmount");
             String savingTitle = request.getParameter("typeOfSaving");
             InterestRate interestRate = interestRateDAO.findBySavingTitle(savingTitle);
 
@@ -49,19 +45,15 @@ public class CreateAccountServlet extends HttpServlet {
                 PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
                 List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(paymentAccountDAO.findDefaultPaymentAccount(customerId).getPaymentAccountId());
                 request.setAttribute("savingAccounts", savingAccounts);
-                session.setAttribute("iniAmount", iniAmount);
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());
             }
         }
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 }

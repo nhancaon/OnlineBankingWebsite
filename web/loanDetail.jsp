@@ -1,7 +1,8 @@
-<%@ page import="DAO.LoanLendingDAO"%> <%@ page import="business.LoanLending"%>
-<%@ include file="/includes/header.jsp"%> <%@ include
-    file="/includes/checkLogin.jsp" %> <%@ taglib prefix="c"
-                                              uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="DAO.LoanLendingDAO"%> 
+<%@ page import="business.LoanLending"%>
+<%@ include file="/includes/header.jsp"%> 
+<%@ include file="/includes/checkLogin.jsp"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
         <div class="py-16 mx-2 md:mx-56">
