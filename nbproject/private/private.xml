@@ -3,36 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/DAO/RewardDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/PaymentAccount/ShowAccountServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/PaymentAccount/CreateAccountServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/reward.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/changePassword.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/savingAccount.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/culinary.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/login.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/beneficiary.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/DAO/LoanLendingDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/loanLending.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/success.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/signup.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/accountDetail.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/index.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/shopping.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/loanDetail.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/transfer.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/PaymentAccount/ShowDefaultPAServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/profile.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/User/LogoutServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/confirm.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/account.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/User/LoginServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/includes/header.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/web/includes/exception.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/online-banking-website/src/java/controller/Reward/RedeemServlet.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/account.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/DAO/SavingAccountDAO.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/beneficiary.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/savingAccount.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/admin-dashboard/customer.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/SavingAccount/ShowAccountDetailServlet.java</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/savingDetail.jsp</file>
+            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/web/loanLending.jsp</file>
         </group>
     </open-files>
 </project-private>
