@@ -53,7 +53,7 @@ public class ShowRewardsServlet extends HttpServlet {
                 url = "/culinary.jsp";
             }
             case "my-rewards" -> {
-                this.showCulinaryRewards(request, response);
+                this.showRewardsOfUser(request, response);
                 url = "/rewardDetail.jsp";
             }
             default -> {
@@ -97,6 +97,16 @@ public class ShowRewardsServlet extends HttpServlet {
         String rewardType = "Culinary";
         List<Reward> culinaryRewards = rewardDAO.getRewardsByType(rewardType);
         session.setAttribute("culinaryRewards", culinaryRewards);
+    }
+
+    protected void showRewardsOfUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        String accountNumber = (String) request.getParameter("accountNumber");
+        List<Reward> rewardsOfAccount = paymentAccountDAO.findRewardOfAccount(accountNumber);
+        session.setAttribute("rewardsOfAccount", rewardsOfAccount);
+
     }
 
 }

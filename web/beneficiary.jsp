@@ -36,7 +36,7 @@
             </ol>
         </nav>
 
-        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
+        <div class="my-16 pt-8 pb-24 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Beneficiary</span>
                 <button id="createBeneficiary" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
@@ -102,7 +102,7 @@
     id="create-account"
     class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-8 py-16 md:px-96 md:py-28"
     >
-    <div class="col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
+    <div class="col-span-3 my-16 p-8 md:px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Add New Beneficiary
             <button
@@ -180,5 +180,5 @@
             document.getElementById("getNumber").value = numberValue;
             document.getElementById('moveToTransfer').submit();
         }
-    </script>
+ </script>
 <%@ include file="/includes/footer.jsp" %>

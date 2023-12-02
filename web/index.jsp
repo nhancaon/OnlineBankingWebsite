@@ -1,8 +1,9 @@
-<%-- 
-    Document   : index
-    Created on : Nov 11, 2023, 6:20:24 PM
-    Author     : iamt4jdd
---%>
+<%@page import="business.Customer"%>
+
+<%
+    Customer customer = (Customer) session.getAttribute("customer");
+
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +13,13 @@
         <title>Banking</title>
     </head>
     <body>
-        <jsp:forward page="/Profile"></jsp:forward>
+
+        <% if (customer != null) { %>
+            <jsp:forward page="/Profile"></jsp:forward>
+
+        <%  } else { %>
+        
+            <jsp:forward page="/Login"></jsp:forward>
+        <%  }%> 
     </body>
 </html>
