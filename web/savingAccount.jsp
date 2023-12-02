@@ -61,7 +61,7 @@
                 </li>
             </ol>
         </nav>
-        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
+        <div class="mt-16 mb-36 pt-8 pb-24 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Saving Account</span>
                 <button
