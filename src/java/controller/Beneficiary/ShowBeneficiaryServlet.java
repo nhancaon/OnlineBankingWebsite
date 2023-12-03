@@ -32,7 +32,7 @@ public class ShowBeneficiaryServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
-        List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiary(customerId);
+        List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
 
         request.setAttribute("Beneficiaries", beneficiaries);
         servletContext.getRequestDispatcher(url)

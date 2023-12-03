@@ -48,7 +48,18 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
         return null;
     }
 
-    public List<Beneficiary> findAllBeneficiary(String customerId) {
+    public List<Beneficiary> findAllBeneficiary() {
+
+        List<Beneficiary> result = super.findWithNamedQuery("SELECT b FROM Beneficiary b");
+
+        if (!result.isEmpty()) {
+            return result;
+        }
+
+        return null;
+    }
+
+    public List<Beneficiary> findAllBeneficiaryByCustomerId(String customerId) {
 
         List<Beneficiary> beneficiaryList = super.findWithNamedQuery(
                 "SELECT b FROM Beneficiary b WHERE b.customer.customerId = :customerId",

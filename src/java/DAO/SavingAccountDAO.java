@@ -228,7 +228,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         return null;
     }
 
-    public void Withdraw(SavingAccount savingAccount, int expectedAmount) throws HandleException {
+    public void Withdraw(SavingAccount savingAccount, Double currentSavingAmount) throws HandleException {
 
         SavingAccount savingAccountEntity = savingAccount;
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
@@ -240,7 +240,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             throw new HandleException("Please add your default payment account.", 409);
         } else {
             savingAccountEntity.setAccountStatus("Inactive");
-            paymentAc.setCurrentBalence(paymentAc.getCurrentBalence() + expectedAmount);
+            paymentAc.setCurrentBalence(paymentAc.getCurrentBalence() + currentSavingAmount);
             paymentAccountDAO.update(paymentAc);
             savingAccountDAO.update(savingAccountEntity);
         }
