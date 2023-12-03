@@ -238,7 +238,6 @@
                         name="emailUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
                         />
                     <label
                         for="emailUpdate"
@@ -254,7 +253,6 @@
                         name="nameUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
                         />
                     <label
                         for="nameUpdate"
@@ -270,7 +268,7 @@
                         name="citizenIdUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
+  
                         />
                     <label
                         for="citizenIdUpdate"
@@ -286,7 +284,7 @@
                         name="phoneNumberUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
+                      
                         />
                     <label
                         for="phoneNumberUpdate"
@@ -302,7 +300,7 @@
                         name="addressUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
+                      
                         />
                     <label
                         for="addressUpdate"
@@ -335,7 +333,7 @@
                         name="pinNumberUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
+                      
                         />
                     <label
                         for="pinNumberUpdate"
@@ -351,7 +349,7 @@
                         name="passwordUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
+              
                         />
                     <label
                         for="passwordUpdate"

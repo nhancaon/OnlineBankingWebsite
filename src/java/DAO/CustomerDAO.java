@@ -152,49 +152,52 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
-    public Customer customerUpdate(String fullName, String email, String password, String citizenId,
-            String phoneNumber, String dateOfBirth, String address, int pinNumber) throws HandleException {
-        Customer existingCustomer = findByEmailOrCitizenId(email, citizenId);
-        String encryptedPassword = HashGenerator.generateMD5(password);
+    public Customer updateCustomer(String customerId, String fullName, String email, String password, String citizenId, String phoneNumber, String dateOfBirth, String address, int pinNumber) throws HandleException {
+        Customer customerEntityUpdate = new Customer();
+        String encryptedPassword = HashGenerator.generateMD5(password);   
 
-        if (existingCustomer != null) {
-            if (existingCustomer.getEmail().equals(email)) {
-                throw new HandleException("The user with Email " + email + " is already registered.", 409);
-            } 
-            else if (existingCustomer.getCitizenId().equals(citizenId)) {
-                throw new HandleException("The user with Citizen Identity " + citizenId + " is already registered.",409);
+        customerEntityUpdate.setCustomerId(customerId);
+        customerEntityUpdate.setName(fullName);
+        customerEntityUpdate.setEmail(email);
+        customerEntityUpdate.setPassword(encryptedPassword);
+        customerEntityUpdate.setPhoneNumber(phoneNumber);
+        customerEntityUpdate.setDateofBirth(LocalDate.parse(dateOfBirth));
+        customerEntityUpdate.setCitizenId(citizenId);
+        customerEntityUpdate.setAddress(address);
+        customerEntityUpdate.setPinNumber(pinNumber);
+
+        String to = email;
+        String subject = "Update Notification from NND Banking";
+        String body = "Dear " + fullName + ",\n\n"
+                + "We're glad to announce that your account has been successfully updated. "
+                + "You can now start to logging in website with new updated information.\n\n"
+                + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
+                + "Sincerely,\n\n" + "NND Banking";
+        try {
+            MailSender.sendMail(to, subject, body);
+        } catch (MessagingException ex) {
+            Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        update(customerEntityUpdate); 
+        return customerEntityUpdate;
+    }
+
+    public Customer checkUpdateCustomer(String customerId, String citizenId, String email, String fullName, String password,  String phoneNumber, String dateOfBirth, String address, int pinNumber) throws HandleException {
+        Customer duplicatedEmailCitizenId = findByEmailOrCitizenId(email, citizenId);
+
+        if (duplicatedEmailCitizenId != null){
+            if(duplicatedEmailCitizenId.getCustomerId().equals(customerId)){
+                updateCustomer(customerId, fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, pinNumber);
             }
             else{
-                existingCustomer.setName(fullName);
-                existingCustomer.setEmail(email);
-                existingCustomer.setPassword(encryptedPassword);
-                existingCustomer.setPhoneNumber(phoneNumber);
-                existingCustomer.setDateofBirth(LocalDate.parse(dateOfBirth));
-                existingCustomer.setCitizenId(citizenId);
-                existingCustomer.setAddress(address);
-                existingCustomer.setPinNumber(pinNumber);
-
-                String to = email;
-                String subject = "Update Notification from NND Banking";
-                String body = "Dear " + fullName + ",\n\n"
-                    + "We're glad to announce that your account has been successfully updated. "
-                    + "You can now start to logging in website with new email and password.\n\n"
-                    + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
-                    + "Sincerely,\n\n" + "NND Banking";
-
-                try {
-                    MailSender.sendMail(to, subject, body);
-                } catch (MessagingException ex) {
-                    Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                update(existingCustomer);
+                throw new HandleException("The user with Email: " + email + " and Citizen ID: " + citizenId 
+                + " is already registered.", 409);
             }
         }
         else{
-            throw new HandleException("The user with Email: " + email + " and Citizen ID: " + citizenId + " is not existed.", 409);
+            updateCustomer(customerId, fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, pinNumber);
         }
 
-            
         return null;
     }
 
