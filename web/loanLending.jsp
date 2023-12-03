@@ -24,7 +24,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Loan Lending</div>
         </div>
 
@@ -68,7 +70,7 @@
                     focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Loan</button>
             </div>
             <div class="mt-2 w-1/2">
-                 <c:if test="${not empty requestScope.successMessage}">
+                <c:if test="${not empty requestScope.successMessage}">
                     <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
                         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -153,7 +155,7 @@
                         >Account Information</label
                     >
                 </div>
-            
+
                 <div class="relative mt-6">
                     <input
                         type="text"
@@ -172,7 +174,7 @@
                         >Loan Amount</label
                     >
                 </div>
-                
+
                 <div class="relative mt-6" >
                     <select name="typeOfLoan" id="typeOfLoan" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                         <c:forEach var="rate" items="${interestRates}">

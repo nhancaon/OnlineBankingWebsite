@@ -9,7 +9,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Beneficiary</div>
         </div>
 
@@ -70,26 +72,26 @@
                             if (beneficiaries != null && !beneficiaries.isEmpty()) {
                                 for (Beneficiary beneficiary : beneficiaries) {
                         %>
-                            <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        <%= beneficiary.getBeneficiaryId()%>
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        <%= beneficiary.getName()%>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        NND BANKING
-                                    </td>
-                                    <td class="AccNumber" class="px-6 py-4">
-                                        <%= beneficiary.getAccountNumber()%>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer focus:ring transform transition hover:scale-105 duration-300 ease-in-out" />
-                                    </td>        
-                            </tr>
+                        <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <%= beneficiary.getBeneficiaryId()%>
+                            </th>
+                            <td class="px-6 py-4">
+                                <%= beneficiary.getName()%>
+                            </td>
+                            <td class="px-6 py-4">
+                                NND BANKING
+                            </td>
+                            <td class="AccNumber" class="px-6 py-4">
+                                <%= beneficiary.getAccountNumber()%>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer focus:ring transform transition hover:scale-105 duration-300 ease-in-out" />
+                            </td>        
+                        </tr>
                         <%
+                                }
                             }
-                        }
                         %>
                     </tbody>
                 </table>
@@ -175,10 +177,10 @@
     <input type="hidden" name="getNumber" id="getNumber" />
 </form>                        
 <script>
-        function MoveToTransfer(row) {
-            const numberValue = document.getElementsByClassName('AccNumber')[Array.from(row.parentNode.children).indexOf(row)].innerText;
-            document.getElementById("getNumber").value = numberValue;
-            document.getElementById('moveToTransfer').submit();
-        }
- </script>
+    function MoveToTransfer(row) {
+        const numberValue = document.getElementsByClassName('AccNumber')[Array.from(row.parentNode.children).indexOf(row)].innerText;
+        document.getElementById("getNumber").value = numberValue;
+        document.getElementById('moveToTransfer').submit();
+    }
+</script>
 <%@ include file="/includes/footer.jsp" %>

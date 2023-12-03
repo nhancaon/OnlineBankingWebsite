@@ -1,4 +1,4 @@
-<div class="fixed top-28 w-72 right-2 my-2 animate-notification">
+<div class="fixed top-28 w-72 right-2 my-2 animate-notification z-[10001]">
     <c:if test="${not empty requestScope.successMessage}">
         <div
             class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100"
