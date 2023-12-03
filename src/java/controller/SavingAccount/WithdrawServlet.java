@@ -27,14 +27,13 @@ public class WithdrawServlet extends HttpServlet {
         }
 
         String url = "/savingDetail.jsp";
-
         if (action.equals("withdraw")) {
             String savingAccountId = request.getParameter("accountSavingId");
             savingAccount = savingAccountDAO.find(SavingAccount.class, savingAccountId);
             request.setAttribute("savingAccount", savingAccount);
-            Double expectedAmount = Double.valueOf(request.getParameter("expectedAmount"));
+            Double currentSavingAmount = savingAccount.getSavingCurrentAmount();
             try {
-                savingAccountDAO.Withdraw(savingAccount,expectedAmount.intValue());
+                savingAccountDAO.Withdraw(savingAccount, currentSavingAmount);
                 request.setAttribute("successMessage", "Withdraw successfully");
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());

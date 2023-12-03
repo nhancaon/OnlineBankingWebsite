@@ -49,6 +49,7 @@ public class ShowAccountDetailServlet extends HttpServlet {
         Double expectedTotal = 0.0;
         Double monthlyTotal = 0.0;
         Double initialAmount =  savingAccount.getSavingInitialAmount();
+        Double currentSavingAmount = savingAccount.getSavingCurrentAmount();
 
         if (checkDate == null){
             checkDate = currentDate.format(formatter);
@@ -61,6 +62,11 @@ public class ShowAccountDetailServlet extends HttpServlet {
             map = savingAccountDAO.displayExpectedSaving(accountNumber, checkDate);
             expectedTotal = map.get("expectedTotal");
             monthlyTotal = map.get("monthlyTotal");
+        }
+
+        if (savingAccount.getDateOpened().isAfter(LocalDate.parse(checkDate))){
+            initialAmount = 0.0;
+            currentSavingAmount = 0.0;
         }
 
         if(savingAccount.getDateOpened().isBefore(LocalDate.now())){
@@ -80,6 +86,7 @@ public class ShowAccountDetailServlet extends HttpServlet {
         request.setAttribute("expectedAmount", expectedTotal);
         request.setAttribute("monthlyAmount", monthlyTotal);
         request.setAttribute("initialString", initialAmount);
+        request.setAttribute("currentSavingAmount", currentSavingAmount);
         request.setAttribute("savingAccount", savingAccount); 
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
