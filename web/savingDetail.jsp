@@ -2,9 +2,12 @@
 <%@ page import="business.SavingAccount"%>
 <%@ page import="controller.SavingAccount.CreateAccountServlet"%>
 <%@ include file="/includes/header.jsp"%> 
-<%@ include file="/includes/checkLogin.jsp"%> 
+<%@ include file="/includes/checkLogin.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+    SavingAccount savingAccount = (SavingAccount)request.getAttribute("savingAccount");
+%>
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
@@ -84,13 +87,13 @@
                                 <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
                                 <div class="text-end text-xl text-green-400">${savingAccount.interestRate.interestRate} %</div>
                                 <div class="md:col-span-2">Initial Saving Amount : </div>
-                                <div class="text-end text-xl text-green-400">${initialString} VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString())) %> VND</div>
                                 <div class="md:col-span-2">Current Saving Amount : </div>
-                                <div class="text-end text-xl text-green-400">${savingAccount.savingCurrentAmount} VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(savingAccount.getSavingCurrentAmount()) %> VND</div>
                                 <div class="md:col-span-2">Expected Total Received : </div>
-                                <div class="text-end text-xl text-green-400">${expectedAmount} VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString())) %> VND</div>
                                 <div class="md:col-span-2">Expected Monthly Amount : </div>
-                                <div class="text-end text-xl text-green-400">${monthlyAmount} VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString())) %> VND</div>
                             </div>
 
                             <input type="hidden" name="action" value="withdraw">

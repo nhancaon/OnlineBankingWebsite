@@ -5,9 +5,11 @@ import DAO.InterestRateDAO;
 import DAO.SavingAccountDAO;
 import business.InterestRate;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -41,14 +43,12 @@ public class ShowAccountDetailServlet extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         String checkDate = request.getParameter("checkDate");
-        String current = request.getParameter("checkDate");
 
         Map<String, Double> map = new HashMap<String, Double>();
 
         Double expectedTotal = 0.0;
         Double monthlyTotal = 0.0;
         Double initialAmount =  savingAccount.getSavingInitialAmount();
-
 
         if (checkDate == null){
             checkDate = currentDate.format(formatter);
@@ -67,14 +67,19 @@ public class ShowAccountDetailServlet extends HttpServlet {
             savingAccount = savingAccountDAO.updateCurrentSavingAccount(accountNumber, savingAccount, interestRate);
         }
 
-        // Render to jsp
-        String expectedAmount = String.valueOf(expectedTotal);
-        String monthlyAmount = String.valueOf(monthlyTotal);
-        String initialString = String.valueOf(initialAmount);
+        // // Format expectedAmount and monthlyAmount as currency strings
+        // DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        // decimalFormat.setCurrency(Currency.getInstance(Locale.getDefault()));
+        // decimalFormat.setNegativePrefix(""); // Remove negative sign if needed
+        // decimalFormat.setNegativeSuffix("");
+
+        // String expectedAmount = String.valueOf(expectedTotal);
+        // String monthlyAmount = String.valueOf(monthlyTotal);
+        // String initialString = String.valueOf(initialAmount);
         
-        request.setAttribute("expectedAmount", expectedAmount);
-        request.setAttribute("monthlyAmount", monthlyAmount);
-        request.setAttribute("initialString", initialString);
+        request.setAttribute("expectedAmount", expectedTotal);
+        request.setAttribute("monthlyAmount", monthlyTotal);
+        request.setAttribute("initialString", initialAmount);
         request.setAttribute("savingAccount", savingAccount); 
         servletContext.getRequestDispatcher(url).forward(request, response);
     }

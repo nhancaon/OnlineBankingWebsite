@@ -55,7 +55,4 @@ public class Beneficiary {
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
-
-
-
 }
