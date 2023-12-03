@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@
-include file="/includes/header.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ include file="/includes/header.jsp" %>
 
 <div class="bg-[#f0f1f1] grid items-center py-20 mt-20 md:px-56">
     <div>

@@ -11,7 +11,7 @@
 <%  InterestRateDAO interestRateDAO = new InterestRateDAO();
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-    
+
     List<InterestRate> interestRates = interestRateDAO.listAll();
     request.setAttribute("interestRates", interestRates);
     String customerId = customer.getCustomerId();
@@ -23,7 +23,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Saving Account</div>
         </div>
 
@@ -61,7 +63,7 @@
                 </li>
             </ol>
         </nav>
-        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
+        <div class="mt-16 mb-36 pt-8 pb-24 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Saving Account</span>
                 <button
@@ -80,7 +82,7 @@
                         <i class="fa-regular fa-copy mr-2"></i>
                         <%= savingAccount.getAccountNumber()%>
                     </div>
-                    
+
                     <div>
                         <span class="text-sm text-gray-600 mr-2">Interest Rate</span>
                         <%= savingAccount.getInterestRate().getInterestRate()%> %

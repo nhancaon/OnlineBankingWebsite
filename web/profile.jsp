@@ -61,13 +61,11 @@
                     Transfer
                 </button>
             </form>
-            <form action="create-saving-account" method="post" class="w-full">
-                <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#2a6ebe] text-sm font-bold text-white cursor-pointer
-                        focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                    <img src="./assets/salary.png" class="w-8 mb-2" />
-                    Saving Accounts
-                </button>
-            </form>
+            <a href="./savingAccount.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
+               focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                <img src="./assets/salary.png" class="w-8 mb-2" />
+                Saving Accounts
+            </a>
             <a href="./loanLending.jsp" class="flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
                focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                 <img src="./assets/loan.png" class="w-8 mb-2" />

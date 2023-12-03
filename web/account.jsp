@@ -8,7 +8,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Account</div>
         </div>
 
@@ -48,9 +50,9 @@
                     if (paymentAccounts != null && !paymentAccounts.isEmpty()) {
                         for (PaymentAccount paymentAccount : paymentAccounts) {
                 %>
-                <a href="AccountDetail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="grid grid-cols-2 md:flex md:justify-between p-4 rounded-xl bg-gray-300 
+                <a href="AccountDetail?accountNumber=<%= paymentAccount.getAccountNumber()%>" class="grid grid-cols-2 md:grid-cols-7 p-4 rounded-xl bg-gray-300 
                    focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                    <div class="grid grid-cols-1 md:flex flex-row">
+                    <div class="md:col-span-3 grid grid-cols-1 md:flex flex-row">
                         <div>
                             <i class="fa-regular fa-copy mr-2"></i>
                             <%= paymentAccount.getAccountNumber()%>
@@ -65,22 +67,12 @@
                         %>
                     </div>
 
-                    <%
-                        if (paymentAccount.getAccountStatus().equals("Default")) {
-                    %>
-                     <div class="flex flex-col md:flex-row text-end md:text-left md:ml-[-40px]">
+                    <div class="md:col-span-2 flex flex-col md:flex-row text-end md:text-left">
                         <span class="text-gray-600 md:mr-2">Available Balance</span>
                         <span><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span>
                     </div>
-                    <%  } else {
-                    %>
-                    <div class="flex flex-col md:flex-row text-end md:text-left">
-                        <span class="text-gray-600 md:mr-2">Available Balance</span>
-                        <span><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span>
-                    </div>
-                    <%  }
-                    %>
-                    <i class="fa-solid fa-chevron-right py-1 hidden sm:block"></i>
+
+                    <div class="md:col-span-2 flex items-end justify-end"><i class="flex justify-end fa-solid fa-chevron-right py-1 hidden sm:block"></i></div>
                 </a>       
                 <%
                     }
@@ -104,7 +96,7 @@
             </button>
         </div>
         <div class="grid grid-cols-1 gap-2 my-10">
-           
+
             <form action="CreateAccount" method="post">
                 <div class="grid text-xs gap-2">
                     <span class="text-gray-500">You can create a random account</span>
@@ -114,7 +106,7 @@
                     <button class="mt-4 px-2 md:px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Random Account</button>
                 </div>
             </form>
-            
+
             <form action="CreateAccount" method="post" class="mt-6">
                 <div class="grid text-xs gap-2">
                     <span class="text-gray-500">Or you can customize your account number</span>
@@ -143,11 +135,11 @@
                     <button class="mt-4 px-2 md:px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Create Custom Account</button>
                 </div> 
             </form>
-    
+
         </div>
-    
-          
-    
+
+
+
     </div>
 </div>
 

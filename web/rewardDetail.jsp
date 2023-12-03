@@ -12,8 +12,11 @@
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
+
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Account</div>
         </div>
 
@@ -22,7 +25,7 @@
                 <li class="inline-flex items-center">
                     <%@ include file="/includes/homeButton.jsp" %>
                 </li>
-                                <li>
+                <li>
                     <div class="flex items-center">
                         <svg
                             class="w-3 h-3 mx-1"
@@ -79,6 +82,21 @@
             </ol>
         </nav>
 
+        <div class="grid my-16 py-8 md:px-20 rounded-xl bg-white">
+            <c:forEach var="reward" items="${rewardsOfAccount}">
+                <div
+                    class="p-8 flex justify-between rounded-xl"
+                    >
+
+                    <span>${reward.getRewardName()}</span>
+                    <span class="text-sm font-light">Price: ${reward.price} VND</span>
+                    <span class="ml-2 text-md text-blue-600"
+                          >${reward.getCostPoint()} RWP</span>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
 
 
 <%@ include file="/includes/footer.jsp" %>

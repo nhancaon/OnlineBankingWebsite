@@ -7,9 +7,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""
-               ><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
-                ></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Culinary</div>
         </div>
 
@@ -103,6 +103,7 @@
                     <div class="grid justify-end px-4 py-8 ml-16 sm:ml-4">
                         <form action="rewards" method="get">
                             <input type="hidden" name="action" value="my-rewards" />
+                            <input type="hidden" name="accountNumber" value="${defaultPaymentAccount.getAccountNumber()}" />
                             <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
                                 My reward<span class="font-bold ml-2"><i
                                         class="fa-solid fa-chevron-right py-1"></i></span>

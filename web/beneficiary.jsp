@@ -9,7 +9,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Beneficiary</div>
         </div>
 
@@ -36,7 +38,7 @@
             </ol>
         </nav>
 
-        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
+        <div class="my-16 pt-8 pb-24 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Beneficiary</span>
                 <button id="createBeneficiary" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
@@ -70,26 +72,26 @@
                             if (beneficiaries != null && !beneficiaries.isEmpty()) {
                                 for (Beneficiary beneficiary : beneficiaries) {
                         %>
-                            <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        <%= beneficiary.getBeneficiaryId()%>
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        <%= beneficiary.getName()%>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        NND BANKING
-                                    </td>
-                                    <td class="AccNumber" class="px-6 py-4">
-                                        <%= beneficiary.getAccountNumber()%>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer focus:ring transform transition hover:scale-105 duration-300 ease-in-out" />
-                                    </td>        
-                            </tr>
+                        <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <%= beneficiary.getBeneficiaryId()%>
+                            </th>
+                            <td class="px-6 py-4">
+                                <%= beneficiary.getName()%>
+                            </td>
+                            <td class="px-6 py-4">
+                                NND BANKING
+                            </td>
+                            <td class="AccNumber" class="px-6 py-4">
+                                <%= beneficiary.getAccountNumber()%>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <img src="assets/dot.svg" alt="edit" class="w-6 h-6 cursor-pointer focus:ring transform transition hover:scale-105 duration-300 ease-in-out" />
+                            </td>        
+                        </tr>
                         <%
+                                }
                             }
-                        }
                         %>
                     </tbody>
                 </table>
@@ -102,7 +104,7 @@
     id="create-account"
     class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-8 py-16 md:px-96 md:py-28"
     >
-    <div class="col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
+    <div class="col-span-3 my-16 p-8 md:px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Add New Beneficiary
             <button
@@ -175,10 +177,10 @@
     <input type="hidden" name="getNumber" id="getNumber" />
 </form>                        
 <script>
-        function MoveToTransfer(row) {
-            const numberValue = document.getElementsByClassName('AccNumber')[Array.from(row.parentNode.children).indexOf(row)].innerText;
-            document.getElementById("getNumber").value = numberValue;
-            document.getElementById('moveToTransfer').submit();
-        }
-    </script>
+    function MoveToTransfer(row) {
+        const numberValue = document.getElementsByClassName('AccNumber')[Array.from(row.parentNode.children).indexOf(row)].innerText;
+        document.getElementById("getNumber").value = numberValue;
+        document.getElementById('moveToTransfer').submit();
+    }
+</script>
 <%@ include file="/includes/footer.jsp" %>
