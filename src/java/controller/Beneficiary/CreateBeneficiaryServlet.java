@@ -42,7 +42,7 @@ public class CreateBeneficiaryServlet extends HttpServlet {
                 request.setAttribute("errorMessage", e.getMessage());
             }
 
-            List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiary(customerId);
+            List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
 
             request.setAttribute("Beneficiaries", beneficiaries);
 

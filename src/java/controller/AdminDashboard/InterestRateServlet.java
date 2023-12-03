@@ -40,17 +40,12 @@ public class InterestRateServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showInterestRate(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void showInterestRate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<InterestRate> interestRates = interestRateDAO.findAllInterestRate();
-
         request.setAttribute("interestRates", interestRates);
     }
 
-    protected void addInterestRate(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void addInterestRate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String interestRate = request.getParameter("interestRate");
         String loanTitle = request.getParameter("loanTitle");
         String savingTitle = request.getParameter("savingTitle");

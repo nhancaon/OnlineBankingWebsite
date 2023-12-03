@@ -140,7 +140,7 @@ public class TransferServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
-        List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiary(customerId);
+        List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
 
         if (action.equals("show-name")) {
             String Number = request.getParameter("getNumber");
