@@ -32,6 +32,10 @@ public class CustomerServlet extends HttpServlet {
                 this.addCustomer(request, response);
                 this.showCustomer(request, response);
             }
+            case "update-customer" -> {
+                this.updateCustomer(request, response);
+                this.showCustomer(request, response);
+            }
             default -> {
             }
         }
@@ -40,9 +44,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -61,17 +63,12 @@ public class CustomerServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showCustomer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void showCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Customer> customers = customerDAO.findAllCustomer();
-
         request.setAttribute("customers", customers);
-
     }
 
-    protected void addCustomer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void addCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String fullName = request.getParameter("name");
         String citizenId = request.getParameter("citizenId");
@@ -80,9 +77,9 @@ public class CustomerServlet extends HttpServlet {
         String dateOfBirth = request.getParameter("dateOfBirth");
         String password = request.getParameter("password");
         int pinNumber = Integer.parseInt(request.getParameter("pinNumber"));
+
         try {
-            customerDAO.customerSignup(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address,
-                    pinNumber);
+            customerDAO.customerSignup(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, pinNumber);
             request.setAttribute("successMessage", "The customer has been added successfully.");
 
         } catch (HandleException e) {
@@ -90,9 +87,24 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    protected void updateCustomer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("emailUpdate");
+        String fullName = request.getParameter("nameUpdate");
+        String citizenId = request.getParameter("citizenIdUpdate");
+        String phoneNumber = request.getParameter("phoneNumberUpdate");
+        String address = request.getParameter("addressUpdate");
+        String dateOfBirth = request.getParameter("dateOfBirthUpdate");
+        String password = request.getParameter("passwordUpdate");
+        int pinNumber = Integer.parseInt(request.getParameter("pinNumberUpdate"));
 
+        System.out.println(email);
+
+        try {
+            customerDAO.customerUpdate(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, pinNumber);
+            request.setAttribute("successMessage", "The customer has been updated successfully.");
+
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
     }
-
 }
