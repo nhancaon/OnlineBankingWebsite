@@ -37,7 +37,7 @@
             </ol>
         </nav>
 
-        <div class="my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
+        <div class="mt-16 mb-48 pt-8 pb-16 px-2 md:px-20 rounded-xl bg-white">
             <div class="flex justify-between items-center">
                 <span>Payment Accounts</span>
                 <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 

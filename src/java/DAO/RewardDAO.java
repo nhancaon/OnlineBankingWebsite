@@ -38,13 +38,13 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
-    public Reward addReward(String rewardName, int price, int costPoint, String type) {
+    public Reward addReward(String rewardName, int costPoint, String type) {
 
         Reward rewardEntity = new Reward();
         rewardEntity.setRewardId(generateUniqueId());
         rewardEntity.setRewardName(rewardName);
         rewardEntity.setCostPoint(costPoint);
-        rewardEntity.setPrice(price);
+
         rewardEntity.setRewardType(type);
         create(rewardEntity);
         return null;
