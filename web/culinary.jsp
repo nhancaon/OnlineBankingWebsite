@@ -35,7 +35,7 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <form action="rewards" method="get">
+                        <form action="Rewards" method="get">
                             <input type="hidden" name="action" value="allRewards" />
                             <button
                                 class="ml-1 mb-1 text-sm font-medium text-gray-600 hover:text-blue-600 md:ml-2 cursor-pointer"
@@ -101,7 +101,7 @@
                         >
                     </div>
                     <div class="grid justify-end px-4 py-8 ml-16 sm:ml-4">
-                        <form action="rewards" method="get">
+                        <form action="Rewards" method="get">
                             <input type="hidden" name="action" value="my-rewards" />
                             <input type="hidden" name="accountNumber" value="${defaultPaymentAccount.getAccountNumber()}" />
                             <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
@@ -118,16 +118,15 @@
                 <div class="md:p-10 p-6 bg-gray-200 grid md:grid-cols-3 gap-8">
                     <c:forEach var="culinaryReward" items="${culinaryRewards}">
                         <div
-                            class="rounded-md bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                            class="flex flex-col rounded-md bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                             >
                             <div class="h-[300px]">
-                                <img src="assets/reward.png" class="rounded-md h-full w-full" />
+                                <img src="assets/rewards/${culinaryReward.rewardId}.jpg" class="rounded-md h-full w-full" />
                             </div>
-                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md">
-                                <div class="col-span-2">
-                                    <div class="grid grid-cols-1 text-2xl font-extrabold">
+                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md flex-grow">
+                                <div class="grid grid-rows-3 col-span-2">
+                                    <div class="row-span-2 grid grid-cols-1 text-2xl font-extrabold">
                                         <span>${culinaryReward.getRewardName()}</span>
-                                        <span class="text-sm font-light">Price: ${culinaryReward.price} VND</span>
                                     </div>
                                     <div class="flex flex-row mt-3">
                                         <div class="flex -space-x-2 rtl:space-x-reverse">
@@ -152,7 +151,7 @@
                                         >
                                     </div>
                                 </div>
-                                <form action="redeem" method="post" class="flex items-end justify-end">
+                                <form action="Rewards" method="post" class="flex items-end justify-end">
                                     <input type="hidden" name="rewardId" value="${culinaryReward.getRewardId()}" />     
                                     <input type="hidden" name="currentPage" value="culinary" />
                                     <button

@@ -3,22 +3,47 @@ package controller.Reward;
 import java.io.IOException;
 import DAO.RewardDAO;
 import DAO.PaymentAccountDAO;
+import Exception.HandleException;
 import business.Customer;
 import business.PaymentAccount;
 import business.Reward;
+import java.security.SecureRandom;
 import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/rewards")
-public class ShowRewardsServlet extends HttpServlet {
+@WebServlet("/Rewards")
+public class RewardsServlet extends HttpServlet {
 
     RewardDAO rewardDAO = new RewardDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ServletContext servletContext = getServletContext();
+
+        String rewardId = request.getParameter("rewardId");
+        String currentPage = request.getParameter("currentPage");
+
+        HttpSession session = request.getSession();
+        PaymentAccount defaultPaymentAccount = (PaymentAccount) session.getAttribute("defaultPaymentAccount");
+        String defaultAccountNumber = defaultPaymentAccount.getAccountNumber();
+
+        String url = "/" + currentPage + ".jsp";
+
+        try {
+            Reward reward = rewardDAO.redeemReward(rewardId, defaultAccountNumber);
+            request.setAttribute("successMessage", "You have successfully reedeem the reward " + reward.getRewardName() + " with "
+                    + reward.getCostPoint() + " RWP");
+            this.showRewardsOfUser(request, response, defaultAccountNumber);
+            url = "/rewardDetail.jsp";
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
+
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
@@ -53,7 +78,8 @@ public class ShowRewardsServlet extends HttpServlet {
                 url = "/culinary.jsp";
             }
             case "my-rewards" -> {
-                this.showRewardsOfUser(request, response);
+                String accountNumber = (String) request.getParameter("accountNumber");
+                this.showRewardsOfUser(request, response, accountNumber);
                 url = "/rewardDetail.jsp";
             }
             default -> {
@@ -99,11 +125,11 @@ public class ShowRewardsServlet extends HttpServlet {
         session.setAttribute("culinaryRewards", culinaryRewards);
     }
 
-    protected void showRewardsOfUser(HttpServletRequest request, HttpServletResponse response)
+    protected void showRewardsOfUser(HttpServletRequest request, HttpServletResponse response, String accountNumber)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        String accountNumber = (String) request.getParameter("accountNumber");
+//        String accountNumber = (String) request.getParameter("accountNumber");
         List<Reward> rewardsOfAccount = paymentAccountDAO.findRewardOfAccount(accountNumber);
         session.setAttribute("rewardsOfAccount", rewardsOfAccount);
 

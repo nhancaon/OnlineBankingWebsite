@@ -19,12 +19,10 @@ public class Reward implements Serializable {
     @Id
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String rewardId;
-    @Column(columnDefinition = "varchar(20)", nullable = false)
+    @Column(columnDefinition = "varchar(255)", nullable = false)
     private String rewardName;
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String rewardType;
-    @Column(nullable = false)
-    private int price;
     @Column(nullable = false)
     private int costPoint;
 
@@ -58,14 +56,6 @@ public class Reward implements Serializable {
 
     public void setRewardType(String rewardType) {
         this.rewardType = rewardType;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getCostPoint() {

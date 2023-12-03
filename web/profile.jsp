@@ -10,8 +10,8 @@
 %>
 
 
-<div class="relative w-full md:h-[30rem] mt-[5.2rem]">
-    <img src="./assets/money.gif" class="w-full h-full" alt="alt" />
+<div class="relative w-full md:h-[36rem] mt-[5.2rem]">
+    <img src="./assets/money.gif" class="w-full h-full" alt="Background" />
 </div>
 
 <div id="content" class="bg-[#f0f1f1] py-16">
@@ -44,7 +44,7 @@
             <% } else { %>
             <div>User has not created a Payment Account yet</div>
             <div class="grid justify-end ml-4">
-                <form action="show-account" method="get">
+                <form action="Account" method="get">
                     <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg">
                         Create Payment Account <span class="font-bold"><i
                                 class="fa-solid fa-chevron-right py-1"></i></span>
@@ -71,7 +71,7 @@
                 <img src="./assets/loan.png" class="w-8 mb-2" />
                 Loan
             </a>
-            <form action="rewards" method="get" class="w-full">
+            <form action="Rewards" method="get" class="w-full">
                 <input type="hidden" name="action" value="allRewards">
                 <button type="submit" class="w-full flex flex-col items-center justify-center rounded-md h-28 bg-[#009893] text-sm font-bold text-white cursor-pointer
                         focus:ring transform transition hover:scale-105 duration-300 ease-in-out">

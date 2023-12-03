@@ -73,7 +73,7 @@
                         >
                     </div>
                     <div class="grid justify-end px-4 py-8 ml-16 sm:ml-4">
-                        <form action="rewards" method="get">
+                        <form action="Rewards" method="get">
                             <input type="hidden" name="action" value="my-rewards" />
                             <input type="hidden" name="accountNumber" value="${defaultPaymentAccount.getAccountNumber()}" />
                             <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
@@ -88,7 +88,7 @@
             <div class="grid mt-16 rounded-xl bg-white">
                 <div class="md:px-10 px-6 py-6">Gift Categories</div>
                 <div class="md:p-10 p-6 bg-gray-200 grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <form action="rewards" method="get">
+                    <form action="Rewards" method="get">
                         <input type="hidden" name="action" value="shopping" />
                         <button
                             type="submit"
@@ -100,7 +100,7 @@
                             </span>
                         </button>
                     </form>
-                    <form action="rewards" method="get">
+                    <form action="Rewards" method="get">
                         <input type="hidden" name="action" value="culinary" />
                         <button
                             type="submit"
@@ -120,16 +120,15 @@
                 <div class="md:p-10 p-6 bg-gray-200 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <c:forEach var="reward" items="${allRewards}">
                         <div
-                            class="rounded-md bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                            class="flex flex-col rounded-md bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                             >
                             <div class="h-[300px]">
-                                <img src="assets/reward.png" class="rounded-md h-full w-full" />
+                                <img src="assets/rewards/${reward.rewardId}.jpg" class="rounded-md h-full w-full" />
                             </div>
-                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md">
-                                <div class="col-span-2">
-                                    <div class="grid grid-cols-1 text-2xl font-extrabold">
-                                        <span>${reward.getRewardName()}</span>
-                                        <span class="text-sm font-light">Price: ${reward.price} VND</span>
+                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md flex-grow">
+                                <div class="grid grid-rows-3 col-span-2">
+                                    <div class="row-span-2 grid grid-cols-1 text-2xl font-extrabold">
+                                        <span>${reward.getRewardName()}</span>                   
                                     </div
                                     >
                                     <div class="flex flex-row mt-3">
@@ -155,8 +154,8 @@
                                         >
                                     </div>
                                 </div>
-                                <form action="redeem" method="post" class="flex items-end justify-end">
-                                    <input type="hidden" name="rewardId" value="${reward.getRewardId()}" />                                  
+                                <form action="Rewards" method="post" class="flex items-end justify-end">
+                                    <input type="hidden" name="rewardId" value="${reward.getRewardId()}" />                                
                                     <input type="hidden" name="currentPage" value="reward" />
                                     <button
                                         class="px-4 py-2 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"
