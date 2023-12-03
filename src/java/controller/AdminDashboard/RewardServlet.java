@@ -52,7 +52,8 @@ public class RewardServlet extends HttpServlet {
 
         String url = "/admin-dashboard/";
         switch (action) {
-            case "show-reward" -> this.showReward(request, response);
+            case "show-reward" ->
+                this.showReward(request, response);
             default -> {
             }
         }
@@ -73,14 +74,13 @@ public class RewardServlet extends HttpServlet {
 
         String name = request.getParameter("rewardName");
         String type = request.getParameter("rewardType");
-        int price = Integer.parseInt(request.getParameter("price"));
         int costPoint = Integer.parseInt(request.getParameter("costPoint"));
-            rewardDAO.addReward(name, price, costPoint, type);
-            request.setAttribute("successMessage", "The reward has been added successfully.");
-    } 
+        rewardDAO.addReward(name, costPoint, type);
+        request.setAttribute("successMessage", "The reward has been added successfully.");
+        
+    }
 
-    
-      protected void updateReward(HttpServletRequest request, HttpServletResponse response)
+    protected void updateReward(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Reward> rewards = rewardDAO.getAllRewards();
 

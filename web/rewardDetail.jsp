@@ -42,7 +42,7 @@
                                 d="m1 9 4-4-4-4"
                                 />
                         </svg>
-                        <form action="rewards" method="get">
+                        <form action="Rewards" method="get">
                             <input type="hidden" name="action" value="allRewards" />
                             <button
                                 class="ml-1 mb-1 text-sm font-medium text-gray-600 hover:text-blue-600 md:ml-2 cursor-pointer"
@@ -82,16 +82,30 @@
             </ol>
         </nav>
 
+        <%@ include file="/includes/exception.jsp" %>
+
+
         <div class="grid my-16 py-8 md:px-20 rounded-xl bg-white">
             <c:forEach var="reward" items="${rewardsOfAccount}">
-                <div
-                    class="p-8 flex justify-between rounded-xl"
-                    >
+                <div class="grid grid-cols-12 p-8 rounded-xl my-2 shadow-md bg-gray-50">
+                    <div class="h-16 w-16">
+                        <img src="assets/rewards/${reward.rewardId}.jpg" class="rounded-md h-full w-full" />
+                    </div>
+                    <div class="col-span-11 grid grid-cols-5">
+                        <div class="col-span-3 text-2xl">
+                            <span>${reward.getRewardName()}</span>
+                        </div>
+                        <div class="flex justify-end text-lg col-span-2">
+                            Reward Code: <span class="text-blue-600 ml-1">${reward.getRewardId()}</span>
+                        </div >
+                        <div class="col-span-3 text-md text-blue-400">
+                            <span>${reward.getRewardType()}</span>
+                        </div>
+                        <div class="flex justify-end text-md text-blue-600 col-span-2"> 
+                            <span>Cost Point: ${reward.getCostPoint()} RWP</span>
+                        </div>
 
-                    <span>${reward.getRewardName()}</span>
-                    <span class="text-sm font-light">Price: ${reward.price} VND</span>
-                    <span class="ml-2 text-md text-blue-600"
-                          >${reward.getCostPoint()} RWP</span>
+                    </div>
                 </div>
             </c:forEach>
         </div>
