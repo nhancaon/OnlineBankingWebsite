@@ -13,7 +13,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Account</div>
         </div>
 
@@ -179,10 +181,10 @@
                         <span class="text-gray-500 text-sm">Registered Branch</span>
                         <span class="uppercase text-sm">NND Banking</span>
                     </div>
-                    <% if( !paymentAccount.getAccountStatus().equals("Default")) { %>
+                    <% if (!paymentAccount.getAccountStatus().equals("Default")) {%>
                     <div class="flex justify-end items-center">
                         <form action="account-detail" method="post">
-                            <input type="hidden" name="accountNumb" value="<%= paymentAccount.getAccountNumber() %>" />
+                            <input type="hidden" name="accountNumb" value="<%= paymentAccount.getAccountNumber()%>" />
                             <div class="flex justify-center items-center">
                                 <button
                                     class="p-4 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"
@@ -192,7 +194,7 @@
                             </div>
                         </form>
                     </div>
-                    <% } %>
+                    <% }%>
                 </div>
             </div>
         </div>

@@ -7,9 +7,9 @@
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
-            <a href=""
-               ><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i
-                ></a>
+            <form action="Profile" method="GET">
+                <button><i class="fa-solid fa-chevron-left text-xl py-[0.3rem] pr-6"></i></button>
+            </form>
             <div class="py-[0.2rem]">Culinary</div>
         </div>
 
