@@ -95,4 +95,9 @@ public class CustomerServlet extends HttpServlet {
 
     }
 
+    protected void deleteCustomer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
 }
