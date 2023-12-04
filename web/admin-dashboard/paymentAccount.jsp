@@ -151,7 +151,8 @@
                 </div> 
 
                 <div class="relative mt-6">
-                    <select name="accountStatusUpdate" id="accountStatusUpdate" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                    <select name="accountStatusUpdate" id="accountStatusUpdate" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                        <option value="" selected disabled hidden>Choose here</option>
                         <option value="Active">Active</option>
                         <option value="Default">Default</option>
                     </select>
