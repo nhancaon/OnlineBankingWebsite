@@ -35,6 +35,10 @@ public class EmployeeServlet extends HttpServlet {
                 this.updateEmployee(request, response);
                 this.showEmployee(request, response);
             }
+            case "delete" -> {
+                this.deleteEmployee(request, response);
+                this.showEmployee(request, response);
+            }
             default -> {
             }
         }
@@ -143,5 +147,10 @@ public class EmployeeServlet extends HttpServlet {
         } catch (HandleException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }
+    }
+
+    protected void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String employeeId = request.getParameter("employeeId");
+        employeeDAO.delete(employeeId);
     }
 }

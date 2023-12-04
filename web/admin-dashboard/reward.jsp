@@ -45,6 +45,8 @@
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="reward" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="rewardId" value="${reward.getRewardId()}"/>
                                 <button class="font-medium text-red-600 hover:underline">Delete</button>
                             </form>
                         </td>

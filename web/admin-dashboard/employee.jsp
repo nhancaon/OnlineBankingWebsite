@@ -53,6 +53,8 @@
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="employee" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="employeeId" value="${employee.getEmployeeId()}"/>
                                 <button class="font-medium text-red-600 hover:underline">Delete</button>
                             </form>
                         </td>

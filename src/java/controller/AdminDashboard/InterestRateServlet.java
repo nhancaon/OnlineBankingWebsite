@@ -36,6 +36,10 @@ public class InterestRateServlet extends HttpServlet {
                 this.updateInterestRate(request, response);
                 this.showInterestRate(request, response);
             }
+            case "delete" -> {
+                this.deleteInterestRate(request, response);
+                this.showInterestRate(request, response);
+            }
             default -> {
             }
         }
@@ -123,6 +127,11 @@ public class InterestRateServlet extends HttpServlet {
             request.setAttribute("errorMessage", e.getMessage());
         }
 
+    }
+
+    protected void deleteInterestRate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String interestRateId = request.getParameter("interestRateId");
+        interestRateDAO.delete(interestRateId);
     }
 
 }
