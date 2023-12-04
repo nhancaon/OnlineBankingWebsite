@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/online-banking-website/src/java/controller/SavingAccount/WithdrawServlet.java</file>
-            <file>file:/D:/online-banking-website/src/java/controller/SavingAccount/ShowAccountDetailServlet.java</file>
-            <file>file:/D:/online-banking-website/web/savingDetail.jsp</file>
-            <file>file:/D:/online-banking-website/web/confirm.jsp</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingAccount.jsp</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingDetail.jsp</file>
         </group>
     </open-files>
 </project-private>
