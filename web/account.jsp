@@ -67,12 +67,12 @@
                         %>
                     </div>
 
-                    <div class="md:col-span-2 flex flex-col md:flex-row text-end md:text-left">
+                    <div class="md:col-span-3 flex flex-col md:flex-row text-end md:text-left">
                         <span class="text-gray-600 md:mr-2">Available Balance</span>
                         <span><%= formatCurrency(paymentAccount.getCurrentBalence())%> VND</span>
                     </div>
 
-                    <div class="md:col-span-2 flex items-end justify-end"><i class="flex justify-end fa-solid fa-chevron-right py-1 hidden sm:block"></i></div>
+                    <div class="md:col-span-1 flex items-end justify-end"><i class="flex justify-end fa-solid fa-chevron-right py-1 hidden sm:block"></i></div>
                 </a>       
                 <%
                     }

@@ -16,6 +16,9 @@
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Delete</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -32,12 +35,15 @@
                         <td class="px-6 py-4">${reward.getRewardName()}</td>
                         <td class="px-6 py-4">${reward.getRewardType()}</td>
                         <td class="px-6 py-4">${reward.getCostPoint()}</td>                 
-                        <td class="px-6 py-4 text-right">
-                            <a
-                                href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                >Edit</a
-                            >
+                        <td class="px-6 py-4 text-center">
+                            <form action="reward" method="POST">
+                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
+                            </form>
+                        </td>
+                        <td class="px-6 py-4 text-center ">
+                            <form action="reward" method="POST">
+                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>

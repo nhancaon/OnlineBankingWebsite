@@ -17,6 +17,9 @@
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Delete</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +37,7 @@
                         <td class="px-6 py-4">${interestRate.getLoanTitle()}</td>
                         <td class="px-6 py-4">${interestRate.getSavingTitle()}</td>
                         <td class="px-6 py-4">${interestRate.getTerm()}</td>
+
                         <td class="px-6 py-4 text-right">
                             <a
                                 href="#"
@@ -42,6 +46,12 @@
                                 >Edit</a
                             >
                         </td>
+                        <td class="px-6 py-4 text-center ">
+                            <form action="interestRate" method="POST">
+                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                            </form>
+                        </td>
+
                     </tr>
                 </c:forEach>
             </tbody>
@@ -51,17 +61,17 @@
 
 <div class="flex justify-end my-10 mx-3">
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-    focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
-    onclick="showCreateAccount()">
-    <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Interest Rate</button>
+            focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
+            onclick="showCreateAccount()">
+        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Interest Rate</button>
 </div>
 
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Interest Rate
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
-            onclick="closeCreateAccount()">
-            <i class="fa-solid fa-xmark"></i>
+                    onclick="closeCreateAccount()">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
@@ -130,7 +140,7 @@
                 </div> 
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                    onclick="showCreateCustomAccount()">Add Interest Rate</button>
+                            onclick="showCreateCustomAccount()">Add Interest Rate</button>
                 </div> 
             </form> 
         </div>

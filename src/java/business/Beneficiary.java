@@ -3,8 +3,6 @@ package business;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,8 +15,8 @@ public class Beneficiary {
     private Customer customer;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int beneficiaryId;
+    @Column(columnDefinition = "varchar(20)", nullable = false)
+    private String beneficiaryId;
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String Name;
     @Column(columnDefinition = "varchar(20)", nullable = false)
@@ -32,11 +30,11 @@ public class Beneficiary {
         this.customer = customer;
     }
 
-    public int getBeneficiaryId() {
+    public String getBeneficiaryId() {
         return beneficiaryId;
     }
 
-    public void setBeneficiaryId(int beneficiaryId) {
+    public void setBeneficiaryId(String beneficiaryId) {
         this.beneficiaryId = beneficiaryId;
     }
 

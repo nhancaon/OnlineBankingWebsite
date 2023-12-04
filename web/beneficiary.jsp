@@ -70,11 +70,12 @@
                         <% List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
 
                             if (beneficiaries != null && !beneficiaries.isEmpty()) {
+                                int index = 1;
                                 for (Beneficiary beneficiary : beneficiaries) {
                         %>
                         <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <%= beneficiary.getBeneficiaryId()%>
+                                <%= index %>
                             </th>
                             <td class="px-6 py-4">
                                 <%= beneficiary.getName()%>
@@ -82,7 +83,7 @@
                             <td class="px-6 py-4">
                                 NND BANKING
                             </td>
-                            <td class="AccNumber" class="px-6 py-4">
+                            <td class="AccNumber px-6 py-4">
                                 <%= beneficiary.getAccountNumber()%>
                             </td>
                             <td class="px-6 py-4 text-right">
@@ -90,7 +91,7 @@
                             </td>        
                         </tr>
                         <%
-                                }
+                            index++; }
                             }
                         %>
                     </tbody>

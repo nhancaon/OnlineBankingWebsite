@@ -124,37 +124,37 @@
                             <div class="h-[300px]">
                                 <img src="assets/rewards/${shoppingReward.rewardId}.jpg" class="rounded-md h-full w-full" />
                             </div>
-                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md flex-grow">
-                                <div class="grid grid-rows-3 col-span-2">
-                                    <div class="row-span-2 grid grid-cols-1 text-2xl font-extrabold">
-                                        <span>${shoppingReward.getRewardName()}</span>
+                            <div class="grid grid-cols-2 p-4 rounded-md shadow-md flex-grow">
+                                <div class="grid grid-rows-3 col-span-2 h-[96px]">
+                                    <div class="row-span-2 grid grid-cols-1 text-xl font-extrabold">
+                                        <span>${shoppingReward.getRewardName()}</span>                   
+                                    </div>                                  
+                                </div>
+                                <div class="flex flex-row mt-3">
+                                    <div class="flex -space-x-2 rtl:space-x-reverse">
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-600"
+                                            src="assets/reward-ic.svg"
+                                            alt=""
+                                            />
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-600"
+                                            src="assets/miles-ic.svg"
+                                            alt=""
+                                            />
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-800"
+                                            src="assets/cashback-ic.svg"
+                                            alt=""
+                                            />
                                     </div>
-                                    <div class="flex flex-row mt-3">
-                                        <div class="flex -space-x-2 rtl:space-x-reverse">
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-600"
-                                                src="assets/reward-ic.svg"
-                                                alt=""
-                                                />
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-600"
-                                                src="assets/miles-ic.svg"
-                                                alt=""
-                                                />
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-800"
-                                                src="assets/cashback-ic.svg"
-                                                alt=""
-                                                />
-                                        </div>
-                                        <span class="ml-2 text-md text-blue-600"
-                                              >${shoppingReward.getCostPoint()} RWP</span
-                                        >
-                                    </div>
+                                    <span class="ml-2 text-md text-blue-600"
+                                          >${shoppingReward.getCostPoint()} RWP</span
+                                    >
                                 </div>
                                 <form action="Rewards" method="post" class="flex items-end justify-end">
-                                    <input type="hidden" name="rewardId" value="${shoppingReward.getRewardId()}" />     
-                                    <input type="hidden" name="currentPage" value="shopping" />
+                                    <input type="hidden" name="rewardId" value="${shoppingReward.getRewardId()}" />                                
+                                    <input type="hidden" name="currentPage" value="reward" />
                                     <button
                                         class="px-4 py-2 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] mt-3 text-sm text-white"
                                         >

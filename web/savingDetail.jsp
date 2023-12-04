@@ -86,19 +86,27 @@
                     </form>
                     <c:if test="${savingAccount.accountStatus == 'Active'}">
                         <form action="with-draw" method="post">
+                            <input type="hidden" name="action" value="withdraw">
+                            <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
+                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingCurrentAmount}">
+                            <input type="hidden" name="initialString" value=<%=request.getAttribute("initialString")%>>
+                            <input type="hidden" name="currentSavingAmount" value=<%=request.getAttribute("currentSavingAmount")%>>
+                            <input type="hidden" name="expectedAmount" value=<%=request.getAttribute("expectedAmount")%>>
+                            <input type="hidden" name="monthlyAmount" value=<%=request.getAttribute("monthlyAmount")%>>
+
                             <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
                                 <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
                                 <div class="md:col-span-2 text-end text-gray-500 text-sm">Saving Id: ${savingAccount.savingAccountId}</div>
                                 <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
                                 <div class="text-end text-xl text-green-400">${savingAccount.interestRate.interestRate} %</div>
                                 <div class="md:col-span-2">Initial Saving Amount : </div>
-                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString())) %> VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString()))%> VND</div>
                                 <div class="md:col-span-2">Current Saving Amount : </div>
-                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString())) %> VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString()))%> VND</div>
                                 <div class="md:col-span-2">Expected Total Received : </div>
-                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString())) %> VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString()))%> VND</div>
                                 <div class="md:col-span-2">Expected Monthly Amount : </div>
-                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString())) %> VND</div>
+                                <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
                             </div>
 
                             <input type="hidden" name="action" value="withdraw"/>
@@ -127,10 +135,10 @@
                                 </label>
                             </div>
 
-                            <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Submit
-                            </button>
-                        </form>
+                                                <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                    Submit
+                                                </button>
+                                        </form>
 
                         <script>
                             // Extract accountNumber from the current URL
@@ -155,61 +163,61 @@
                                             function checkDateIsValid(checkDate) {
                                                 return true;
                                             }
-                        </script>
-                    </c:if>
+                                        </script>
+                                    </c:if>
 
-                    <c:if test="${ savingAccount.accountStatus != 'Active' }">
-                        <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
-                            <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
-                            <div class="md:col-span-2 text-end text-gray-500 text-sm">Saving Id: ${savingAccount.savingAccountId}</div>
-                            <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
-                            <div class="text-end text-xl text-red-400"> ${savingAccount.interestRate.interestRate} %</div>
-                            <div class="md:col-span-2">Initial Saving Amount : </div>
-                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString())) %> VND</div>
-                            <div class="md:col-span-2">Current Saving Amount : </div>
-                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString())) %> VND</div>
-                            <div class="md:col-span-2">Expected Total Received : </div>
-                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString())) %> VND</div>
-                            <div class="md:col-span-2">Expected Monthly Amount : </div>
-                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString())) %> VND</div>
-                        </div>
-                    </c:if>
-                </div>
-            </div>
+                                    <c:if test="${ savingAccount.accountStatus != 'Active' }">
+                                        <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
+                                            <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
+                                            <div class="md:col-span-2 text-end text-gray-500 text-sm">Saving Id: ${savingAccount.savingAccountId}</div>
+                                            <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
+                                            <div class="text-end text-xl text-red-400"> ${savingAccount.interestRate.interestRate} %</div>
+                                            <div class="md:col-span-2">Initial Saving Amount : </div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString()))%> VND</div>
+                                            <div class="md:col-span-2">Current Saving Amount : </div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString()))%> VND</div>
+                                            <div class="md:col-span-2">Expected Total Received : </div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString()))%> VND</div>
+                                            <div class="md:col-span-2">Expected Monthly Amount : </div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
+                                        </div>
+                                    </c:if>
+                                    </div>
+                                    </div>
 
-            <div class="col-span-2 mt-16 md:my-16 rounded-xl bg-white">
-                <div class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl">
-                    <div class="flex flex-col justify-center items-center ml-8 text-white">
-                        <span class="uppercase text-sm">${savingAccount.paymentAccount.customer.name}</span>
-                        <span class="uppercase text-sm">${savingAccount.accountNumber}</span>
-                    </div>
+                                    <div class="col-span-2 mt-16 md:my-16 rounded-xl bg-white">
+                                        <div class="flex justify-between bg-gradient-to-r from-[#3caff2] to-[#2267a8] rounded-t-xl">
+                                            <div class="flex flex-col justify-center items-center ml-8 text-white">
+                                                <span class="uppercase text-sm">${savingAccount.paymentAccount.customer.name}</span>
+                                                <span class="uppercase text-sm">${savingAccount.accountNumber}</span>
+                                            </div>
 
-                    <img src="assets/thanh-toan.svg" src="wallet" class="p-4"/>
-                </div>
+                                            <img src="assets/thanh-toan.svg" src="wallet" class="p-4"/>
+                                        </div>
 
-                <div class="w-full grid grid-cols-1 gap-2 p-8">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Date Open</span>
-                        <span class="uppercase text-sm">${savingAccount.dateOpened}</span>
-                    </div>
+                                        <div class="w-full grid grid-cols-1 gap-2 p-8">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-500 text-sm">Date Open</span>
+                                                <span class="uppercase text-sm">${savingAccount.dateOpened}</span>
+                                            </div>
 
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Date Close</span>
-                        <span class="uppercase text-sm">${savingAccount.dateClosed}</span>
-                    </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-500 text-sm">Date Close</span>
+                                                <span class="uppercase text-sm">${savingAccount.dateClosed}</span>
+                                            </div>
 
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Min Balance</span>
-                        <span class="uppercase text-sm">${savingAccount.minBalance} VND</span>
-                    </div>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-500 text-sm">Min Balance</span>
+                                                <span class="uppercase text-sm">${savingAccount.minBalance} VND</span>
+                                            </div>
 
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-500 text-sm">Registered Branch</span>
-                        <span class="uppercase text-sm">NND Banking</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<%@ include file="/includes/footer.jsp"%>
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-gray-500 text-sm">Registered Branch</span>
+                                                <span class="uppercase text-sm">NND Banking</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <%@ include file="/includes/footer.jsp"%>

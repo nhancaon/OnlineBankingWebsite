@@ -125,34 +125,33 @@
                             <div class="h-[300px]">
                                 <img src="assets/rewards/${reward.rewardId}.jpg" class="rounded-md h-full w-full" />
                             </div>
-                            <div class="grid grid-cols-3 p-4 rounded-md shadow-md flex-grow">
-                                <div class="grid grid-rows-3 col-span-2">
-                                    <div class="row-span-2 grid grid-cols-1 text-2xl font-extrabold">
+                            <div class="grid grid-cols-2 p-4 rounded-md shadow-md flex-grow">
+                                <div class="grid grid-rows-3 col-span-2 h-[96px]">
+                                    <div class="row-span-2 grid grid-cols-1 text-xl font-extrabold">
                                         <span>${reward.getRewardName()}</span>                   
-                                    </div
-                                    >
-                                    <div class="flex flex-row mt-3">
-                                        <div class="flex -space-x-2 rtl:space-x-reverse">
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-600"
-                                                src="assets/reward-ic.svg"
-                                                alt=""
-                                                />
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-600"
-                                                src="assets/miles-ic.svg"
-                                                alt=""
-                                                />
-                                            <img
-                                                class="w-6 h-6 border-2 rounded-full border-gray-800"
-                                                src="assets/cashback-ic.svg"
-                                                alt=""
-                                                />
-                                        </div>
-                                        <span class="ml-2 text-md text-blue-600"
-                                              >${reward.getCostPoint()} RWP</span
-                                        >
+                                    </div>                                  
+                                </div>
+                                <div class="flex flex-row mt-3">
+                                    <div class="flex -space-x-2 rtl:space-x-reverse">
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-600"
+                                            src="assets/reward-ic.svg"
+                                            alt=""
+                                            />
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-600"
+                                            src="assets/miles-ic.svg"
+                                            alt=""
+                                            />
+                                        <img
+                                            class="w-6 h-6 border-2 rounded-full border-gray-800"
+                                            src="assets/cashback-ic.svg"
+                                            alt=""
+                                            />
                                     </div>
+                                    <span class="ml-2 text-md text-blue-600"
+                                          >${reward.getCostPoint()} RWP</span
+                                    >
                                 </div>
                                 <form action="Rewards" method="post" class="flex items-end justify-end">
                                     <input type="hidden" name="rewardId" value="${reward.getRewardId()}" />                                
