@@ -15,6 +15,9 @@
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Delete</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -30,33 +33,39 @@
                         </th>
                         <td class="px-6 py-4">${beneficiary.getName()}</td>
                         <td class="px-6 py-4">${beneficiary.getAccountNumber()}</td>
-                        <td class="px-6 py-4 text-right">
-                            <a
-                                href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                >Edit</a
-                            >
+                        <td class="px-6 py-4 text-center">
+                            <form action="beneficiary" method="POST">
+                                <input type="hidden" name="action" value="update"/>
+                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
+                            </form>
+                        </td>
+                        <td class="px-6 py-4 text-center ">
+                            <form action="beneficiary" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="beneficiaryId" value="${beneficiary.getBeneficiaryId()}"/>
+                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-   
+
     </div>
 </div>
 
 <div class="flex justify-end my-10 mx-3">
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
-    focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
-    onclick="showCreateAccount()">
-    <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
+            focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
+            onclick="showCreateAccount()">
+        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
 </div>
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Beneficiary
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
-            onclick="closeCreateAccount()">
-            <i class="fa-solid fa-xmark"></i>
+                    onclick="closeCreateAccount()">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
         <div class="grid grid-cols-1 gap-2 mb-10">           
@@ -109,13 +118,13 @@
                         >Account Number</label
                     >
                 </div> 
-                
+
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                    onclick="showCreateCustomAccount()">Add Beneficiary</button>
+                            onclick="showCreateCustomAccount()">Add Beneficiary</button>
                 </div> 
             </form>
-    
+
         </div>
     </div>
 </div>
