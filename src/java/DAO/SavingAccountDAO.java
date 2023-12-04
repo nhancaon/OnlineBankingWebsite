@@ -95,7 +95,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
     }
 
     public SavingAccount CreateSavingAccount(Customer customer, String accountNumber, String accountType, int term,
-            Double amount, InterestRate interestRate, Boolean cons) throws HandleException {
+            Double amount, InterestRate interestRate) throws HandleException {
 
         PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
         SavingAccount savingAccountEntity = new SavingAccount();
@@ -151,7 +151,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         Map<String, Double> map = new HashMap<String, Double>();
         
         if (savingAccount.getDateOpened().isBefore(checkDate)){
-            map = calculateInterest(amount, interestRate.getConsecutive(), interestRate, savingAccount, checkDate);
+            map = calculateInterest(amount, interestRate, savingAccount, checkDate);
             return map;
         }
         else if (savingAccount.getDateOpened().getMonthValue() == checkDate.getMonthValue()){
@@ -166,7 +166,7 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         }
     }
 
-    public Map<String, Double> calculateInterest(Double amount, boolean cons, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
+    public Map<String, Double> calculateInterest(Double amount, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
         Map<String, Double> result = new HashMap<>();
         Double expectedTotal = 0.0;
         Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;

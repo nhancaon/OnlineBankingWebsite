@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/Beneficiary/ShowBeneficiaryServlet.java</file>
-            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/Beneficiary/CreateBeneficiaryServlet.java</file>
-            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
-            <file>file:/C:/Users/ACER/Downloads/FINAL%20WEB/online-banking-website/src/java/controller/AdminDashboard/BeneficiaryServlet.java</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/admin-dashboard/customer.jsp</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/src/java/DAO/SavingAccountDAO.java</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/src/java/controller/AdminDashboard/CustomerServlet.java</file>
+            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
         </group>
     </open-files>
 </project-private>
