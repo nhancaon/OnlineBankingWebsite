@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/online-banking-website/src/java/business/PaymentAccount.java</file>
+            <file>file:/D:/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
+            <file>file:/D:/online-banking-website/web/transfer.jsp</file>
+            <file>file:/D:/online-banking-website/src/java/DAO/PaymentAccountDAO.java</file>
+=======
             <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingAccount.jsp</file>
             <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
             <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingDetail.jsp</file>
+>>>>>>> 4dc271cf261bcc061cdead5b894dbe9a05a4af30
         </group>
     </open-files>
 </project-private>

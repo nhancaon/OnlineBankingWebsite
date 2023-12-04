@@ -186,6 +186,12 @@
         document.getElementById("getAmount").value = amountValue;
         document.getElementById('showName').submit();
     }
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const receiverValue = "${receiver}";
+        if (!receiverValue) {
+            document.getElementById('name').value = ''; // Clear the value
+        }
+    });
 </script>
 
 

@@ -105,12 +105,14 @@
             </div>
 
             <div class="flex justify-center items-center mt-14">
-                <a
-                    href="./transfer.jsp"
-                    class="md:px-28 px-8 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white"
-                    >
-                    Initiate new transaction
-                </a>
+                <form action="Transfer" method="get">
+                    <input type="hidden" name="action" value="reload" />
+                        <button
+                            class="md:px-28 px-8 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white"
+                            >Initiate new transaction
+                        </button>
+                                       
+                </form>
             </div>
         </div>
     </div>
