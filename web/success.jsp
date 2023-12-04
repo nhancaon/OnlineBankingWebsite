@@ -100,7 +100,7 @@
             >
             <span class="text-[#2a6ebe] text-2xl mb-6">Transaction Success</span>
             <div class="md:px-24">
-                You have successfully transfered <span class="text-[#2a6ebe]"><fmt:formatNumber value="${Amount}" pattern="#,##0" /> VND</span> to account
+                You have successfully transferred <span class="text-[#2a6ebe]"><fmt:formatNumber value="${Amount}" pattern="#,##0" /> VND</span> to account
                 <span class="text-[#2a6ebe]"> ${receiver.getAccountNumber()}/${Name}</span> at <br/> ${timeStr}. Remark: ${Remark}
             </div>
 
