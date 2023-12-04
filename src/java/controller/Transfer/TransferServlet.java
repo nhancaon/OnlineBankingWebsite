@@ -37,6 +37,8 @@ public class TransferServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
+            HttpSession session = request.getSession();
+            session.removeAttribute("Amount");
         } else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
@@ -130,14 +132,16 @@ public class TransferServlet extends HttpServlet {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
-
+        String url = "/transfer.jsp";
+        HttpSession session = request.getSession();
         if (action == null) {
             action = "return";
+            session.removeAttribute("Amount");
         }
 
-        String url = "/transfer.jsp";
+        
 
-        HttpSession session = request.getSession();
+        
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
         List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
