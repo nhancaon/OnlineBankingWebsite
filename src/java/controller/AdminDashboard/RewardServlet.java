@@ -16,8 +16,7 @@ public class RewardServlet extends HttpServlet {
     RewardDAO rewardDAO = new RewardDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
         request.setCharacterEncoding("UTF-8");
 
@@ -32,6 +31,10 @@ public class RewardServlet extends HttpServlet {
                 this.addReward(request, response);
                 this.showReward(request, response);
             }
+            case "update-reward" -> {
+                this.updateReward(request, response);
+                this.showReward(request, response);
+            }
             default -> {
             }
         }
@@ -40,9 +43,7 @@ public class RewardServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -61,28 +62,22 @@ public class RewardServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showReward(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Reward> rewards = rewardDAO.getAllRewards();
-
+    protected void showReward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Reward> rewards = rewardDAO.findAllReward();
         request.setAttribute("rewards", rewards);
-
     }
 
-    protected void addReward(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void addReward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("rewardName");
         String type = request.getParameter("rewardType");
         int costPoint = Integer.parseInt(request.getParameter("costPoint"));
-        rewardDAO.addReward(name, costPoint, type);
+
+        rewardDAO.createReward(name, costPoint, type);
         request.setAttribute("successMessage", "The reward has been added successfully.");
-        
     }
 
-    protected void updateReward(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Reward> rewards = rewardDAO.getAllRewards();
+    protected void updateReward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Reward> rewards = rewardDAO.findAllReward();
 
         request.setAttribute("rewards", rewards);
 

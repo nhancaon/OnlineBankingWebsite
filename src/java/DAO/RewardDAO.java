@@ -38,8 +38,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
-    public Reward addReward(String rewardName, int costPoint, String type) {
-
+    public Reward createReward(String rewardName, int costPoint, String type) {
         Reward rewardEntity = new Reward();
         rewardEntity.setRewardId(generateUniqueId());
         rewardEntity.setRewardName(rewardName);
@@ -50,8 +49,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return null;
     }
 
-    public List<Reward> getAllRewards() {
-
+    public List<Reward> findAllReward() {
         List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r");
 
         if (!result.isEmpty()) {

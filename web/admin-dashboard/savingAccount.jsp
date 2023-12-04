@@ -13,7 +13,8 @@
                     <th scope="col" class="px-6 py-3">Account Number</th>
                     <th scope="col" class="px-6 py-3">Account Status</th>
                     <th scope="col" class="px-6 py-3">Account Type</th>
-                    <th scope="col" class="px-6 py-3">Saving Amount</th>
+                    <th scope="col" class="px-6 py-3">Initial Saving</th>
+                    <th scope="col" class="px-6 py-3">Current Saving</th>
                     <th scope="col" class="px-6 py-3">Date Opened</th>
                     <th scope="col" class="px-6 py-3">Date Closed</th>
                     <th scope="col" class="px-6 py-3">
@@ -38,7 +39,8 @@
                         <td class="px-6 py-4">${savingAccount.getAccountNumber()}</td>
                         <td class="px-6 py-4">${savingAccount.getAccountStatus()}</td>
                         <td class="px-6 py-4">${savingAccount.getAccountType()}</td>
-                        <td class="px-6 py-4">${savingAccount.getSavingAmount()} VND</td>
+                        <td class="px-6 py-4">${savingAccount.getSavingInitialAmount()} VND</td>
+                        <td class="px-6 py-4">${savingAccount.getSavingCurrentAmount()} VND</td>
                         <td class="px-6 py-4">${savingAccount.getDateOpened()}</td>
                         <td class="px-6 py-4">${savingAccount.getDateClosed()}</td>
                         <td class="px-6 py-4 text-center">
@@ -57,6 +59,7 @@
         </table>
     </div>
 </div>
+
 <div class="flex justify-end my-10 mx-3">
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
