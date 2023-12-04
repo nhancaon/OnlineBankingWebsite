@@ -77,6 +77,14 @@
                 <div class="w-full grid grid-cols-1">
                     <c:if test="${savingAccount.accountStatus == 'Active'}">
                         <form action="with-draw" method="post">
+                            <input type="hidden" name="action" value="withdraw">
+                            <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
+                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingCurrentAmount}">
+                            <input type="hidden" name="initialString" value=<%=request.getAttribute("initialString")%>>
+                            <input type="hidden" name="currentSavingAmount" value=<%=request.getAttribute("currentSavingAmount")%>>
+                            <input type="hidden" name="expectedAmount" value=<%=request.getAttribute("expectedAmount")%>>
+                            <input type="hidden" name="monthlyAmount" value=<%=request.getAttribute("monthlyAmount")%>>
+
                             <div class="grid grid-cols-2 md:grid-cols-3 border-b-2 py-2 mb-3">
                                 <div class="text-gray-500 text-sm">${savingAccount.accountStatus}</div>
                                 <div class="md:col-span-2 text-end text-gray-500 text-sm">Saving Id: ${savingAccount.savingAccountId}</div>
@@ -92,9 +100,8 @@
                                 <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
                             </div>
 
-                            <input type="hidden" name="action" value="withdraw">
-                                <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}">
-                                    <input type="hidden" name="expectedAmount" value="${savingAccount.savingCurrentAmount}">
+                            
+                                
                                         <div class="flex justify-end items-center mt-10">
                                             <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
                                         </div>
@@ -156,13 +163,13 @@
                                             <div class="md:col-span-2">Account Type : ${savingAccount.interestRate.savingTitle}</div>
                                             <div class="text-end text-xl text-red-400"> ${savingAccount.interestRate.interestRate} %</div>
                                             <div class="md:col-span-2">Initial Saving Amount : </div>
-                                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString()))%> VND</div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("initialString").toString()))%> VND</div>
                                             <div class="md:col-span-2">Current Saving Amount : </div>
-                                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString()))%> VND</div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("currentSavingAmount").toString()))%> VND</div>
                                             <div class="md:col-span-2">Expected Total Received : </div>
-                                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString()))%> VND</div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("expectedAmount").toString()))%> VND</div>
                                             <div class="md:col-span-2">Expected Monthly Amount : </div>
-                                            <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
+                                            <div class="text-end text-xl text-red-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
                                         </div>
                                     </c:if>
                                     </div>

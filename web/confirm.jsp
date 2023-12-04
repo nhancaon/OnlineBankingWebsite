@@ -147,8 +147,8 @@
                         <div class="col-span-3 my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
                             <div class="text-[#2a6ebe] flex justify-between">
                                 Enter your PIN
-                                <form action="Transfer" method="post">
-                                    <input type="hidden" name="action" />
+                                <form action="Transfer" method="get">
+                                    <input type="hidden" name="action" value="reload" />
                                     <button
                                         class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out"
                                         >

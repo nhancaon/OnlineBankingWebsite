@@ -32,6 +32,13 @@ public class WithdrawServlet extends HttpServlet {
             savingAccount = savingAccountDAO.find(SavingAccount.class, savingAccountId);
             request.setAttribute("savingAccount", savingAccount);
             Double currentSavingAmount = savingAccount.getSavingCurrentAmount();
+            String initialString = request.getParameter("initialString");
+            String expectedAmount = request.getParameter("expectedAmount");
+            String monthlyAmount = request.getParameter("monthlyAmount");
+            request.setAttribute("initialString",initialString);
+            request.setAttribute("currentSavingAmount",currentSavingAmount);
+            request.setAttribute("expectedAmount",expectedAmount);
+            request.setAttribute("monthlyAmount",monthlyAmount);
             try {
                 savingAccountDAO.Withdraw(savingAccount, currentSavingAmount);
                 request.setAttribute("successMessage", "Withdraw successfully");

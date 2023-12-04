@@ -37,8 +37,6 @@ public class TransferServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
-            HttpSession session = request.getSession();
-            session.removeAttribute("Amount");
         } else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
@@ -136,10 +134,13 @@ public class TransferServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if (action == null) {
             action = "return";
-            session.removeAttribute("Amount");
         }
 
-        
+        if ("reload".equals(action)) {
+            url = "/transfer.jsp";
+            session.removeAttribute("Amount");
+            session.removeAttribute("receiver");
+        }
 
         
         Customer customer = (Customer) session.getAttribute("customer");
@@ -150,6 +151,7 @@ public class TransferServlet extends HttpServlet {
             String Number = request.getParameter("getNumber");
             String Amount = request.getParameter("getAmount");
             PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
+            
             if (receiver == null) {
                 request.setAttribute("errorMessage", "The account number is not existed");
             }
