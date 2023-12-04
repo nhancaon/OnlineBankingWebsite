@@ -40,11 +40,8 @@ public class SavingAccountServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showSavingAccount(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void showSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<SavingAccount> savingAccounts = savingAccountDAO.findAllSavingAccount();
-
         request.setAttribute("savingAccounts", savingAccounts);
     }
 

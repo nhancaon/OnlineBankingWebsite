@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="index.jsp"%>
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -10,13 +10,13 @@
                 >
                 <tr>
                     <th scope="col" class="px-6 py-3">Payment Account Id</th>
+                    <th scope="col" class="px-6 py-3">Account Status</th>
                     <th scope="col" class="px-6 py-3">Account Number</th>
                     <th scope="col" class="px-6 py-3">Account Type</th>
                     <th scope="col" class="px-6 py-3">Current Balance</th>
                     <th scope="col" class="px-6 py-3">Reward Point</th>
                     <th scope="col" class="px-6 py-3">Date Opened</th>
                     <th scope="col" class="px-6 py-3">Date Closed</th>
-                    <th scope="col" class="px-6 py-3">Customer ID</th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
@@ -32,17 +32,18 @@
                             >
                             ${paymentAccount.getPaymentAccountId()}
                         </th>
+                        <td class="px-6 py-4">${paymentAccount.getAccountStatus()}</td>
                         <td class="px-6 py-4">${paymentAccount.getAccountNumber()}</td>
                         <td class="px-6 py-4">${paymentAccount.getAccountType()}</td>
                         <td class="px-6 py-4">${paymentAccount.getCurrentBalence()} VND</td>
                         <td class="px-6 py-4">${paymentAccount.getRewardPoint()}</td>
                         <td class="px-6 py-4">${paymentAccount.getDateOpened()}</td>
                         <td class="px-6 py-4">${paymentAccount.getDateClosed()}</td>
-                        <td class="px-6 py-4">${paymentAccount.getCustomerId()}</td>
                         <td class="px-6 py-4 text-right">
                             <a
                                 href="#"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                onclick="showUpdateForm('${paymentAccount.getPaymentAccountId()}')"
                                 >Edit</a
                             >
                         </td>
@@ -75,11 +76,26 @@
                 <div class="relative mt-6">
                     <input
                         type="text"
+                        id="citizenId"
+                        name="citizenId"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        required
+                    />
+                    <label
+                        for="citizenId"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                        >Customer Citizen ID</label
+                    >
+                </div>
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
                         id="accountNumber"
                         name="accountNumber"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                        required
                         />
                     <label
                         for="accountNumber"
@@ -87,81 +103,7 @@
                         >Account Number</label
                     >
                 </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="accountType"
-                        name="accountType"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="accountType"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Type</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="currentBalance"
-                        name="currentBalance"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="currentBalance"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Current Balance</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="rewardPoint"
-                        name="rewardPoint"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="rewardPoint"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Reward Point</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateOpened"
-                        name="dateOpened"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="dateOpened"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Opened</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateClosed"
-                        name="dateClosed"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="dateClosed"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Closed</label
-                    >
-                </div> 
+
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
                     onclick="showCreateCustomAccount()">Add Payment Account</button>
@@ -196,6 +138,18 @@
                         for="paymentAccountIdUpdate"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >Payment Account Id</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <select name="accountStatusUpdate" id="accountStatusUpdate" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <option value="Active">Active</option>
+                        <option value="Default">Default</option>
+                    </select>
+                    <label
+                        for="accountStatusUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Status</label
                     >
                 </div> 
 
@@ -252,7 +206,7 @@
                         name="rewardPointUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                      
+  
                         />
                     <label
                         for="rewardPointUpdate"
@@ -261,39 +215,6 @@
                     >
                 </div> 
 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateOpenedUpdate"
-                        name="dateOpenedUpdate"
-                        onfocus="(this.type = 'date')"
-                        onblur="(this.type = 'text')"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        />
-                    <label
-                        for="dateOpenedUpdate"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Opened</label
-                    >
-                </div>
-
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateClosedUpdate"
-                        name="dateClosedUpdate"
-                        onfocus="(this.type = 'date')"
-                        onblur="(this.type = 'text')"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        />
-                    <label
-                        for="dateClosedUpdate"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Closed</label
-                    >
-                </div>
 
                 <div class="flex justify-end items-center">
                     <button 
@@ -304,11 +225,10 @@
         </div>
     </div>
 </div>
-
 <script>
     function showUpdateForm(paymentAccountId) {
         // Set the PaymentAccount in the input field
-        document.getElementById('paymentAccountId').value = paymentAccountId;
+        document.getElementById('paymentAccountIdUpdate').value = paymentAccountId;
 
         // Set the PaymentAccountId in the hidden field
         document.getElementById('updatePaymentAccountId').value = paymentAccountId;
