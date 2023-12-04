@@ -1,5 +1,6 @@
 package controller.AdminDashboard;
 
+import business.Customer;
 import business.Reward;
 import DAO.RewardDAO;
 import Exception.HandleException;
@@ -77,9 +78,36 @@ public class RewardServlet extends HttpServlet {
     }
 
     protected void updateReward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Reward> rewards = rewardDAO.findAllReward();
+        String rewardId = request.getParameter("rewardIdUpdate");
+        Reward reward = rewardDAO.findByRewardId(rewardId);
 
-        request.setAttribute("rewards", rewards);
+        String rewardName, rewardType;
+        int costPoint;
 
+        if(!request.getParameter("rewardNameUpdate").isEmpty()){
+            rewardName = request.getParameter("rewardNameUpdate");
+        }else{
+            rewardName = reward.getRewardName();
+        }
+
+        if(!request.getParameter("rewardTypeUpdate").isEmpty()){
+            rewardType = request.getParameter("rewardTypeUpdate");
+        }else{
+            rewardType = reward.getRewardType();
+        }
+
+        if(!request.getParameter("costPointUpdate").isEmpty()){
+            costPoint = Integer.parseInt(request.getParameter("costPointUpdate"));
+        }else{
+            costPoint = reward.getCostPoint();
+        }
+
+        try {
+            rewardDAO.checkUpdateReward(rewardId, rewardName, rewardType, costPoint);
+            request.setAttribute("successMessage", "The reward has been updated successfully.");
+
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
     }
 }
