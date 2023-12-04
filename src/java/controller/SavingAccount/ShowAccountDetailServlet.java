@@ -72,16 +72,6 @@ public class ShowAccountDetailServlet extends HttpServlet {
         if(savingAccount.getDateOpened().isBefore(LocalDate.now())){
             savingAccount = savingAccountDAO.updateCurrentSavingAccount(accountNumber, savingAccount, interestRate);
         }
-
-        // // Format expectedAmount and monthlyAmount as currency strings
-        // DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        // decimalFormat.setCurrency(Currency.getInstance(Locale.getDefault()));
-        // decimalFormat.setNegativePrefix(""); // Remove negative sign if needed
-        // decimalFormat.setNegativeSuffix("");
-
-        // String expectedAmount = String.valueOf(expectedTotal);
-        // String monthlyAmount = String.valueOf(monthlyTotal);
-        // String initialString = String.valueOf(initialAmount);
         
         request.setAttribute("expectedAmount", expectedTotal);
         request.setAttribute("monthlyAmount", monthlyTotal);

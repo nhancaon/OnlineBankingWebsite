@@ -147,16 +147,6 @@ public class CustomerServlet extends HttpServlet {
             pinNumber = customer.getPinNumber();
         }
 
-        System.out.println("customerId "+customerId);
-        System.out.println("email "+ email);
-        System.out.println("fullName "+fullName);
-        System.out.println("citizenId "+citizenId);
-        System.out.println("phoneNumber "+phoneNumber);
-        System.out.println("address "+address);       
-        System.out.println("dateOfBirth" + dateOfBirth);
-        System.out.println("password "+password);
-        System.out.println("pinNumber "+pinNumber);
-
         try {
             customerDAO.checkUpdateCustomer(customerId, citizenId, email, fullName, password, phoneNumber, dateOfBirth, address, pinNumber);
             request.setAttribute("successMessage", "The customer has been updated successfully.");

@@ -91,12 +91,12 @@
             <c:otherwise>
                 <div class="grid my-16 py-8 md:px-20 rounded-xl bg-white">
                     <c:forEach var="reward" items="${rewardsOfAccount}">
-                        <div class="grid grid-cols-12 p-8 rounded-xl my-2 shadow-md bg-gray-50">
+                        <div class="grid grid-cols-11 p-8 rounded-xl my-2 shadow-md bg-gray-50 items-center">
                             <div class="h-16 w-16">
                                 <img src="assets/rewards/${reward.rewardId}.jpg" class="rounded-md h-full w-full" />
                             </div>
-                            <div class="col-span-11 grid grid-cols-5">
-                                <div class="col-span-3 text-2xl">
+                            <div class="col-span-10 grid grid-cols-5">
+                                <div class="col-span-3 text-xl">
                                     <span>${reward.getRewardName()}</span>
                                 </div>
                                 <div class="flex justify-end text-lg col-span-2">

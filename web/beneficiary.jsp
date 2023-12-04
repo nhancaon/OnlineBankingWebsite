@@ -83,7 +83,7 @@
                             <td class="px-6 py-4">
                                 NND BANKING
                             </td>
-                            <td class="AccNumber" class="px-6 py-4">
+                            <td class="AccNumber px-6 py-4">
                                 <%= beneficiary.getAccountNumber()%>
                             </td>
                             <td class="px-6 py-4 text-right">
