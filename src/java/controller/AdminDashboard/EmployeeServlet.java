@@ -3,7 +3,6 @@ package controller.AdminDashboard;
 import business.Employee;
 import DAO.EmployeeDAO;
 import Exception.HandleException;
-import business.Customer;
 
 import java.io.*;
 import java.util.List;
@@ -18,12 +17,34 @@ public class EmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext servletContext = getServletContext();
+        request.setCharacterEncoding("UTF-8");
+
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "join"; // default action
+        }
+
+        String url = "/admin-dashboard/";
+        switch (action) {
+            case "add-employee" -> {
+                this.addEmployee(request, response);
+                this.showEmployee(request, response);
+            }
+            case "update-employee" -> {
+                this.updateEmployee(request, response);
+                this.showEmployee(request, response);
+            }
+            default -> {
+            }
+        }
+        url = "/admin-dashboard/employee.jsp";
+        servletContext.getRequestDispatcher(url).forward(request, response);
+    
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -42,14 +63,12 @@ public class EmployeeServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
-    protected void showEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void showEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Employee> employees = employeeDAO.findAllEmployee();
+        request.setAttribute("employees", employees);
     }
 
-    protected void addEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void addEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String fullName = request.getParameter("name");
         String citizenId = request.getParameter("citizenId");
@@ -59,10 +78,17 @@ public class EmployeeServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
+        try {
+            employeeDAO.createEmployee(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, role);
+            request.setAttribute("successMessage", "The employee has been added successfully.");
+
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
+
     }
 
-      protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }
