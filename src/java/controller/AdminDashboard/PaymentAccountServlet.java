@@ -104,6 +104,7 @@ public class PaymentAccountServlet extends HttpServlet {
 
     protected void updatePaymentAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String paymentAccountId = request.getParameter("paymentAccountIdUpdate");
+        System.out.println("paymentAccountId " + paymentAccountId);
         PaymentAccount paymentAccount = paymentAccountDAO.findByPaymentAccountId(paymentAccountId);
 
         String accountNumber;
@@ -145,21 +146,5 @@ public class PaymentAccountServlet extends HttpServlet {
         } catch (HandleException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }
-    }
-
-    public String formatCurrency(Double amount) {
-        Locale locale = new Locale("en", "US");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        // Change the decimal separator from '.' to ','
-        if (currencyFormatter instanceof DecimalFormat) {
-            DecimalFormat decimalFormat = (DecimalFormat) currencyFormatter;
-            decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(new Locale("en", "US")));
-        }
-        String formattedAmount = currencyFormatter.format(amount);
-        // Remove the '.00' at the end
-        formattedAmount = formattedAmount.replaceAll("\\.00$", "");
-        formattedAmount = formattedAmount.replace("$", "");
-        
-        return formattedAmount;
     }
 }

@@ -30,7 +30,8 @@
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                         >
-                        <th scope="row"
+                        <th
+                            scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                             >
                             ${paymentAccount.getPaymentAccountId()}
@@ -55,15 +56,13 @@
                                 <button class="font-medium text-red-600 hover:underline">Delete</button>
                             </form>
                          </td>
-                        <td class="px-6 py-4">${paymentAccount.getCustomerId()}</td>
-                        
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-
     </div>
 </div>
+
 <div class="flex justify-end my-10 mx-3">
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
@@ -116,7 +115,7 @@
 
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                            onclick="showCreateCustomAccount()">Add Payment Account</button>
+                        onclick="showCreateCustomAccount()">Add Payment Account</button>
                 </div> 
             </form> 
         </div>
