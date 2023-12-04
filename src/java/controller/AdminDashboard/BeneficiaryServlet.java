@@ -31,7 +31,6 @@ public class BeneficiaryServlet extends HttpServlet {
                 this.deleteBeneficiary(request, response);
                 this.showBeneficiary(request, response);
             }
-
             default -> {
             }
         }
@@ -64,31 +63,15 @@ public class BeneficiaryServlet extends HttpServlet {
     }
 
     protected void addBeneficiary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // String email = request.getParameter("email");
-        // String fullName = request.getParameter("name");
-        // String citizenId = request.getParameter("citizenId");
-        // String phoneNumber = request.getParameter("phoneNumber");
-        // int pinNumber = Integer.parseInt(request.getParameter("pinNumber"));
-        // try {
-        //     customerDAO.customerSignup(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address,
-        //             pinNumber);
-        //     request.setAttribute("successMessage", "The customer has been added successfully.");
-
-        // } catch (HandleException e) {
-        //     request.setAttribute("errorMessage", e.getMessage());
-        // }
-    }
-
-    protected void updateBeneficiary(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 
     }
 
-    protected void deleteBeneficiary(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void updateBeneficiary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int beneficiaryId = Integer.parseInt(request.getParameter("beneficiaryId"));
+    }
 
+    protected void deleteBeneficiary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String beneficiaryId = request.getParameter("beneficiaryId");
         beneficiaryDAO.delete(beneficiaryId);
     }
 

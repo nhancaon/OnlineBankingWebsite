@@ -36,6 +36,10 @@ public class RewardServlet extends HttpServlet {
                 this.updateReward(request, response);
                 this.showReward(request, response);
             }
+            case "delete" -> {
+                this.deleteReward(request, response);
+                this.showReward(request, response);
+            }
             default -> {
             }
         }
@@ -109,5 +113,10 @@ public class RewardServlet extends HttpServlet {
         } catch (HandleException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }
+    }
+
+    protected void deleteReward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String rewardId = request.getParameter("rewardId");
+        rewardDAO.delete(rewardId);
     }
 }

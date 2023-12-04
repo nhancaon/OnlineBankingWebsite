@@ -33,6 +33,10 @@ public class TransactionServlet extends HttpServlet {
                 this.updateTransaction(request, response);
                 this.showTransaction(request, response);
             }
+            case "delete" -> {
+                this.deleteTransaction(request, response);
+                this.showTransaction(request, response);
+            }
             default -> {
             }
         }
@@ -90,4 +94,8 @@ public class TransactionServlet extends HttpServlet {
         }
     }
 
+    protected void deleteTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String transactionId = request.getParameter("transactionId");
+        transactionDAO.delete(transactionId);
+    }
 }
