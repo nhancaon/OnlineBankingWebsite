@@ -237,7 +237,6 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         }
 
         return null;
-
     }
 
     public Customer RecoverPassword(String email) throws HandleException {

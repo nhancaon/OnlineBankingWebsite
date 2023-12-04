@@ -90,13 +90,7 @@ public class CustomerServlet extends HttpServlet {
         String customerId = request.getParameter("customerIdUpdate");
         Customer customer = customerDAO.findByCustomerId(customerId);
 
-        String email;
-        String fullName;
-        String citizenId;
-        String phoneNumber;
-        String address;
-        String dateOfBirth;
-        String password;
+        String email, fullName, citizenId, phoneNumber, address, dateOfBirth, password;
         int pinNumber;
 
         if(!request.getParameter("emailUpdate").isEmpty()){
