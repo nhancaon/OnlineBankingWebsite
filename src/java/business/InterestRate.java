@@ -29,8 +29,6 @@ public class InterestRate implements Serializable {
     private String loanTitle;
     @Column(columnDefinition = "int", nullable = false)
     private int term;
-    @Column(columnDefinition = "boolean", nullable = false)
-    private Boolean consecutive;
 
     public String getInterestId() {
         return interestId;
@@ -86,13 +84,5 @@ public class InterestRate implements Serializable {
 
     public void setLoanLendings(List<LoanLending> loanLendings) {
         this.loanLendings = loanLendings;
-    }
-
-    public Boolean getConsecutive() {
-        return consecutive;
-    }
-
-    public void setConsecutive(Boolean consecutive) {
-        this.consecutive = consecutive;
     }
 }

@@ -8,7 +8,8 @@
 <%@ page import="business.PaymentAccount"%> 
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
-<%  InterestRateDAO interestRateDAO = new InterestRateDAO();
+<%  
+    InterestRateDAO interestRateDAO = new InterestRateDAO();
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 

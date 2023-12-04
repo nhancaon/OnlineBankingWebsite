@@ -90,6 +90,7 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
                 }
             } else {
 
+                beneficiaryEntity.setBeneficiaryId(generateUniqueId());
                 beneficiaryEntity.setName(nickName);
                 beneficiaryEntity.setAccountNumber(accountNumber);
                 beneficiaryEntity.setCustomer(customer);
