@@ -1,5 +1,6 @@
 package DAO;
 
+import business.Customer;
 import business.InterestRate;
 import business.PaymentAccount;
 import business.Transaction;
@@ -52,6 +53,28 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
 
         if (!result.isEmpty()) {
             return result;
+        }
+
+        return null;
+    }
+
+    public Transaction findDuplicated(String remark){
+        List<Transaction> result = super.findWithNamedQuery("SELECT t FROM Transaction t WHERE t.transactionRemark = :remark", "remark", remark);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Transaction findByTransactionId(String transactionId) {
+
+        List<Transaction> result = super.findWithNamedQuery("SELECT t FROM Transaction t WHERE t.transactionId = :transactionId",
+                "transactionId", transactionId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
         }
 
         return null;
@@ -147,5 +170,21 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
             totalSentAmountToday = 0.0;
         }
         return totalSentAmountToday;
+    }
+
+    public Transaction updateTransaction(String transactionId, String remark) throws HandleException {
+        Transaction transactionEntityUpdate = new Transaction();
+        TransactionDAO transactionDAO = new TransactionDAO();
+        Transaction existingTransaction = transactionDAO.findByTransactionId(transactionId);
+
+        transactionEntityUpdate.setTransactionId(transactionId);
+        transactionEntityUpdate.setAmount(existingTransaction.getAmount());
+        transactionEntityUpdate.setTransactionDate(existingTransaction.getTransactionDate());
+        transactionEntityUpdate.setReceiver(existingTransaction.getReceiver());
+        transactionEntityUpdate.setSender(existingTransaction.getSender());
+        transactionEntityUpdate.setTransactionRemark(remark);
+
+        update(transactionEntityUpdate); 
+        return transactionEntityUpdate;
     }
 }
