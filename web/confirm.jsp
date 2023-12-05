@@ -88,7 +88,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <label>Receiver Name:</label>
-                                <span class="text-[#2a6ebe]">${Name}</span>
+                                <span class="text-[#2a6ebe]">${receiver.customer.name}</span>
                             </div>
                             <div class="flex justify-between">
                                 <label>Receiver Bank:</label>

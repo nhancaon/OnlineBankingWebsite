@@ -2,11 +2,19 @@ package controller.AdminDashboard;
 
 import business.InterestRate;
 import business.PaymentAccount;
+import business.Customer;
 import DAO.PaymentAccountDAO;
+import DAO.CustomerDAO;
 import Exception.HandleException;
 
+
 import java.io.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 public class PaymentAccountServlet extends HttpServlet {
 
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    CustomerDAO customerDAO = new CustomerDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,31 +78,73 @@ public class PaymentAccountServlet extends HttpServlet {
     }
 
     protected void addPaymentAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        String accountNumber = request.getParameter("accountNumber");
-        String accountStatus = request.getParameter("accountStatus");
-        String accountType = request.getParameter("accountType");
-        String currentBalance = request.getParameter("currentBalance");
-        String rewardPoint = request.getParameter("rewardPoint");
-        String dateOpened = request.getParameter("dateOpened");
-        String dateClosed = request.getParameter("dateClosed");
+        String citizenId = request.getParameter("citizenId");
+        Customer customer = customerDAO.findByCitizenId(citizenId);
+        String accountNumber;
 
-        // try {
-        //     paymentAccountDAO.CreatePaymentAccount(fullName, email, password, citizenId, phoneNumber, dateOfBirth, address, pinNumber);
-        //     request.setAttribute("successMessage", "The customer has been added successfully.");
+        if(customer == null){
+            request.setAttribute("errorMessage", "The customer is not existed.");
+        }
+        else{
+            if(!request.getParameter("accountNumber").isEmpty()){
+                accountNumber = request.getParameter("accountNumber");
+            }
+            else{
+                accountNumber = "random";
+            }       
 
-        // } catch (HandleException e) {
-        //     request.setAttribute("errorMessage", e.getMessage());
-        // }
-
+            try {
+                paymentAccountDAO.CreatePaymentAccount(customer, accountNumber);
+                request.setAttribute("successMessage", "The payment account has been added successfully.");
+            } catch (HandleException e) {
+                request.setAttribute("errorMessage", e.getMessage());
+            }
+        }
     }
 
-    protected void updatePaymentAccount(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void updatePaymentAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String paymentAccountId = request.getParameter("paymentAccountIdUpdate");
+        System.out.println("paymentAccountId " + paymentAccountId);
+        PaymentAccount paymentAccount = paymentAccountDAO.findByPaymentAccountId(paymentAccountId);
 
-        List<PaymentAccount> paymentAccounts = paymentAccountDAO.findAllPaymentAccount();
+        String accountNumber;
+        String accountStatus;
+        String accountType;
+        String balance;
+        String rewardPoint;
 
-        request.setAttribute("paymentAccounts", paymentAccounts);
+        if(!request.getParameter("accountNumberUpdate").isEmpty()){
+            accountNumber = request.getParameter("accountNumberUpdate");
+        }else{
+            accountNumber = paymentAccount.getAccountNumber();
+        }
+        if(request.getParameter("accountStatusUpdate") == null){ 
+            accountStatus = paymentAccount.getAccountStatus();
+        }else{
+            accountStatus = request.getParameter("accountStatusUpdate");
+        }
+        if(!request.getParameter("accountTypeUpdate").isEmpty()){
+            accountType = request.getParameter("accountTypeUpdate");
+        }else{
+            accountType = paymentAccount.getAccountType();
+        }
+        if(!request.getParameter("currentBalanceUpdate").isEmpty()){
+            balance = request.getParameter("currentBalanceUpdate");
+        }else{
+            balance = String.valueOf(paymentAccount.getCurrentBalence());
+        }
+        if(!request.getParameter("rewardPointUpdate").isEmpty()){
+            rewardPoint = request.getParameter("rewardPointUpdate");
+        }else{
+            rewardPoint = String.valueOf(paymentAccount.getRewardPoint());
+        }
+
+        try {
+            paymentAccountDAO.checkUpdatePaymentAccount(paymentAccountId, accountNumber, accountStatus, accountType, balance, rewardPoint, paymentAccount.getCustomer().getCustomerId());
+            request.setAttribute("successMessage", "The payment account has been updated successfully.");
+
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
     }
-
 }

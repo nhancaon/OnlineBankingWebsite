@@ -31,7 +31,6 @@ public class TransferServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = "/transfer.jsp";
         request.setCharacterEncoding("UTF-8");
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
         // get current action
         String action = request.getParameter("action");
@@ -80,22 +79,20 @@ public class TransferServlet extends HttpServlet {
                 }
 
                 LocalDateTime time = LocalDateTime.now();
-                String timeStr = time.format(formatter);
-                session.setAttribute("timeStr", timeStr);
-                session.setAttribute("Amount", Amount);
-                session.setAttribute("Name", Name);
-                session.setAttribute("Remark", Remark);
-                session.setAttribute("receiver", receiver);
-                session.setAttribute("time", time);
-
                 try {
                     transactionDAO.checkTransaction(sender, receiver, Remark, Double.valueOf(Amount), time);
-                    request.setAttribute("successMessage", "Transfer successfully");
+                    String timeStr = time.format(formatter);
+                    session.setAttribute("timeStr", timeStr);
+                    session.setAttribute("Amount", Amount);
+                    session.setAttribute("Name", Name);
+                    session.setAttribute("Remark", Remark);
+                    session.setAttribute("receiver", receiver);
+                    session.setAttribute("time", time);
                     url = "/confirm.jsp";
                 } catch (HandleException e) {
                     url = "/transfer.jsp";
+                                        session.removeAttribute("receiver");
                     request.setAttribute("errorMessage", e.getMessage());
-
                 }
             } else if (action.equals("confirm")) {
                 String Amount = (String) session.getAttribute("Amount");
@@ -106,19 +103,18 @@ public class TransferServlet extends HttpServlet {
                 PaymentAccount receiver = (PaymentAccount) session.getAttribute("receiver");
                 String OTP = (String) session.getAttribute("OTP");
                 String enteredOTP = request.getParameter("enteredOTP");
-                Double amount = parseDouble(Amount);
+                Double amount = Double.valueOf(Amount);
                 try {
                     transactionDAO.createTransaction(sender, receiver, Remark, amount, time, OTP, enteredOTP);
+                    request.setAttribute("successMessage", "Transfer successfully");
                     url = "/success.jsp";
                 } catch (HandleException e) {
                     request.setAttribute("errorMessage", e.getMessage());
                     request.setAttribute("show", "not");
                     url = "/confirm.jsp";
                 }
-
             }
         }
-
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -142,22 +138,28 @@ public class TransferServlet extends HttpServlet {
             session.removeAttribute("receiver");
         }
 
-        
         Customer customer = (Customer) session.getAttribute("customer");
         String customerId = customer.getCustomerId();
         List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
 
         if (action.equals("show-name")) {
+
+            PaymentAccount sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
+//            System.out.println(transactionDAO.checkQuota(sender.getPaymentAccountId()));
             String Number = request.getParameter("getNumber");
-            String Amount = request.getParameter("getAmount");
-            PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
-            
-            if (receiver == null) {
-                request.setAttribute("errorMessage", "The account number is not existed");
+            if (sender.getAccountNumber().equals(Number)) {
+                request.setAttribute("errorMessage", "This is your current account");
+            } else {
+                String Amount = request.getParameter("getAmount");
+                PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(Number);
+
+                if (receiver == null) {
+                    request.setAttribute("errorMessage", "The account number is not existed");
+                }
+                request.setAttribute("receiver", receiver);
+                request.setAttribute("Amount", Amount);
+                request.setAttribute("Number", Number);
             }
-            request.setAttribute("receiver", receiver);
-            request.setAttribute("Amount", Amount);
-            request.setAttribute("Number", Number);
         }
 
         request.setAttribute("Beneficiaries", beneficiaries);

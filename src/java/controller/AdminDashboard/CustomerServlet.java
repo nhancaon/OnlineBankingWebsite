@@ -90,13 +90,7 @@ public class CustomerServlet extends HttpServlet {
         String customerId = request.getParameter("customerIdUpdate");
         Customer customer = customerDAO.findByCustomerId(customerId);
 
-        String email;
-        String fullName;
-        String citizenId;
-        String phoneNumber;
-        String address;
-        String dateOfBirth;
-        String password;
+        String email, fullName, citizenId, phoneNumber, address, dateOfBirth, password;
         int pinNumber;
 
         if(!request.getParameter("emailUpdate").isEmpty()){
@@ -146,16 +140,6 @@ public class CustomerServlet extends HttpServlet {
         }else{
             pinNumber = customer.getPinNumber();
         }
-
-        System.out.println("customerId "+customerId);
-        System.out.println("email "+ email);
-        System.out.println("fullName "+fullName);
-        System.out.println("citizenId "+citizenId);
-        System.out.println("phoneNumber "+phoneNumber);
-        System.out.println("address "+address);       
-        System.out.println("dateOfBirth" + dateOfBirth);
-        System.out.println("password "+password);
-        System.out.println("pinNumber "+pinNumber);
 
         try {
             customerDAO.checkUpdateCustomer(customerId, citizenId, email, fullName, password, phoneNumber, dateOfBirth, address, pinNumber);

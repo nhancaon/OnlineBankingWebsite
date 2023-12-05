@@ -1,15 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="business.Customer" %>
+<%@ page import="business.Employee" %>
 <%@ include file="FormatCurrency.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
-
-
 <%
     Customer customer = (Customer) session.getAttribute("customer");
-
+    Employee employee = (Employee) session.getAttribute("employee");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,16 +67,14 @@
         </script>
         <title>Banking</title>
     </head>
-    <body>
 
+    <body>
         <div id="header" class="fixed top-0 w-full shadow-xl z-[100000] bg-[#fff]">
             <div class="grid grid-cols-2 md:grid-cols-3 justify-center md:mx-56 py-4">
                 <div class="hidden sm:block">
                     <form>
                         <div class="relative">
-                            <div
-                                class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
-                                >
+                            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                                 <img src="./assets/search.svg" class="w-5 h-5" />
                             </div>
                             <input
@@ -86,34 +82,39 @@
                                 id="default-search"
                                 class="block w-full p-4 pl-8 text-sm text-gray-90 outline-none border-gray-200"
                                 placeholder="Find in NND Banking"
-                                required
-                                />
+                                required/>
                         </div>
                     </form>
                 </div>
+
                 <div class="flex items-center justify-center">
-                    <% if (customer != null) { %>
+                    <% 
+                        if (customer != null) { 
+                    %>
                     <form action="Profile" method="GET">
                         <button>
                             <img src="./assets/banklogo.png" class="w-40 h-12" />
                         </button>
                     </form>
 
-                    <%  } else { %>
+                    <%  
+                        } else { 
+                    %>
+
                     <a href="./profile.jsp">
                         <img src="./assets/banklogo.png" class="w-40 h-12" />
                     </a>
 
-                    <% }%>
+                    <% } %>
                 </div>
 
-                <%     if (customer != null) {
-
+                <%     
+                    if (customer != null) {      
                         String customerId = customer.getCustomerId();
                         String fullName = customer.getName();
                         String email = customer.getEmail();
-
                 %>
+
                 <div class="flex items-center justify-end mr-4 sm:mr-0">
                     <div class="hidden sm:block grid mr-2">
                         <div class="text-sm">Good morning!</div>
@@ -137,13 +138,11 @@
                     </div>                 
                 </div>
                 <%
-                } else {
+                    } else {
                 %>
-
                 <div></div>
                 <%
                     }
                 %>
             </div>
-
         </div>

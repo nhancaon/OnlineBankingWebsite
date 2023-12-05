@@ -73,8 +73,17 @@
 
         <div class="flex flex-col-reverse md:grid grid-cols-6 gap-8">
             <div class="col-span-4 md:my-16 py-8 px-2 md:px-20 rounded-xl bg-white">
-                <%@ include file="/includes/exception.jsp" %>
+                <!-- <%@ include file="/includes/exception.jsp" %> -->
+
+                
                 <div class="w-full grid grid-cols-1">
+                    <form action="with-draw" method="post">
+                        <input type="hidden" name="action" value="ee"/>
+                        
+                        <div class="flex justify-end items-center mt-10">
+                            <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">DCM</button>
+                        </div>
+                    </form>
                     <c:if test="${savingAccount.accountStatus == 'Active'}">
                         <form action="with-draw" method="post">
                             <input type="hidden" name="action" value="withdraw">
@@ -100,51 +109,52 @@
                                 <div class="text-end text-xl text-green-400"><%= formatCurrency(Double.valueOf(request.getAttribute("monthlyAmount").toString()))%> VND</div>
                             </div>
 
-                            
-                                
-                                        <div class="flex justify-end items-center mt-10">
-                                            <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
-                                        </div>
-                                        </form>
+                            <input type="hidden" name="action" value="withdraw"/>
+                            <input type="hidden" name="accountSavingId" value="${savingAccount.savingAccountId}"/>
+                            <input type="hidden" name="expectedAmount" value="${savingAccount.savingCurrentAmount}"/>
+                            <div class="flex justify-end items-center mt-10">
+                                <button class="px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white">Withdraw Money</button>
+                            </div>
+                        </form>
 
-                                        <form action="/OnlineBankingWebsite/saving-detail" method="get" onsubmit="return submitForm()">
-                                            <input type="hidden" name="accountNumber" id="accountNumberInput" value="">
-                                                <div class="relative mt-6">
-                                                    <input 
-                                                        type="text"
-                                                        id="checkDate"
-                                                        name="checkDate"
-                                                        onfocus="(this.type = 'date')"
-                                                        onblur="(this.type = 'text')"
-                                                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                                        placeholder=""/>
-                                                    <label
-                                                        for="checkDate"
-                                                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                                        >Future Calculation
-                                                    </label>
-                                                </div>
+                        <form action="/OnlineBankingWebsite/saving-detail" method="get" onsubmit="return submitForm()">
+                            <input type="hidden" name="accountNumber" id="accountNumberInput" value=""/>
+                            <div class="relative mt-6">
+                                <input 
+                                    type="text"
+                                    id="checkDate"
+                                    name="checkDate"
+                                    onfocus="(this.type = 'date')"
+                                    onblur="(this.type = 'text')"
+                                    class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=""/>
+                                <label
+                                    for="checkDate"
+                                    class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                    >Future Calculation
+                                </label>
+                            </div>
 
                                                 <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                     Submit
                                                 </button>
                                         </form>
 
-                                        <script>
-                                            // Extract accountNumber from the current URL
-                                            var urlParams = new URLSearchParams(window.location.search);
-                                            var accountNumber = urlParams.get('accountNumber');
+                        <script>
+                            // Extract accountNumber from the current URL
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var accountNumber = urlParams.get('accountNumber');
 
-                                            // Set the extracted accountNumber to the hidden input field
-                                            document.getElementById('accountNumberInput').value = accountNumber;
+                            // Set the extracted accountNumber to the hidden input field
+                            document.getElementById('accountNumberInput').value = accountNumber;
 
-                                            function submitForm() {
-                                                // Perform any additional checks or operations before submitting
-                                                var checkDate = document.getElementById("checkDate").value;
-                                                if (checkDateIsValid(checkDate)) {
-                                                    // If the checkDate is valid, the form will be submitted
-                                                    return true;
-                                                } else {
+                            function submitForm() {
+                                // Perform any additional checks or operations before submitting
+                                var checkDate = document.getElementById("checkDate").value;
+                                if (checkDateIsValid(checkDate)) {
+                                    // If the checkDate is valid, the form will be submitted
+                                    return true;
+                                } else {
                                                     alert("Invalid date. Please enter a valid date.");
                                                     return false; // Prevent form submission
                                                 }

@@ -93,7 +93,7 @@ public class RewardsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        List<Reward> allRewards = rewardDAO.getAllRewards();
+        List<Reward> allRewards = rewardDAO.findAllReward();
         session.setAttribute("allRewards", allRewards);
 
     }
@@ -102,7 +102,7 @@ public class RewardsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        List<Reward> allRewards = rewardDAO.getAllRewards();
+        List<Reward> allRewards = rewardDAO.findAllReward();
         session.setAttribute("allRewards", allRewards);
 
     }

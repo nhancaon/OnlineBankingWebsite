@@ -66,6 +66,18 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         return null;
     }
 
+    public Customer findByCitizenId(String citizenId) {
+
+        List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.citizenId = :citizenId",
+                "citizenId", citizenId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
     public Customer findByEmail(String email) {
 
         List<Customer> result = super.findWithNamedQuery("SELECT c FROM Customer c WHERE c.email = :email",
@@ -225,7 +237,6 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
         }
 
         return null;
-
     }
 
     public Customer RecoverPassword(String email) throws HandleException {

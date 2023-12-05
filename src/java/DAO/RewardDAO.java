@@ -1,7 +1,10 @@
 package DAO;
 
+import business.Customer;
+import business.InterestRate;
 import business.PaymentAccount;
 import business.Reward;
+import common.HashGenerator;
 import DAO.PaymentAccountDAO;
 import Exception.HandleException;
 import java.util.ArrayList;
@@ -38,8 +41,19 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return super.countWithNamedQuery("");
     }
 
-    public Reward addReward(String rewardName, int costPoint, String type) {
+    public Reward findByRewardId(String rewardId) {
 
+        List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r WHERE r.rewardId = :rewardId",
+                "rewardId", rewardId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Reward createReward(String rewardName, int costPoint, String type) {
         Reward rewardEntity = new Reward();
         rewardEntity.setRewardId(generateUniqueId());
         rewardEntity.setRewardName(rewardName);
@@ -50,8 +64,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         return null;
     }
 
-    public List<Reward> getAllRewards() {
-
+    public List<Reward> findAllReward() {
         List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r");
 
         if (!result.isEmpty()) {
@@ -76,6 +89,16 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
     public Reward getRewardsById(String rewardId) {
 
         List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r WHERE r.rewardId = :rewardId", "rewardId", rewardId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
+    public Reward findDuplicatedReward(String rewardName) {
+        List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r WHERE r.rewardName = :rewardName", "rewardName", rewardName);
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -130,7 +153,35 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
         } else {
             throw new HandleException("Payment account or reward not found", 409);
         }
-
     }
 
+    public Reward updateReward(String rewardId, String rewardName, String rewardType, int costPoint) throws HandleException {
+        Reward rewardEntityUpdate = new Reward();  
+
+        rewardEntityUpdate.setRewardId(rewardId);
+        rewardEntityUpdate.setRewardName(rewardName);
+        rewardEntityUpdate.setRewardType(rewardType);
+        rewardEntityUpdate.setCostPoint(costPoint);
+
+        update(rewardEntityUpdate); 
+        return rewardEntityUpdate;
+    }
+
+    public Reward checkUpdateReward(String rewardId, String rewardName, String rewardType, int costPoint) throws HandleException {
+        Reward duplicatedReward = findDuplicatedReward(rewardName);
+
+        if (duplicatedReward != null){
+            if(duplicatedReward.getRewardName().equals(rewardName)){
+                updateReward(rewardId, rewardName, rewardType, costPoint);
+            }
+            else{
+                throw new HandleException("The reward with Name: " + rewardName + " is already registered.", 409);
+            }
+        }
+        else{
+            updateReward(rewardId, rewardName, rewardType, costPoint);
+        }
+
+        return null;
+    }
 }
