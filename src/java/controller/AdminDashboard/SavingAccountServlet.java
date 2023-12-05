@@ -2,10 +2,14 @@ package controller.AdminDashboard;
 
 import business.SavingAccount;
 import DAO.SavingAccountDAO;
+import Exception.HandleException;
 import business.Customer;
+import business.InterestRate;
 import DAO.CustomerDAO;
 import business.PaymentAccount;
 import DAO.PaymentAccountDAO;
+import DAO.InterestRateDAO;
+
 
 import java.io.*;
 import java.util.List;
@@ -19,6 +23,7 @@ public class SavingAccountServlet extends HttpServlet {
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     CustomerDAO customerDAO = new CustomerDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    InterestRateDAO interestRateDAO = new InterestRateDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,34 +40,44 @@ public class SavingAccountServlet extends HttpServlet {
             String citizenId = request.getParameter("citizenId");
             Customer customer = customerDAO.findByCitizenId(citizenId);
             List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customer.getCustomerId());
-
-            if (customer != null) {
-                System.out.println("citizenId " + citizenId);
-                System.out.println("customer " + customer.getCustomerId());
-                for (int i = 0; i < paymentAccounts.size(); i++) {
-                    System.out.println("accountNumber[" + i + "] " + paymentAccounts.get(i).getAccountNumber());
-                }
+            
+            String accountNumber = request.getParameter("accountNumber");
+            if (customer != null) {         
+                if (accountNumber != null) {
+                    PaymentAccount paymentAccByAccNum = paymentAccountDAO.findByPaymentAccountNumber(accountNumber);
+                    if (paymentAccByAccNum != null) {
+                        // System.out.println(paymentAccByAccNum.getPaymentAccountId());  
+                    } 
+                }            
+            } 
+            
+            // Find Interest rates
+            List<InterestRate> interestRates = interestRateDAO.listAll();
+            String savingTitle = request.getParameter("savingTitle");
+            InterestRate interestRateCheck = interestRateDAO.findBySavingTitle(savingTitle);
+ 
+            if (interestRateCheck != null) {
+                String rate = String.valueOf(interestRateCheck.getInterestRate());
+                System.out.println("rate: " + rate);
+            } else {
+                System.out.println("Interest rate not found for savingTitle: " + savingTitle);
+                // You might want to write an error message or take appropriate action
             }
-            // // Concatenate account numbers into a comma-separated string
-            // StringBuilder accountNumbersString = new StringBuilder();
-            // for (int i = 0; i < paymentAccounts.size(); i++) {
-            //     accountNumbersString.append(paymentAccounts.get(i).getAccountNumber());
-            //     if (i < paymentAccounts.size() - 1) {
-            //         accountNumbersString.append(",");
-            //     }
-            // }
 
             // Send the response back to the client
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
-
             // Write customer ID to the response
             response.getWriter().write("CUSTOMER_ID:" + (customer != null ? customer.getCustomerId() : ""));
             // Write customer name to the response
             response.getWriter().write("\nCUSTOMER_NAME:" + (customer != null ? customer.getName() : ""));
+            
             // Separate each account number in the response
             for (PaymentAccount paymentAccount : paymentAccounts) {
                 response.getWriter().write("\nACCOUNT_NUMBER:" + paymentAccount.getAccountNumber());
+            }
+            for (InterestRate interestRate : interestRates) {
+                response.getWriter().write("\nINTEREST_RATE_TITLE:" + interestRate.getSavingTitle() + " | " + interestRate.getInterestRate() + "%");
             }
             return;
         }
@@ -110,13 +125,30 @@ public class SavingAccountServlet extends HttpServlet {
     }
 
     protected void addSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String accountNumber = request.getParameter("accountNumber");
-        String accountStatus = request.getParameter("accountStatus");
-        String accountType = request.getParameter("accountType");
-        String savingAmount = request.getParameter("savingAmount");
-        String dateOpened = request.getParameter("dateOpened");
-        String dateClosed = request.getParameter("dateClosed");
+        Customer customer = customerDAO.findByCitizenId(request.getParameter("citizenId"));
 
+        // Assuming "string" is the parameter name
+        String savingTitle = request.getParameter("savingTitle");
+
+        if (savingTitle != null) {
+            // Split the string by the space character
+            String[] parts = savingTitle.split("\\s+");
+
+            // Get the first part (index 0) if there is any
+            String firstPart = parts.length > 0 ? parts[0] : "";
+
+            String accountType = firstPart;
+            InterestRate interestRate = interestRateDAO.findBySavingTitle(accountType);
+            String accountNumber = request.getParameter("accountNumber");
+            String initialAmount = request.getParameter("initialAmount");
+            try {
+                savingAccountDAO.CreateSavingAccount(customer, accountNumber, interestRate.getSavingTitle(), interestRate.getTerm(), Double.valueOf(initialAmount), interestRate);
+                request.setAttribute("successMessage", "The interest rate has been added successfully.");
+
+            } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            }
+        }
     }
 
     protected void updateSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
