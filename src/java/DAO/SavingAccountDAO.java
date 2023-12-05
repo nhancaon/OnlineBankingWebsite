@@ -77,6 +77,18 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
 
         return null;
     }
+    
+    public SavingAccount findBySavingId(String savingId) {
+
+        List<SavingAccount> result = super.findWithNamedQuery("SELECT sa FROM SavingAccount sa WHERE sa.savingAccountId = :savingId",
+                "savingId", savingId);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
 
     public SavingAccount findExistingSavingAccount(String accountNumber) {
 
@@ -101,13 +113,6 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         SavingAccount savingAccountEntity = new SavingAccount();
         // SavingAccount existingSavingAccount = findExistingSavingAccount(customer.getCustomerId(), accountNumber);
         PaymentAccount paymentAccount = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
-        // if (existingSavingAccount != null) {
-        // if (existingSavingAccount.getAccountNumber().equals(accountNumber)) {
-        // throw new HandleException("The Saving Account " + accountNumber
-        // + " is already existed.", 409);
-        // }
-        // } else {
-
         if (amount < 1000000) {
             throw new HandleException("The Saving Amount need to be more than 1000000 VND", 409);
         } else if (accountNumber == null || accountNumber.isEmpty() || accountType == null || accountType.isEmpty()) {
@@ -133,29 +138,24 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             paymentAccountDAO.update(paymentAccount);
             create(savingAccountEntity);
         }
-        // }
         return null;
     }
 
-    public Map<String, Double> displayExpectedSaving(String accountNumber, String strDate) {
-        SavingAccount savingAccount = findByAccountNumber(accountNumber);
-        InterestRateDAO interestRateDAO = new InterestRateDAO();
-        InterestRate interestRate = new InterestRate();
-
+    public Map<String, Double> displayExpectedSaving(SavingAccount savingAccount, String strDate,InterestRate interestRate) {
         Double amount = savingAccount.getSavingInitialAmount();
         LocalDate checkDate = LocalDate.parse(strDate);
-
         // For calculating interest
         int numberOfDay = (checkDate.getMonthValue() - savingAccount.getDateOpened().getMonthValue());
-        interestRate = interestRateDAO.findInterestRateByInterestId(savingAccount.getInterestRate().getInterestId());
         Map<String, Double> map = new HashMap<String, Double>();
         
         if (savingAccount.getDateOpened().isBefore(checkDate)){
             map = calculateInterest(amount, interestRate, savingAccount, checkDate);
             return map;
+        }else if (savingAccount.getDateOpened().isAfter(checkDate)){
+            map.put("monthlyTotal", 0.0);
+            return map;
         }
-        else if (savingAccount.getDateOpened().getMonthValue() == checkDate.getMonthValue()){
-            map.put("expectedTotal", amount);
+        else if (savingAccount.getDateOpened().isEqual(checkDate)){
             map.put("monthlyTotal", 0.0);
             return map;
         }
@@ -165,51 +165,49 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
             return map;
         }
     }
-
-    public Map<String, Double> calculateInterest(Double amount, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
-        Map<String, Double> result = new HashMap<>();
+    
+    public Double calculateExpectedTotal(InterestRate rate, SavingAccount savingAccount) {
         Double expectedTotal = 0.0;
         Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;
         int term = rate.getTerm();
-
-        expectedTotal = amount * (Math.pow((1 + interest), term * 1.0));
-
+        expectedTotal = savingAccount.getSavingInitialAmount() * (Math.pow((1 + interest), term * 1.0));
+        return expectedTotal;
+    }
+    
+    public Map<String, Double> calculateInterest(Double amount, InterestRate rate, SavingAccount savingAccount, LocalDate checkDate) {
+        Map<String, Double> result = new HashMap<>();
+        Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;
+        int term = rate.getTerm();
         // Calculate the number of months (considering partial months)
         YearMonth startYearMonth = YearMonth.from(savingAccount.getDateOpened());
         YearMonth endYearMonth = YearMonth.from(checkDate);
         long monthsDifference = ChronoUnit.MONTHS.between(startYearMonth, endYearMonth);
-
         // Round up to the nearest whole month
         int consTime = (int) Math.ceil(monthsDifference);
-        System.out.println("consTime " + consTime);
         Double monthlyTotal = 0.0;
-        
         monthlyTotal = amount * (Math.pow((1 + interest), consTime * 1.0));
-
         // Format totalAmount to 2 decimal places
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        expectedTotal = Double.parseDouble(decimalFormat.format(expectedTotal));
-        monthlyTotal = Double.parseDouble(decimalFormat.format(monthlyTotal));
-
-        result.put("expectedTotal", expectedTotal);
+        monthlyTotal = Double.valueOf(decimalFormat.format(monthlyTotal));
         result.put("monthlyTotal", monthlyTotal);
-
         return result;
     }
 
-    public SavingAccount updateCurrentSavingAccount(String accountNumber, SavingAccount savingAccount, InterestRate rate){
-        Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;
-
+    public SavingAccount updateCurrentSavingAccount(SavingAccount savingAccount, InterestRate rate){
+        Double interest = ((rate.getInterestRate() * 1.0) / 100) / 12;  
         // Calculate the number of months (considering partial months)
         YearMonth startYearMonth = YearMonth.from(savingAccount.getDateOpened());
-        YearMonth endYearMonth = YearMonth.from(LocalDate.now());
+        YearMonth endYearMonth = null;
+        if (!savingAccount.getDateClosed().isBefore(LocalDate.now())) {
+            endYearMonth = YearMonth.from(LocalDate.now());
+        }else{
+            endYearMonth = YearMonth.from(savingAccount.getDateClosed());
+            
+        }
         long monthsDifference = ChronoUnit.MONTHS.between(startYearMonth, endYearMonth);
-
         // Round up to the nearest whole month
         int consTime = (int) Math.ceil(monthsDifference);
-
         Double currentAmount = savingAccount.getSavingInitialAmount() * (Math.pow((1 + interest), consTime * 1.0));
-        
         savingAccount.setSavingCurrentAmount(currentAmount);
         update(savingAccount);
         return savingAccount;
