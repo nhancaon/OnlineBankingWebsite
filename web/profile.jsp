@@ -1,12 +1,12 @@
-<%@page import="business.PaymentAccount" %>
+<%@ page import="business.PaymentAccount" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
-
 <%@ include file="/includes/checkLogin.jsp" %>
 
 
-<% PaymentAccount defaultPaymentAccount = (PaymentAccount) request.getAttribute("defaultPaymentAccount");
+<% 
+    PaymentAccount defaultPaymentAccount = (PaymentAccount) request.getAttribute("defaultPaymentAccount");
 %>
 
 
@@ -15,7 +15,7 @@
 </div>
 
 <div id="content" class="bg-[#f0f1f1] py-16">
-    <div class=md:mx-56 px-8 pt-10 pb-16 rounded-md bg-[#fff]">
+    <div class="md:mx-56 px-8 pt-10 pb-16 rounded-md bg-[#fff]">
         <div class="grid grid-cols-1 md:grid-cols-2 md:pt-4 pb-10 justify-between px-2 sm:px-0">
             <% if (defaultPaymentAccount != null) {%>
             <div class="grid items-center justify-center text-center sm:items-start sm:justify-start sm:text-left ">
@@ -35,8 +35,10 @@
                 <div class="grid justify-end ml-16 sm:ml-4">
                     <form action="Account" method="get">
                         <button type="submit" class="px-2 py-1 bg-gray-200 rounded-lg focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                            Accounts List <span class="font-bold"><i
-                                    class="fa-solid fa-chevron-right py-1"></i></span>
+                            Accounts List 
+                            <span class="font-bold">
+                                <i class="fa-solid fa-chevron-right py-1"></i>
+                            </span>
                         </button>
                     </form>
                 </div>

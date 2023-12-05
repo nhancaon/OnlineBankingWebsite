@@ -170,4 +170,19 @@ public class EmployeeDAO extends JpaDAO<Employee> implements GenericDAO<Employee
         return null;
     }
 
+    public Employee checkLoginEmployee(String email, String password) {
+        Map<String, Object> parameters = new HashMap<>();
+        String encryptedPassword = HashGenerator.generateMD5(password);
+        parameters.put("email", email);
+        parameters.put("password", encryptedPassword);
+
+        List<Employee> result = super.findWithNamedQuery("SELECT e FROM Employee e WHERE e.email = :email AND e.password = :password", parameters);
+
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+
+        return null;
+    }
+
 }

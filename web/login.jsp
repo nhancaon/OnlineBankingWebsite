@@ -5,9 +5,7 @@
     <div>
         <div class="flex flex-col-reverse md:grid grid-cols-2 w-full bg-white rounded-lg shadow md:mt-0">
             <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1
-                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
-                    >
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Sign in to your account
                 </h1>
                 <div class="flex justify-center items-center h-32 rounded-xl bg-[#ebf7ff]">
@@ -61,10 +59,8 @@
                             </div>
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        class="w-full text-white bg-gradient-to-r from-[#00bfae] to-[#0066ad] hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        >
+                    <button type="submit"
+                            class="w-full text-white bg-gradient-to-r from-[#00bfae] to-[#0066ad] hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Sign in
                     </button>
                     <p class="text-sm font-light text-gray-700">
@@ -154,7 +150,8 @@
                 </div> 
                 <div class="flex justify-end items-center">
                     <button class="mt-8 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                            ">Send</button>
+                        >Send
+                    </button>
                 </div> 
             </form>
 
