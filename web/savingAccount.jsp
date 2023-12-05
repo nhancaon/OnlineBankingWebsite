@@ -7,19 +7,7 @@
 <%@ page import="DAO.PaymentAccountDAO"%> 
 <%@ page import="business.PaymentAccount"%> 
 <%@ include file="/includes/header.jsp" %>
-<%@ include file="/includes/checkLogin.jsp" %>
-<%  
-    InterestRateDAO interestRateDAO = new InterestRateDAO();
-    SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
-    PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
-
-    List<InterestRate> interestRates = interestRateDAO.listAll();
-    request.setAttribute("interestRates", interestRates);
-    String customerId = customer.getCustomerId();
-    List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customerId);
-    request.setAttribute("paymentAccounts", paymentAccounts);
-    PaymentAccount DefaultAc = paymentAccountDAO.findDefaultPaymentAccount(customerId);
-%>                   
+<%@ include file="/includes/checkLogin.jsp" %>                  
 
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
@@ -36,7 +24,7 @@
                     <%@ include file="/includes/homeButton.jsp" %>
                 </li>
                 <li>
-                    <div class="flex items-center">
+                    <div class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                         <svg
                             class="w-3 h-3 mx-1"
                             aria-hidden="true"
@@ -73,36 +61,33 @@
                     focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" onclick="showCreateAccount()"><img src="assets/plus.svg" src="" class="mr-2"></img>Add Saving Account</button>
             </div>
             <div class="grid grid-cols-1 gap-10 my-8">
-                <% List<SavingAccount> savingAccounts = savingAccountDAO.findSavingAccountByPayId(DefaultAc.getPaymentAccountId());
-                    if (savingAccounts != null && !savingAccounts.isEmpty()) {
-                        for (SavingAccount savingAccount : savingAccounts) {
-                %>
-                <a href="saving-detail?accountNumber=<%= savingAccount.getAccountNumber()%>" class="flex justify-between p-4 rounded-xl bg-gray-300 
-                   focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
-                    <div>
-                        <i class="fa-regular fa-copy mr-2"></i>
-                        <%= savingAccount.getAccountNumber()%>
-                    </div>
+                <c:choose>
+                    <c:when test="${empty savingAccounts}">
+                        <p class="text-center mt-5">No saving accounts found for the specified customer.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="savingAccount" items="${savingAccounts}">
+                            <a href="saving-detail?accountId=${savingAccount.savingAccountId}" class="flex justify-between p-4 rounded-xl bg-gray-300 
+                                focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                                 <div>
+                                     <i class="fa-regular fa-copy mr-2"></i>
+                                     ${savingAccount.accountNumber}
+                                 </div>
 
-                    <div>
-                        <span class="text-sm text-gray-600 mr-2">Interest Rate</span>
-                        <%= savingAccount.getInterestRate().getInterestRate()%> %
-                    </div>
-                    <i class="fa-solid fa-chevron-right py-1"></i>
-                </a>       
-                <%
-                    }
-                } else {
-                %>
-                <p class="text-center mt-5">No saving accounts found for the specified customer.</p>
-                <%
-                    }
-                %>
+                                 <div>
+                                     <span class="text-sm text-gray-600 mr-2">Interest Rate</span>
+                                     ${savingAccount.interestRate.interestRate} %
+                                 </div>
+                                 <i class="fa-solid fa-chevron-right py-1"></i>
+                             </a>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
 </div>
-
+<%@ include file="/includes/exception.jsp" %> 
 <div
     id="create-account"
     class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-2 py-8 md:px-96 md:py-28"
@@ -118,7 +103,7 @@
             </button>
         </div>
         <div class="content">
-            <form action="create-saving-account" method="post">
+            <form action="create-saving-account" method="get">
                 <input type="hidden" name="action" value="create" />
                 <div class="relative mt-6" >
                     <select name="acNumber" id="savingAccountNumber" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
