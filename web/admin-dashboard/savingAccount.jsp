@@ -82,93 +82,62 @@
                 <div class="relative mt-6">
                     <input
                         type="text"
-                        id="accountNumber"
-                        name="accountNumber"
+                        id="citizenId"
+                        name="citizenId"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
                         />
+                    <label
+                        for="citizenId"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Customer Citizen ID</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="customerId"
+                        name="customerId"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        readonly
+                        />
+                    <label
+                        for="customerId"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Customer ID</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        readonly
+                        />
+                    <label
+                        for="name"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Customer Name</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <select name="accountNumber" id="accountNumber" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <!-- <option value="" disabled selected>Select Account Number</option> -->
+                    </select>
                     <label
                         for="accountNumber"
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >Account Number</label
                     >
                 </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="accountStatus"
-                        name="accountStatus"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="accountStatus"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Status</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="accountType"
-                        name="accountType"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="accountType"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Account Type</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="savingAmount"
-                        name="savingAmount"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="savingAmount"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Saving Amount</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateOpened"
-                        name="dateOpened"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="dateOpened"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Opened</label
-                    >
-                </div> 
-                <div class="relative mt-6">
-                    <input
-                        type="text"
-                        id="dateClosed"
-                        name="dateClosed"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=""
-                        required
-                        />
-                    <label
-                        for="dateClosed"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >Date Closed</label
-                    >
-                </div> 
+                
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
                             onclick="showCreateCustomAccount()">Add Saving Account</button>
@@ -177,6 +146,57 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#citizenId").on("input", function () {
+            var citizenId = $(this).val();
+
+            $.ajax({
+                type: "POST",
+                url: "savingAccount",
+                data: { action: "get-citizen-id", citizenId: citizenId },
+                success: function (response) {
+                    console.log("Citizen ID from servlet: " + citizenId);
+                    console.log("Customer ID from servlet: " + response);
+
+                    // Split the response by newline
+                    var lines = response.trim().split('\n');
+
+                    // Extract customer ID
+                    var customerIdLine = lines.find(line => line.startsWith("CUSTOMER_ID:"));
+                    var customerId = customerIdLine ? customerIdLine.substring(12) : "";
+                    
+                    // Extract customer Name
+                    var customerNameLine = lines.find(line => line.startsWith("CUSTOMER_NAME:"));
+                    var customerName = customerNameLine ? customerNameLine.substring(14) : "";
+
+                    // Set the customer ID in the input field
+                    $("#customerId").val(customerId);
+
+                    // Set the customer Name in the input field
+                    $("#name").val(customerName);
+
+                    // Extract account numbers
+                    var accountNumbers = lines.filter(line => line.startsWith("ACCOUNT_NUMBER:"))
+                           .map(line => line.substring(15));
+
+                    // Clear existing options in the select
+                    $("#accountNumber").empty();
+
+                    // Populate the select dropdown with account numbers
+                    for (var i = 0; i < accountNumbers.length; i++) {
+                        $("#accountNumber").append('<option value="' + accountNumbers[i] + '">' + accountNumbers[i] + '</option>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error communicating with the server. Status: " + status + ", Error: " + error);
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
