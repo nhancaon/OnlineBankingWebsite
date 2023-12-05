@@ -18,8 +18,9 @@
             <jsp:forward page="/Profile"></jsp:forward>
 
         <%  } else { %>
-        
+
             <jsp:forward page="/Login"></jsp:forward>
+            
         <%  }%> 
     </body>
 </html>

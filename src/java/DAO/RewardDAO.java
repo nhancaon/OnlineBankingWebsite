@@ -65,6 +65,7 @@ public class RewardDAO extends JpaDAO<Reward> implements GenericDAO<Reward> {
     }
 
     public List<Reward> findAllReward() {
+        
         List<Reward> result = super.findWithNamedQuery("SELECT r FROM Reward r");
 
         if (!result.isEmpty()) {

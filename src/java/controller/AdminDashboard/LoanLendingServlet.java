@@ -9,7 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/loan")
+@WebServlet("/loan")
 public class LoanLendingServlet extends HttpServlet {
 
     LoanLendingDAO loanLendingDAO = new LoanLendingDAO();

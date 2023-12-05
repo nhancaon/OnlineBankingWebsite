@@ -20,9 +20,9 @@ public class LoginServlet extends HttpServlet {
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
-        
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "join"; // default action
@@ -33,19 +33,26 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
 
             Customer customer = customerDAO.checkLogin(email, password);
-            Employee employee = employeeDAO.checkLoginEmployee(email, password);
+            HttpSession session = request.getSession();
 
             if (customer == null) {
-                if(employee != null){
-                    response.sendRedirect(request.getContextPath() + "/admin-dashboard/index.jsp");
-                    return;
-                }
-                else{
+
+                Employee employee = employeeDAO.checkLogin(email, password);
+
+                if (employee == null) {
                     url = "/login.jsp";
                     request.setAttribute("errorMessage", "Your email or password is incorrect.");
-                }    
+
+                } else {
+
+                    session.setAttribute("email", email);
+                    session.setAttribute("employee", employee);
+
+                    url = "/admin-dashboard/index.jsp";
+
+                }
             } else {
-                HttpSession session = request.getSession();
+
                 session.setAttribute("email", email);
                 session.setAttribute("customer", customer);
 
@@ -54,6 +61,7 @@ public class LoginServlet extends HttpServlet {
                 url = "/profile.jsp";
             }
         }
+
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
