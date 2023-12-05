@@ -50,7 +50,7 @@
                             <form action="interestRate" method="POST">
                                 <input type="hidden" name="action" value="delete"/>
                                 <input type="hidden" name="interestRateId" value="${interestRate.getInterestId()}"/>
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -64,7 +64,7 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Interest Rate</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Interest Rate</button>
 </div>
 
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">

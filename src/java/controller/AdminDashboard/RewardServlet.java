@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/reward")
+@WebServlet("/reward")
 public class RewardServlet extends HttpServlet {
 
     RewardDAO rewardDAO = new RewardDAO();

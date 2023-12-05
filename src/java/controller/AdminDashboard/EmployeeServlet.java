@@ -10,7 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/employee")
+@WebServlet("/employee")
 public class EmployeeServlet extends HttpServlet {
 
     EmployeeDAO employeeDAO = new EmployeeDAO();

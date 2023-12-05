@@ -13,7 +13,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/savingAccount")
+@WebServlet("/savingAccount")
 public class SavingAccountServlet extends HttpServlet {
 
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();

@@ -10,11 +10,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/customer")
+@WebServlet("/customer")
 public class CustomerServlet extends HttpServlet {
 
     CustomerDAO customerDAO = new CustomerDAO();
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();

@@ -58,7 +58,7 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
 </div>
 
 
