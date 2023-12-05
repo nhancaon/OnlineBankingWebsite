@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%>
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -53,9 +53,11 @@
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="paymentAccount" method="POST">
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="customerId" value="${paymentAccount.getPaymentAccountId()}"/>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
-                         </td>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -67,7 +69,7 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Payment Account</button>
 </div>
 
 <div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
@@ -90,10 +92,10 @@
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         required
-                    />
+                        />
                     <label
                         for="citizenId"
-                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
                         >Customer Citizen ID</label
                     >
                 </div>
@@ -115,14 +117,14 @@
 
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
-                        onclick="showCreateCustomAccount()">Add Payment Account</button>
+                            onclick="showCreateCustomAccount()">Add Payment Account</button>
                 </div> 
             </form> 
         </div>
     </div>
 </div>
 
-<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
+<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-4">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Update Payment Account
@@ -200,7 +202,7 @@
                         name="currentBalanceUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-  
+
                         />
                     <label
                         for="currentBalanceUpdate"
@@ -216,7 +218,7 @@
                         name="rewardPointUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-  
+
                         />
                     <label
                         for="rewardPointUpdate"

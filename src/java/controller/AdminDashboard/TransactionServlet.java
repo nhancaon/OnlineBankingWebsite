@@ -12,7 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/transaction")
+@WebServlet("/transaction")
 public class TransactionServlet extends HttpServlet {
 
     TransactionDAO transactionDAO = new TransactionDAO();

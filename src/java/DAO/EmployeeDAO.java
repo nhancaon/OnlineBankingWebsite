@@ -1,6 +1,5 @@
 package DAO;
 
-import business.Customer;
 import business.Employee;
 import Exception.HandleException;
 import common.HashGenerator;
@@ -170,7 +169,7 @@ public class EmployeeDAO extends JpaDAO<Employee> implements GenericDAO<Employee
         return null;
     }
 
-    public Employee checkLoginEmployee(String email, String password) {
+    public Employee checkLogin(String email, String password) {
         Map<String, Object> parameters = new HashMap<>();
         String encryptedPassword = HashGenerator.generateMD5(password);
         parameters.put("email", email);

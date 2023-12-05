@@ -7,7 +7,7 @@
 
 <%
     Customer customer = (Customer) session.getAttribute("customer");
-    Employee employee = (Employee) session.getAttribute("employee");
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
                             'bounceOne': '0.5s ease-in-out',
                             'appear': 'appear 0.5s ease-in-out',
                             'appearRight': 'appearRight ease-in-out .3s',
-                            'notification': 'notification ease-in-out .3s, fadeOut 3s .3s ease-in-out forwards',
+                            'notification': 'notification ease-in-out .3s, fadeOut 3s .5s ease-in-out forwards',
                         },
                         keyframes: {
                             'bounceOne': {
@@ -72,7 +72,8 @@
         <div id="header" class="fixed top-0 w-full shadow-xl z-[100000] bg-[#fff]">
             <div class="grid grid-cols-2 md:grid-cols-3 justify-center md:mx-56 py-4">
                 <div class="hidden sm:block">
-                    <form>
+                    <form action="Beneficiary" method="POST">
+                        <input type="hidden" name="action" value="findContacts"/>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                                 <img src="./assets/search.svg" class="w-5 h-5" />
@@ -80,16 +81,17 @@
                             <input
                                 type="search"
                                 id="default-search"
+                                name="parameter"
                                 class="block w-full p-4 pl-8 text-sm text-gray-90 outline-none border-gray-200"
-                                placeholder="Find in NND Banking"
-                                required/>
+                                placeholder="Find Contacts in NND Banking"
+                                required
+                            />
                         </div>
                     </form>
                 </div>
 
                 <div class="flex items-center justify-center">
-                    <% 
-                        if (customer != null) { 
+                    <%                        if (customer != null) {
                     %>
                     <form action="Profile" method="GET">
                         <button>
@@ -97,8 +99,8 @@
                         </button>
                     </form>
 
-                    <%  
-                        } else { 
+                    <%
+                    } else {
                     %>
 
                     <a href="./profile.jsp">
@@ -108,11 +110,11 @@
                     <% } %>
                 </div>
 
-                <%     
-                    if (customer != null) {      
-                        String customerId = customer.getCustomerId();
+                <%
+                    if (customer != null) {
+
                         String fullName = customer.getName();
-                        String email = customer.getEmail();
+
                 %>
 
                 <div class="flex items-center justify-end mr-4 sm:mr-0">
@@ -138,7 +140,7 @@
                     </div>                 
                 </div>
                 <%
-                    } else {
+                } else {
                 %>
                 <div></div>
                 <%

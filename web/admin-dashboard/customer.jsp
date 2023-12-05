@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -53,9 +53,11 @@
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="customer" method="POST">
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="customerId" value="${customer.getCustomerId()}"/>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
-                         </td>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -68,10 +70,10 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Customer</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Customer</button>
 </div>
 
-<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] py-16 px-96">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Customer
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
@@ -80,7 +82,7 @@
             </button>
         </div>
         <div class="grid grid-cols-1 gap-2 mb-10">           
-            <form action="customer" method="post" class="mt-6">
+            <form action="customer" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
                 <input type="hidden" name="action" value="add-customer"/>
                 <div class="relative mt-6">
                     <input
@@ -212,7 +214,7 @@
     </div>
 </div>
 
-<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
+<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] py-16 px-96">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Update Customer
@@ -221,7 +223,7 @@
             </button>
         </div>
         <div class="grid grid-cols-1 gap-2 mb-10">
-            <form action="customer" method="post" class="mt-6">
+            <form action="customer" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
                 <input type="hidden" name="action" value="update-customer"/>
                 <input type="hidden" name="customerId" id="updateCustomerId" value=""/>
                 <div class="relative mt-6">
@@ -277,7 +279,7 @@
                         name="citizenIdUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-  
+
                         />
                     <label
                         for="citizenIdUpdate"
@@ -293,7 +295,7 @@
                         name="phoneNumberUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                      
+
                         />
                     <label
                         for="phoneNumberUpdate"
@@ -309,7 +311,7 @@
                         name="addressUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                      
+
                         />
                     <label
                         for="addressUpdate"
@@ -342,7 +344,7 @@
                         name="pinNumberUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-                      
+
                         />
                     <label
                         for="pinNumberUpdate"
@@ -358,7 +360,7 @@
                         name="passwordUpdate"
                         class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
-              
+
                         />
                     <label
                         for="passwordUpdate"

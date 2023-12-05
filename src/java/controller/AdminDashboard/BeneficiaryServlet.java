@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/beneficiary")
+@WebServlet("/beneficiary")
 public class BeneficiaryServlet extends HttpServlet {
 
     BeneficiaryDAO beneficiaryDAO = new BeneficiaryDAO();

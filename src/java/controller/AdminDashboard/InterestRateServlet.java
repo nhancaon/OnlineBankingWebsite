@@ -11,7 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/admin-dashboard/interestRate")
+@WebServlet("/interestRate")
 public class InterestRateServlet extends HttpServlet {
 
     InterestRateDAO interestRateDAO = new InterestRateDAO();

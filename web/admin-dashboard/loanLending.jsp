@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -45,14 +45,19 @@
                         <td class="px-6 py-4">${loanLending.getMonthlyPay()} VND</td>
                         <td class="px-6 py-4">${loanLending.getDateOpened()}</td>
                         <td class="px-6 py-4">${loanLending.getDateClosed()}</td>
-                        <td class="px-6 py-4 text-center">
-                            <form action="loan" method="POST">
-                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
-                            </form>
+                        <td class="px-6 py-4 text-right">
+                            <a
+                                href="#"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                onclick="showUpdateForm('${loanLending.getLoanLendingId()}')"
+                                >Edit</a
+                            >
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="loan" method="POST">
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="customerId" value="${loanLending.getLoanLendingId()}"/>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -65,10 +70,10 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Loan Lending</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Loan Lending</button>
 </div>
 
-<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-10">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Loan Lending
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
@@ -78,7 +83,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-2 mb-10">           
-            <form action="loan" method="post" class="mt-6">
+            <form action="loan" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
                 <input type="hidden" name="action" value="add-loan"/>
                 <div class="relative mt-6">
                     <input
@@ -169,6 +174,9 @@
                         class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >Date Closed</label
                     >
+                </div> 
+                <div class="flex justify-end items-center">
+                   &nbsp;
                 </div> 
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 

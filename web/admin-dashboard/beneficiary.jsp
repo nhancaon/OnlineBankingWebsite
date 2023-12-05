@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -33,17 +33,19 @@
                         </th>
                         <td class="px-6 py-4">${beneficiary.getName()}</td>
                         <td class="px-6 py-4">${beneficiary.getAccountNumber()}</td>
-                        <td class="px-6 py-4 text-center">
-                            <form action="beneficiary" method="POST">
-                                <input type="hidden" name="action" value="update"/>
-                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
-                            </form>
+                        <td class="px-6 py-4 text-right">
+                            <a
+                                href="#"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                onclick="showUpdateForm('${beneficiary.getBeneficiaryId()}')"
+                                >Edit</a
+                            >
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="beneficiary" method="POST">
                                 <input type="hidden" name="action" value="delete"/>
                                 <input type="hidden" name="beneficiaryId" value="${beneficiary.getBeneficiaryId()}"/>
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -58,7 +60,7 @@
     <button id="createAccountBtn" class="px-4 py-2 bg-[#00bfae] rounded-2xl outline-none 
             focus:ring transform transition hover:scale-105 duration-300 ease-in-out flex text-white" 
             onclick="showCreateAccount()">
-        <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
+        <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Beneficiary</button>
 </div>
 
 
@@ -130,6 +132,100 @@
         </div>
     </div>
 </div>
+
+<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] py-16 px-96">
+    <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
+        <div class="text-[#2a6ebe] flex justify-between">
+            Update Customer
+            <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeUpdateForm()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="grid grid-cols-1 gap-2 mb-10">
+            <form action="customer" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
+                <input type="hidden" name="action" value="update-customer"/>
+                <input type="hidden" name="customerId" id="updateCustomerId" value=""/>
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="customerIdUpdate"
+                        name="customerIdUpdate"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        readonly  
+                        />
+                    <label
+                        for="customerIdUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Customer Id</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="citizenIdUpdate"
+                        name="citizenIdUpdate"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+
+                        />
+                    <label
+                        for="citizenIdUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Citizen ID</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="phoneNumberUpdate"
+                        name="phoneNumberUpdate"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+
+                        />
+                    <label
+                        for="phoneNumberUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Phone Number</label
+                    >
+                </div> 
+
+                <div class="flex justify-end items-center">
+                    <button 
+                        class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                        onclick="updateCustomer()">Update Customer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function showUpdateForm(customerId) {
+        // Set the customerId in the input field
+        document.getElementById('customerIdUpdate').value = customerId;
+
+        // Set the customerId in the hidden field
+        document.getElementById('updateCustomerId').value = customerId;
+
+        // Show the update form
+        document.getElementById('update-account').classList.remove('hidden');
+    }
+
+    function closeUpdateForm() {
+        // Close the update form
+        document.getElementById('update-account').classList.add('hidden');
+    }
+
+    function updateCustomer() {
+        closeUpdateForm();
+    }
+</script>
 
 
 </body>

@@ -152,7 +152,7 @@
                     <form action="Transfer" method="get">
                         <input type="hidden" name="action" value="show-name" />
                         <input type="hidden" name="getNumber" value="<%= beneficiary.getAccountNumber()%>" />
-                        <button class="w-full mt-2 px-8 bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out  cursor-pointer">                      
+                        <button class="w-full mt-2 bg-white focus:ring transform transition hover:scale-105 duration-300 ease-in-out  cursor-pointer">                      
                             <div class="grid grid-cols-3 items-center py-4 border-black text-sm  border-b">
                                 <span class="text-xl"><%= beneficiary.getName()%></span>
                                 <span>
