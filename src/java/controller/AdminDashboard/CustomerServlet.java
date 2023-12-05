@@ -36,6 +36,10 @@ public class CustomerServlet extends HttpServlet {
                 this.updateCustomer(request, response);
                 this.showCustomer(request, response);
             }
+            case "delete" -> {
+                this.deleteCustomer(request, response);
+                this.showCustomer(request, response);
+            }
             default -> {
             }
         }
