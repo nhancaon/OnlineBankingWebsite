@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -45,13 +45,18 @@
                         <td class="px-6 py-4">${loanLending.getMonthlyPay()} VND</td>
                         <td class="px-6 py-4">${loanLending.getDateOpened()}</td>
                         <td class="px-6 py-4">${loanLending.getDateClosed()}</td>
-                        <td class="px-6 py-4 text-center">
-                            <form action="loan" method="POST">
-                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
-                            </form>
+                        <td class="px-6 py-4 text-right">
+                            <a
+                                href="#"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                onclick="showUpdateForm('${loanLending.getLoanLendingId()}')"
+                                >Edit</a
+                            >
                         </td>
                         <td class="px-6 py-4 text-center ">
                             <form action="loan" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="customerId" value="${loanLending.getLoanLendingId()}"/>
                                 <button class="font-medium text-red-600 hover:underline">Delete</button>
                             </form>
                         </td>

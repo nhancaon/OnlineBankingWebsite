@@ -166,7 +166,7 @@
                 </form>
             </div>
             <div class="bg-gradient-to-r from-[#00bfae] to-[#0066ad] h-full md:px-10 px-2 py-24 md:rounded-r-lg">
-                <img class="mb-4 w-18 h-12" src="./assets/logo.png" alt="logo">
+                <img class="mb-4 w-18 h-12" src="./assets/banklogo.png" alt="logo">
                     <span class="flex items-center mb-6 text-2xl font-semibold text-white">
                         Welcome to NNDBank online banking services.   
                     </span>

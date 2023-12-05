@@ -3,7 +3,9 @@ package DAO;
 import business.Beneficiary;
 import Exception.HandleException;
 import business.Customer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Beneficiary> {
 
@@ -73,6 +75,27 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
         return null;
     }
 
+    public List<Beneficiary> findAllBeneficiaryByNameOrAccountNumber(String parameter, String customerId) throws HandleException {
+
+        Map<String, Object> parameters = new HashMap<>();
+
+        parameters.put("parameter", "%" + parameter + "%");
+        parameters.put("customerId", customerId);
+
+        List<Beneficiary> beneficiaryList = super.findWithNamedQuery(
+                "SELECT b FROM Beneficiary b WHERE b.customer.customerId = :customerId AND (LOWER(b.Name) LIKE LOWER(:parameter) OR b.accountNumber LIKE :parameter)",
+                parameters
+        );
+
+        if (!beneficiaryList.isEmpty()) {
+            return beneficiaryList;
+        } else {
+            throw new HandleException("The Contact " + parameter + " is not existed", 409);
+            
+        }
+
+    }
+
     public Beneficiary CreateBeneficiary(String accountNumber, String nickName, Customer customer) throws HandleException {
 
         Beneficiary beneficiaryEntity = new Beneficiary();
@@ -82,7 +105,7 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
             throw new HandleException("The account with number " + accountNumber
                     + " is not existed.", 409);
         } else {
-            
+
             if (existingBeneficiary != null) {
                 if (existingBeneficiary.getAccountNumber().equals(accountNumber)) {
                     throw new HandleException("The Beneficiary with number " + accountNumber
