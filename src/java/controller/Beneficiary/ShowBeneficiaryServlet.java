@@ -28,6 +28,7 @@ public class ShowBeneficiaryServlet extends HttpServlet {
         }
 
         String url = "/beneficiary.jsp";
+
         if (action.equals("findContacts")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
@@ -35,7 +36,9 @@ public class ShowBeneficiaryServlet extends HttpServlet {
             String parameter = request.getParameter("parameter");
 
             try {
+
                 List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByNameOrAccountNumber(parameter, customerId);
+
                 request.setAttribute("Beneficiaries", beneficiaries);
             } catch (HandleException e) {
                 request.setAttribute("errorMessage", e.getMessage());
