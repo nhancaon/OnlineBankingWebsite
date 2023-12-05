@@ -3,10 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingAccount.jsp</file>
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/src/java/controller/Reward/RewardsServlet.java</file>
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
-            <file>file:/D:/UNIVERSITY/3rd/Semester%201/online-banking-website/web/savingDetail.jsp</file>
+            <file>file:/D:/University/AI/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
         </group>
     </open-files>
 </project-private>
