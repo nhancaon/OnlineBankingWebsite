@@ -2,6 +2,7 @@ package controller.AdminDashboard;
 
 import business.Customer;
 import DAO.CustomerDAO;
+import DAO.BeneficiaryDAO;
 import Exception.HandleException;
 
 import java.io.*;
@@ -14,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 public class CustomerServlet extends HttpServlet {
 
     CustomerDAO customerDAO = new CustomerDAO();
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
@@ -62,6 +63,11 @@ public class CustomerServlet extends HttpServlet {
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
+    protected void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String customerId = request.getParameter("customerId");
+        customerDAO.delete(customerId);
+    }
+
     protected void showCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Customer> customers = customerDAO.findAllCustomer();
         request.setAttribute("customers", customers);
@@ -93,51 +99,51 @@ public class CustomerServlet extends HttpServlet {
         String email, fullName, citizenId, phoneNumber, address, dateOfBirth, password;
         int pinNumber;
 
-        if(!request.getParameter("emailUpdate").isEmpty()){
+        if (!request.getParameter("emailUpdate").isEmpty()) {
             email = request.getParameter("emailUpdate");
-        }else{
+        } else {
             email = customer.getEmail();
         }
-        
-        if(!request.getParameter("nameUpdate").isEmpty()){
+
+        if (!request.getParameter("nameUpdate").isEmpty()) {
             fullName = request.getParameter("nameUpdate");
-        }else{
+        } else {
             fullName = customer.getName();
         }
 
-        if(!request.getParameter("citizenIdUpdate").isEmpty()){
+        if (!request.getParameter("citizenIdUpdate").isEmpty()) {
             citizenId = request.getParameter("citizenIdUpdate");
-        }else{
+        } else {
             citizenId = customer.getCitizenId();
         }
 
-        if(!request.getParameter("phoneNumberUpdate").isEmpty()){
+        if (!request.getParameter("phoneNumberUpdate").isEmpty()) {
             phoneNumber = request.getParameter("phoneNumberUpdate");
-        }else{
+        } else {
             phoneNumber = customer.getPhoneNumber();
         }
 
-        if(!request.getParameter("addressUpdate").isEmpty()){
+        if (!request.getParameter("addressUpdate").isEmpty()) {
             address = request.getParameter("addressUpdate");
-        }else{
+        } else {
             address = customer.getAddress();
         }
 
-        if(!request.getParameter("dateOfBirthUpdate").isEmpty()){
+        if (!request.getParameter("dateOfBirthUpdate").isEmpty()) {
             dateOfBirth = request.getParameter("dateOfBirthUpdate");
-        }else{
+        } else {
             dateOfBirth = String.valueOf(customer.getDateofBirth());
         }
 
-        if(!request.getParameter("passwordUpdate").isEmpty()){
+        if (!request.getParameter("passwordUpdate").isEmpty()) {
             password = request.getParameter("passwordUpdate");
-        }else{
+        } else {
             password = customer.getPassword();
         }
 
-        if(!request.getParameter("pinNumberUpdate").isEmpty()){
+        if (!request.getParameter("pinNumberUpdate").isEmpty()) {
             pinNumber = Integer.parseInt(request.getParameter("pinNumberUpdate"));
-        }else{
+        } else {
             pinNumber = customer.getPinNumber();
         }
 
@@ -149,5 +155,5 @@ public class CustomerServlet extends HttpServlet {
             request.setAttribute("errorMessage", e.getMessage());
         }
     }
-  
+
 }

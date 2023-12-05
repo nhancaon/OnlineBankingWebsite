@@ -35,12 +35,12 @@ public class SavingAccountServlet extends HttpServlet {
             String citizenId = request.getParameter("citizenId");
             Customer customer = customerDAO.findByCitizenId(citizenId);
             List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customer.getCustomerId());
-            
+
             if (customer != null) {
                 System.out.println("citizenId " + citizenId);
                 System.out.println("customer " + customer.getCustomerId());
-                for(int i = 0; i < paymentAccounts.size(); i++){
-                    System.out.println("accountNumber["+i+"] " + paymentAccounts.get(i).getAccountNumber());
+                for (int i = 0; i < paymentAccounts.size(); i++) {
+                    System.out.println("accountNumber[" + i + "] " + paymentAccounts.get(i).getAccountNumber());
                 }
             }
             // // Concatenate account numbers into a comma-separated string
@@ -73,6 +73,10 @@ public class SavingAccountServlet extends HttpServlet {
                 this.addSavingAccount(request, response);
                 this.showSavingAccount(request, response);
             }
+            case "delete" -> {
+                this.deleteSavingAccount(request, response);
+                this.showSavingAccount(request, response);
+            }
             default -> {
             }
         }
@@ -81,7 +85,7 @@ public class SavingAccountServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -112,11 +116,16 @@ public class SavingAccountServlet extends HttpServlet {
         String savingAmount = request.getParameter("savingAmount");
         String dateOpened = request.getParameter("dateOpened");
         String dateClosed = request.getParameter("dateClosed");
-        
+
     }
-    
+
     protected void updateSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
+    }
+
+    protected void deleteSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String savingAccountId = request.getParameter("savingAccountId");
+        savingAccountDAO.delete(savingAccountId);
     }
 
 }

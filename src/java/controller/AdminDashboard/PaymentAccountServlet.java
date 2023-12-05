@@ -7,7 +7,6 @@ import DAO.PaymentAccountDAO;
 import DAO.CustomerDAO;
 import Exception.HandleException;
 
-
 import java.io.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -43,6 +42,10 @@ public class PaymentAccountServlet extends HttpServlet {
             }
             case "update-paymentAccount" -> {
                 this.updatePaymentAccount(request, response);
+                this.showPaymentAccount(request, response);
+            }
+            case "delete" -> {
+                this.deletePaymentAccount(request, response);
                 this.showPaymentAccount(request, response);
             }
             default -> {
@@ -82,16 +85,14 @@ public class PaymentAccountServlet extends HttpServlet {
         Customer customer = customerDAO.findByCitizenId(citizenId);
         String accountNumber;
 
-        if(customer == null){
+        if (customer == null) {
             request.setAttribute("errorMessage", "The customer is not existed.");
-        }
-        else{
-            if(!request.getParameter("accountNumber").isEmpty()){
+        } else {
+            if (!request.getParameter("accountNumber").isEmpty()) {
                 accountNumber = request.getParameter("accountNumber");
-            }
-            else{
+            } else {
                 accountNumber = "random";
-            }       
+            }
 
             try {
                 paymentAccountDAO.CreatePaymentAccount(customer, accountNumber);
@@ -113,29 +114,29 @@ public class PaymentAccountServlet extends HttpServlet {
         String balance;
         String rewardPoint;
 
-        if(!request.getParameter("accountNumberUpdate").isEmpty()){
+        if (!request.getParameter("accountNumberUpdate").isEmpty()) {
             accountNumber = request.getParameter("accountNumberUpdate");
-        }else{
+        } else {
             accountNumber = paymentAccount.getAccountNumber();
         }
-        if(request.getParameter("accountStatusUpdate") == null){ 
+        if (request.getParameter("accountStatusUpdate") == null) {
             accountStatus = paymentAccount.getAccountStatus();
-        }else{
+        } else {
             accountStatus = request.getParameter("accountStatusUpdate");
         }
-        if(!request.getParameter("accountTypeUpdate").isEmpty()){
+        if (!request.getParameter("accountTypeUpdate").isEmpty()) {
             accountType = request.getParameter("accountTypeUpdate");
-        }else{
+        } else {
             accountType = paymentAccount.getAccountType();
         }
-        if(!request.getParameter("currentBalanceUpdate").isEmpty()){
+        if (!request.getParameter("currentBalanceUpdate").isEmpty()) {
             balance = request.getParameter("currentBalanceUpdate");
-        }else{
+        } else {
             balance = String.valueOf(paymentAccount.getCurrentBalence());
         }
-        if(!request.getParameter("rewardPointUpdate").isEmpty()){
+        if (!request.getParameter("rewardPointUpdate").isEmpty()) {
             rewardPoint = request.getParameter("rewardPointUpdate");
-        }else{
+        } else {
             rewardPoint = String.valueOf(paymentAccount.getRewardPoint());
         }
 
@@ -146,5 +147,12 @@ public class PaymentAccountServlet extends HttpServlet {
         } catch (HandleException e) {
             request.setAttribute("errorMessage", e.getMessage());
         }
+
     }
+
+    protected void deletePaymentAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String paymentAccountId = request.getParameter("paymentAccountId");
+        paymentAccountDAO.delete(paymentAccountId);
+    }
+
 }

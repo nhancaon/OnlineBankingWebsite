@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -43,16 +43,21 @@
                         <td class="px-6 py-4">${savingAccount.getSavingCurrentAmount()} VND</td>
                         <td class="px-6 py-4">${savingAccount.getDateOpened()}</td>
                         <td class="px-6 py-4">${savingAccount.getDateClosed()}</td>
-                        <td class="px-6 py-4 text-center">
-                            <form action="savingAccount" method="POST">
-                                <button class="font-medium text-blue-600 hover:underline">Edit</button>
-                            </form>
+                        <td class="px-6 py-4 text-right">
+                            <a
+                                href="#"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                onclick="showUpdateForm('${savingAccount.getSavingAccountId()}')"
+                                >Edit</a
+                            >
                         </td>
                         <td class="px-6 py-4 text-center ">
-                            <form action="savingAccount" method="POST">
-                                <button class="font-medium text-red-600 hover:underline">Delete</button>
+                            <form action="customer" method="POST">
+                                <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="customerId" value="${savingAccount.getSavingAccountId()}"/>
+                                <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
-                        </td>
+                        </td>                   
                     </tr>
                 </c:forEach>
             </tbody>
@@ -137,7 +142,7 @@
                         >Account Number</label
                     >
                 </div> 
-                
+
                 <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
                             onclick="showCreateCustomAccount()">Add Saving Account</button>
@@ -149,53 +154,53 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#citizenId").on("input", function () {
-            var citizenId = $(this).val();
+                                $(document).ready(function () {
+                                    $("#citizenId").on("input", function () {
+                                        var citizenId = $(this).val();
 
-            $.ajax({
-                type: "POST",
-                url: "savingAccount",
-                data: { action: "get-citizen-id", citizenId: citizenId },
-                success: function (response) {
-                    console.log("Citizen ID from servlet: " + citizenId);
-                    console.log("Customer ID from servlet: " + response);
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "savingAccount",
+                                            data: {action: "get-citizen-id", citizenId: citizenId},
+                                            success: function (response) {
+                                                console.log("Citizen ID from servlet: " + citizenId);
+                                                console.log("Customer ID from servlet: " + response);
 
-                    // Split the response by newline
-                    var lines = response.trim().split('\n');
+                                                // Split the response by newline
+                                                var lines = response.trim().split('\n');
 
-                    // Extract customer ID
-                    var customerIdLine = lines.find(line => line.startsWith("CUSTOMER_ID:"));
-                    var customerId = customerIdLine ? customerIdLine.substring(12) : "";
-                    
-                    // Extract customer Name
-                    var customerNameLine = lines.find(line => line.startsWith("CUSTOMER_NAME:"));
-                    var customerName = customerNameLine ? customerNameLine.substring(14) : "";
+                                                // Extract customer ID
+                                                var customerIdLine = lines.find(line => line.startsWith("CUSTOMER_ID:"));
+                                                var customerId = customerIdLine ? customerIdLine.substring(12) : "";
 
-                    // Set the customer ID in the input field
-                    $("#customerId").val(customerId);
+                                                // Extract customer Name
+                                                var customerNameLine = lines.find(line => line.startsWith("CUSTOMER_NAME:"));
+                                                var customerName = customerNameLine ? customerNameLine.substring(14) : "";
 
-                    // Set the customer Name in the input field
-                    $("#name").val(customerName);
+                                                // Set the customer ID in the input field
+                                                $("#customerId").val(customerId);
 
-                    // Extract account numbers
-                    var accountNumbers = lines.filter(line => line.startsWith("ACCOUNT_NUMBER:"))
-                           .map(line => line.substring(15));
+                                                // Set the customer Name in the input field
+                                                $("#name").val(customerName);
 
-                    // Clear existing options in the select
-                    $("#accountNumber").empty();
+                                                // Extract account numbers
+                                                var accountNumbers = lines.filter(line => line.startsWith("ACCOUNT_NUMBER:"))
+                                                        .map(line => line.substring(15));
 
-                    // Populate the select dropdown with account numbers
-                    for (var i = 0; i < accountNumbers.length; i++) {
-                        $("#accountNumber").append('<option value="' + accountNumbers[i] + '">' + accountNumbers[i] + '</option>');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.log("Error communicating with the server. Status: " + status + ", Error: " + error);
-                }
-            });
-        });
-    });
+                                                // Clear existing options in the select
+                                                $("#accountNumber").empty();
+
+                                                // Populate the select dropdown with account numbers
+                                                for (var i = 0; i < accountNumbers.length; i++) {
+                                                    $("#accountNumber").append('<option value="' + accountNumbers[i] + '">' + accountNumbers[i] + '</option>');
+                                                }
+                                            },
+                                            error: function (xhr, status, error) {
+                                                console.log("Error communicating with the server. Status: " + status + ", Error: " + error);
+                                            }
+                                        });
+                                    });
+                                });
 </script>
 
 </body>

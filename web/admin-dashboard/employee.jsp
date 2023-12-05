@@ -1,4 +1,4 @@
-<%@ include file="index.jsp"%> 
+<%@ include file="sidebar.jsp"%> 
 
 <div class="mt-20 p-4 sm:ml-64">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -73,7 +73,7 @@
         <img src="./assets/plus.svg" src="" class="mr-2"></img>Add Employee</button>
 </div>
 
-<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Employee
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 
@@ -83,7 +83,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-2 mb-10">           
-            <form action="employee" method="post" class="mt-6">
+            <form action="employee" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
                 <input type="hidden" name="action" value="add-employee"/>
                 <div class="relative mt-6">
                     <input
@@ -172,7 +172,7 @@
                         name="dateOfBirth"
                         onfocus="(this.type = 'date')"
                         onblur="(this.type = 'text')"
-                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=""
                         />
                     <label
@@ -211,6 +211,9 @@
                 </div> 
 
                 <div class="flex justify-end items-center">
+                    &nbsp;
+                </div> 
+                <div class="flex justify-end items-center">
                     <button class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
                         onclick="showCreateCustomAccount()">Add Employee</button>
                 </div> 
@@ -219,7 +222,7 @@
     </div>
 </div>
 
-<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-[450px] py-10">
+<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] py-16 px-96">
     <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">
             Update Employee
@@ -228,7 +231,7 @@
             </button>
         </div>
         <div class="grid grid-cols-1 gap-2 mb-10">
-            <form action="employee" method="post" class="mt-6">
+            <form action="employee" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
                 <input type="hidden" name="action" value="update-employee"/>
                 <input type="hidden" name="employeeId" id="updateEmployeeId" value=""/>
                 <div class="relative mt-6">

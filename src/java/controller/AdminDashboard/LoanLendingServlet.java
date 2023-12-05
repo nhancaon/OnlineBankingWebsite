@@ -16,6 +16,24 @@ public class LoanLendingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ServletContext servletContext = getServletContext();
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "join"; // default action
+        }
+
+        String url = "/admin-dashboard/";
+        switch (action) {
+            case "delete" -> {
+                this.deleteLoan(request, response);
+                this.showLoan(request, response);
+            }
+            default -> {
+            }
+        }
+        url = "/admin-dashboard/loanLending.jsp";
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
@@ -61,12 +79,18 @@ public class LoanLendingServlet extends HttpServlet {
         String dateClosed = request.getParameter("dateClosed");
 
     }
-    
-     protected void updateLoan(HttpServletRequest request, HttpServletResponse response)
+
+    protected void updateLoan(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         List<LoanLending> loanLendings = loanLendingDAO.findAllLoanLending();
 
         request.setAttribute("loanLendings", loanLendings);
     }
+
+    protected void deleteLoan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String loanId = request.getParameter("loanId");
+        loanLendingDAO.delete(loanId);
+    }
+
 }
