@@ -109,6 +109,13 @@
                                 />
                         </a>
                     </div>
+                    <form action="Logout"> 
+                        <div class="focus:ring transform transition hover:scale-105 duration-300 ease-in-out">
+                            <input type="hidden" name="action" value="logout">  
+                            <i class="fa-solid fa-arrow-right-from-bracket mr-3 text-red-800"></i>
+                            <input type="submit" value="Log out"/>
+                        </div>
+                    </form>
                 </div>
             </div>
         </nav>

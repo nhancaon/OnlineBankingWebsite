@@ -72,7 +72,7 @@
         <img src="../assets/plus.svg" src="" class="mr-2"></img>Add Saving Account</button>
 </div>
 
-<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-28">
+<div id="create-account" class="create-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] px-96 py-10">
     <div class="col-span-3 my-16 py-8 px-20 rounded-xl bg-white">
         <div class="text-[#2a6ebe] flex justify-between">Add Saving Account
             <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" 

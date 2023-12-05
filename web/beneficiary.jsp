@@ -6,6 +6,10 @@
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
 
+
+
+<%    List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
+%>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
@@ -46,6 +50,10 @@
             </div>
             <%@ include file="/includes/exception.jsp" %>
             <div class="relative overflow-x-auto my-16">
+                <%
+                    if (beneficiaries != null && !beneficiaries.isEmpty()) {
+
+                %>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -67,15 +75,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
-
-                            if (beneficiaries != null && !beneficiaries.isEmpty()) {
-                                int index = 1;
-                                for (Beneficiary beneficiary : beneficiaries) {
+                        <%                            int index = 1;
+                            for (Beneficiary beneficiary : beneficiaries) {
                         %>
                         <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <%= index %>
+                                <%= index%>
                             </th>
                             <td class="px-6 py-4">
                                 <%= beneficiary.getName()%>
@@ -91,11 +96,19 @@
                             </td>        
                         </tr>
                         <%
-                            index++; }
+                                index++;
                             }
+
                         %>
                     </tbody>
                 </table>
+                <%                    } else {
+                %>
+                <div class="text-xl mt-4 text-center">
+                    You have not add any contacts yet!
+                </div>
+                <%                    }
+                %>
             </div>
         </div>
     </div>

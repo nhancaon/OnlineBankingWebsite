@@ -183,7 +183,7 @@
                     </div>
                     <% if (!paymentAccount.getAccountStatus().equals("Default")) {%>
                     <div class="flex justify-end items-center">
-                        <form action="account-detail" method="post">
+                        <form action="AccountDetail" method="post">
                             <input type="hidden" name="accountNumb" value="<%= paymentAccount.getAccountNumber()%>" />
                             <div class="flex justify-center items-center">
                                 <button
