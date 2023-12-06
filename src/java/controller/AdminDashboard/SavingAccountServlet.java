@@ -88,6 +88,10 @@ public class SavingAccountServlet extends HttpServlet {
                 this.addSavingAccount(request, response);
                 this.showSavingAccount(request, response);
             }
+            case "update-savingAccount" -> {
+                this.updateSavingAccount(request, response);
+                this.showSavingAccount(request, response);
+            }
             case "delete" -> {
                 this.deleteSavingAccount(request, response);
                 this.showSavingAccount(request, response);
@@ -152,7 +156,44 @@ public class SavingAccountServlet extends HttpServlet {
     }
 
     protected void updateSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String savingAccountId = request.getParameter("savingAccountIdUpdate");
+        SavingAccount savingAccount = savingAccountDAO.findBySavingId(savingAccountId);
 
+        String accountStatus, accType, initial, dateOpened, dateClosed;
+
+        if (!request.getParameter("accountStatusUpdate").isEmpty()) {
+            accountStatus = request.getParameter("accountStatusUpdate");
+        } else {
+            accountStatus = savingAccount.getAccountStatus();
+        }
+        if (!request.getParameter("accountTypeUpdate").isEmpty()) {
+            accType = request.getParameter("accountTypeUpdate");
+        } else {
+            accType = savingAccount.getAccountType();
+        }
+        if (!request.getParameter("initialAmountUpdate").isEmpty()) {
+            initial = request.getParameter("initialAmountUpdate");
+        } else {
+            initial = String.valueOf(savingAccount.getSavingInitialAmount());
+        }
+        if (!request.getParameter("dateOpenedUpdate").isEmpty()) {
+            dateOpened = request.getParameter("dateOpenedUpdate");
+        } else {
+            dateOpened = String.valueOf(savingAccount.getDateOpened());
+        }
+        if (!request.getParameter("dateClosedUpdate").isEmpty()) {
+            dateClosed = request.getParameter("dateClosedUpdate");
+        } else {
+            dateClosed = String.valueOf(savingAccount.getDateClosed());
+        }
+
+        try {
+            savingAccountDAO.checkUpdateSavingAccount(savingAccountId, savingAccount.getAccountNumber(), accountStatus, accType, initial, dateOpened, dateClosed);
+            request.setAttribute("successMessage", "The saving account has been updated successfully.");
+
+        } catch (HandleException e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
     }
 
     protected void deleteSavingAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

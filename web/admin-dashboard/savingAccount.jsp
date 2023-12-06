@@ -184,6 +184,141 @@
     </div>
 </div>
 
+<div id="update-account" class="update-account hidden fixed top-0 left-0 w-full h-full bg-blur z-[1000] py-16 px-96">
+    <div class="col-span-3 mb-16 py-8 px-20 rounded-xl bg-white">
+        <div class="text-[#2a6ebe] flex justify-between">
+            Update Saving Account
+            <button class="focus:ring transform transition hover:scale-125 duration-300 ease-in-out" onclick="closeUpdateForm()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="grid grid-cols-1 gap-2 mb-10">
+            <form action="savingAccount" method="post" class="mt-6 grid grid-cols-2 gap-x-8">
+                <input type="hidden" name="action" value="update-savingAccount"/>
+                <input type="hidden" name="savingAccountId" id="updateSavingAccountId" value=""/>
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="savingAccountIdUpdate"
+                        name="savingAccountIdUpdate"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        readonly  
+                        />
+                    <label
+                        for="savingAccountIdUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Saving Account Id</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <select name="accountStatusUpdate" id="accountStatusUpdate" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <label
+                        for="accountStatusUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Status</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <select name="accountTypeUpdate" id="accountTypeUpdate" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <option value="12-Month">12-Month</option>
+                        <option value="6-Month">6-Month</option>
+                        <option value="3-Month">3-Month</option>
+                    </select>
+                    <label
+                        for="accountTypeUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Account Type</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="initialAmountUpdate"
+                        name="initialAmountUpdate"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+
+                        />
+                    <label
+                        for="initialAmountUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Initial Amount</label
+                    >
+                </div> 
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="dateOpenedUpdate"
+                        name="dateOpenedUpdate"
+                        onfocus="(this.type = 'date')"
+                        onblur="(this.type = 'text')"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        />
+                    <label
+                        for="dateOpenedUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Date Opened</label
+                    >
+                </div>
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="dateClosedUpdate"
+                        name="dateClosedUpdate"
+                        onfocus="(this.type = 'date')"
+                        onblur="(this.type = 'text')"
+                        class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                        />
+                    <label
+                        for="dateClosedUpdate"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >Date Closed</label
+                    >
+                </div>
+
+                <div class="flex justify-end items-center">
+                    <button 
+                        class="mt-4 px-16 py-3 rounded-md bg-gradient-to-r from-[#00bfae] to-[#0066ad] text-white" 
+                        onclick="updateSavingAccount()">Update Saving Account</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function showUpdateForm(savingAccountId) {
+        // Set the savingAccountId in the input field
+        document.getElementById('savingAccountIdUpdate').value = savingAccountId;
+
+        // Set the savingAccountId in the hidden field
+        document.getElementById('updateSavingAccountId').value = savingAccountId;
+
+        // Show the update form
+        document.getElementById('update-account').classList.remove('hidden');
+    }
+
+    function closeUpdateForm() {
+        // Close the update form
+        document.getElementById('update-account').classList.add('hidden');
+    }
+
+    function updateSavingAccount() {
+        closeUpdateForm();
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>

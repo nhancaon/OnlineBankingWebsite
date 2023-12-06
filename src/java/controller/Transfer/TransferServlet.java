@@ -26,17 +26,47 @@ public class TransferServlet extends HttpServlet {
     BeneficiaryDAO beneficiaryDAO = new BeneficiaryDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "/transfer.jsp";
         request.setCharacterEncoding("UTF-8");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
-        } else if (action.equals("sendMail")) {
+        } 
+
+        if ("get-account-number".equals(action)) {
+            String accountNumber = request.getParameter("accountNumber");
+
+            HttpSession session = request.getSession();
+            Customer customer = (Customer) session.getAttribute("customer");
+            
+            List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customer.getCustomerId());
+            int check = 0;
+            PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
+            for(int i = 0; i < paymentAccounts.size(); i++){
+                if (paymentAccounts.get(i).getAccountNumber().equals(accountNumber)) {
+                    check = 1;
+                } 
+            }
+            System.out.println("check "+check);
+            if (check == 1) {
+                request.setAttribute("checkMessage", "Cannot transfer to your default account, try another payment account");
+            } else {
+                // Additional logic if needed
+            }
+            // Send the response back to the client
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            // Write customer ID to the response
+            response.getWriter().write("\nACCOUNT_NAME:" + (receiver != null ? receiver.getCustomer().getName() : ""));
+            response.getWriter().write("\nCHECK:" + check);
+            return;
+        }
+
+        else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
             String OTP = "";
@@ -58,16 +88,20 @@ public class TransferServlet extends HttpServlet {
             } catch (MessagingException ex) {
                 Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (action.equals("return")) {
+        } 
+        else if (action.equals("return")) {
             url = "/transfer.jsp";
-        } else {
+        } 
+        else {
             HttpSession session = request.getSession();
             if (action.equals("add")) {
-                String Number = request.getParameter("acNumber");
+                String Number = request.getParameter("accountNumber");
                 String Name = request.getParameter("acName");
                 String Amount = request.getParameter("acAmount");
                 String Remark = request.getParameter("transRemark");
                 Customer customer = (Customer) session.getAttribute("customer");
+                List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customer.getCustomerId());
+                request.setAttribute("Beneficiaries", beneficiaries);
                 PaymentAccount sender = null;
                 sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
                 if (sender != null) {
@@ -91,7 +125,10 @@ public class TransferServlet extends HttpServlet {
                     url = "/confirm.jsp";
                 } catch (HandleException e) {
                     url = "/transfer.jsp";
-                                        session.removeAttribute("receiver");
+
+                    session.removeAttribute("Amount");
+
+                    session.removeAttribute("receiver");
                     request.setAttribute("errorMessage", e.getMessage());
                 }
             } else if (action.equals("confirm")) {
@@ -115,14 +152,11 @@ public class TransferServlet extends HttpServlet {
                 }
             }
         }
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -143,9 +177,7 @@ public class TransferServlet extends HttpServlet {
         List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customerId);
 
         if (action.equals("show-name")) {
-
             PaymentAccount sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
-//            System.out.println(transactionDAO.checkQuota(sender.getPaymentAccountId()));
             String Number = request.getParameter("getNumber");
             if (sender.getAccountNumber().equals(Number)) {
                 request.setAttribute("errorMessage", "This is your current account");
@@ -163,9 +195,6 @@ public class TransferServlet extends HttpServlet {
         }
 
         request.setAttribute("Beneficiaries", beneficiaries);
-        servletContext.getRequestDispatcher(url)
-                .forward(request, response);
-
+        servletContext.getRequestDispatcher(url).forward(request, response);
     }
-
 }

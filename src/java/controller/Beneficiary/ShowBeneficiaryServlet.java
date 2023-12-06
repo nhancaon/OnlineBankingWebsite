@@ -19,7 +19,7 @@ public class ShowBeneficiaryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         ServletContext servletContext = getServletContext();
 
         String action = request.getParameter("action");
@@ -28,13 +28,13 @@ public class ShowBeneficiaryServlet extends HttpServlet {
         }
 
         String url = "/beneficiary.jsp";
-
+        
         if (action.equals("findContacts")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
             String customerId = customer.getCustomerId();
             String parameter = request.getParameter("parameter");
-
+            System.out.print(parameter);
             try {
 
                 List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByNameOrAccountNumber(parameter, customerId);
