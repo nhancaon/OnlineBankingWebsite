@@ -247,10 +247,8 @@
             });
         });
     });
-</script>
-
-<script>
-
+    
+    
     function setAcNumber() {
         const numberValue = document.getElementById('accountNumber').value;
         const amountValue = document.getElementById('amount').value;
@@ -259,12 +257,17 @@
         document.getElementById('showName').submit();
     }
     window.addEventListener('DOMContentLoaded', (event) => {
-        const receiverValue = "${receiver}";
+        const receiverValue = "${receiver}"
+        
         if (!receiverValue) {
             document.getElementById('name').value = ''; // Clear the value
+        } else {
+            document.getElementById('name').value = "${receiver.customer.name}";
         }
     });
+    
 </script>
+
 
 
 <%@ include file="/includes/footer.jsp" %>
