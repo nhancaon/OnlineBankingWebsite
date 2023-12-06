@@ -52,6 +52,7 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/User/LoginServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/InterestRate.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/admin-dashboard/paymentAccount.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/loanDetail.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/assets/rewards/PjfgqWoXKgVsRv6.jpg</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/admin-dashboard/index.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/beneficiary.jsp</file>
@@ -59,6 +60,7 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/assets/rewards/YrwKCaGmtJTs96L.jpg</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/admin-dashboard/sidebar.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/RewardDAO.java</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/loanLending.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/DAO/CustomerDAO.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/signup.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Account.java</file>
@@ -68,6 +70,7 @@
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/AdminDashboard/LoanLendingServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/conf/persistence.xml</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/admin-dashboard/transaction.jsp</file>
+            <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/Transfer/TransferServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/controller/AdminDashboard/SavingAccountServlet.java</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/web/admin-dashboard/customer.jsp</file>
             <file>file:/D:/Study/School%20document/Nam%203%20hoc%20ki%201/Web%20Programming/online-banking-website/src/java/business/Transaction.java</file>
