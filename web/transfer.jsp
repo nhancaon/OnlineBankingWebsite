@@ -56,7 +56,7 @@
                         <input
                             type="text"
                             id="accountNumber"
-                            name="acNumber"
+                            name="accountNumber"
                             class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                             pattern="\d{10}"
@@ -77,8 +77,7 @@
                             id="name"
                             name="acName"
                             class="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" "
-                            value="${receiver.getCustomer().getName()}"
+                            placeholder=""
                             readonly
                             />
 
@@ -145,7 +144,6 @@
                 <div class="text-2xl text-[#2a6ebe]">Contacts</div>
                 <div class="grid grid-cols-1 relative my-4">
                     <% List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
-
                         if (beneficiaries != null && !beneficiaries.isEmpty()) {
                             for (Beneficiary beneficiary : beneficiaries) {
                     %>
@@ -173,12 +171,84 @@
             </div>
         </div>
     </div>
+    <div id="CannotTransfer"></div>
 </div>
 
-
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $("#accountNumber").on("input", function () {
+            var accountNumber = $(this).val();
 
+            // Check if accountNumber is empty
+            if (!accountNumber) {
+                // Clear values for acName
+                $("#name").val("");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "Transfer",  // Assuming your servlet mapping is correct
+                data: { action: "get-account-number", accountNumber: accountNumber },
+                success: function (response) {
+                    console.log("Account Number from servlet: " + response);
+
+                    // Split the response by newline
+                    var lines = response.trim().split('\n');
+
+                    // Extract customer Name
+                    var acNameLine = lines.find(line => line.startsWith("ACCOUNT_NAME:"));
+                    var acName = acNameLine ? acNameLine.substring(13) : "";
+                    // Set the account Name in the input field
+                    $("#name").val(acName);
+
+                    // Extract check value
+                    var checkLine = lines.find(line => line.startsWith("CHECK:"));
+                    var check = checkLine ? parseInt(checkLine.substring(6).trim()) : 0;
+
+                    if (check === 1) {
+0
+                        var cannotTransfer = document.getElementById("CannotTransfer");
+                        var accountNumber = document.getElementById("accountNumber");
+                        var accountName = document.getElementById("name");
+                        cannotTransfer.innerHTML = `
+                            <div class="fixed top-28 w-72 right-2 my-2 animate-notification z-[10001]">                                   
+                                    <div
+                                        class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100"
+                                        role="alert"
+                                        >
+                                        <svg
+                                            class="flex-shrink-0 inline w-4 h-4 me-3"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            >
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                                                />
+                                        </svg>
+                                        <span class="sr-only">Info</span>
+                                        <div>
+                                            <span class="font-medium">Cannot transfer to your default account, try another payment account</span>
+                                        </div>
+                                    </div>
+                            </div> 
+                        `
+            
+                        accountNumber.value = '';
+                        accountName.value ='';
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error communicating with the server. Status: " + status + ", Error: " + error);
+                }
+            });
+        });
+    });
+    
+    
     function setAcNumber() {
         const numberValue = document.getElementById('accountNumber').value;
         const amountValue = document.getElementById('amount').value;
@@ -187,12 +257,17 @@
         document.getElementById('showName').submit();
     }
     window.addEventListener('DOMContentLoaded', (event) => {
-        const receiverValue = "${receiver}";
+        const receiverValue = "${receiver}"
+        
         if (!receiverValue) {
             document.getElementById('name').value = ''; // Clear the value
+        } else {
+            document.getElementById('name').value = "${receiver.customer.name}";
         }
     });
+    
 </script>
+
 
 
 <%@ include file="/includes/footer.jsp" %>

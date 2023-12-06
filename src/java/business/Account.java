@@ -23,6 +23,8 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
+    //Constructor for other fields.....
+
     public String getAccountType() {
         return accountType;
     }

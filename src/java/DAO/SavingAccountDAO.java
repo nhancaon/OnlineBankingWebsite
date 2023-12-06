@@ -4,6 +4,10 @@ import Exception.HandleException;
 import business.Customer;
 import business.InterestRate;
 import business.SavingAccount;
+import common.HashGenerator;
+import common.MailSender;
+import controller.User.SignupServlet;
+import jakarta.mail.MessagingException;
 import business.PaymentAccount;
 import java.time.LocalDate;
 import java.time.Period;
@@ -12,12 +16,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Local;
 
-import java.text.DecimalFormat;
-import DAO.PaymentAccountDAO;
 
+import DAO.PaymentAccountDAO;
+import DAO.InterestRateDAO;
 import business.PaymentAccount;
 
 public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDAO<SavingAccount> {
@@ -211,6 +218,46 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
         savingAccount.setSavingCurrentAmount(currentAmount);
         update(savingAccount);
         return savingAccount;
+    }
+
+    public SavingAccount updateSavingAccount(String savingAccountId, String accNum, String accountStatus, String accType, String initial, String dateOpened, String dateClosed) throws HandleException {
+        SavingAccount savingAccountEntityUpdate = new SavingAccount(); 
+        SavingAccount existiSavingAccount = findBySavingId(savingAccountId);  
+        InterestRateDAO interestRateDAO = new InterestRateDAO();
+        InterestRate interestRate = interestRateDAO.findBySavingTitle(accType);
+
+        savingAccountEntityUpdate.setSavingAccountId(savingAccountId);
+        savingAccountEntityUpdate.setAccountNumber(accNum);
+        savingAccountEntityUpdate.setAccountStatus(accountStatus);
+        savingAccountEntityUpdate.setAccountType(accType);
+        savingAccountEntityUpdate.setSavingInitialAmount(Double.parseDouble(initial));   
+        savingAccountEntityUpdate.setSavingCurrentAmount(existiSavingAccount.getSavingCurrentAmount());
+        savingAccountEntityUpdate.setDateOpened(LocalDate.parse(dateOpened));
+        savingAccountEntityUpdate.setDateClosed(LocalDate.parse(dateClosed));
+        savingAccountEntityUpdate.setMinBalance(1000000);
+        savingAccountEntityUpdate.setPaymentAccount(existiSavingAccount.getPaymentAccount());
+        savingAccountEntityUpdate.setInterestRate(interestRate);
+
+        update(savingAccountEntityUpdate); 
+        return savingAccountEntityUpdate;
+    }
+
+    public SavingAccount checkUpdateSavingAccount(String savingAccountId, String accNum, String accountStatus, String accType, String initial, String dateOpened, String dateClosed) throws HandleException {
+        SavingAccount duplicatedAccNum = findByAccountNumber(accNum);
+
+        if (duplicatedAccNum != null){
+            if(duplicatedAccNum.getSavingAccountId().equals(savingAccountId)){
+                updateSavingAccount(savingAccountId, accNum, accountStatus, accType, initial, dateOpened, dateClosed);
+            }
+            else{
+                throw new HandleException("The saving account with number: " + accNum + " is already registered.", 409);
+            }
+        }
+        else{
+             updateSavingAccount(savingAccountId, accNum, accountStatus, accType, initial, dateOpened, dateClosed);
+        }
+
+        return null;
     }
 
     public SavingAccount findByAccountNumber(String accountNumber) {

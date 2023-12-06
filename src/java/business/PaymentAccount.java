@@ -63,6 +63,8 @@ public class PaymentAccount extends Account implements Serializable {
         this.customer = customer;
     }
 
+    //Constructor for other fields.....
+
     public String getPaymentAccountId() {
         return paymentAccountId;
     }
