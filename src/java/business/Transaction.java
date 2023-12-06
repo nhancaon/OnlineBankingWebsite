@@ -51,6 +51,8 @@ public class Transaction implements Serializable {
     public void setReceiver(PaymentAccount receiver) {
         this.receiver = receiver;
     }
+    
+    //Constructor for other fields.....
 
     public String getTransactionId() {
         return transactionId;

@@ -43,6 +43,8 @@ public class Customer extends User implements Serializable {
         this.customerId = customerId;
     }
 
+    //Constructor for other fields.....
+
     public List<LoanLending> getLoans() {
         return loanLendings;
     }

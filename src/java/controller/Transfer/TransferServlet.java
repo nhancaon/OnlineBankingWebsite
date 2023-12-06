@@ -35,23 +35,26 @@ public class TransferServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             action = "return";
-        } 
+        }
 
         if ("get-account-number".equals(action)) {
             String accountNumber = request.getParameter("accountNumber");
 
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
-            
+
             List<PaymentAccount> paymentAccounts = paymentAccountDAO.findPaymentAccountByCusId(customer.getCustomerId());
             int check = 0;
             PaymentAccount receiver = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
-            for(int i = 0; i < paymentAccounts.size(); i++){
+
+            request.setAttribute("receiver", receiver);
+            
+            for (int i = 0; i < paymentAccounts.size(); i++) {
                 if (paymentAccounts.get(i).getAccountNumber().equals(accountNumber)) {
                     check = 1;
-                } 
+                }
             }
-            System.out.println("check "+check);
+            System.out.println("check " + check);
             if (check == 1) {
                 request.setAttribute("checkMessage", "Cannot transfer to your default account, try another payment account");
             } else {
@@ -64,9 +67,7 @@ public class TransferServlet extends HttpServlet {
             response.getWriter().write("\nACCOUNT_NAME:" + (receiver != null ? receiver.getCustomer().getName() : ""));
             response.getWriter().write("\nCHECK:" + check);
             return;
-        }
-
-        else if (action.equals("sendMail")) {
+        } else if (action.equals("sendMail")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
             String OTP = "";
@@ -88,11 +89,9 @@ public class TransferServlet extends HttpServlet {
             } catch (MessagingException ex) {
                 Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-        else if (action.equals("return")) {
+        } else if (action.equals("return")) {
             url = "/transfer.jsp";
-        } 
-        else {
+        } else {
             HttpSession session = request.getSession();
             if (action.equals("add")) {
                 String Number = request.getParameter("accountNumber");

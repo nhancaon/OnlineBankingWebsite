@@ -68,6 +68,8 @@
             </ol>
         </nav>
 
+        <%@ include file="/includes/exception.jsp" %>
+
         <div class="flex flex-col-reverse md:grid grid-cols-6 gap-8">
             <div class="col-span-4 md:my-16 py-8 px-8 md:px-20 rounded-xl bg-white">
                 <div class="w-full grid grid-cols-1">
