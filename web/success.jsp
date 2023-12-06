@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 <%@ include file="/includes/header.jsp" %> 
 <%@ include file="/includes/checkLogin.jsp" %>
-
+<%@ include file="/includes/exception.jsp" %>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
         <div class="flex text-2xl">
