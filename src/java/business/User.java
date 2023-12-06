@@ -27,6 +27,8 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    //Constructor for other fields.....
+
     public LocalDate getDateofBirth() {
         return dateofBirth;
     }
