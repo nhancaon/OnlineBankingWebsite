@@ -100,6 +100,8 @@ public class TransferServlet extends HttpServlet {
                 String Amount = request.getParameter("acAmount");
                 String Remark = request.getParameter("transRemark");
                 Customer customer = (Customer) session.getAttribute("customer");
+                List<Beneficiary> beneficiaries = beneficiaryDAO.findAllBeneficiaryByCustomerId(customer.getCustomerId());
+                request.setAttribute("Beneficiaries", beneficiaries);
                 PaymentAccount sender = null;
                 sender = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());
                 if (sender != null) {
@@ -123,6 +125,9 @@ public class TransferServlet extends HttpServlet {
                     url = "/confirm.jsp";
                 } catch (HandleException e) {
                     url = "/transfer.jsp";
+
+                    session.removeAttribute("Amount");
+
                     session.removeAttribute("receiver");
                     request.setAttribute("errorMessage", e.getMessage());
                 }

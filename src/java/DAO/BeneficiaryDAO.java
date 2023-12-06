@@ -93,7 +93,6 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
             throw new HandleException("The Contact " + parameter + " is not existed", 409);
             
         }
-
     }
 
     public Beneficiary CreateBeneficiary(String accountNumber, String nickName, Customer customer) throws HandleException {
