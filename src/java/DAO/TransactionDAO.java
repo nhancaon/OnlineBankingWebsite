@@ -110,7 +110,7 @@ public class TransactionDAO extends JpaDAO<Transaction> implements GenericDAO<Tr
         } else if (receiver == null) {
             throw new HandleException("This account isn't exist", 409);
         } else if (receiver == sender) {
-            throw new HandleException("This is your current account", 409);
+            throw new HandleException("Cannot transfer to your default account, try another payment account", 409);
         } else if (sender.getCurrentBalence() < amount) {
             throw new HandleException("Your account is not enough", 409);
         } else if (sender.getAccountNumber().equals(receiver.getAccountNumber())) {
