@@ -16,14 +16,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Local;
 
-import java.text.DecimalFormat;
-import DAO.PaymentAccountDAO;
 
+import DAO.PaymentAccountDAO;
+import DAO.InterestRateDAO;
 import business.PaymentAccount;
 
 public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDAO<SavingAccount> {
@@ -222,18 +223,20 @@ public class SavingAccountDAO extends JpaDAO<SavingAccount> implements GenericDA
     public SavingAccount updateSavingAccount(String savingAccountId, String accNum, String accountStatus, String accType, String initial, String dateOpened, String dateClosed) throws HandleException {
         SavingAccount savingAccountEntityUpdate = new SavingAccount(); 
         SavingAccount existiSavingAccount = findBySavingId(savingAccountId);  
+        InterestRateDAO interestRateDAO = new InterestRateDAO();
+        InterestRate interestRate = interestRateDAO.findBySavingTitle(accType);
 
         savingAccountEntityUpdate.setSavingAccountId(savingAccountId);
         savingAccountEntityUpdate.setAccountNumber(accNum);
         savingAccountEntityUpdate.setAccountStatus(accountStatus);
         savingAccountEntityUpdate.setAccountType(accType);
-        savingAccountEntityUpdate.setSavingInitialAmount(Double.parseDouble(initial));
+        savingAccountEntityUpdate.setSavingInitialAmount(Double.parseDouble(initial));   
+        savingAccountEntityUpdate.setSavingCurrentAmount(existiSavingAccount.getSavingCurrentAmount());
         savingAccountEntityUpdate.setDateOpened(LocalDate.parse(dateOpened));
         savingAccountEntityUpdate.setDateClosed(LocalDate.parse(dateClosed));
         savingAccountEntityUpdate.setMinBalance(1000000);
         savingAccountEntityUpdate.setPaymentAccount(existiSavingAccount.getPaymentAccount());
-        savingAccountEntityUpdate.setInterestRate(existiSavingAccount.getInterestRate());
-        savingAccountEntityUpdate.setSavingCurrentAmount(existiSavingAccount.getSavingCurrentAmount());
+        savingAccountEntityUpdate.setInterestRate(interestRate);
 
         update(savingAccountEntityUpdate); 
         return savingAccountEntityUpdate;
