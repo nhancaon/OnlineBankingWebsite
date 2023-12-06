@@ -6,6 +6,8 @@
             <file>file:/D:/University/Cloud/online-banking-website/src/java/DAO/BeneficiaryDAO.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/web/includes/header.jsp</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/business/Beneficiary.java</file>
+            <file>file:/D:/University/Cloud/online-banking-website/src/java/controller/SavingAccount/ShowAccountDetailServlet.java</file>
+            <file>file:/D:/University/Cloud/online-banking-website/src/java/controller/SavingAccount/WithdrawServlet.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/DAO/JpaDAO.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/controller/Beneficiary/ShowBeneficiaryServlet.java</file>
         </group>

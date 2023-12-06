@@ -47,14 +47,6 @@ public class WithdrawServlet extends HttpServlet {
                 url = "/savingDetail.jsp";
             }
         }
-
-        if (action.equals("ee")) {
-            String savingAccountId = request.getParameter("accountSavingId");
-            savingAccount = savingAccountDAO.find(SavingAccount.class, savingAccountId);
-            request.setAttribute("savingAccount", savingAccount);
-            url = "/savingDetail.jsp";
-        
-        }
         
         servletContext.getRequestDispatcher(url).forward(request, response);
     }
