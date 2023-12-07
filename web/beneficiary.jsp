@@ -1,14 +1,13 @@
 
-<%@page import="business.Beneficiary"%>
-<%@page import="java.util.List"%>
+<%@ page import="business.Beneficiary"%>
+<%@ page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ include file="/includes/header.jsp" %>
 <%@ include file="/includes/checkLogin.jsp" %>
 
-
-
-<%    List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
+<%    
+    List<Beneficiary> beneficiaries = (List<Beneficiary>) request.getAttribute("Beneficiaries");
 %>
 <div class="bg-[#f0f1f1] mt-[5.2rem] pb-16">
     <div class="py-16 mx-2 md:mx-56">
@@ -24,6 +23,7 @@
                 <li class="inline-flex items-center">
                     <%@ include file="/includes/homeButton.jsp" %>
                 </li>
+
                 <li>
                     <div class="flex items-center">
                         <svg class="w-3 h-3 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
@@ -75,7 +75,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%                            int index = 1;
+                        <%                            
+                            int index = 1;
                             for (Beneficiary beneficiary : beneficiaries) {
                         %>
                         <tr class="bg-white border-b cursor-pointer hover:bg-gray-200" onclick="MoveToTransfer(this)">
@@ -98,16 +99,17 @@
                         <%
                                 index++;
                             }
-
                         %>
                     </tbody>
                 </table>
-                <%                    } else {
+                <%                    
+                    } else {
                 %>
                 <div class="text-xl mt-4 text-center">
                     You have not add any contacts yet!
                 </div>
-                <%                    }
+                <%      
+                    }
                 %>
             </div>
         </div>
