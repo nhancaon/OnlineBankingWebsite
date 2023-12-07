@@ -2,7 +2,6 @@
 
 <%
     Customer customer = (Customer) session.getAttribute("customer");
-
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
