@@ -107,7 +107,8 @@
                 <input type="hidden" name="action" value="create" />
                 <div class="relative mt-6" >
                     <select name="acNumber" id="savingAccountNumber" class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                        <c:forEach var="paymentAccount" items="${paymentAccounts}">
+                        <option value="" disabled selected>Select Account Number</option>
+                        <c:forEach var="paymentAccount" items="${paymentAccounts}">                           
                             <option value="${paymentAccount.getAccountNumber()}">
                                 ${paymentAccount.getAccountNumber()}
                             </option>
@@ -119,6 +120,23 @@
                         >Saving Account Number</label
                     >
                 </div>
+
+                <div class="relative mt-6">
+                    <input
+                        type="text"
+                        id="currentBalance"
+                        name="currentBalance"
+                        class="block pb-2.5 pt-4 w-full text-sm bg-transparent border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                        readonly
+                        />
+                    <label
+                        for="currentBalance"
+                        class="absolute text-sm bg-white text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+                        >Current Balance</label
+                    >
+                </div>
+
                 <div class="relative mt-6">
                     <input
                         type="text"
@@ -162,5 +180,45 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+    $("#savingAccountNumber").on("input", function () {
+        var savingAccountNumber = $(this).val();
+
+        // Check if savingAccountNumber is empty
+        if (!savingAccountNumber) {
+            $("#currentBalance").val("");
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "create-saving-account",
+            data: { action: "get-savingAccountNumber", acNumber: savingAccountNumber },
+            success: function (response) {
+                console.log("AJAX Response:", response);
+
+                // Check if the response starts with "CURRENT_BALANCE:"
+                if (response.startsWith("CURRENT_BALANCE:")) {
+                    // Extract the balance from the response
+                    var currentBalance = response.substring(16);
+
+                    // Format the currentBalance to round to 2 decimal places
+                    currentBalance = parseFloat(currentBalance).toFixed(2);
+
+                    // Set the currentBalance in the input field
+                    $("#currentBalance").val(currentBalance);
+                } else {
+                    console.log("Unexpected response format");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error communicating with the server. Status: " + status + ", Error: " + error);
+            }
+        });
+    });
+});
+</script>
 
 <%@ include file="/includes/footer.jsp" %>

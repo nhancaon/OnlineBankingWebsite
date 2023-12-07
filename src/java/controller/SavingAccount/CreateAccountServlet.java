@@ -6,6 +6,7 @@ import business.SavingAccount;
 import business.Customer;
 import business.InterestRate;
 import DAO.SavingAccountDAO;
+import DAO.CustomerDAO;
 import Exception.HandleException;
 import business.PaymentAccount;
 import java.io.*;
@@ -21,6 +22,7 @@ public class CreateAccountServlet extends HttpServlet {
     InterestRateDAO interestRateDAO = new InterestRateDAO();
     SavingAccountDAO savingAccountDAO = new SavingAccountDAO();
     PaymentAccountDAO paymentAccountDAO = new PaymentAccountDAO();
+    CustomerDAO customerDAO = new CustomerDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +37,32 @@ public class CreateAccountServlet extends HttpServlet {
         if (action == null || action.isEmpty()) {
             action = "reload";
         }
+
+        if ("get-savingAccountNumber".equals(action)) {
+            // Handle AJAX request for citizenId
+            String accountNumber = request.getParameter("acNumber");
+            System.out.println("Request received for getting savingAccountNumber: " + accountNumber);
+    
+            PaymentAccount paymentAccount = paymentAccountDAO.findByPaymentAccountNumber(accountNumber);
+    
+            // Log whether paymentAccount is found or not
+            if (paymentAccount != null) {
+                System.out.println("PaymentAccount found for accountNumber: " + accountNumber);
+            } else {
+                System.out.println("PaymentAccount NOT found for accountNumber: " + accountNumber);
+            }
+    
+            // Send the response back to the client
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+    
+            // Log the response being sent
+            String responseMessage = "CURRENT_BALANCE:" + (paymentAccount != null ? paymentAccount.getCurrentBalence() : "");
+            System.out.println("Sending response: " + responseMessage);
+            response.getWriter().write(responseMessage);
+            return;
+        }
+
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         PaymentAccount DefaultAc = paymentAccountDAO.findDefaultPaymentAccount(customer.getCustomerId());

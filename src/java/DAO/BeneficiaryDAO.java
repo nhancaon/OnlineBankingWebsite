@@ -90,8 +90,7 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
         if (!beneficiaryList.isEmpty()) {
             return beneficiaryList;
         } else {
-            throw new HandleException("The Contact " + parameter + " is not existed", 409);
-            
+            throw new HandleException("The Contact " + parameter + " is not existed", 409);   
         }
     }
 
