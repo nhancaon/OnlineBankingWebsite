@@ -54,7 +54,7 @@
                         <td class="px-6 py-4 text-center ">
                             <form action="savingAccount" method="POST">
                                 <input type="hidden" name="action" value="delete"/>
-                                <input type="hidden" name="customerId" value="${savingAccount.getSavingAccountId()}"/>
+                                <input type="hidden" name="savingAccountId" value="${savingAccount.getSavingAccountId()}"/>
                                 <button class="font-medium text-red-600 hover:underline mt-3">Delete</button>
                             </form>
                         </td>                   

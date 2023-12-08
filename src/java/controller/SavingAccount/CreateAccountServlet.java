@@ -41,16 +41,7 @@ public class CreateAccountServlet extends HttpServlet {
         if ("get-savingAccountNumber".equals(action)) {
             // Handle AJAX request for citizenId
             String accountNumber = request.getParameter("acNumber");
-            System.out.println("Request received for getting savingAccountNumber: " + accountNumber);
-    
             PaymentAccount paymentAccount = paymentAccountDAO.findByPaymentAccountNumber(accountNumber);
-    
-            // Log whether paymentAccount is found or not
-            if (paymentAccount != null) {
-                System.out.println("PaymentAccount found for accountNumber: " + accountNumber);
-            } else {
-                System.out.println("PaymentAccount NOT found for accountNumber: " + accountNumber);
-            }
     
             // Send the response back to the client
             response.setContentType("text/plain");
@@ -58,7 +49,6 @@ public class CreateAccountServlet extends HttpServlet {
     
             // Log the response being sent
             String responseMessage = "CURRENT_BALANCE:" + (paymentAccount != null ? paymentAccount.getCurrentBalence() : "");
-            System.out.println("Sending response: " + responseMessage);
             response.getWriter().write(responseMessage);
             return;
         }
