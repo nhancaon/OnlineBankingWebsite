@@ -200,5 +200,4 @@ public class SavingAccountServlet extends HttpServlet {
         String savingAccountId = request.getParameter("savingAccountId");
         savingAccountDAO.delete(savingAccountId);
     }
-
 }

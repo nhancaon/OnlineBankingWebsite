@@ -68,10 +68,6 @@ public class TransactionServlet extends HttpServlet {
         List<Transaction> transactions = transactionDAO.findAllTransaction();
         request.setAttribute("transactions", transactions);
     }
-
-    protected void addTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
     
     protected void updateTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String transactionId = request.getParameter("transactionIdUpdate");

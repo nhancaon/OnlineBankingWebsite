@@ -97,7 +97,7 @@ public class LoanLendingDAO extends JpaDAO<LoanLending> implements GenericDAO<Lo
         PaymentAccount loanNumber = paymentAccountDAO.findExistingPaymentAccount(accountNumber);
         if (existingLoanLending != null) {
             if (existingLoanLending.getAccountNumber().equals(accountNumber)) {
-                throw new HandleException("Plese kindly arrange for the immediate repayment of " + accountNumber + " loan amount.", 409);
+                throw new HandleException("Please kindly arrange for the immediate repayment of " + accountNumber + " loan amount.", 409);
             }
         } else {
 
