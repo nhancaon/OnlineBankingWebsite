@@ -3,9 +3,17 @@ package DAO;
 import business.Beneficiary;
 import Exception.HandleException;
 import business.Customer;
+import common.HashGenerator;
+import common.MailSender;
+import controller.User.SignupServlet;
+import jakarta.mail.MessagingException;
+
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Beneficiary> {
 
@@ -22,7 +30,6 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
     @Override
     public void delete(Object id) {
         super.delete(Beneficiary.class, id);
-
     }
 
     @Override
@@ -90,8 +97,7 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
         if (!beneficiaryList.isEmpty()) {
             return beneficiaryList;
         } else {
-            throw new HandleException("The Contact " + parameter + " is not existed", 409);
-            
+            throw new HandleException("The Contact " + parameter + " is not existed", 409);   
         }
     }
 
@@ -124,4 +130,30 @@ public class BeneficiaryDAO extends JpaDAO<Beneficiary> implements GenericDAO<Be
         return null;
     }
 
+    public Beneficiary updateBeneficiary(Beneficiary bene, String beneficiaryId, String fullName) throws HandleException {
+        Beneficiary beneficiaryEntityUpdate = new Beneficiary();
+
+        beneficiaryEntityUpdate.setBeneficiaryId(beneficiaryId);
+        beneficiaryEntityUpdate.setName(fullName);
+        beneficiaryEntityUpdate.setAccountNumber(bene.getAccountNumber());
+        beneficiaryEntityUpdate.setCustomer(bene.getCustomer());
+
+        update(beneficiaryEntityUpdate); 
+        return beneficiaryEntityUpdate;
+    }
+
+    public Beneficiary checkUpdateBeneficiary(String beneficiaryId, String fullName, String accNum) throws HandleException {
+        Beneficiary duplicatedAccountNumber = findExistingBeneficiary(accNum);
+
+        if (duplicatedAccountNumber != null){
+            if(duplicatedAccountNumber.getBeneficiaryId().equals(beneficiaryId)){
+                updateBeneficiary(duplicatedAccountNumber, beneficiaryId, fullName);
+            }
+            else{
+                throw new HandleException("The beneficiary with name: " + fullName + " is already registered.", 409);
+            }
+        }
+
+        return null;
+    }
 }

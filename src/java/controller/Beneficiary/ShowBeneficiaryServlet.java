@@ -16,9 +16,7 @@ public class ShowBeneficiaryServlet extends HttpServlet {
     BeneficiaryDAO beneficiaryDAO = new BeneficiaryDAO();
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         ServletContext servletContext = getServletContext();
 

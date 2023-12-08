@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/University/Cloud/online-banking-website/src/java/DAO/BeneficiaryDAO.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/web/includes/header.jsp</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/business/Beneficiary.java</file>
@@ -10,6 +11,9 @@
             <file>file:/D:/University/Cloud/online-banking-website/src/java/controller/SavingAccount/WithdrawServlet.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/DAO/JpaDAO.java</file>
             <file>file:/D:/University/Cloud/online-banking-website/src/java/controller/Beneficiary/ShowBeneficiaryServlet.java</file>
+=======
+            <file>file:/C:/Users/ACER/Downloads/online-banking-website/src/java/controller/SavingAccount/CreateAccountServlet.java</file>
+>>>>>>> 2fd30b471f21256e59c584385308634cb784c476
         </group>
     </open-files>
 </project-private>

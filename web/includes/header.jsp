@@ -1,13 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="business.Customer" %>
 <%@ page import="business.Employee" %>
+<%@ page import="java.time.LocalTime" %>
 <%@ include file="FormatCurrency.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%
     Customer customer = (Customer) session.getAttribute("customer");
+    LocalTime currentTime = LocalTime.now();
+    int hour = currentTime.getHour();
+    String greeting = "";
 
+    if (hour >= 5 && hour < 12) {
+        greeting = "Good morning";
+    } else if (hour >= 12 && hour < 18) {
+        greeting = "Good afternoon";
+    } else {
+        greeting = "Good evening";
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +33,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
-            rel="stylesheet"
-            />
+            rel="stylesheet"/>
         <script>
             tailwind.config = {
                 theme: {
@@ -78,20 +88,21 @@
                             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                                 <img src="./assets/search.svg" class="w-5 h-5" />
                             </div>
+
                             <input
                                 type="search"
                                 id="default-search"
                                 name="parameter"
                                 class="block w-full p-4 pl-8 text-sm text-gray-90 outline-none border-gray-200"
                                 placeholder="Find Contacts in NND Banking"
-                                required
-                            />
+                                required/>
                         </div>
                     </form>
                 </div>
 
                 <div class="flex items-center justify-center">
-                    <%                        if (customer != null) {
+                    <% 
+                        if (customer != null) {
                     %>
                     <form action="Profile" method="GET">
                         <button>
@@ -103,25 +114,22 @@
                     } else {
                     %>
 
-                    <a href="./profile.jsp">
-                        <img src="./assets/banklogo.png" class="w-40 h-12" />
-                    </a>
+                    <a href="./profile.jsp"><img src="./assets/banklogo.png" class="w-40 h-12" /></a>
 
                     <% } %>
                 </div>
 
                 <%
                     if (customer != null) {
-
                         String fullName = customer.getName();
-
                 %>
 
                 <div class="flex items-center justify-end mr-4 sm:mr-0">
                     <div class="hidden sm:block grid mr-2">
-                        <div class="text-sm">Good morning!</div>
+                        <div class="text-sm"><%= greeting %>!</div>
                         <div class="font-bold text-lg"><%= fullName%></div>
                     </div>
+
                     <div>
                         <div id="avatar" class="bg-black rounded-full w-10 h-10"></div>
                         <div id="dropdown" class="hidden absolute right-0 mx-2 md:mx-56 mt-2 border-2 border-gray-200 p-4 w-48 bg-white shadow-xl rounded-md">
@@ -139,8 +147,9 @@
                         </div>
                     </div>                 
                 </div>
+
                 <%
-                } else {
+                    } else {
                 %>
                 <div></div>
                 <%
