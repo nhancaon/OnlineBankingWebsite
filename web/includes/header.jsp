@@ -26,7 +26,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./styles/main.css" />
-        <script src="./styles/tailwindcss.js"></script>
+        <script src="./styles/tailwindcss.js" nonce="2726c7f26c"></script>
         <link rel="icon" href="./assets/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +34,7 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
             rel="stylesheet"/>
-        <script>
+        <script nonce="2726c7f26c">
             tailwind.config = {
                 theme: {
                     extend: {
