@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /OnlineBankingWebsite/Login
+Sitemap: https://deploy-banking.onrender.com/OnlineBankingWebsite/sitemap.xml
